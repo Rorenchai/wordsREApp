@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Study</string>
+    <string name="quiz_hint">选出正确的释义</string>
+    <string name="quiz_progress">第 %1$d 题 · 已答 %2$d 题 · 答对 %3$d 题</string>
+    <string name="toast_answer_correct">回答正确</string>
+    <string name="toast_answer_wrong">回答错误，正确答案是 %1$s</string>
+</resources>
