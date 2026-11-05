@@ -1,0 +1,9 @@
+# 原始数据：可从 kajweb/dict 重新下载，来源与复现方式见 wordbank/词库说明
+data/*.zip
+data/extracted/
+
+# 系统与编辑器噪声
+Thumbs.db
+.DS_Store
+*.tmp
+*.bak
