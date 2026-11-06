@@ -24,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // 阶段 2-2：词库为空时把 assets/words.json 导入 Room（后台执行，界面无感知）
+        new WordRepository(this).seedIfEmpty();
         EdgeToEdge.enable(this);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());

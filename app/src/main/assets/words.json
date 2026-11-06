@@ -1,0 +1,26 @@
+{
+  "words": [
+    { "spelling": "beautiful", "meaning": "adj. 美丽的；漂亮的", "level": "PETS" },
+    { "spelling": "borrow", "meaning": "v. 借；借用", "level": "PETS" },
+    { "spelling": "careful", "meaning": "adj. 小心的；仔细的", "level": "PETS" },
+    { "spelling": "improve", "meaning": "v. 改进；提高", "level": "PETS" },
+    { "spelling": "invite", "meaning": "v. 邀请；招待", "level": "PETS" },
+    { "spelling": "village", "meaning": "n. 村庄；乡村", "level": "PETS" },
+    { "spelling": "weather", "meaning": "n. 天气；气象", "level": "PETS" },
+
+    { "spelling": "abandon", "meaning": "v. 放弃；抛弃", "level": "CET4" },
+    { "spelling": "absorb", "meaning": "v. 吸收；使专心", "level": "CET4" },
+    { "spelling": "accurate", "meaning": "adj. 准确的；精确的", "level": "CET4" },
+    { "spelling": "adapt", "meaning": "v. 适应；改编", "level": "CET4" },
+    { "spelling": "benefit", "meaning": "n. 益处；好处", "level": "CET4" },
+    { "spelling": "capable", "meaning": "adj. 有能力的；能干的", "level": "CET4" },
+    { "spelling": "concentrate", "meaning": "v. 集中；专心", "level": "CET4" },
+
+    { "spelling": "ambiguous", "meaning": "adj. 模棱两可的；含糊不清的", "level": "CET6" },
+    { "spelling": "coherent", "meaning": "adj. 连贯的；有条理的", "level": "CET6" },
+    { "spelling": "deteriorate", "meaning": "v. 恶化；变坏", "level": "CET6" },
+    { "spelling": "inevitable", "meaning": "adj. 不可避免的；必然的", "level": "CET6" },
+    { "spelling": "meticulous", "meaning": "adj. 一丝不苟的；细致的", "level": "CET6" },
+    { "spelling": "prudent", "meaning": "adj. 谨慎的；精明的", "level": "CET6" }
+  ]
+}

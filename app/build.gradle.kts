@@ -45,6 +45,8 @@ dependencies {
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
+    // Gson 2.10.1：阶段 2-2 解析 assets/words.json 用
+    implementation(libs.gson)
 
     // Room 2.6.1：Java 项目固定用 annotationProcessor，禁止 kapt / ksp
     implementation(libs.room.runtime)

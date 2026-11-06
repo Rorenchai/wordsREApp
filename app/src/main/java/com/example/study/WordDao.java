@@ -20,4 +20,8 @@ public interface WordDao {
     /** 随机抽一个单词；表为空时返回 null */
     @Query("SELECT * FROM words ORDER BY RANDOM() LIMIT 1")
     Word getRandomWord();
+
+    /** 查询词库已有多少条，用于判断是否需要首次导入（幂等的关键） */
+    @Query("SELECT COUNT(*) FROM words")
+    int countWords();
 }
