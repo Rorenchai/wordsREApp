@@ -43,11 +43,14 @@ public class WordRepository {
 
     private final Context context;
     private final WordDao wordDao;
+    private final LearningRecordDao learningRecordDao;
 
     public WordRepository(Context context) {
         // 用 ApplicationContext，避免持有 Activity 造成内存泄漏
         this.context = context.getApplicationContext();
-        this.wordDao = AppDatabase.getInstance(this.context).wordDao();
+        AppDatabase database = AppDatabase.getInstance(this.context);
+        this.wordDao = database.wordDao();
+        this.learningRecordDao = database.learningRecordDao();
     }
 
     /**
@@ -87,6 +90,44 @@ public class WordRepository {
                     callback.onQuestionLoaded(result);
                 }
             });
+        });
+    }
+
+    /**
+     * 异步记录一次有效作答：同一单词已有记录则累加，没有则新建。
+     * 所有读改写都在静态单线程池内串行完成，避免并发写丢失计数；调用方无需等待结果。
+     */
+    public void recordAnswer(String spelling, boolean correct) {
+        if (spelling == null || spelling.isEmpty()) {
+            return;
+        }
+        // 在作答发生时取时间，避免线程池排队时间影响 lastAnsweredAt 的语义
+        final long answeredAt = System.currentTimeMillis();
+        SEED_EXECUTOR.execute(() -> {
+            try {
+                LearningRecord record = learningRecordDao.findBySpelling(spelling);
+                boolean isNew = record == null;
+                if (isNew) {
+                    record = new LearningRecord();
+                    record.setSpelling(spelling);
+                    record.setExposureCount(1);
+                    record.setCorrectCount(correct ? 1 : 0);
+                } else {
+                    record.setExposureCount(record.getExposureCount() + 1);
+                    if (correct) {
+                        record.setCorrectCount(record.getCorrectCount() + 1);
+                    }
+                }
+                record.setLastAnsweredAt(answeredAt);
+                if (isNew) {
+                    learningRecordDao.insert(record);
+                } else {
+                    learningRecordDao.update(record);
+                }
+            } catch (Exception e) {
+                // 记录失败只记日志，不打断答题、Toast 或自动换题
+                Log.e(TAG, "答题记录保存失败", e);
+            }
         });
     }
 

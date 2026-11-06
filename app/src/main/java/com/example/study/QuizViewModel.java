@@ -117,6 +117,8 @@ public class QuizViewModel extends AndroidViewModel {
         if (correct) {
             correctCount++;
         }
+        // 发射后不管：只把记录任务排入后台单线程池，不等待写库，也不改变换题时序
+        repository.recordAnswer(currentWord.getSpelling(), correct);
         return correct;
     }
 
