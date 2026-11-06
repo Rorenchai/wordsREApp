@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>背单词 · 翻转单词卡片</title>
+<style>
+  /* ============ 主题变量：绿色系，与 Android 端类多邻国风格一致 ============ */
+  :root {
+    --green: #58cc02;
+    --green-dark: #46a302;
+    --green-soft: #e9fbd8;
+    --ink: #1f2937;
+    --muted: #6b7280;
+    --line: #e5e7eb;
+    --radius: 24px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body { margin: 0; padding: 0; }
+
+  body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 26px;
+    padding: 32px 16px;
+    font-family: "PingFang SC", "Microsoft YaHei", "Segoe UI", system-ui, -apple-system, sans-serif;
+    color: var(--ink);
+    background: radial-gradient(circle at 20% 0%, #f0ffe0 0%, #f7fff2 45%, #eef7ff 100%);
+  }
+
+  /* ============ 标题区 ============ */
+  .app-header { text-align: center; }
+  .app-header h1 {
+    margin: 0;
+    font-size: 28px;
+    letter-spacing: 2px;
+  }
+  .app-header .subtitle {
+    margin: 8px 0 0;
+    font-size: 14px;
+    color: var(--muted);
+  }
+
+  .main {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+
+  /* ============ 3D 翻转卡片 ============ */
+  .card-scene {
+    width: min(100%, 520px);
+    height: 300px;
+    perspective: 1200px;            /* 父容器给透视，子卡片翻转才有 3D 感 */
+    transition: transform 0.25s ease;
+  }
+  .card-scene:hover { transform: translateY(-4px); }   /* 悬停浮起 */
+
+  .card {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;    /* 正反两面共享同一个 3D 空间 */
+    transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
+    cursor: pointer;
+    outline: none;
+  }
+  .card.flipped { transform: rotateY(180deg); }   /* 翻转状态 */
+
+  .card:focus-visible .card-face {
+    border-color: var(--green);
+    box-shadow: 0 0 0 4px var(--green-soft);
+  }
+
+  .card-face {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 28px;
+    text-align: center;
+    background: #ffffff;
+    border: 2px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: 0 14px 34px rgba(15, 45, 15, 0.12);
+    backface-visibility: hidden;          /* 背面朝向用户时隐藏 */
+    -webkit-backface-visibility: hidden;
+  }
+
+  .card-back {
+    transform: rotateY(180deg);           /* 背面预置 180°，翻过去才正对用户 */
+    background: linear-gradient(160deg, #ffffff 0%, #f4ffe8 100%);
+  }
+
+  /* 正面：大号拼写 */
+  .spelling {
+    margin: 0;
+    font-size: min(9vw, 44px);
+    font-weight: 700;
+    letter-spacing: 1px;
+    line-height: 1.15;
+    word-break: break-word;
+  }
+  .tip {
+    margin: 0;
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  /* 背面：中文释义 + 小号拼写 */
+  .meaning {
+    margin: 0;
+    font-size: min(4.2vw, 20px);
+    line-height: 1.6;
+    word-break: break-word;
+  }
+  .back-spelling {
+    margin: 0;
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: var(--muted);
+  }
+
+  /* 级别徽章：三个级别用不同配色区分 */
+  .badge {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #ffffff;
+  }
+  .badge-pets { background: #0ea5e9; }
+  .badge-cet4 { background: var(--green); }
+  .badge-cet6 { background: #a855f7; }
+
+  /* 已掌握标识：左上角角标 + 卡片描边变绿 */
+  .mastered-mark {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    display: none;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--green-dark);
+    background: var(--green-soft);
+    border: 1px solid var(--green);
+  }
+  .card-scene.is-mastered .mastered-mark { display: inline-flex; }
+  .card-scene.is-mastered .card-face {
+    border-color: var(--green);
+    box-shadow: 0 14px 34px rgba(88, 204, 2, 0.25);
+  }
+
+  /* ============ 操作按钮区（在卡片外面，点按钮不会误触翻转） ============ */
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    width: min(100%, 520px);
+  }
+  .btn {
+    min-width: 96px;
+    min-height: 48px;
+    padding: 0 18px;
+    border: 2px solid transparent;
+    border-radius: 14px;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.12s ease, box-shadow 0.12s ease,
+                background-color 0.12s ease, color 0.12s ease;
+  }
+  .btn:hover { transform: translateY(-2px); }
+  .btn:active { transform: translateY(1px) scale(0.98); }   /* 点击态 */
+  .btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+
+  .btn-primary {
+    color: #ffffff;
+    background: var(--green);
+    box-shadow: 0 4px 0 var(--green-dark);
+  }
+  .btn-primary:hover { background: #61d908; }
+  .btn-primary:active { box-shadow: 0 1px 0 var(--green-dark); }
+
+  .btn-outline {
+    color: var(--green-dark);
+    background: #ffffff;
+    border-color: var(--green);
+  }
+  .btn-outline:hover { background: var(--green-soft); }
+
+  .btn-ghost {
+    color: var(--muted);
+    background: transparent;
+    border-color: var(--line);
+  }
+  .btn-ghost:hover { background: #f3f4f6; color: var(--ink); }
+
+  /* ============ 进度区 ============ */
+  .progress {
+    margin: 0;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+    color: var(--muted);
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  /* ============ 窄屏自适应（375px 手机宽度不溢出、不挤爆） ============ */
+  @media (max-width: 420px) {
+    body { gap: 20px; padding: 24px 12px; }
+    .app-header h1 { font-size: 24px; }
+    .app-header .subtitle { font-size: 13px; }
+    .card-scene { height: 260px; }
+    .card-face { padding: 20px; gap: 10px; }
+    .spelling { font-size: min(9vw, 38px); }
+    .meaning { font-size: min(4.6vw, 18px); }
+    .controls { gap: 10px; }
+    .btn { min-width: 92px; padding: 0 14px; font-size: 15px; }
+    .progress { font-size: 13px; letter-spacing: 0; }
+  }
+</style>
+</head>
+<body>
+
+  <header class="app-header">
+    <h1>背单词</h1>
+    <p class="subtitle">翻一翻，记得更牢 —— 点击卡片查看中文释义</p>
+  </header>
+
+  <main class="main">
+    <!-- 卡片区：点击翻转 -->
+    <div class="card-scene" id="cardScene">
+      <div class="card" id="card" role="button" tabindex="0"
+           aria-label="单词卡片，点击翻转查看释义">
+        <!-- 正面：拼写 + 级别徽章 -->
+        <div class="card-face card-front">
+          <span class="badge badge-pets" id="levelBadge">PETS</span>
+          <span class="mastered-mark" aria-hidden="true">✓ 已掌握</span>
+          <p class="spelling" id="spelling">beautiful</p>
+          <p class="tip">点击卡片看释义</p>
+        </div>
+        <!-- 背面：中文释义 + 小号拼写 -->
+        <div class="card-face card-back">
+          <span class="mastered-mark" aria-hidden="true">✓ 已掌握</span>
+          <p class="meaning" id="meaning">adj. 美丽的；漂亮的</p>
+          <p class="back-spelling" id="backSpelling">beautiful</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 按钮区：放在卡片外面，避免点按钮误触发翻转 -->
+    <div class="controls">
+      <button type="button" class="btn btn-primary" id="nextBtn">下一个</button>
+      <button type="button" class="btn btn-outline" id="masterBtn">已掌握</button>
+      <button type="button" class="btn btn-ghost" id="resetBtn">重置</button>
+    </div>
+
+    <!-- 进度区 -->
+    <p class="progress" id="progress">已学 0 / 20　已掌握 0　掌握率 0%</p>
+  </main>
+
+<script>
+(function () {
+  'use strict';
+
+  /*
+   * 词库：与 Android 端 Study/app/src/main/assets/words.json 完全一致的 20 个词
+   * （同样 spelling / meaning / level，PETS×7、CET4×7、CET6×6）
+   */
+  const WORDS = [
+    { spelling: 'beautiful', meaning: 'adj. 美丽的；漂亮的', level: 'PETS' },
+    { spelling: 'borrow', meaning: 'v. 借；借用', level: 'PETS' },
+    { spelling: 'careful', meaning: 'adj. 小心的；仔细的', level: 'PETS' },
+    { spelling: 'improve', meaning: 'v. 改进；提高', level: 'PETS' },
+    { spelling: 'invite', meaning: 'v. 邀请；招待', level: 'PETS' },
+    { spelling: 'village', meaning: 'n. 村庄；乡村', level: 'PETS' },
+    { spelling: 'weather', meaning: 'n. 天气；气象', level: 'PETS' },
+
+    { spelling: 'abandon', meaning: 'v. 放弃；抛弃', level: 'CET4' },
+    { spelling: 'absorb', meaning: 'v. 吸收；使专心', level: 'CET4' },
+    { spelling: 'accurate', meaning: 'adj. 准确的；精确的', level: 'CET4' },
+    { spelling: 'adapt', meaning: 'v. 适应；改编', level: 'CET4' },
+    { spelling: 'benefit', meaning: 'n. 益处；好处', level: 'CET4' },
+    { spelling: 'capable', meaning: 'adj. 有能力的；能干的', level: 'CET4' },
+    { spelling: 'concentrate', meaning: 'v. 集中；专心', level: 'CET4' },
+
+    { spelling: 'ambiguous', meaning: 'adj. 模棱两可的；含糊不清的', level: 'CET6' },
+    { spelling: 'coherent', meaning: 'adj. 连贯的；有条理的', level: 'CET6' },
+    { spelling: 'deteriorate', meaning: 'v. 恶化；变坏', level: 'CET6' },
+    { spelling: 'inevitable', meaning: 'adj. 不可避免的；必然的', level: 'CET6' },
+    { spelling: 'meticulous', meaning: 'adj. 一丝不苟的；细致的', level: 'CET6' },
+    { spelling: 'prudent', meaning: 'adj. 谨慎的；精明的', level: 'CET6' }
+  ];
+
+  /* localStorage 键名：掌握集合 / 已学集合 */
+  const KEY_MASTERED = 'wordsre_mastered';
+  const KEY_VIEWED = 'wordsre_viewed';
+
+  /* 页面元素引用（只查一次） */
+  const dom = {
+    scene: document.getElementById('cardScene'),
+    card: document.getElementById('card'),
+    spelling: document.getElementById('spelling'),
+    meaning: document.getElementById('meaning'),
+    backSpelling: document.getElementById('backSpelling'),
+    levelBadge: document.getElementById('levelBadge'),
+    progress: document.getElementById('progress'),
+    nextBtn: document.getElementById('nextBtn'),
+    masterBtn: document.getElementById('masterBtn'),
+    resetBtn: document.getElementById('resetBtn')
+  };
+
+  /*
+   * 内存状态：用「词在 WORDS 中的下标」做集合，避免同名单词干扰。
+   * 进度口径（任务卡写死，不自创）：
+   *   已学 = 浏览过的不同单词数；已掌握 = 掌握集合大小；掌握率 = 已掌握 ÷ 20 × 100%（整数）。
+   */
+  let mastered = new Set();
+  let viewed = new Set();
+  let currentIndex = 0;   // 当前展示的词下标
+  let flipped = false;    // 卡片是否翻到背面
+
+  /* ================= 本地存储：读取 / 保存 ================= */
+  function readIndexSet(key) {
+    const result = new Set();
+    try {
+      const raw = localStorage.getItem(key);
+      if (!raw) return result;
+      const list = JSON.parse(raw);
+      if (!Array.isArray(list)) return result;
+      list.forEach(function (i) {
+        // 过滤掉无效下标，防止历史脏数据把页面搞崩
+        if (Number.isInteger(i) && i >= 0 && i < WORDS.length) result.add(i);
+      });
+    } catch (e) {
+      // localStorage 不可用或内容不是合法 JSON 时，按空状态处理，不影响页面使用
+    }
+    return result;
+  }
+
+  function saveState() {
+    try {
+      localStorage.setItem(KEY_MASTERED, JSON.stringify(Array.from(mastered)));
+      localStorage.setItem(KEY_VIEWED, JSON.stringify(Array.from(viewed)));
+    } catch (e) {
+      // 隐私模式等情况下写入失败：只影响刷新持久化，不影响本次使用
+    }
+  }
+
+  /* ================= 渲染 ================= */
+  function setFlipped(value) {
+    flipped = value;
+    dom.card.classList.toggle('flipped', flipped);
+    dom.card.setAttribute('aria-pressed', String(flipped));
+  }
+
+  /** 渲染当前卡片内容 + 掌握状态 + 按钮文案 */
+  function renderCard() {
+    const word = WORDS[currentIndex];
+    dom.spelling.textContent = word.spelling;
+    dom.backSpelling.textContent = word.spelling;
+    dom.meaning.textContent = word.meaning;
+    dom.levelBadge.textContent = word.level;
+    dom.levelBadge.className = 'badge badge-' + word.level.toLowerCase();
+
+    const isMastered = mastered.has(currentIndex);
+    dom.scene.classList.toggle('is-mastered', isMastered);
+    dom.masterBtn.textContent = isMastered ? '取消掌握' : '已掌握';
+  }
+
+  /** 渲染进度：任何状态变化后都要调用，保证数字实时刷新 */
+  function renderProgress() {
+    const masteredCount = mastered.size;
+    const viewedCount = viewed.size;
+    const rate = Math.round((masteredCount / WORDS.length) * 100);  // 20 整除，必为整数
+    dom.progress.textContent =
+      '已学 ' + viewedCount + ' / ' + WORDS.length +
+      '　已掌握 ' + masteredCount +
+      '　掌握率 ' + rate + '%';
+  }
+
+  function renderAll() {
+    renderCard();
+    renderProgress();
+  }
+
+  /* ================= 行为 ================= */
+  /** 随机取一个与当前不同的下标（词库只有 1 个词时不会死循环） */
+  function pickNextIndex() {
+    if (WORDS.length <= 1) return 0;
+    let index = currentIndex;
+    while (index === currentIndex) {
+      index = Math.floor(Math.random() * WORDS.length);
+    }
+    return index;
+  }
+
+  /** 切换要展示的词：必须把卡片恢复到正面，并把新词计入「已学」 */
+  function showWord(index) {
+    currentIndex = index;
+    setFlipped(false);                 // 背面不残留上一张的翻转状态
+    if (!viewed.has(index)) {          // 抽到新词才算「已学」
+      viewed.add(index);
+      saveState();
+    }
+    renderAll();
+  }
+
+  function nextWord() {
+    showWord(pickNextIndex());
+  }
+
+  /** 掌握 / 取消掌握切换 */
+  function toggleMastered() {
+    if (mastered.has(currentIndex)) {
+      mastered.delete(currentIndex);
+    } else {
+      mastered.add(currentIndex);
+    }
+    saveState();
+    renderAll();
+  }
+
+  /** 重置：清空两个 localStorage 键与内存状态，回到初始词 */
+  function resetAll() {
+    mastered.clear();
+    viewed.clear();
+    try {
+      localStorage.removeItem(KEY_MASTERED);
+      localStorage.removeItem(KEY_VIEWED);
+    } catch (e) {
+      // 忽略：移除失败也不影响内存状态归零
+    }
+    currentIndex = 0;   // 回到初始词（词库第一条）
+    setFlipped(false);
+    renderAll();
+  }
+
+  function flipCard() {
+    setFlipped(!flipped);
+  }
+
+  /* ================= 事件绑定 ================= */
+  dom.card.addEventListener('click', flipCard);
+  // 键盘也可翻转，方便不用鼠标时操作
+  dom.card.addEventListener('keydown', function (event) {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      flipCard();
+    }
+  });
+  dom.nextBtn.addEventListener('click', nextWord);
+  dom.masterBtn.addEventListener('click', toggleMastered);
+  dom.resetBtn.addEventListener('click', resetAll);
+
+  /* ================= 初始化 ================= */
+  (function init() {
+    mastered = readIndexSet(KEY_MASTERED);
+    viewed = readIndexSet(KEY_VIEWED);
+
+    if (viewed.size > 0) {
+      // 刷新时有学习记录：从「已学」里挑一个展示，进度数字不会因刷新而虚增
+      const viewedIndices = Array.from(viewed);
+      currentIndex = viewedIndices[Math.floor(Math.random() * viewedIndices.length)];
+    } else {
+      currentIndex = 0;   // 没有历史数据：从空状态、初始词开始
+    }
+    setFlipped(false);
+    renderAll();
+  })();
+})();
+</script>
+</body>
+</html>
