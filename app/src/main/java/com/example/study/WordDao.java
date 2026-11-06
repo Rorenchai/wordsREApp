@@ -24,4 +24,11 @@ public interface WordDao {
     /** 查询词库已有多少条，用于判断是否需要首次导入（幂等的关键） */
     @Query("SELECT COUNT(*) FROM words")
     int countWords();
+
+    /**
+     * 随机取若干条干扰释义，排除本题单词的拼写。
+     * 用于阶段 2-3 四选一出题：主词 1 条 + 干扰项 3 条。
+     */
+    @Query("SELECT meaning FROM words WHERE spelling != :excludeSpelling ORDER BY RANDOM() LIMIT :count")
+    List<String> getRandomMeanings(String excludeSpelling, int count);
 }

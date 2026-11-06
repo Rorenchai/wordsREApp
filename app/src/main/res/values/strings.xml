@@ -4,4 +4,6 @@
     <string name="quiz_progress">第 %1$d 题 · 已答 %2$d 题 · 答对 %3$d 题</string>
     <string name="toast_answer_correct">回答正确</string>
     <string name="toast_answer_wrong">回答错误，正确答案是 %1$s</string>
+    <string name="quiz_loading">加载中…</string>
+    <string name="quiz_load_failed">题库加载失败，请重启应用重试</string>
 </resources>

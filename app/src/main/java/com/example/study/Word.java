@@ -19,7 +19,7 @@ public class Word {
 
     private String meaning;
 
-    /** 词库级别，如 "CET3" / "CET4" / "CET6"；阶段 1 的硬编码词没有级别，允许为 null */
+    /** 词库级别，如 "PETS" / "CET4" / "CET6"；阶段 1 的硬编码词没有级别，允许为 null */
     private String level;
 
     /** Room 需要一个无参构造函数来创建从数据库读出的对象 */
