@@ -62,7 +62,17 @@ data class LibraryStats(
 
     val masteredRate: Int get() = percent(masteredWords, totalWords)
 
+    /** 学习进度百分比（保留一位小数，避免 4544 词时长期显示 0%）。 */
+    val learnedPercent: Float get() = percentFloat(startedWords, totalWords)
+
+    /** 掌握率百分比（保留一位小数）。 */
+    val masteredPercent: Float get() = percentFloat(masteredWords, totalWords)
+
     private fun percent(value: Int, total: Int): Int {
         return if (total <= 0) 0 else (value * 100 / total).coerceIn(0, 100)
+    }
+
+    private fun percentFloat(value: Int, total: Int): Float {
+        return if (total <= 0) 0f else (value * 100f / total).coerceIn(0f, 100f)
     }
 }
