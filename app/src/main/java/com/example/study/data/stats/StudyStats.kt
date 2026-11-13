@@ -59,6 +59,7 @@ data class LibraryStats(
     val quizCorrect: Int = 0,
     val todayStudyMs: Long = 0L,
     val totalStudyMs: Long = 0L,
+    val wrongBookCount: Int = 0,
     val monthStudyDates: List<String> = emptyList()
 ) {
     val untouchedWords: Int get() = (totalWords - startedWords).coerceAtLeast(0)

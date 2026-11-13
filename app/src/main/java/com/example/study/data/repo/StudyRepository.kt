@@ -11,6 +11,7 @@ import com.example.study.data.db.StudyEventEntity
 import com.example.study.data.db.StudyStatus
 import com.example.study.data.db.WordDao
 import com.example.study.data.db.WordProgressEntity
+import com.example.study.data.db.WrongWordRow
 import com.example.study.data.stats.LibraryStats
 import com.example.study.data.stats.StudyDates
 import com.example.study.data.stats.StudyStats
@@ -126,6 +127,7 @@ class StudyRepository(
         val monthDates = eventDao.datesBetween(library, monthFrom, monthTo)
         val todayStudyMs = studyDurationDao.durationOn(library, StudyDates.format(today)) ?: 0L
         val totalStudyMs = studyDurationDao.totalDuration(library)
+        val wrongBookCount = eventDao.wrongWordCount(library)
         return LibraryStats(
             totalWords = totalWords,
             startedWords = startedWords,
@@ -138,6 +140,7 @@ class StudyRepository(
             quizCorrect = quizCorrect,
             todayStudyMs = todayStudyMs,
             totalStudyMs = totalStudyMs,
+            wrongBookCount = wrongBookCount,
             monthStudyDates = monthDates
         )
     }
@@ -177,4 +180,7 @@ class StudyRepository(
         if (durationMs <= 0) return
         studyDurationDao.addDuration(library, StudyDates.formatDate(now), durationMs)
     }
+
+    /** 错题本列表：最近一次答题答错的词（答对后自动移出）。 */
+    suspend fun wrongWords(library: String): List<WrongWordRow> = eventDao.wrongWords(library)
 }

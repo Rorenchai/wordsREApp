@@ -2,6 +2,7 @@ package com.example.study.ui.records
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -51,7 +52,7 @@ import com.example.study.ui.theme.DuoTextSecondary
 import java.time.LocalDate
 
 @Composable
-fun RecordsScreen(modifier: Modifier = Modifier) {
+fun RecordsScreen(onOpenWrongBook: () -> Unit, modifier: Modifier = Modifier) {
     val context = LocalContext.current
     val viewModel: RecordsViewModel = viewModel(factory = RecordsViewModel.factory(context))
     val state by viewModel.uiState.collectAsStateWithLifecycle()
@@ -115,6 +116,7 @@ fun RecordsScreen(modifier: Modifier = Modifier) {
                 QuizStatsCard(stats)
                 WeekCard(stats)
                 LearningTimeCard(stats)
+                WrongBookCard(stats.wrongBookCount, onOpenWrongBook)
                 CheckInCalendarCard(stats)
                 Row(
                     modifier = Modifier.fillMaxWidth(),
@@ -256,6 +258,41 @@ private fun LearningTimeCard(stats: LibraryStats) {
             style = MaterialTheme.typography.bodyMedium,
             color = DuoTextSecondary
         )
+    }
+}
+
+@Composable
+private fun WrongBookCard(count: Int, onOpen: () -> Unit) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(20.dp))
+            .background(DuoSurface)
+            .border(2.dp, DuoBorder, RoundedCornerShape(20.dp))
+            .clickable(onClick = onOpen)
+            .padding(16.dp),
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+            Text(
+                text = "错题本",
+                style = MaterialTheme.typography.titleMedium,
+                color = DuoTextPrimary
+            )
+            Text(
+                text = if (count > 0) "$count 个最近答错的词，点击进入复习" else "暂无错题",
+                style = MaterialTheme.typography.bodySmall,
+                color = DuoTextSecondary
+            )
+        }
+        if (count > 0) {
+            Text(
+                text = "去复习 ›",
+                style = MaterialTheme.typography.titleMedium,
+                color = DuoGreen
+            )
+        }
     }
 }
 

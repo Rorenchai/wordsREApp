@@ -31,7 +31,9 @@ import com.example.study.ui.games.GamesScreen
 import com.example.study.ui.listening.ListeningScreen
 import com.example.study.ui.match.MatchScreen
 import com.example.study.ui.quiz.QuizScreen
+import com.example.study.ui.review.ReviewScreen
 import com.example.study.ui.spelling.SpellingScreen
+import com.example.study.ui.wrongbook.WrongBookScreen
 import com.example.study.ui.records.RecordsScreen
 import com.example.study.ui.settings.SettingsScreen
 import com.example.study.ui.study.StudyScreen
@@ -61,7 +63,7 @@ fun AppNavHost() {
 
     Scaffold(
         bottomBar = {
-            if (currentDestination?.route !in setOf("dictionary", "quiz", "listening", "spelling", "match")) {
+            if (currentDestination?.route !in setOf("dictionary", "quiz", "listening", "spelling", "match", "wrongbook", "review")) {
                 NavigationBar(containerColor = Color.White) {
                     bottomNavItems.forEach { item ->
                         val selected = currentDestination?.hierarchy?.any { it.route == item.route } == true
@@ -103,7 +105,11 @@ fun AppNavHost() {
                     navController.navigate("dictionary") { launchSingleTop = true }
                 })
             }
-            composable("records") { RecordsScreen() }
+            composable("records") {
+                RecordsScreen(onOpenWrongBook = {
+                    navController.navigate("wrongbook") { launchSingleTop = true }
+                })
+            }
             composable("favorites") { FavoritesScreen() }
             composable("games") {
                 GamesScreen(
@@ -128,6 +134,15 @@ fun AppNavHost() {
             }
             composable("match") {
                 MatchScreen(onBack = { navController.popBackStack() })
+            }
+            composable("wrongbook") {
+                WrongBookScreen(
+                    onBack = { navController.popBackStack() },
+                    onStartReview = { navController.navigate("review") { launchSingleTop = true } }
+                )
+            }
+            composable("review") {
+                ReviewScreen(onBack = { navController.popBackStack() })
             }
         }
     }
