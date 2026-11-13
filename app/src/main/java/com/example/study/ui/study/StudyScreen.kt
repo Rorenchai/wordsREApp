@@ -19,6 +19,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.VolumeUp
 import androidx.compose.material.icons.filled.LocalFireDepartment
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -57,7 +58,7 @@ import com.example.study.ui.theme.DuoTextPrimary
 import com.example.study.ui.theme.DuoTextSecondary
 
 @Composable
-fun StudyScreen(modifier: Modifier = Modifier) {
+fun StudyScreen(onOpenDictionary: () -> Unit, modifier: Modifier = Modifier) {
     val context = LocalContext.current
     val viewModel: StudyViewModel = viewModel(factory = StudyViewModel.factory(context))
     val state by viewModel.uiState.collectAsStateWithLifecycle()
@@ -84,7 +85,7 @@ fun StudyScreen(modifier: Modifier = Modifier) {
                 .padding(top = 12.dp, bottom = 20.dp),
             verticalArrangement = Arrangement.spacedBy(14.dp)
         ) {
-            StudyHeader(state)
+            StudyHeader(state = state, onOpenDictionary = onOpenDictionary)
             DailyGoalCard(state)
             FilterChips(selected = state.filter, onSelect = viewModel::setFilter)
             StudyCard(
@@ -115,7 +116,7 @@ fun StudyScreen(modifier: Modifier = Modifier) {
 }
 
 @Composable
-private fun StudyHeader(state: StudyUiState) {
+private fun StudyHeader(state: StudyUiState, onOpenDictionary: () -> Unit) {
     Row(
         modifier = Modifier.fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically,
@@ -135,18 +136,27 @@ private fun StudyHeader(state: StudyUiState) {
                 color = DuoTextPrimary
             )
         }
-        Box(
-            modifier = Modifier
-                .clip(RoundedCornerShape(percent = 50))
-                .background(DuoSurface)
-                .border(2.dp, DuoBorder, RoundedCornerShape(percent = 50))
-                .padding(horizontal = 14.dp, vertical = 6.dp)
-        ) {
-            Text(
-                text = state.library,
-                style = MaterialTheme.typography.labelMedium,
-                color = DuoTextSecondary
-            )
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            IconButton(onClick = onOpenDictionary) {
+                Icon(
+                    imageVector = Icons.Filled.Search,
+                    contentDescription = "打开词典查询",
+                    tint = DuoTextSecondary
+                )
+            }
+            Box(
+                modifier = Modifier
+                    .clip(RoundedCornerShape(percent = 50))
+                    .background(DuoSurface)
+                    .border(2.dp, DuoBorder, RoundedCornerShape(percent = 50))
+                    .padding(horizontal = 14.dp, vertical = 6.dp)
+            ) {
+                Text(
+                    text = state.library,
+                    style = MaterialTheme.typography.labelMedium,
+                    color = DuoTextSecondary
+                )
+            }
         }
     }
 }

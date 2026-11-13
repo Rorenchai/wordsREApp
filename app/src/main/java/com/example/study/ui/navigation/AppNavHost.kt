@@ -10,11 +10,13 @@ import androidx.compose.material.icons.filled.VideogameAsset
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
@@ -22,6 +24,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.example.study.ui.dictionary.DictionaryScreen
 import com.example.study.ui.games.GamesScreen
 import com.example.study.ui.records.RecordsScreen
 import com.example.study.ui.settings.SettingsScreen
@@ -51,30 +54,32 @@ fun AppNavHost() {
 
     Scaffold(
         bottomBar = {
-            NavigationBar(containerColor = androidx.compose.ui.graphics.Color.White) {
-                bottomNavItems.forEach { item ->
-                    val selected = currentDestination?.hierarchy?.any { it.route == item.route } == true
-                    NavigationBarItem(
-                        selected = selected,
-                        onClick = {
-                            navController.navigate(item.route) {
-                                popUpTo(navController.graph.findStartDestination().id) {
-                                    saveState = true
+            if (currentDestination?.route != "dictionary") {
+                NavigationBar(containerColor = Color.White) {
+                    bottomNavItems.forEach { item ->
+                        val selected = currentDestination?.hierarchy?.any { it.route == item.route } == true
+                        NavigationBarItem(
+                            selected = selected,
+                            onClick = {
+                                navController.navigate(item.route) {
+                                    popUpTo(navController.graph.findStartDestination().id) {
+                                        saveState = true
+                                    }
+                                    launchSingleTop = true
+                                    restoreState = true
                                 }
-                                launchSingleTop = true
-                                restoreState = true
-                            }
-                        },
-                        icon = { Icon(item.icon, contentDescription = item.label) },
-                        label = { Text(item.label) },
-                        colors = androidx.compose.material3.NavigationBarItemDefaults.colors(
-                            selectedIconColor = DuoGreen,
-                            selectedTextColor = DuoGreen,
-                            unselectedIconColor = DuoTextSecondary,
-                            unselectedTextColor = DuoTextSecondary,
-                            indicatorColor = DuoGreen.copy(alpha = 0.14f)
+                            },
+                            icon = { Icon(item.icon, contentDescription = item.label) },
+                            label = { Text(item.label) },
+                            colors = NavigationBarItemDefaults.colors(
+                                selectedIconColor = DuoGreen,
+                                selectedTextColor = DuoGreen,
+                                unselectedIconColor = DuoTextSecondary,
+                                unselectedTextColor = DuoTextSecondary,
+                                indicatorColor = DuoGreen.copy(alpha = 0.14f)
+                            )
                         )
-                    )
+                    }
                 }
             }
         }
@@ -86,10 +91,17 @@ fun AppNavHost() {
                 .fillMaxSize()
                 .padding(innerPadding)
         ) {
-            composable("study") { StudyScreen() }
+            composable("study") {
+                StudyScreen(onOpenDictionary = {
+                    navController.navigate("dictionary") { launchSingleTop = true }
+                })
+            }
             composable("records") { RecordsScreen() }
             composable("games") { GamesScreen() }
             composable("settings") { SettingsScreen() }
+            composable("dictionary") {
+                DictionaryScreen(onBack = { navController.popBackStack() })
+            }
         }
     }
 }

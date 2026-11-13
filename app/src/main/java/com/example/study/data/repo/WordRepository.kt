@@ -26,4 +26,8 @@ class WordRepository(
 
     suspend fun findWord(library: String, word: String): WordEntity? =
         wordDao.findByWord(library, word)
+
+    /** 词典搜索：library 传 "ALL" 表示跨词库检索。 */
+    suspend fun searchWords(library: String, query: String, limit: Int): List<WordEntity> =
+        wordDao.searchWords(library, query, limit)
 }

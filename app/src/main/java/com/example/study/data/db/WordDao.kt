@@ -37,4 +37,25 @@ interface WordDao {
         """
     )
     suspend fun randomWord(library: String, statusFilter: Int): WordEntity?
+
+    /**
+     * 词典搜索：按单词或释义模糊匹配；library 传 "ALL" 表示跨词库。
+     * 排序优先级：完全匹配 > 前缀匹配 > 包含匹配，其次按字母序。
+     */
+    @Query(
+        """
+        SELECT * FROM words
+        WHERE (:library = 'ALL' OR library = :library)
+          AND (word LIKE '%' || :query || '%' OR meaning LIKE '%' || :query || '%')
+        ORDER BY
+            CASE
+                WHEN LOWER(word) = LOWER(:query) THEN 0
+                WHEN LOWER(word) LIKE LOWER(:query) || '%' THEN 1
+                ELSE 2
+            END,
+            word ASC
+        LIMIT :limit
+        """
+    )
+    suspend fun searchWords(library: String, query: String, limit: Int): List<WordEntity>
 }

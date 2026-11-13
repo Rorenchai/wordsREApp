@@ -2,7 +2,7 @@
 
 一款类多邻国风格的 Android 背单词应用：**Kotlin + Jetpack Compose + Room**，内置完整 **CET-4（4,544 词）/ CET-6（3,991 词）** 词库，核心闭环为「翻转卡片学习 → 标记学习状态 → 每日目标 / 学习记录统计 → 词库切换 → 发音」。
 
-> 当前分支：`kotlin-refactor`（基于 `main@66b4c21`），5 个重构里程碑已完成并各自编译通过，**尚未合并 main，等待真机验收**。
+> 状态：重构已完成并通过真机验收，**已合并 `main`**（`4413cbe`，2026-11-13）。当前开发进入第二期（小游戏 / 词典搜索 / 收藏集合等）。
 
 ## 功能（第一期核心闭环）
 
@@ -19,6 +19,7 @@
 | 发音 | 系统 TextToSpeech，按设置切换美式 US / 英式 UK；引擎不可用时提示 |
 | 重置进度 | 二次确认后只重置当前词库的学习状态与记录，词库本身保留 |
 | 许可与来源 | 设置页可查看词库 BSD-3 与字体 OFL 许可证全文 |
+| 词典查询 | 学习页右上角搜索入口：按英文单词 / 中文释义检索完整词库，可切换当前词库 / CET-4 / CET-6 / 全部范围；点击结果查看音标、释义、双语例句、常用搭配并播放发音 |
 | 游戏页 | 4 个游戏入口占位，标注「第二期开放」 |
 
 ## 技术栈
@@ -51,6 +52,7 @@ Study/app/src/main/java/com/example/study/
 ├── ui/study/       StudyScreen / StudyViewModel
 ├── ui/records/     RecordsScreen / RecordsViewModel
 ├── ui/settings/    SettingsScreen / SettingsViewModel
+├── ui/dictionary/  DictionaryScreen / DictionaryViewModel（词典搜索）
 └── ui/games/       GamesScreen（第二期占位）
 ```
 
@@ -108,6 +110,13 @@ python -I WorkBuddy/wordbank/convert_ref_wordbank.py
 
 两份许可证全文随 APK 打包（`assets/licenses/`），并在应用「词库与设置 → 关于与许可」中可查看。
 
-## 第二期队列（不在本期范围）
+## 第二期队列（进行中）
 
-4 个小游戏（消消乐 / 看词选译 / 听音辨词 / 拼写）、词典搜索、收藏集合、轮次持久化、Web 端追齐。
+- ✅ 词典搜索（学习页搜索入口；单词 / 中文释义检索，支持范围切换与详情发音）
+- ⬜ 收藏集合：收藏 / 取消收藏，收藏列表统一管理
+- ⬜ 看词选译：四选一答题模式
+- ⬜ 听音辨词：听发音选正确单词
+- ⬜ 单词拼写：根据释义拼写
+- ⬜ 单词消消乐：词义配对网格
+- ⬜ 轮次持久化
+- ⬜ Web 端追齐
