@@ -54,6 +54,9 @@ class StudyViewModel(
     private val _uiState = MutableStateFlow(StudyUiState())
     val uiState: StateFlow<StudyUiState> = _uiState.asStateFlow()
 
+    /** 学习页停留计时起点（学习时长统计）。 */
+    private var sessionStartMs: Long? = null
+
     /** 本轮已抽过的词，保证一轮内不重复；持久化到 round_seen，进程重启后恢复。 */
     private val roundSeen = mutableSetOf<Long>()
 
@@ -177,6 +180,22 @@ class StudyViewModel(
         _uiState.update { it.copy(message = null) }
     }
 
+    /** 学习页进入/回到前台：开始计时（学习时长统计）。 */
+    fun onStudySessionStart() {
+        if (sessionStartMs == null) sessionStartMs = System.currentTimeMillis()
+    }
+
+    /** 学习页离开/切后台：上报本次停留时长，累计到 study_duration。 */
+    fun onStudySessionStop() {
+        val start = sessionStartMs ?: return
+        sessionStartMs = null
+        val elapsed = System.currentTimeMillis() - start
+        if (elapsed < MIN_SESSION_MS) return
+        viewModelScope.launch {
+            studyRepository.addStudyDuration(_uiState.value.library, elapsed)
+        }
+    }
+
     /**
      * 从数据库重新读取当前词库的今日目标/streak、当前词状态与本轮进度。
      * 用于从记录页/词库页返回学习页时刷新（例如在词库页重置进度后，本轮应一并清空）。
@@ -202,6 +221,7 @@ class StudyViewModel(
     }
 
     override fun onCleared() {
+        onStudySessionStop()
         ttsManager.shutdown()
         super.onCleared()
     }
@@ -250,6 +270,7 @@ class StudyViewModel(
     companion object {
         const val FILTER_ALL = -1
         private const val MAX_PICK_TRIES = 40
+        private const val MIN_SESSION_MS = 3_000L
 
         fun factory(context: Context): ViewModelProvider.Factory = viewModelFactory {
             initializer {

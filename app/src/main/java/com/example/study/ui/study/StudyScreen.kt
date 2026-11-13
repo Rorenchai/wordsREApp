@@ -30,6 +30,7 @@ import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
@@ -41,6 +42,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleEventObserver
+import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.study.data.db.StudyStatus
@@ -72,6 +76,24 @@ fun StudyScreen(onOpenDictionary: () -> Unit, modifier: Modifier = Modifier) {
         val message = state.message ?: return@LaunchedEffect
         snackbarHostState.showSnackbar(message)
         viewModel.clearMessage()
+    }
+
+    // 学习时长统计：学习页可见期间计时，离开页面或切后台时上报
+    val lifecycleOwner = LocalLifecycleOwner.current
+    DisposableEffect(lifecycleOwner) {
+        val observer = LifecycleEventObserver { _, event ->
+            when (event) {
+                Lifecycle.Event.ON_START -> viewModel.onStudySessionStart()
+                Lifecycle.Event.ON_STOP -> viewModel.onStudySessionStop()
+                else -> Unit
+            }
+        }
+        lifecycleOwner.lifecycle.addObserver(observer)
+        onDispose { lifecycleOwner.lifecycle.removeObserver(observer) }
+    }
+    DisposableEffect(Unit) {
+        viewModel.onStudySessionStart()
+        onDispose { viewModel.onStudySessionStop() }
     }
 
     Box(

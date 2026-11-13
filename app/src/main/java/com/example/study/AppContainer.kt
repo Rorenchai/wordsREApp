@@ -21,6 +21,7 @@ class AppContainer(context: Context) {
         progressDao = database.progressDao(),
         eventDao = database.studyEventDao(),
         roundSeenDao = database.roundSeenDao(),
+        studyDurationDao = database.studyDurationDao(),
         database = database
     )
     val settingsRepository: SettingsRepository = SettingsRepository.create(appContext)

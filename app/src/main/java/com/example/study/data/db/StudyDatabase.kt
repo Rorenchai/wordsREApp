@@ -9,7 +9,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 
 /**
  * 数据库：v1 = 词库 / 学习进度 / 学习事件；v2 新增收藏表；v3 学习事件增加答题对错标记；
- * v4 新增 round_seen（学习页本轮已浏览词持久化）。
+ * v4 新增 round_seen（学习页本轮已浏览词持久化）；v5 新增 study_duration（学习时长）。
  * schema 与旧 Java 版不兼容，使用独立数据库文件名 wordcard.db。
  */
 @Database(
@@ -18,9 +18,10 @@ import androidx.sqlite.db.SupportSQLiteDatabase
         WordProgressEntity::class,
         StudyEventEntity::class,
         FavoriteEntity::class,
-        RoundSeenEntity::class
+        RoundSeenEntity::class,
+        StudyDurationEntity::class
     ],
-    version = 4,
+    version = 5,
     exportSchema = false
 )
 abstract class StudyDatabase : RoomDatabase() {
@@ -34,6 +35,8 @@ abstract class StudyDatabase : RoomDatabase() {
     abstract fun favoriteDao(): FavoriteDao
 
     abstract fun roundSeenDao(): RoundSeenDao
+
+    abstract fun studyDurationDao(): StudyDurationDao
 
     companion object {
         private const val DB_NAME = "wordcard.db"
@@ -75,6 +78,19 @@ abstract class StudyDatabase : RoomDatabase() {
             }
         }
 
+        /** v4 → v5：新增学习时长表（日期 + 词库联合主键）。 */
+        private val MIGRATION_4_5 = object : Migration(4, 5) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                db.execSQL(
+                    "CREATE TABLE IF NOT EXISTS `study_duration` (" +
+                        "`date` TEXT NOT NULL, " +
+                        "`library` TEXT NOT NULL, " +
+                        "`durationMs` INTEGER NOT NULL, " +
+                        "PRIMARY KEY(`date`, `library`))"
+                )
+            }
+        }
+
         @Volatile
         private var instance: StudyDatabase? = null
 
@@ -85,7 +101,7 @@ abstract class StudyDatabase : RoomDatabase() {
                     StudyDatabase::class.java,
                     DB_NAME
                 )
-                    .addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4)
+                    .addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4, MIGRATION_4_5)
                     .fallbackToDestructiveMigration(dropAllTables = true)
                     .build()
                     .also { instance = it }

@@ -28,12 +28,15 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.study.data.stats.LibraryStats
 import com.example.study.data.stats.StudyDates
+import com.example.study.data.stats.formatStudyDuration
 import com.example.study.ui.components.DayBar
 import com.example.study.ui.components.ProgressTrack
 import com.example.study.ui.components.StatCard
@@ -111,6 +114,8 @@ fun RecordsScreen(modifier: Modifier = Modifier) {
                 )
                 QuizStatsCard(stats)
                 WeekCard(stats)
+                LearningTimeCard(stats)
+                CheckInCalendarCard(stats)
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.spacedBy(12.dp)
@@ -227,6 +232,116 @@ private fun QuizStatsCard(stats: LibraryStats) {
             style = MaterialTheme.typography.bodyMedium,
             color = DuoTextSecondary
         )
+    }
+}
+
+@Composable
+private fun LearningTimeCard(stats: LibraryStats) {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(20.dp))
+            .background(DuoSurface)
+            .border(2.dp, DuoBorder, RoundedCornerShape(20.dp))
+            .padding(16.dp),
+        verticalArrangement = Arrangement.spacedBy(6.dp)
+    ) {
+        Text(
+            text = "学习时长",
+            style = MaterialTheme.typography.titleMedium,
+            color = DuoTextPrimary
+        )
+        Text(
+            text = "今日 ${formatStudyDuration(stats.todayStudyMs)} · 累计 ${formatStudyDuration(stats.totalStudyMs)}",
+            style = MaterialTheme.typography.bodyMedium,
+            color = DuoTextSecondary
+        )
+    }
+}
+
+@Composable
+private fun CheckInCalendarCard(stats: LibraryStats) {
+    val today = LocalDate.now()
+    val studiedDates = stats.monthStudyDates.toSet()
+    val daysInMonth = today.lengthOfMonth()
+    val firstOffset = today.withDayOfMonth(1).dayOfWeek.value - 1
+
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(20.dp))
+            .background(DuoSurface)
+            .border(2.dp, DuoBorder, RoundedCornerShape(20.dp))
+            .padding(16.dp),
+        verticalArrangement = Arrangement.spacedBy(8.dp)
+    ) {
+        Text(
+            text = "打卡日历",
+            style = MaterialTheme.typography.titleMedium,
+            color = DuoTextPrimary
+        )
+        Text(
+            text = "${today.year} 年 ${today.monthValue} 月 · 本月打卡 ${studiedDates.size} 天",
+            style = MaterialTheme.typography.bodySmall,
+            color = DuoTextSecondary
+        )
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(4.dp)
+        ) {
+            listOf("一", "二", "三", "四", "五", "六", "日").forEach { label ->
+                Text(
+                    text = label,
+                    style = MaterialTheme.typography.labelSmall,
+                    color = DuoTextSecondary,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.weight(1f)
+                )
+            }
+        }
+
+        var day = 1
+        val totalCells = firstOffset + daysInMonth
+        var weekStart = 0
+        while (weekStart < totalCells) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(4.dp)
+            ) {
+                for (column in 0 until 7) {
+                    val cellIndex = weekStart + column
+                    if (cellIndex < firstOffset || day > daysInMonth) {
+                        Spacer(Modifier.weight(1f))
+                    } else {
+                        val date = today.withDayOfMonth(day)
+                        val dateText = StudyDates.format(date)
+                        val isStudied = dateText in studiedDates
+                        val isToday = day == today.dayOfMonth
+                        Box(
+                            modifier = Modifier
+                                .weight(1f)
+                                .height(34.dp)
+                                .clip(RoundedCornerShape(10.dp))
+                                .background(if (isStudied) DuoGreen else Color.White)
+                                .border(
+                                    width = 2.dp,
+                                    color = if (isToday) DuoBlue else if (isStudied) DuoGreen else DuoBorder,
+                                    shape = RoundedCornerShape(10.dp)
+                                ),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Text(
+                                text = "$day",
+                                style = MaterialTheme.typography.labelSmall,
+                                color = if (isStudied) Color.White else DuoTextSecondary
+                            )
+                        }
+                        day++
+                    }
+                }
+            }
+            weekStart += 7
+        }
     }
 }
 

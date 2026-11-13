@@ -79,6 +79,17 @@ interface StudyEventDao {
     )
     suspend fun quizCorrect(library: String): Int
 
+    /** 指定日期范围内的学习日期（打卡日历用）。 */
+    @Query(
+        """
+        SELECT DISTINCT e.date FROM study_events e
+        JOIN words w ON e.wordId = w.id
+        WHERE w.library = :library AND e.date BETWEEN :fromDate AND :toDate
+        ORDER BY e.date
+        """
+    )
+    suspend fun datesBetween(library: String, fromDate: String, toDate: String): List<String>
+
     /** 重置某词库的学习事件。 */
     @Query("DELETE FROM study_events WHERE wordId IN (SELECT id FROM words WHERE library = :library)")
     suspend fun deleteByLibrary(library: String)

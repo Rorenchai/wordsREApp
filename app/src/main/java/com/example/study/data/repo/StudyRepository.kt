@@ -5,6 +5,7 @@ import com.example.study.data.db.ProgressDao
 import com.example.study.data.db.RoundSeenDao
 import com.example.study.data.db.RoundSeenEntity
 import com.example.study.data.db.StudyDatabase
+import com.example.study.data.db.StudyDurationDao
 import com.example.study.data.db.StudyEventDao
 import com.example.study.data.db.StudyEventEntity
 import com.example.study.data.db.StudyStatus
@@ -24,6 +25,7 @@ class StudyRepository(
     private val progressDao: ProgressDao,
     private val eventDao: StudyEventDao,
     private val roundSeenDao: RoundSeenDao,
+    private val studyDurationDao: StudyDurationDao,
     private val database: StudyDatabase
 ) {
 
@@ -119,6 +121,11 @@ class StudyRepository(
         val totalEvents = eventDao.totalEvents(library)
         val quizAnswered = eventDao.quizAnswered(library)
         val quizCorrect = eventDao.quizCorrect(library)
+        val monthFrom = StudyDates.format(today.withDayOfMonth(1))
+        val monthTo = StudyDates.format(today.withDayOfMonth(today.lengthOfMonth()))
+        val monthDates = eventDao.datesBetween(library, monthFrom, monthTo)
+        val todayStudyMs = studyDurationDao.durationOn(library, StudyDates.format(today)) ?: 0L
+        val totalStudyMs = studyDurationDao.totalDuration(library)
         return LibraryStats(
             totalWords = totalWords,
             startedWords = startedWords,
@@ -128,7 +135,10 @@ class StudyRepository(
             streak = streak,
             totalStudyEvents = totalEvents,
             quizAnswered = quizAnswered,
-            quizCorrect = quizCorrect
+            quizCorrect = quizCorrect,
+            todayStudyMs = todayStudyMs,
+            totalStudyMs = totalStudyMs,
+            monthStudyDates = monthDates
         )
     }
 
@@ -160,5 +170,11 @@ class StudyRepository(
     /** 一轮抽满后重开一轮：清空该 (词库, 筛选) 的已浏览记录。 */
     suspend fun clearRound(library: String, filter: Int) {
         roundSeenDao.clear(library, filter)
+    }
+
+    /** 累计一次学习时长（由学习页退出/切后台时上报）。 */
+    suspend fun addStudyDuration(library: String, durationMs: Long, now: Long = System.currentTimeMillis()) {
+        if (durationMs <= 0) return
+        studyDurationDao.addDuration(library, StudyDates.formatDate(now), durationMs)
     }
 }

@@ -56,7 +56,10 @@ data class LibraryStats(
     val streak: Int,
     val totalStudyEvents: Long,
     val quizAnswered: Int = 0,
-    val quizCorrect: Int = 0
+    val quizCorrect: Int = 0,
+    val todayStudyMs: Long = 0L,
+    val totalStudyMs: Long = 0L,
+    val monthStudyDates: List<String> = emptyList()
 ) {
     val untouchedWords: Int get() = (totalWords - startedWords).coerceAtLeast(0)
 
@@ -80,4 +83,14 @@ data class LibraryStats(
     private fun percentFloat(value: Int, total: Int): Float {
         return if (total <= 0) 0f else (value * 100f / total).coerceIn(0f, 100f)
     }
+}
+
+/** 把学习时长格式化为「X 小时 Y 分钟 / X 分钟」。 */
+fun formatStudyDuration(durationMs: Long): String {
+    if (durationMs <= 0) return "0 分钟"
+    val minutes = durationMs / 60_000
+    if (minutes < 1) return "不足 1 分钟"
+    val hours = minutes / 60
+    val rest = minutes % 60
+    return if (hours > 0) "$hours 小时 $rest 分钟" else "$minutes 分钟"
 }
