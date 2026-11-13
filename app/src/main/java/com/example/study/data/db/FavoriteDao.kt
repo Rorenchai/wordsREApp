@@ -35,4 +35,18 @@ interface FavoriteDao {
 
     @Query("SELECT COUNT(*) FROM favorites")
     fun observeCount(): Flow<Int>
+
+    /** 备份导出：全部收藏（带单词字符串）。 */
+    @Query(
+        """
+        SELECT w.word AS word, w.library AS library, f.createdAt AS createdAt
+        FROM favorites f JOIN words w ON f.wordId = w.id
+        ORDER BY f.createdAt
+        """
+    )
+    suspend fun allWithWords(): List<FavoriteWithWord>
+
+    /** 备份恢复：清空全部收藏。 */
+    @Query("DELETE FROM favorites")
+    suspend fun deleteAll()
 }

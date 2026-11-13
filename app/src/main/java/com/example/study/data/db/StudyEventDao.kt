@@ -133,6 +133,21 @@ interface StudyEventDao {
     )
     suspend fun wrongWordCount(library: String): Int
 
+    /** 备份导出：全部学习事件（带单词字符串）。 */
+    @Query(
+        """
+        SELECT w.word AS word, w.library AS library, e.date AS date,
+               e.timestamp AS timestamp, e.answerCorrect AS answerCorrect
+        FROM study_events e JOIN words w ON e.wordId = w.id
+        ORDER BY e.id
+        """
+    )
+    suspend fun allWithWords(): List<EventWithWord>
+
+    /** 备份恢复：清空全部学习事件。 */
+    @Query("DELETE FROM study_events")
+    suspend fun deleteAll()
+
     /** 重置某词库的学习事件。 */
     @Query("DELETE FROM study_events WHERE wordId IN (SELECT id FROM words WHERE library = :library)")
     suspend fun deleteByLibrary(library: String)

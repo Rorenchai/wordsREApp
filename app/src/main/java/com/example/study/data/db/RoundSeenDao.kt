@@ -22,4 +22,17 @@ interface RoundSeenDao {
 
     @Query("DELETE FROM round_seen WHERE library = :library")
     suspend fun clearLibrary(library: String)
+
+    /** 备份导出：全部本轮已浏览记录（带单词字符串）。 */
+    @Query(
+        """
+        SELECT w.word AS word, w.library AS library, r.`filter` AS `filter`, r.seenAt AS seenAt
+        FROM round_seen r JOIN words w ON r.wordId = w.id
+        """
+    )
+    suspend fun allWithWords(): List<RoundSeenWithWord>
+
+    /** 备份恢复：清空全部本轮已浏览记录。 */
+    @Query("DELETE FROM round_seen")
+    suspend fun deleteAll()
 }

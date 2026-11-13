@@ -1,6 +1,8 @@
 package com.example.study.data.db
 
 import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 
 @Dao
@@ -22,4 +24,15 @@ interface StudyDurationDao {
 
     @Query("SELECT COALESCE(SUM(durationMs), 0) FROM study_duration WHERE library = :library")
     suspend fun totalDuration(library: String): Long
+
+    /** 备份导出：全部学习时长。 */
+    @Query("SELECT * FROM study_duration")
+    suspend fun all(): List<StudyDurationEntity>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertAll(items: List<StudyDurationEntity>)
+
+    /** 备份恢复：清空全部学习时长。 */
+    @Query("DELETE FROM study_duration")
+    suspend fun deleteAll()
 }

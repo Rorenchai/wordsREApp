@@ -1,5 +1,7 @@
 package com.example.study.ui.settings
 
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -65,7 +67,19 @@ fun SettingsScreen(modifier: Modifier = Modifier) {
 
     var showResetDialog by rememberSaveable { mutableStateOf(false) }
     var showCustomGoalDialog by rememberSaveable { mutableStateOf(false) }
+    var showImportConfirm by rememberSaveable { mutableStateOf(false) }
     var licenseDialog by rememberSaveable { mutableStateOf<Pair<String, String>?>(null) }
+
+    val exportLauncher = rememberLauncherForActivityResult(
+        ActivityResultContracts.CreateDocument("application/json")
+    ) { uri ->
+        if (uri != null) viewModel.exportBackup(uri)
+    }
+    val importLauncher = rememberLauncherForActivityResult(
+        ActivityResultContracts.OpenDocument()
+    ) { uri ->
+        if (uri != null) viewModel.importBackup(uri)
+    }
 
     LaunchedEffect(state.message) {
         val message = state.message ?: return@LaunchedEffect
@@ -159,6 +173,30 @@ fun SettingsScreen(modifier: Modifier = Modifier) {
                 )
             }
 
+            SettingsSection(title = "数据备份") {
+                Text(
+                    text = "导出学习进度 / 学习记录 / 收藏 / 本轮进度 / 学习时长与设置到 JSON 文件；导入会覆盖当前全部学习数据。",
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = DuoTextSecondary
+                )
+                DuoButton(
+                    text = "导出备份",
+                    onClick = {
+                        val stamp = java.time.LocalDateTime.now()
+                            .format(java.time.format.DateTimeFormatter.ofPattern("yyyyMMdd_HHmm"))
+                        exportLauncher.launch("单词记忆卡备份_$stamp.json")
+                    },
+                    modifier = Modifier.fillMaxWidth(),
+                    style = DuoButtonStyle.Secondary
+                )
+                DuoButton(
+                    text = "导入备份",
+                    onClick = { showImportConfirm = true },
+                    modifier = Modifier.fillMaxWidth(),
+                    style = DuoButtonStyle.Secondary
+                )
+            }
+
             SettingsSection(title = "关于与许可") {
                 Text(
                     text = "词库来源：KyleBing/english-vocabulary（BSD 3-Clause License）\n" +
@@ -191,6 +229,27 @@ fun SettingsScreen(modifier: Modifier = Modifier) {
             modifier = Modifier
                 .align(Alignment.BottomCenter)
                 .padding(horizontal = 18.dp, vertical = 8.dp)
+        )
+    }
+
+    if (showImportConfirm) {
+        AlertDialog(
+            onDismissRequest = { showImportConfirm = false },
+            title = { Text("导入备份") },
+            text = {
+                Text("导入将覆盖当前全部学习进度、学习记录、收藏、本轮进度、学习时长，以及当前词库 / 每日目标 / 口音设置，且不可撤销。是否继续？")
+            },
+            confirmButton = {
+                TextButton(onClick = {
+                    showImportConfirm = false
+                    importLauncher.launch(arrayOf("application/json"))
+                }) {
+                    Text("选择备份文件", color = DuoRed)
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = { showImportConfirm = false }) { Text("取消") }
+            }
         )
     }
 

@@ -36,4 +36,19 @@ interface ProgressDao {
     /** 重置某词库的学习进度。 */
     @Query("DELETE FROM word_progress WHERE wordId IN (SELECT id FROM words WHERE library = :library)")
     suspend fun deleteByLibrary(library: String)
+
+    /** 备份导出：全部学习进度（带单词字符串）。 */
+    @Query(
+        """
+        SELECT w.word AS word, w.library AS library, p.status AS status,
+               p.firstLearnedAt AS firstLearnedAt, p.lastLearnedAt AS lastLearnedAt,
+               p.studyCount AS studyCount, p.masteredAt AS masteredAt
+        FROM word_progress p JOIN words w ON p.wordId = w.id
+        """
+    )
+    suspend fun allWithWords(): List<ProgressWithWord>
+
+    /** 备份恢复：清空全部学习进度。 */
+    @Query("DELETE FROM word_progress")
+    suspend fun deleteAll()
 }
