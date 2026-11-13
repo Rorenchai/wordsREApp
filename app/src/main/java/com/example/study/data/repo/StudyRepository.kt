@@ -1,0 +1,99 @@
+package com.example.study.data.repo
+
+import androidx.room.withTransaction
+import com.example.study.data.db.ProgressDao
+import com.example.study.data.db.StudyDatabase
+import com.example.study.data.db.StudyEventDao
+import com.example.study.data.db.StudyEventEntity
+import com.example.study.data.db.StudyStatus
+import com.example.study.data.db.WordDao
+import com.example.study.data.db.WordProgressEntity
+import com.example.study.data.stats.LibraryStats
+import com.example.study.data.stats.StudyDates
+import com.example.study.data.stats.StudyStats
+import java.time.LocalDate
+
+/**
+ * 学习记录仓库：把「翻转卡片后点学习中/已掌握」落库。
+ * 一次有效学习 = 更新 word_progress（read-modify-write 累加）+ 追加一条 study_events。
+ */
+class StudyRepository(
+    private val wordDao: WordDao,
+    private val progressDao: ProgressDao,
+    private val eventDao: StudyEventDao,
+    private val database: StudyDatabase
+) {
+
+    suspend fun findProgress(wordId: Long): WordProgressEntity? = progressDao.findByWordId(wordId)
+
+    /**
+     * 记录一次有效学习（同词同日会多次写事件，用于累计复习次数；今日目标按日期+单词去重）。
+     * @param status 1 = 学习中，2 = 已掌握
+     */
+    suspend fun markStudied(wordId: Long, status: Int, now: Long = System.currentTimeMillis()) {
+        database.withTransaction {
+            val existing = progressDao.findByWordId(wordId)
+            val progress = if (existing == null) {
+                WordProgressEntity(
+                    wordId = wordId,
+                    status = status,
+                    firstLearnedAt = now,
+                    lastLearnedAt = now,
+                    studyCount = 1,
+                    masteredAt = if (status == StudyStatus.MASTERED) now else null
+                )
+            } else {
+                existing.copy(
+                    status = status,
+                    lastLearnedAt = now,
+                    studyCount = existing.studyCount + 1,
+                    masteredAt = if (status == StudyStatus.MASTERED) {
+                        existing.masteredAt ?: now
+                    } else {
+                        null
+                    }
+                )
+            }
+            progressDao.upsert(progress)
+            eventDao.insert(
+                StudyEventEntity(
+                    date = StudyDates.formatDate(now),
+                    wordId = wordId,
+                    timestamp = now
+                )
+            )
+        }
+    }
+
+    /** 记录页数据快照（当前词库）。 */
+    suspend fun stats(library: String, today: LocalDate = StudyDates.today()): LibraryStats {
+        val totalWords = wordDao.countByLibrary(library)
+        val startedWords = progressDao.countStarted(library)
+        val masteredWords = progressDao.countMastered(library)
+        val todayStudied = eventDao.distinctWordsOn(library, StudyDates.format(today))
+        val weekCounts = eventDao.dailyCounts(
+            library = library,
+            fromDate = StudyDates.format(today.minusDays(6)),
+            toDate = StudyDates.format(today)
+        )
+        val streak = StudyStats.calculateStreak(eventDao.distinctDates(library), today)
+        val totalEvents = eventDao.totalEvents(library)
+        return LibraryStats(
+            totalWords = totalWords,
+            startedWords = startedWords,
+            masteredWords = masteredWords,
+            todayStudied = todayStudied,
+            weekCounts = weekCounts,
+            streak = streak,
+            totalStudyEvents = totalEvents
+        )
+    }
+
+    /** 重置当前词库的学习进度与学习事件（词库本身保留）。 */
+    suspend fun resetLibrary(library: String) {
+        database.withTransaction {
+            progressDao.deleteByLibrary(library)
+            eventDao.deleteByLibrary(library)
+        }
+    }
+}

@@ -1,0 +1,65 @@
+package com.example.study.data.db
+
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.Query
+
+/** 最近 7 天柱状图用的聚合结果。 */
+data class DailyCount(
+    val date: String,
+    val count: Int
+)
+
+@Dao
+interface StudyEventDao {
+
+    @Insert
+    suspend fun insert(event: StudyEventEntity)
+
+    /** 某天学习过的不同单词数（今日目标口径）。 */
+    @Query(
+        """
+        SELECT COUNT(DISTINCT e.wordId) FROM study_events e
+        JOIN words w ON e.wordId = w.id
+        WHERE w.library = :library AND e.date = :date
+        """
+    )
+    suspend fun distinctWordsOn(library: String, date: String): Int
+
+    /** 累计有效学习次数（复习重复计）。 */
+    @Query(
+        """
+        SELECT COUNT(*) FROM study_events e
+        JOIN words w ON e.wordId = w.id
+        WHERE w.library = :library
+        """
+    )
+    suspend fun totalEvents(library: String): Long
+
+    /** 最近 N 天每天的不同词数，供柱状图使用。 */
+    @Query(
+        """
+        SELECT e.date AS date, COUNT(DISTINCT e.wordId) AS count
+        FROM study_events e
+        JOIN words w ON e.wordId = w.id
+        WHERE w.library = :library AND e.date BETWEEN :fromDate AND :toDate
+        GROUP BY e.date
+        """
+    )
+    suspend fun dailyCounts(library: String, fromDate: String, toDate: String): List<DailyCount>
+
+    /** 有学习记录的日期（倒序），用于计算 streak。 */
+    @Query(
+        """
+        SELECT DISTINCT e.date FROM study_events e
+        JOIN words w ON e.wordId = w.id
+        WHERE w.library = :library
+        ORDER BY e.date DESC
+        """
+    )
+    suspend fun distinctDates(library: String): List<String>
+
+    /** 重置某词库的学习事件。 */
+    @Query("DELETE FROM study_events WHERE wordId IN (SELECT id FROM words WHERE library = :library)")
+    suspend fun deleteByLibrary(library: String)
+}

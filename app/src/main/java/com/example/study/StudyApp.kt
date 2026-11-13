@@ -2,7 +2,14 @@ package com.example.study
 
 import android.app.Application
 
-/**
- * 应用入口。后续里程碑会在这里初始化 AppContainer（数据库、Repository、设置存储）。
- */
-class StudyApp : Application()
+/** 应用入口：创建全局依赖容器。 */
+class StudyApp : Application() {
+
+    lateinit var container: AppContainer
+        private set
+
+    override fun onCreate() {
+        super.onCreate()
+        container = AppContainer(this)
+    }
+}
