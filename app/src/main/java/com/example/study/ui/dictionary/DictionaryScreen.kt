@@ -12,20 +12,16 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.automirrored.filled.VolumeUp
 import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material.icons.filled.Search
-import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -34,7 +30,6 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -54,6 +49,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.study.data.db.WordEntity
 import com.example.study.data.repo.SettingsRepository
+import com.example.study.ui.components.WordDetailDialog
 import com.example.study.ui.theme.DuoBlue
 import com.example.study.ui.theme.DuoBorder
 import com.example.study.ui.theme.DuoGreen
@@ -280,68 +276,4 @@ private fun DictionaryRow(word: WordEntity, onClick: () -> Unit) {
             overflow = TextOverflow.Ellipsis
         )
     }
-}
-
-@Composable
-private fun WordDetailDialog(word: WordEntity, onSpeak: () -> Unit, onDismiss: () -> Unit) {
-    AlertDialog(
-        onDismissRequest = onDismiss,
-        title = {
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Column(modifier = Modifier.weight(1f)) {
-                    Text(word.word, style = MaterialTheme.typography.headlineSmall)
-                    if (word.phonetic.isNotBlank()) {
-                        Text(
-                            text = "/${word.phonetic}/",
-                            style = MaterialTheme.typography.bodySmall,
-                            color = DuoTextSecondary
-                        )
-                    }
-                }
-                IconButton(onClick = onSpeak) {
-                    Icon(
-                        imageVector = Icons.AutoMirrored.Filled.VolumeUp,
-                        contentDescription = "播放发音",
-                        tint = DuoBlue
-                    )
-                }
-            }
-        },
-        text = {
-            Column(
-                modifier = Modifier
-                    .heightIn(max = 420.dp)
-                    .verticalScroll(rememberScrollState()),
-                verticalArrangement = Arrangement.spacedBy(10.dp)
-            ) {
-                Text(
-                    text = listOf(word.pos, word.meaning).filter { it.isNotBlank() }.joinToString(" "),
-                    style = MaterialTheme.typography.bodyLarge,
-                    color = DuoTextPrimary
-                )
-                if (word.example.isNotBlank() || word.exampleZh.isNotBlank()) {
-                    Text("例句", style = MaterialTheme.typography.labelMedium, color = DuoBlue)
-                    if (word.example.isNotBlank()) {
-                        Text(word.example, style = MaterialTheme.typography.bodyMedium, color = DuoTextPrimary)
-                    }
-                    if (word.exampleZh.isNotBlank()) {
-                        Text(word.exampleZh, style = MaterialTheme.typography.bodyMedium, color = DuoTextSecondary)
-                    }
-                }
-                if (word.phrase.isNotBlank() || word.phraseZh.isNotBlank()) {
-                    Text("常用搭配", style = MaterialTheme.typography.labelMedium, color = DuoGreen)
-                    Text(
-                        text = listOf(word.phrase, word.phraseZh)
-                            .filter { it.isNotBlank() }
-                            .joinToString("　"),
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = DuoTextPrimary
-                    )
-                }
-            }
-        },
-        confirmButton = {
-            TextButton(onClick = onDismiss) { Text("关闭") }
-        }
-    )
 }

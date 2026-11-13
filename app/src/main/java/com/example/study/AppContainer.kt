@@ -2,6 +2,7 @@ package com.example.study
 
 import android.content.Context
 import com.example.study.data.db.StudyDatabase
+import com.example.study.data.repo.FavoriteRepository
 import com.example.study.data.repo.SettingsRepository
 import com.example.study.data.repo.StudyRepository
 import com.example.study.data.repo.WordRepository
@@ -22,6 +23,8 @@ class AppContainer(context: Context) {
         database = database
     )
     val settingsRepository: SettingsRepository = SettingsRepository.create(appContext)
+
+    val favoriteRepository: FavoriteRepository = FavoriteRepository(database.favoriteDao())
 }
 
 /** Compose / ViewModel 里取容器的快捷方式。 */

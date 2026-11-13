@@ -9,6 +9,7 @@ import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.study.appContainer
 import com.example.study.data.db.StudyStatus
 import com.example.study.data.db.WordEntity
+import com.example.study.data.repo.FavoriteRepository
 import com.example.study.data.repo.SettingsRepository
 import com.example.study.data.repo.StudyRepository
 import com.example.study.data.repo.TtsManager
@@ -33,6 +34,7 @@ data class StudyUiState(
     val filter: Int = -1,
     val roundViewed: Int = 0,
     val accent: String = SettingsRepository.ACCENT_US,
+    val isFavorite: Boolean = false,
     val message: String? = null
 ) {
     val goalProgress: Float
@@ -45,6 +47,7 @@ class StudyViewModel(
     private val wordRepository: WordRepository,
     private val studyRepository: StudyRepository,
     private val settingsRepository: SettingsRepository,
+    private val favoriteRepository: FavoriteRepository,
     private val ttsManager: TtsManager
 ) : ViewModel() {
 
@@ -81,6 +84,14 @@ class StudyViewModel(
                 if (previous != library && _uiState.value.initialized) {
                     roundSeen.clear()
                     loadNextWordInternal()
+                }
+            }
+        }
+        viewModelScope.launch {
+            favoriteRepository.favoriteIds.collect { favoriteIds ->
+                val currentWordId = _uiState.value.word?.id
+                _uiState.update {
+                    it.copy(isFavorite = currentWordId != null && favoriteIds.contains(currentWordId))
                 }
             }
         }
@@ -139,6 +150,20 @@ class StudyViewModel(
         }
     }
 
+    /** 收藏 / 取消收藏当前单词。 */
+    fun toggleFavorite() {
+        val word = _uiState.value.word ?: return
+        viewModelScope.launch {
+            val nowFavorite = favoriteRepository.toggle(word.id)
+            _uiState.update {
+                it.copy(
+                    isFavorite = nowFavorite,
+                    message = if (nowFavorite) "已加入收藏：${word.word}" else "已取消收藏：${word.word}"
+                )
+            }
+        }
+    }
+
     fun clearMessage() {
         _uiState.update { it.copy(message = null) }
     }
@@ -175,6 +200,7 @@ class StudyViewModel(
             _uiState.update { it.copy(loadingWord = true, flipped = false) }
             val word = pickWord(snapshot.library, snapshot.filter)
             val status = word?.let { studyRepository.findProgress(it.id)?.status } ?: 0
+            val favorite = word?.let { favoriteRepository.isFavorite(it.id) } ?: false
             val stats = studyRepository.stats(snapshot.library)
             _uiState.update {
                 it.copy(
@@ -182,6 +208,7 @@ class StudyViewModel(
                     wordStatus = status,
                     loadingWord = false,
                     flipped = false,
+                    isFavorite = favorite,
                     todayStudied = stats.todayStudied,
                     streak = stats.streak,
                     roundViewed = roundSeen.size
@@ -211,6 +238,7 @@ class StudyViewModel(
                     wordRepository = container.wordRepository,
                     studyRepository = container.studyRepository,
                     settingsRepository = container.settingsRepository,
+                    favoriteRepository = container.favoriteRepository,
                     ttsManager = TtsManager(context.applicationContext)
                 )
             }

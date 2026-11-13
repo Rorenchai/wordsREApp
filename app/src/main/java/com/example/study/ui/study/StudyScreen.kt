@@ -20,6 +20,8 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.VolumeUp
 import androidx.compose.material.icons.filled.LocalFireDepartment
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.Star
+import androidx.compose.material.icons.outlined.StarBorder
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -91,7 +93,8 @@ fun StudyScreen(onOpenDictionary: () -> Unit, modifier: Modifier = Modifier) {
             StudyCard(
                 state = state,
                 onFlip = viewModel::flip,
-                onSpeak = viewModel::speakCurrentWord
+                onSpeak = viewModel::speakCurrentWord,
+                onToggleFavorite = viewModel::toggleFavorite
             )
             StatusActionRow(
                 state = state,
@@ -206,7 +209,8 @@ private fun DailyGoalCard(state: StudyUiState) {
 private fun StudyCard(
     state: StudyUiState,
     onFlip: () -> Unit,
-    onSpeak: () -> Unit
+    onSpeak: () -> Unit,
+    onToggleFavorite: () -> Unit
 ) {
     val word = state.word
     Box(modifier = Modifier.fillMaxWidth().height(348.dp)) {
@@ -221,7 +225,11 @@ private fun StudyCard(
                 onFlip = onFlip,
                 modifier = Modifier.fillMaxSize(),
                 front = {
-                    CardFace(status = state.wordStatus) {
+                    CardFace(
+                        status = state.wordStatus,
+                        isFavorite = state.isFavorite,
+                        onToggleFavorite = onToggleFavorite
+                    ) {
                         Column(
                             modifier = Modifier.fillMaxSize(),
                             horizontalAlignment = Alignment.CenterHorizontally
@@ -260,7 +268,11 @@ private fun StudyCard(
                     }
                 },
                 back = {
-                    CardFace(status = state.wordStatus) {
+                    CardFace(
+                        status = state.wordStatus,
+                        isFavorite = state.isFavorite,
+                        onToggleFavorite = onToggleFavorite
+                    ) {
                         BackContent(word = word)
                     }
                 }
@@ -383,10 +395,12 @@ private fun BackContent(word: WordEntity) {
     }
 }
 
-/** 卡片正反两面共用外观：圆角白底 + 描边 + 状态徽章。 */
+/** 卡片正反两面共用外观：圆角白底 + 描边 + 状态徽章 + 收藏星标。 */
 @Composable
 private fun CardFace(
     status: Int,
+    isFavorite: Boolean,
+    onToggleFavorite: () -> Unit,
     content: @Composable () -> Unit
 ) {
     val shape = RoundedCornerShape(28.dp)
@@ -405,12 +419,19 @@ private fun CardFace(
     ) {
         Row(
             modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
             StatusPill(status = status)
+            Spacer(Modifier.weight(1f))
+            IconButton(onClick = onToggleFavorite) {
+                Icon(
+                    imageVector = if (isFavorite) Icons.Filled.Star else Icons.Outlined.StarBorder,
+                    contentDescription = if (isFavorite) "取消收藏" else "收藏",
+                    tint = if (isFavorite) DuoGold else DuoTextSecondary
+                )
+            }
         }
-        Spacer(Modifier.height(8.dp))
+        Spacer(Modifier.height(4.dp))
         content()
     }
 }

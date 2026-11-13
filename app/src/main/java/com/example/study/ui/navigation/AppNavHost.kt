@@ -6,6 +6,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.MenuBook
 import androidx.compose.material.icons.filled.BarChart
 import androidx.compose.material.icons.filled.School
+import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.filled.VideogameAsset
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
@@ -25,6 +26,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.study.ui.dictionary.DictionaryScreen
+import com.example.study.ui.favorites.FavoritesScreen
 import com.example.study.ui.games.GamesScreen
 import com.example.study.ui.records.RecordsScreen
 import com.example.study.ui.settings.SettingsScreen
@@ -41,6 +43,7 @@ private data class BottomNavItem(
 
 private val bottomNavItems = listOf(
     BottomNavItem("study", "学习", Icons.Filled.School),
+    BottomNavItem("favorites", "收藏", Icons.Filled.Star),
     BottomNavItem("records", "记录", Icons.Filled.BarChart),
     BottomNavItem("games", "游戏", Icons.Filled.VideogameAsset),
     BottomNavItem("settings", "词库", Icons.AutoMirrored.Filled.MenuBook)
@@ -97,6 +100,7 @@ fun AppNavHost() {
                 })
             }
             composable("records") { RecordsScreen() }
+            composable("favorites") { FavoritesScreen() }
             composable("games") { GamesScreen() }
             composable("settings") { SettingsScreen() }
             composable("dictionary") {
