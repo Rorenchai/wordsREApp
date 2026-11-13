@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -38,6 +39,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -131,6 +133,9 @@ fun PlanScreen(
                     state = state,
                     onStartNew = onStartNew,
                     onStartReview = onStartReview,
+                    onPrevMonth = { viewModel.moveCalendarMonth(-1) },
+                    onNextMonth = { viewModel.moveCalendarMonth(1) },
+                    onSelectDate = viewModel::selectDate,
                     onFinish = { showFinishDialog = true }
                 )
             }
@@ -328,6 +333,9 @@ private fun PlanOverview(
     state: PlanUiState,
     onStartNew: () -> Unit,
     onStartReview: () -> Unit,
+    onPrevMonth: () -> Unit,
+    onNextMonth: () -> Unit,
+    onSelectDate: (String) -> Unit,
     onFinish: () -> Unit
 ) {
     val plan = state.activePlan ?: return
@@ -419,8 +427,149 @@ private fun PlanOverview(
         }
     }
 
+    SectionCard(title = "计划日历") {
+        PlanCalendarContent(
+            state = state,
+            onPrevMonth = onPrevMonth,
+            onNextMonth = onNextMonth,
+            onSelectDate = onSelectDate
+        )
+    }
+
     TextButton(onClick = onFinish, modifier = Modifier.fillMaxWidth()) {
         Text("结束当前计划", color = DuoRed)
+    }
+}
+
+@Composable
+private fun PlanCalendarContent(
+    state: PlanUiState,
+    onPrevMonth: () -> Unit,
+    onNextMonth: () -> Unit,
+    onSelectDate: (String) -> Unit
+) {
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        TextButton(onClick = onPrevMonth) { Text("‹", color = DuoBlue, style = MaterialTheme.typography.titleLarge) }
+        Text(
+            text = "${state.calendarYear} 年 ${state.calendarMonth} 月",
+            style = MaterialTheme.typography.titleMedium,
+            color = DuoTextPrimary
+        )
+        TextButton(onClick = onNextMonth) { Text("›", color = DuoBlue, style = MaterialTheme.typography.titleLarge) }
+    }
+
+    Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+        listOf("一", "二", "三", "四", "五", "六", "日").forEach { label ->
+            Text(
+                text = label,
+                style = MaterialTheme.typography.labelSmall,
+                color = DuoTextSecondary,
+                textAlign = TextAlign.Center,
+                modifier = Modifier.weight(1f)
+            )
+        }
+    }
+
+    val firstDate = LocalDate.of(state.calendarYear, state.calendarMonth, 1)
+    val offset = firstDate.dayOfWeek.value - 1
+    val cells: List<com.example.study.data.plan.PlanCalendarDay?> =
+        List(offset) { null } + state.calendarDays.map { it }
+    var startIndex = 0
+    while (startIndex < cells.size) {
+        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+            for (column in 0 until 7) {
+                val day = cells.getOrNull(startIndex + column)
+                if (day == null) {
+                    Spacer(Modifier.weight(1f))
+                } else {
+                    PlanCalendarCell(
+                        day = day,
+                        selected = state.selectedDate == day.date,
+                        onClick = { onSelectDate(day.date) },
+                        modifier = Modifier.weight(1f)
+                    )
+                }
+            }
+        }
+        startIndex += 7
+    }
+
+    val selected = state.calendarDays.firstOrNull { it.date == state.selectedDate }
+    if (selected != null) {
+        val newText = if (selected.isPast || selected.isToday) {
+            "新词 ${selected.newLearned}/${selected.newTotal}"
+        } else {
+            "预计新词 ${selected.newTotal}"
+        }
+        val reviewText = if (selected.isToday) {
+            "复习完成 ${selected.reviewDone} · 今日剩余 ${selected.reviewRemaining}"
+        } else if (selected.isPast) {
+            "复习完成 ${selected.reviewDone}"
+        } else {
+            "已排期复习 ${selected.reviewScheduled}"
+        }
+        Text(
+            text = "${selected.dayOfMonth} 日 · $newText · $reviewText" +
+                if (selected.isExamDay) " · 考试日" else "",
+            style = MaterialTheme.typography.bodySmall,
+            color = DuoTextPrimary
+        )
+    }
+
+    Row(horizontalArrangement = Arrangement.spacedBy(14.dp)) {
+        Text("● 新词任务", style = MaterialTheme.typography.labelSmall, color = DuoGreen)
+        Text("● 复习任务", style = MaterialTheme.typography.labelSmall, color = DuoBlue)
+        Text("红框 = 考试日", style = MaterialTheme.typography.labelSmall, color = DuoRed)
+    }
+}
+
+@Composable
+private fun PlanCalendarCell(
+    day: com.example.study.data.plan.PlanCalendarDay,
+    selected: Boolean,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    val hasNew = day.newTotal > 0 || day.newLearned > 0
+    val hasReview = day.reviewScheduled > 0 || day.reviewDone > 0 || day.reviewRemaining > 0
+    val shape = RoundedCornerShape(10.dp)
+    Column(
+        modifier = modifier
+            .height(48.dp)
+            .clip(shape)
+            .background(if (selected) DuoBlue.copy(alpha = 0.14f) else DuoCard)
+            .border(
+                width = 2.dp,
+                color = when {
+                    selected -> DuoBlue
+                    day.isExamDay -> DuoRed
+                    day.isToday -> DuoBlue
+                    else -> DuoBorder
+                },
+                shape = shape
+            )
+            .clickable(onClick = onClick)
+            .padding(vertical = 4.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.spacedBy(2.dp)
+    ) {
+        Text(
+            text = "${day.dayOfMonth}",
+            style = MaterialTheme.typography.labelSmall,
+            color = if (day.isPast && !day.isToday) DuoTextSecondary else DuoTextPrimary
+        )
+        Row(horizontalArrangement = Arrangement.spacedBy(3.dp)) {
+            if (hasNew) {
+                Box(modifier = Modifier.clip(RoundedCornerShape(percent = 50)).background(DuoGreen).height(5.dp).width(5.dp))
+            }
+            if (hasReview) {
+                Box(modifier = Modifier.clip(RoundedCornerShape(percent = 50)).background(DuoBlue).height(5.dp).width(5.dp))
+            }
+        }
     }
 }
 

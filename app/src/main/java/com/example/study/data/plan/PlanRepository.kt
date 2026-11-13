@@ -8,6 +8,8 @@ import com.example.study.data.db.PlanWordEntity
 import com.example.study.data.db.StudyDatabase
 import com.example.study.data.db.WordDao
 import java.time.LocalDate
+import java.time.YearMonth
+import java.time.temporal.ChronoUnit
 
 /** 计划概览：目标/已加入/已学/已掌握 + 今日新词与到期复习。 */
 data class PlanSummary(
@@ -151,6 +153,56 @@ class PlanRepository(
     suspend fun finishPlan(planId: Long) = planDao.finishPlan(planId)
 
     /**
+     * 计划日历：按天汇总新词任务（已完成/总数）与复习（已完成/已排期/今日剩余）。
+     * 未来日期的新词按「每日新词配额 × 目标词数」估算，复习展示已排期数量。
+     */
+    suspend fun planCalendar(plan: PlanEntity, month: YearMonth, today: LocalDate): List<PlanCalendarDay> {
+        val newTotalMap = planDao.newCountsByBatch(plan.id).associate { it.date to it.count }
+        val newLearnedMap = planDao.newLearnedByBatch(plan.id).associate { it.date to it.count }
+        val reviewDoneMap = planDao.reviewDoneByDate(plan.id).associate { it.date to it.count }
+        val reviewScheduledMap = planDao.reviewScheduledByDate(plan.id).associate { it.date to it.count }
+
+        val start = LocalDate.parse(plan.startDate)
+        val exam = LocalDate.parse(plan.examDate)
+        val totalDays = ChronoUnit.DAYS.between(start, exam).toInt().coerceAtLeast(1)
+        val libraryWords = wordDao.countByLibrary(plan.library)
+        val targetWords = (plan.dailyNewWords * totalDays).coerceAtMost(libraryWords)
+        val todayDue = planDao.dueReviews(plan.id, today.toString(), plan.dailyReviewLimit.coerceAtLeast(1)).size
+
+        val days = mutableListOf<PlanCalendarDay>()
+        var date = month.atDay(1)
+        while (date.month == month.month) {
+            val dateText = date.toString()
+            val dayIndex = ChronoUnit.DAYS.between(start, date).toInt()
+            val isPast = date.isBefore(today)
+            val isToday = date == today
+            val actualNewTotal = newTotalMap[dateText] ?: 0
+            val newTotal = when {
+                !date.isBefore(today) && actualNewTotal == 0 -> {
+                    val before = (plan.dailyNewWords * dayIndex).coerceAtLeast(0)
+                    (plan.dailyNewWords.coerceAtMost(targetWords - before)).coerceAtLeast(0)
+                }
+
+                else -> actualNewTotal
+            }
+            days += PlanCalendarDay(
+                date = dateText,
+                dayOfMonth = date.dayOfMonth,
+                newTotal = newTotal,
+                newLearned = newLearnedMap[dateText] ?: 0,
+                reviewDone = reviewDoneMap[dateText] ?: 0,
+                reviewScheduled = reviewScheduledMap[dateText] ?: 0,
+                reviewRemaining = if (isToday) todayDue else 0,
+                isPast = isPast,
+                isToday = isToday,
+                isExamDay = date == exam
+            )
+            date = date.plusDays(1)
+        }
+        return days
+    }
+
+    /**
      * 小游戏计划词池：优先今日到期复习词，其次今日待学新词（去重）。
      */
     suspend fun gamePool(plan: PlanEntity, today: LocalDate): GamePlanPool {
@@ -197,3 +249,17 @@ data class GamePlanPool(
         return pool.randomOrNull()
     }
 }
+
+/** 计划日历中的一天。 */
+data class PlanCalendarDay(
+    val date: String,
+    val dayOfMonth: Int,
+    val newTotal: Int,
+    val newLearned: Int,
+    val reviewDone: Int,
+    val reviewScheduled: Int,
+    val reviewRemaining: Int,
+    val isPast: Boolean,
+    val isToday: Boolean,
+    val isExamDay: Boolean
+)

@@ -55,6 +55,35 @@ interface PlanDao {
     @Query("SELECT * FROM plan_words WHERE planId = :planId AND wordId = :wordId")
     suspend fun planWord(planId: Long, wordId: Long): PlanWordEntity?
 
+    @Query("SELECT batchDate AS date, COUNT(*) AS count FROM plan_words WHERE planId = :planId GROUP BY batchDate")
+    suspend fun newCountsByBatch(planId: Long): List<DayCountRow>
+
+    @Query(
+        """
+        SELECT batchDate AS date, SUM(CASE WHEN learnedAt IS NOT NULL THEN 1 ELSE 0 END) AS count
+        FROM plan_words WHERE planId = :planId GROUP BY batchDate
+        """
+    )
+    suspend fun newLearnedByBatch(planId: Long): List<DayCountRow>
+
+    @Query(
+        """
+        SELECT lastReviewDate AS date, COUNT(*) AS count
+        FROM plan_words WHERE planId = :planId AND lastReviewDate IS NOT NULL
+        GROUP BY lastReviewDate
+        """
+    )
+    suspend fun reviewDoneByDate(planId: Long): List<DayCountRow>
+
+    @Query(
+        """
+        SELECT nextReviewDate AS date, COUNT(*) AS count
+        FROM plan_words WHERE planId = :planId AND nextReviewDate IS NOT NULL
+        GROUP BY nextReviewDate
+        """
+    )
+    suspend fun reviewScheduledByDate(planId: Long): List<DayCountRow>
+
     @Query(
         """
         SELECT w.*, pw.planId AS planId, pw.batchDate AS batchDate, pw.stage AS stage,

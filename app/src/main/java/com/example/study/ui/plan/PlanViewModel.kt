@@ -10,6 +10,7 @@ import com.example.study.appContainer
 import com.example.study.data.db.PlanEntity
 import com.example.study.data.db.PlanWordDetail
 import com.example.study.data.plan.EbbinghausSchedule
+import com.example.study.data.plan.PlanCalendarDay
 import com.example.study.data.plan.PlanRepository
 import com.example.study.data.plan.PlanSummary
 import com.example.study.data.repo.SettingsRepository
@@ -21,6 +22,7 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import java.time.LocalDate
+import java.time.YearMonth
 
 data class PlanUiState(
     val loading: Boolean = true,
@@ -38,6 +40,10 @@ data class PlanUiState(
     val suggestion: Int = 40,
     val feasible: Boolean = true,
     val creating: Boolean = false,
+    val calendarDays: List<PlanCalendarDay> = emptyList(),
+    val calendarYear: Int = LocalDate.now().year,
+    val calendarMonth: Int = LocalDate.now().monthValue,
+    val selectedDate: String? = null,
     val message: String? = null
 )
 
@@ -83,6 +89,35 @@ class PlanViewModel(
                     dueReviews = dueReviews
                 )
             }
+            refreshCalendar(active, _uiState.value.calendarYear, _uiState.value.calendarMonth)
+        }
+    }
+
+    fun moveCalendarMonth(delta: Int) {
+        viewModelScope.launch {
+            val plan = _uiState.value.activePlan ?: return@launch
+            val startMonth = YearMonth.from(LocalDate.parse(plan.startDate))
+            val endMonth = YearMonth.from(LocalDate.parse(plan.examDate))
+            var target = YearMonth.of(_uiState.value.calendarYear, _uiState.value.calendarMonth).plusMonths(delta.toLong())
+            if (target.isBefore(startMonth)) target = startMonth
+            if (target.isAfter(endMonth)) target = endMonth
+            refreshCalendar(plan, target.year, target.monthValue)
+        }
+    }
+
+    fun selectDate(date: String) {
+        _uiState.update { it.copy(selectedDate = date) }
+    }
+
+    private suspend fun refreshCalendar(plan: PlanEntity, year: Int, month: Int) {
+        val days = planRepository.planCalendar(plan, YearMonth.of(year, month), LocalDate.now())
+        _uiState.update {
+            it.copy(
+                calendarDays = days,
+                calendarYear = year,
+                calendarMonth = month,
+                selectedDate = it.selectedDate ?: LocalDate.now().toString()
+            )
         }
     }
 
