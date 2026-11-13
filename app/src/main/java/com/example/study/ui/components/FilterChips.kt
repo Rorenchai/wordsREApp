@@ -1,4 +1,4 @@
-package com.example.study.ui.components
+﻿package com.example.study.ui.components
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.clickable
@@ -16,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.example.study.ui.theme.DuoBorder
+import com.example.study.ui.theme.DuoCard
 import com.example.study.ui.theme.DuoGreen
 import com.example.study.ui.theme.DuoTextSecondary
 
@@ -41,7 +42,7 @@ fun FilterChips(
             val isSelected = selected == value
             Surface(
                 shape = RoundedCornerShape(percent = 50),
-                color = if (isSelected) DuoGreen else Color.White,
+                color = if (isSelected) DuoGreen else DuoCard,
                 border = BorderStroke(2.dp, if (isSelected) DuoGreen else DuoBorder),
                 modifier = Modifier.clickable { onSelect(value) }
             ) {

@@ -1,4 +1,4 @@
-package com.example.study.ui.study
+﻿package com.example.study.ui.study
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -55,8 +55,10 @@ import com.example.study.ui.components.FilterChips
 import com.example.study.ui.components.FlipCard
 import com.example.study.ui.components.ProgressTrack
 import com.example.study.ui.components.StatusPill
+import com.example.study.ui.theme.DuoBackground
 import com.example.study.ui.theme.DuoBlue
 import com.example.study.ui.theme.DuoBorder
+import com.example.study.ui.theme.DuoCard
 import com.example.study.ui.theme.DuoGold
 import com.example.study.ui.theme.DuoGreen
 import com.example.study.ui.theme.DuoSurface
@@ -99,7 +101,7 @@ fun StudyScreen(onOpenDictionary: () -> Unit, modifier: Modifier = Modifier) {
     Box(
         modifier = modifier
             .fillMaxSize()
-            .background(Color.White)
+            .background(DuoBackground)
     ) {
         Column(
             modifier = Modifier
@@ -311,7 +313,7 @@ private fun LoadingCard(initialized: Boolean, hasFilterResult: Boolean) {
             .fillMaxSize()
             .shadow(6.dp, shape)
             .clip(shape)
-            .background(Color.White)
+            .background(DuoCard)
             .border(2.dp, DuoBorder, shape)
             .padding(24.dp),
         verticalArrangement = Arrangement.Center,
@@ -431,7 +433,7 @@ private fun CardFace(
             .fillMaxSize()
             .shadow(6.dp, shape)
             .clip(shape)
-            .background(Color.White)
+            .background(DuoCard)
             .border(
                 width = 2.dp,
                 color = if (status == StudyStatus.MASTERED) DuoGreen else DuoBorder,

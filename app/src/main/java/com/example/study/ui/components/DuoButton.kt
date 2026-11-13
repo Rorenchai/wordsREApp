@@ -1,4 +1,4 @@
-package com.example.study.ui.components
+﻿package com.example.study.ui.components
 
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.foundation.background
@@ -25,11 +25,13 @@ import androidx.compose.ui.unit.dp
 import com.example.study.ui.theme.DuoBlue
 import com.example.study.ui.theme.DuoBlueShadow
 import com.example.study.ui.theme.DuoBorder
+import com.example.study.ui.theme.DuoCard
 import com.example.study.ui.theme.DuoGold
 import com.example.study.ui.theme.DuoGreen
 import com.example.study.ui.theme.DuoGreenShadow
 import com.example.study.ui.theme.DuoRed
 import com.example.study.ui.theme.DuoRedShadow
+import com.example.study.ui.theme.DuoSurface
 import com.example.study.ui.theme.DuoTextSecondary
 
 /** 按钮语义色：主操作 / 正确(掌握) / 学习中 / 危险 / 次要。 */
@@ -37,12 +39,13 @@ enum class DuoButtonStyle { Primary, Correct, Learning, Danger, Secondary }
 
 private data class ButtonColors(val face: Color, val shadow: Color)
 
+@Composable
 private fun colorsFor(style: DuoButtonStyle): ButtonColors = when (style) {
     DuoButtonStyle.Primary -> ButtonColors(DuoGreen, DuoGreenShadow)
     DuoButtonStyle.Correct -> ButtonColors(DuoGreen, DuoGreenShadow)
     DuoButtonStyle.Learning -> ButtonColors(DuoBlue, DuoBlueShadow)
     DuoButtonStyle.Danger -> ButtonColors(DuoRed, DuoRedShadow)
-    DuoButtonStyle.Secondary -> ButtonColors(Color.White, DuoBorder)
+    DuoButtonStyle.Secondary -> ButtonColors(DuoCard, DuoBorder)
 }
 
 /**
@@ -65,11 +68,11 @@ fun DuoButton(
     )
     val shape = RoundedCornerShape(16.dp)
     val faceColor = when {
-        !enabled -> Color(0xFFEDEDED)
+        !enabled -> DuoSurface
         else -> colors.face
     }
     val shadowColor = when {
-        !enabled -> Color(0xFFD8D8D8)
+        !enabled -> DuoBorder
         else -> colors.shadow
     }
     val textColor = when {

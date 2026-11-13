@@ -1,4 +1,4 @@
-package com.example.study.ui.listening
+﻿package com.example.study.ui.listening
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -40,6 +40,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.study.ui.components.AnswerFeedbackBanner
 import com.example.study.ui.components.AnswerOptionRow
 import com.example.study.ui.components.SessionStatsCard
+import com.example.study.ui.theme.DuoBackground
 import com.example.study.ui.theme.DuoBlue
 import com.example.study.ui.theme.DuoBorder
 import com.example.study.ui.theme.DuoGreen
@@ -60,7 +61,7 @@ fun ListeningScreen(onBack: () -> Unit, modifier: Modifier = Modifier) {
         viewModel.clearMessage()
     }
 
-    Box(modifier = modifier.fillMaxSize().background(Color.White)) {
+    Box(modifier = modifier.fillMaxSize().background(DuoBackground)) {
         Column(
             modifier = Modifier
                 .fillMaxSize()

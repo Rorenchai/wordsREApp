@@ -1,4 +1,4 @@
-package com.example.study.ui.dictionary
+﻿package com.example.study.ui.dictionary
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -50,8 +50,10 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.study.data.db.WordEntity
 import com.example.study.data.repo.SettingsRepository
 import com.example.study.ui.components.WordDetailDialog
+import com.example.study.ui.theme.DuoBackground
 import com.example.study.ui.theme.DuoBlue
 import com.example.study.ui.theme.DuoBorder
+import com.example.study.ui.theme.DuoCard
 import com.example.study.ui.theme.DuoGreen
 import com.example.study.ui.theme.DuoSurface
 import com.example.study.ui.theme.DuoTextPrimary
@@ -80,7 +82,7 @@ fun DictionaryScreen(onBack: () -> Unit, modifier: Modifier = Modifier) {
         viewModel.clearMessage()
     }
 
-    Box(modifier = modifier.fillMaxSize().background(Color.White)) {
+    Box(modifier = modifier.fillMaxSize().background(DuoBackground)) {
         Column(modifier = Modifier.fillMaxSize()) {
             Row(
                 modifier = Modifier
@@ -222,7 +224,7 @@ private fun ScopeChip(label: String, selected: Boolean, onClick: () -> Unit) {
     Box(
         modifier = Modifier
             .clip(RoundedCornerShape(percent = 50))
-            .background(if (selected) DuoGreen else Color.White)
+            .background(if (selected) DuoGreen else DuoCard)
             .border(2.dp, if (selected) DuoGreen else DuoBorder, RoundedCornerShape(percent = 50))
             .clickable(onClick = onClick)
             .padding(horizontal = 14.dp, vertical = 8.dp)

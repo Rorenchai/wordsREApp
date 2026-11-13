@@ -1,4 +1,4 @@
-package com.example.study.ui.review
+﻿package com.example.study.ui.review
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -41,6 +41,7 @@ import com.example.study.ui.components.AnswerFeedbackBanner
 import com.example.study.ui.components.AnswerOptionRow
 import com.example.study.ui.components.DuoButton
 import com.example.study.ui.components.SessionStatsCard
+import com.example.study.ui.theme.DuoBackground
 import com.example.study.ui.theme.DuoBorder
 import com.example.study.ui.theme.DuoGreen
 import com.example.study.ui.theme.DuoSurface
@@ -60,7 +61,7 @@ fun ReviewScreen(onBack: () -> Unit, modifier: Modifier = Modifier) {
         viewModel.clearMessage()
     }
 
-    Box(modifier = modifier.fillMaxSize().background(Color.White)) {
+    Box(modifier = modifier.fillMaxSize().background(DuoBackground)) {
         Column(
             modifier = Modifier
                 .fillMaxSize()

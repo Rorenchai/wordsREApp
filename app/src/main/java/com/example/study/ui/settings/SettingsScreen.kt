@@ -1,4 +1,4 @@
-package com.example.study.ui.settings
+﻿package com.example.study.ui.settings
 
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -50,8 +50,10 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.study.data.repo.SettingsRepository
 import com.example.study.ui.components.DuoButton
 import com.example.study.ui.components.DuoButtonStyle
+import com.example.study.ui.theme.DuoBackground
 import com.example.study.ui.theme.DuoBlue
 import com.example.study.ui.theme.DuoBorder
+import com.example.study.ui.theme.DuoCard
 import com.example.study.ui.theme.DuoGreen
 import com.example.study.ui.theme.DuoRed
 import com.example.study.ui.theme.DuoSurface
@@ -112,7 +114,7 @@ fun SettingsScreen(modifier: Modifier = Modifier) {
     Box(
         modifier = modifier
             .fillMaxSize()
-            .background(Color.White)
+            .background(DuoBackground)
     ) {
         Column(
             modifier = Modifier
@@ -192,6 +194,31 @@ fun SettingsScreen(modifier: Modifier = Modifier) {
                     onClick = { showResetDialog = true },
                     modifier = Modifier.fillMaxWidth(),
                     style = DuoButtonStyle.Danger
+                )
+            }
+
+            SettingsSection(title = "外观") {
+                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    OptionChip(
+                        text = "跟随系统",
+                        selected = state.themeMode == SettingsRepository.THEME_SYSTEM,
+                        onClick = { viewModel.setThemeMode(SettingsRepository.THEME_SYSTEM) }
+                    )
+                    OptionChip(
+                        text = "浅色",
+                        selected = state.themeMode == SettingsRepository.THEME_LIGHT,
+                        onClick = { viewModel.setThemeMode(SettingsRepository.THEME_LIGHT) }
+                    )
+                    OptionChip(
+                        text = "深色",
+                        selected = state.themeMode == SettingsRepository.THEME_DARK,
+                        onClick = { viewModel.setThemeMode(SettingsRepository.THEME_DARK) }
+                    )
+                }
+                Text(
+                    text = "深浅色会应用到全部页面，并记住你的选择。",
+                    style = MaterialTheme.typography.bodySmall,
+                    color = DuoTextSecondary
                 )
             }
 
@@ -420,7 +447,7 @@ private fun LibraryRow(
         modifier = Modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(14.dp))
-            .background(if (selected) DuoGreen.copy(alpha = 0.12f) else Color.White)
+            .background(if (selected) DuoGreen.copy(alpha = 0.12f) else DuoCard)
             .border(
                 2.dp,
                 if (selected) DuoGreen else DuoBorder,
@@ -462,7 +489,7 @@ private fun OptionChip(
     Box(
         modifier = Modifier
             .clip(RoundedCornerShape(percent = 50))
-            .background(if (selected) DuoGreen else Color.White)
+            .background(if (selected) DuoGreen else DuoCard)
             .border(
                 2.dp,
                 if (selected) DuoGreen else DuoBorder,

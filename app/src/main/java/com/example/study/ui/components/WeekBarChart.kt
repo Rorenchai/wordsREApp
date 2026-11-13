@@ -32,6 +32,7 @@ fun WeekBarChart(
     barColor: Color = DuoGreen
 ) {
     val maxCount = (bars.maxOfOrNull { it.count } ?: 0).coerceAtLeast(1)
+    val emptyBarColor = DuoBorder
     Column(modifier = modifier) {
         Canvas(
             modifier = Modifier
@@ -48,7 +49,7 @@ fun WeekBarChart(
                 val left = slotWidth * index + (slotWidth - barWidth) / 2f
                 val top = baseline - barHeight
                 drawRoundRect(
-                    color = if (bar.count == 0) DuoBorder else barColor,
+                    color = if (bar.count == 0) emptyBarColor else barColor,
                     topLeft = Offset(left, if (bar.count == 0) baseline - 4.dp.toPx() else top),
                     size = Size(barWidth, if (bar.count == 0) 4.dp.toPx() else barHeight),
                     cornerRadius = CornerRadius(barWidth / 2f, barWidth / 2f)

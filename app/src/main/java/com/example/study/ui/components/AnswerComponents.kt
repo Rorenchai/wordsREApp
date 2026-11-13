@@ -1,4 +1,4 @@
-package com.example.study.ui.components
+﻿package com.example.study.ui.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -24,6 +24,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.example.study.ui.theme.DuoBlue
 import com.example.study.ui.theme.DuoBorder
+import com.example.study.ui.theme.DuoCard
 import com.example.study.ui.theme.DuoGreen
 import com.example.study.ui.theme.DuoGreenSoft
 import com.example.study.ui.theme.DuoRed
@@ -76,7 +77,7 @@ fun AnswerOptionRow(
     val textColor: Color
     when {
         !answered -> {
-            background = Color.White
+            background = DuoCard
             borderColor = DuoBorder
             textColor = DuoTextPrimary
         }
@@ -94,7 +95,7 @@ fun AnswerOptionRow(
         }
 
         else -> {
-            background = Color.White
+            background = DuoCard
             borderColor = DuoBorder
             textColor = DuoTextSecondary
         }

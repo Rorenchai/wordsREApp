@@ -1,4 +1,4 @@
-package com.example.study.ui.favorites
+﻿package com.example.study.ui.favorites
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -43,10 +43,10 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.study.data.db.WordEntity
 import com.example.study.ui.components.WordDetailDialog
+import com.example.study.ui.theme.DuoBackground
 import com.example.study.ui.theme.DuoBlue
 import com.example.study.ui.theme.DuoBorder
 import com.example.study.ui.theme.DuoGold
-import com.example.study.ui.theme.DuoGreen
 import com.example.study.ui.theme.DuoSurface
 import com.example.study.ui.theme.DuoTextPrimary
 import com.example.study.ui.theme.DuoTextSecondary
@@ -65,7 +65,7 @@ fun FavoritesScreen(modifier: Modifier = Modifier) {
         viewModel.clearMessage()
     }
 
-    Box(modifier = modifier.fillMaxSize().background(Color.White)) {
+    Box(modifier = modifier.fillMaxSize().background(DuoBackground)) {
         Column(modifier = Modifier.fillMaxSize()) {
             Row(
                 modifier = Modifier

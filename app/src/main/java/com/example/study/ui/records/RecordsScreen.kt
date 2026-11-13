@@ -1,4 +1,4 @@
-package com.example.study.ui.records
+﻿package com.example.study.ui.records
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -42,14 +42,16 @@ import com.example.study.ui.components.DayBar
 import com.example.study.ui.components.ProgressTrack
 import com.example.study.ui.components.StatCard
 import com.example.study.ui.components.WeekBarChart
+import java.time.LocalDate
+import com.example.study.ui.theme.DuoBackground
 import com.example.study.ui.theme.DuoBlue
 import com.example.study.ui.theme.DuoBorder
+import com.example.study.ui.theme.DuoCard
 import com.example.study.ui.theme.DuoGold
 import com.example.study.ui.theme.DuoGreen
 import com.example.study.ui.theme.DuoSurface
 import com.example.study.ui.theme.DuoTextPrimary
 import com.example.study.ui.theme.DuoTextSecondary
-import java.time.LocalDate
 
 @Composable
 fun RecordsScreen(onOpenWrongBook: () -> Unit, onOpenVocab: () -> Unit, modifier: Modifier = Modifier) {
@@ -62,7 +64,7 @@ fun RecordsScreen(onOpenWrongBook: () -> Unit, onOpenVocab: () -> Unit, modifier
     Box(
         modifier = modifier
             .fillMaxSize()
-            .background(DuoContextBackground)
+            .background(DuoBackground)
     ) {
         Column(
             modifier = Modifier
@@ -140,7 +142,7 @@ fun RecordsScreen(onOpenWrongBook: () -> Unit, onOpenVocab: () -> Unit, modifier
     }
 }
 
-private val DuoContextBackground = androidx.compose.ui.graphics.Color.White
+
 
 @Composable
 private fun StatsGrid(stats: LibraryStats) {
@@ -397,7 +399,7 @@ private fun CheckInCalendarCard(stats: LibraryStats) {
                                 .weight(1f)
                                 .height(34.dp)
                                 .clip(RoundedCornerShape(10.dp))
-                                .background(if (isStudied) DuoGreen else Color.White)
+                                .background(if (isStudied) DuoGreen else DuoCard)
                                 .border(
                                     width = 2.dp,
                                     color = if (isToday) DuoBlue else if (isStudied) DuoGreen else DuoBorder,

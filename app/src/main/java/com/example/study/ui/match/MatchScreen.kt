@@ -1,4 +1,4 @@
-package com.example.study.ui.match
+﻿package com.example.study.ui.match
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -41,11 +41,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.study.ui.theme.DuoBackground
 import com.example.study.ui.theme.DuoBlue
-import com.example.study.ui.theme.DuoBlueShadow
 import com.example.study.ui.theme.DuoBorder
+import com.example.study.ui.theme.DuoCard
 import com.example.study.ui.theme.DuoGreen
-import com.example.study.ui.theme.DuoGreenSoft
 import com.example.study.ui.theme.DuoRed
 import com.example.study.ui.theme.DuoSurface
 import com.example.study.ui.theme.DuoTextPrimary
@@ -64,7 +64,7 @@ fun MatchScreen(onBack: () -> Unit, modifier: Modifier = Modifier) {
         viewModel.clearMessage()
     }
 
-    Box(modifier = modifier.fillMaxSize().background(Color.White)) {
+    Box(modifier = modifier.fillMaxSize().background(DuoBackground)) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -195,7 +195,7 @@ private fun MatchCardView(
     val textColor: Color
     when {
         card.matched -> {
-            background = Color.White
+            background = DuoCard
             borderColor = DuoBorder
             textColor = Color.Transparent
         }
@@ -213,7 +213,7 @@ private fun MatchCardView(
         }
 
         else -> {
-            background = Color.White
+            background = DuoCard
             borderColor = DuoBorder
             textColor = DuoTextPrimary
         }

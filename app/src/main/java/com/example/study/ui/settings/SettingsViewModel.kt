@@ -30,7 +30,8 @@ data class SettingsUiState(
     val wordCounts: Map<String, Int> = emptyMap(),
     val message: String? = null,
     val reminderEnabled: Boolean = false,
-    val reminderHour: Int = 20
+    val reminderHour: Int = 20,
+    val themeMode: String = SettingsRepository.THEME_SYSTEM
 )
 
 class SettingsViewModel(
@@ -78,6 +79,11 @@ class SettingsViewModel(
         viewModelScope.launch {
             settingsRepository.reminderHour.collect { hour ->
                 _uiState.update { it.copy(reminderHour = hour) }
+            }
+        }
+        viewModelScope.launch {
+            settingsRepository.themeMode.collect { mode ->
+                _uiState.update { it.copy(themeMode = mode) }
             }
         }
     }
@@ -154,6 +160,18 @@ class SettingsViewModel(
 
     fun onNotificationPermissionDenied() {
         _uiState.update { it.copy(message = "未授予通知权限，无法开启每日提醒（可在系统设置中开启）") }
+    }
+
+    fun setThemeMode(mode: String) {
+        viewModelScope.launch {
+            settingsRepository.setThemeMode(mode)
+            val label = when (mode) {
+                SettingsRepository.THEME_LIGHT -> "浅色"
+                SettingsRepository.THEME_DARK -> "深色"
+                else -> "跟随系统"
+            }
+            _uiState.update { it.copy(message = "外观已切换为：$label") }
+        }
     }
 
     /** 导出学习数据到用户选择的 JSON 文件。 */

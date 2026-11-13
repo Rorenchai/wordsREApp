@@ -45,6 +45,9 @@ class SettingsRepository(
     /** 每日学习提醒时间（小时，默认 20 点）。 */
     val reminderHour: Flow<Int> = safeData.map { it[KEY_REMINDER_HOUR] ?: 20 }
 
+    /** 主题模式：system / light / dark。 */
+    val themeMode: Flow<String> = safeData.map { it[KEY_THEME_MODE] ?: THEME_SYSTEM }
+
     suspend fun setCurrentLibrary(library: String) {
         dataStore.edit { it[KEY_LIBRARY] = library }
     }
@@ -72,6 +75,10 @@ class SettingsRepository(
         dataStore.edit { it[KEY_REMINDER_HOUR] = hour.coerceIn(0, 23) }
     }
 
+    suspend fun setThemeMode(mode: String) {
+        dataStore.edit { it[KEY_THEME_MODE] = mode }
+    }
+
     companion object {
         const val LIB_CET4 = "CET-4"
         const val LIB_CET6 = "CET-6"
@@ -80,6 +87,9 @@ class SettingsRepository(
         const val DEFAULT_DAILY_GOAL = 20
         const val MIN_DAILY_GOAL = 5
         const val MAX_DAILY_GOAL = 200
+        const val THEME_SYSTEM = "system"
+        const val THEME_LIGHT = "light"
+        const val THEME_DARK = "dark"
 
         val LIBRARIES = listOf(LIB_CET4, LIB_CET6)
         val DAILY_GOAL_OPTIONS = listOf(10, 20, 30, 50)
@@ -91,6 +101,7 @@ class SettingsRepository(
         private val KEY_VOCAB_DATE = stringPreferencesKey("vocab_test_date")
         private val KEY_REMINDER_ENABLED = booleanPreferencesKey("reminder_enabled")
         private val KEY_REMINDER_HOUR = intPreferencesKey("reminder_hour")
+        private val KEY_THEME_MODE = stringPreferencesKey("theme_mode")
 
         fun create(context: Context): SettingsRepository {
             return SettingsRepository(context.applicationContext.settingsDataStore)

@@ -1,4 +1,4 @@
-package com.example.study.ui.components
+﻿package com.example.study.ui.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -14,7 +14,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.example.study.data.db.StudyStatus
 import com.example.study.ui.theme.DuoBlue
-import com.example.study.ui.theme.DuoBorder
 import com.example.study.ui.theme.DuoGreen
 import com.example.study.ui.theme.DuoGreenSoft
 import com.example.study.ui.theme.DuoSurface

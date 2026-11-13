@@ -1,4 +1,4 @@
-package com.example.study.ui.navigation
+﻿package com.example.study.ui.navigation
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -38,6 +38,7 @@ import com.example.study.ui.wrongbook.WrongBookScreen
 import com.example.study.ui.records.RecordsScreen
 import com.example.study.ui.settings.SettingsScreen
 import com.example.study.ui.study.StudyScreen
+import com.example.study.ui.theme.DuoBackground
 import com.example.study.ui.theme.DuoGreen
 import com.example.study.ui.theme.DuoTextSecondary
 
@@ -65,7 +66,7 @@ fun AppNavHost() {
     Scaffold(
         bottomBar = {
             if (currentDestination?.route !in setOf("dictionary", "quiz", "listening", "spelling", "match", "wrongbook", "review", "vocab")) {
-                NavigationBar(containerColor = Color.White) {
+                NavigationBar(containerColor = DuoBackground) {
                     bottomNavItems.forEach { item ->
                         val selected = currentDestination?.hierarchy?.any { it.route == item.route } == true
                         NavigationBarItem(

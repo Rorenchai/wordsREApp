@@ -1,4 +1,4 @@
-package com.example.study.ui.wrongbook
+﻿package com.example.study.ui.wrongbook
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -44,6 +44,10 @@ import com.example.study.data.db.WordEntity
 import com.example.study.data.db.WrongWordRow
 import com.example.study.ui.components.DuoButton
 import com.example.study.ui.components.WordDetailDialog
+import java.time.Instant
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
+import com.example.study.ui.theme.DuoBackground
 import com.example.study.ui.theme.DuoBlue
 import com.example.study.ui.theme.DuoBorder
 import com.example.study.ui.theme.DuoGreen
@@ -51,9 +55,6 @@ import com.example.study.ui.theme.DuoRed
 import com.example.study.ui.theme.DuoSurface
 import com.example.study.ui.theme.DuoTextPrimary
 import com.example.study.ui.theme.DuoTextSecondary
-import java.time.Instant
-import java.time.ZoneId
-import java.time.format.DateTimeFormatter
 
 @Composable
 fun WrongBookScreen(onBack: () -> Unit, onStartReview: () -> Unit, modifier: Modifier = Modifier) {
@@ -64,7 +65,7 @@ fun WrongBookScreen(onBack: () -> Unit, onStartReview: () -> Unit, modifier: Mod
 
     LaunchedEffect(Unit) { viewModel.refresh() }
 
-    Box(modifier = modifier.fillMaxSize().background(Color.White)) {
+    Box(modifier = modifier.fillMaxSize().background(DuoBackground)) {
         Column(modifier = Modifier.fillMaxSize()) {
             Row(
                 modifier = Modifier

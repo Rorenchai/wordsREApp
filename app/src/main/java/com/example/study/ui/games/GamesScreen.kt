@@ -1,4 +1,4 @@
-package com.example.study.ui.games
+﻿package com.example.study.ui.games
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -31,6 +31,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
+import com.example.study.ui.theme.DuoBackground
 import com.example.study.ui.theme.DuoBlue
 import com.example.study.ui.theme.DuoBorder
 import com.example.study.ui.theme.DuoGold
@@ -67,7 +68,7 @@ fun GamesScreen(
     Column(
         modifier = modifier
             .fillMaxSize()
-            .background(Color.White)
+            .background(DuoBackground)
             .verticalScroll(rememberScrollState())
             .padding(horizontal = 18.dp)
             .padding(top = 14.dp, bottom = 20.dp),
