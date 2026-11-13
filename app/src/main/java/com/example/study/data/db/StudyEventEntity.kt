@@ -21,5 +21,10 @@ data class StudyEventEntity(
     /** 本地日期，格式 yyyy-MM-dd */
     val date: String,
     val wordId: Long,
-    val timestamp: Long
+    val timestamp: Long,
+    /**
+     * 答题对错标记：1 = 答对，0 = 答错，null = 非答题（翻卡标记学习中/已掌握）。
+     * v3 新增，用于「看词选译」等答题模式的正确率统计。
+     */
+    val answerCorrect: Int? = null
 )

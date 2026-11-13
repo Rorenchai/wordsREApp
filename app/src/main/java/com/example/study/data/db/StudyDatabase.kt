@@ -8,7 +8,7 @@ import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 
 /**
- * 数据库：v1 = 词库 / 学习进度 / 学习事件；v2 新增收藏表（保留既有数据）。
+ * 数据库：v1 = 词库 / 学习进度 / 学习事件；v2 新增收藏表；v3 学习事件增加答题对错标记。
  * schema 与旧 Java 版不兼容，使用独立数据库文件名 wordcard.db。
  */
 @Database(
@@ -18,7 +18,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase
         StudyEventEntity::class,
         FavoriteEntity::class
     ],
-    version = 2,
+    version = 3,
     exportSchema = false
 )
 abstract class StudyDatabase : RoomDatabase() {
@@ -50,6 +50,13 @@ abstract class StudyDatabase : RoomDatabase() {
             }
         }
 
+        /** v2 → v3：学习事件增加可空的答题对错列（旧事件保持 null）。 */
+        private val MIGRATION_2_3 = object : Migration(2, 3) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                db.execSQL("ALTER TABLE `study_events` ADD COLUMN `answerCorrect` INTEGER")
+            }
+        }
+
         @Volatile
         private var instance: StudyDatabase? = null
 
@@ -60,7 +67,7 @@ abstract class StudyDatabase : RoomDatabase() {
                     StudyDatabase::class.java,
                     DB_NAME
                 )
-                    .addMigrations(MIGRATION_1_2)
+                    .addMigrations(MIGRATION_1_2, MIGRATION_2_3)
                     .fallbackToDestructiveMigration(dropAllTables = true)
                     .build()
                     .also { instance = it }

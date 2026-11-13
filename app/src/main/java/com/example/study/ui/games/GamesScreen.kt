@@ -2,6 +2,7 @@ package com.example.study.ui.games
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -42,18 +43,19 @@ private data class GameEntry(
     val title: String,
     val description: String,
     val icon: ImageVector,
-    val tint: Color
+    val tint: Color,
+    val enabled: Boolean = false
 )
 
 private val gameEntries = listOf(
     GameEntry("单词消消乐", "词义配对，消除全部卡片", Icons.Filled.Extension, DuoGreen),
-    GameEntry("看词选译", "四选一快速答题", Icons.Filled.Translate, DuoBlue),
+    GameEntry("看词选译", "四选一快速答题", Icons.Filled.Translate, DuoBlue, enabled = true),
     GameEntry("听音辨词", "听发音选正确单词", Icons.Filled.Headphones, DuoGold),
     GameEntry("单词拼写", "根据释义拼出单词", Icons.Filled.Keyboard, Color(0xFFA855F7))
 )
 
 @Composable
-fun GamesScreen(modifier: Modifier = Modifier) {
+fun GamesScreen(onOpenQuiz: () -> Unit, modifier: Modifier = Modifier) {
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -79,7 +81,11 @@ fun GamesScreen(modifier: Modifier = Modifier) {
                 horizontalArrangement = Arrangement.spacedBy(12.dp)
             ) {
                 rowEntries.forEach { entry ->
-                    GameCard(entry = entry, modifier = Modifier.weight(1f))
+                    GameCard(
+                        entry = entry,
+                        onClick = if (entry.enabled) onOpenQuiz else null,
+                        modifier = Modifier.weight(1f)
+                    )
                 }
             }
         }
@@ -88,12 +94,13 @@ fun GamesScreen(modifier: Modifier = Modifier) {
 }
 
 @Composable
-private fun GameCard(entry: GameEntry, modifier: Modifier = Modifier) {
+private fun GameCard(entry: GameEntry, onClick: (() -> Unit)?, modifier: Modifier = Modifier) {
     Column(
         modifier = modifier
             .clip(RoundedCornerShape(20.dp))
             .background(DuoSurface)
             .border(2.dp, DuoBorder, RoundedCornerShape(20.dp))
+            .then(if (onClick != null) Modifier.clickable(onClick = onClick) else Modifier)
             .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
@@ -121,9 +128,9 @@ private fun GameCard(entry: GameEntry, modifier: Modifier = Modifier) {
             color = DuoTextSecondary
         )
         Text(
-            text = "第二期开放",
+            text = if (entry.enabled) "立即开始" else "第二期开放",
             style = MaterialTheme.typography.labelSmall,
-            color = DuoGold
+            color = if (entry.enabled) DuoGreen else DuoGold
         )
     }
 }

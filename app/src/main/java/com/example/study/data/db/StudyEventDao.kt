@@ -59,6 +59,26 @@ interface StudyEventDao {
     )
     suspend fun distinctDates(library: String): List<String>
 
+    /** 答题模式已答题数（只看有对错标记的事件）。 */
+    @Query(
+        """
+        SELECT COUNT(*) FROM study_events e
+        JOIN words w ON e.wordId = w.id
+        WHERE w.library = :library AND e.answerCorrect IS NOT NULL
+        """
+    )
+    suspend fun quizAnswered(library: String): Int
+
+    /** 答题模式答对数。 */
+    @Query(
+        """
+        SELECT COUNT(*) FROM study_events e
+        JOIN words w ON e.wordId = w.id
+        WHERE w.library = :library AND e.answerCorrect = 1
+        """
+    )
+    suspend fun quizCorrect(library: String): Int
+
     /** 重置某词库的学习事件。 */
     @Query("DELETE FROM study_events WHERE wordId IN (SELECT id FROM words WHERE library = :library)")
     suspend fun deleteByLibrary(library: String)

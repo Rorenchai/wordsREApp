@@ -109,6 +109,7 @@ fun RecordsScreen(modifier: Modifier = Modifier) {
                     caption = "已掌握 ${stats.masteredWords} / ${stats.totalWords} 个单词",
                     color = DuoGreen
                 )
+                QuizStatsCard(stats)
                 WeekCard(stats)
                 Row(
                     modifier = Modifier.fillMaxWidth(),
@@ -202,6 +203,30 @@ private fun RateCard(
             fillColor = color
         )
         Text(caption, style = MaterialTheme.typography.bodySmall, color = DuoTextSecondary)
+    }
+}
+
+@Composable
+private fun QuizStatsCard(stats: LibraryStats) {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(20.dp))
+            .background(DuoSurface)
+            .border(2.dp, DuoBorder, RoundedCornerShape(20.dp))
+            .padding(16.dp),
+        verticalArrangement = Arrangement.spacedBy(6.dp)
+    ) {
+        Text(
+            text = "答题统计（看词选译）",
+            style = MaterialTheme.typography.titleMedium,
+            color = DuoTextPrimary
+        )
+        Text(
+            text = "已答 ${stats.quizAnswered} 题 · 答对 ${stats.quizCorrect} 题 · 正确率 ${stats.quizAccuracyPercent}%",
+            style = MaterialTheme.typography.bodyMedium,
+            color = DuoTextSecondary
+        )
     }
 }
 

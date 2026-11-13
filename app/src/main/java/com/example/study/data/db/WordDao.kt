@@ -58,4 +58,15 @@ interface WordDao {
         """
     )
     suspend fun searchWords(library: String, query: String, limit: Int): List<WordEntity>
+
+    /** 随机取若干个非本题的释义作四选一干扰项。 */
+    @Query(
+        """
+        SELECT meaning FROM words
+        WHERE library = :library AND word != :excludeSpelling
+        ORDER BY RANDOM()
+        LIMIT :count
+        """
+    )
+    suspend fun randomMeanings(library: String, excludeSpelling: String, count: Int): List<String>
 }

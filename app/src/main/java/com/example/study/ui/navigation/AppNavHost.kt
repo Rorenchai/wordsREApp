@@ -28,6 +28,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.study.ui.dictionary.DictionaryScreen
 import com.example.study.ui.favorites.FavoritesScreen
 import com.example.study.ui.games.GamesScreen
+import com.example.study.ui.quiz.QuizScreen
 import com.example.study.ui.records.RecordsScreen
 import com.example.study.ui.settings.SettingsScreen
 import com.example.study.ui.study.StudyScreen
@@ -57,7 +58,7 @@ fun AppNavHost() {
 
     Scaffold(
         bottomBar = {
-            if (currentDestination?.route != "dictionary") {
+            if (currentDestination?.route !in setOf("dictionary", "quiz")) {
                 NavigationBar(containerColor = Color.White) {
                     bottomNavItems.forEach { item ->
                         val selected = currentDestination?.hierarchy?.any { it.route == item.route } == true
@@ -101,10 +102,17 @@ fun AppNavHost() {
             }
             composable("records") { RecordsScreen() }
             composable("favorites") { FavoritesScreen() }
-            composable("games") { GamesScreen() }
+            composable("games") {
+                GamesScreen(onOpenQuiz = {
+                    navController.navigate("quiz") { launchSingleTop = true }
+                })
+            }
             composable("settings") { SettingsScreen() }
             composable("dictionary") {
                 DictionaryScreen(onBack = { navController.popBackStack() })
+            }
+            composable("quiz") {
+                QuizScreen(onBack = { navController.popBackStack() })
             }
         }
     }

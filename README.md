@@ -21,7 +21,8 @@
 | 许可与来源 | 设置页可查看词库 BSD-3 与字体 OFL 许可证全文 |
 | 词典查询 | 学习页右上角搜索入口：按英文单词 / 中文释义检索完整词库，可切换当前词库 / CET-4 / CET-6 / 全部范围；点击结果查看音标、释义、双语例句、常用搭配并播放发音 |
 | 收藏夹 | 卡片（正反面）右上角星标一键收藏 / 取消；「收藏」页签跨词库统一展示，支持详情弹窗与发音 |
-| 游戏页 | 4 个游戏入口占位，标注「第二期开放」 |
+| 看词选译 | 「游戏」页签进入四选一答题：随机主词 + 3 个干扰释义，点选即判对错（答错显示正确答案），答对 0.9s / 答错 2.2s 后自动换题；会话统计已答 / 答对 / 正确率，答题结果落库并计入记录页「答题统计」 |
+| 游戏页 | 4 个游戏入口（看词选译已上线，其余标注「第二期开放」） |
 
 ## 技术栈
 
@@ -55,7 +56,8 @@ Study/app/src/main/java/com/example/study/
 ├── ui/settings/    SettingsScreen / SettingsViewModel
 ├── ui/dictionary/  DictionaryScreen / DictionaryViewModel（词典搜索）
 ├── ui/favorites/   FavoritesScreen / FavoritesViewModel（收藏夹）
-└── ui/games/       GamesScreen（第二期占位）
+├── ui/quiz/        QuizScreen / QuizViewModel（看词选译）
+└── ui/games/       GamesScreen（游戏入口，看词选译已上线）
 ```
 
 资源：
@@ -70,11 +72,11 @@ Study/app/src/main/java/com/example/study/
 |---|---|---|
 | `words` | id, word, phonetic, pos, meaning, example, exampleZh, phrase, phraseZh, library | 词库；唯一索引 (word, library) |
 | `word_progress` | wordId(PK), status(1 学习中 / 2 已掌握), firstLearnedAt, lastLearnedAt, studyCount, masteredAt | 只存学过的词 |
-| `study_events` | id, date(yyyy-MM-dd), wordId, timestamp | 每次有效学习一行；今日目标按日期+单词去重，累计次数不去重 |
+| `study_events` | id, date(yyyy-MM-dd), wordId, timestamp, answerCorrect | 每次有效学习一行；answerCorrect 1/0 = 答题对错，null = 翻卡标记；今日目标按日期+单词去重，累计次数不去重 |
 | `favorites` | id, wordId(唯一), createdAt | 收藏夹（v2 新增） |
 
 - 数据库文件：`wordcard.db`（新重构 schema 与旧 Java 版 `study.db` 不兼容，旧库直接废弃；保留 `fallbackToDestructiveMigration` 作开发期兜底）。
-- 版本历史：v1 = 词库 / 学习进度 / 学习事件；**v2 新增 `favorites` 收藏表**（`Migration(1,2)` 增量建表，既有数据保留）。
+- 版本历史：v1 = 词库 / 学习进度 / 学习事件；v2 新增 `favorites` 收藏表；**v3 学习事件新增 `answerCorrect` 答题对错列**（`Migration(1,2)`、`Migration(2,3)` 增量迁移，既有数据保留）。
 - 首次启动：`DatabaseSeeder` 在 IO 线程解析两份词库 JSON 并事务批量入库（幂等，已存在则跳过）。
 - 统计口径：今日目标 = 当天学习过的不同单词数；累计学习次数 = 有效学习事件总数（复习重复计）；streak = 有学习记录的连续自然日（当天未学不清零，从昨天起算）。
 
@@ -118,7 +120,7 @@ python -I WorkBuddy/wordbank/convert_ref_wordbank.py
 
 - ✅ 词典搜索（学习页搜索入口；单词 / 中文释义检索，支持范围切换与详情发音）
 - ✅ 收藏集合（卡片星标收藏 / 取消；「收藏」页签跨词库统一管理，支持详情与发音；数据库 v2 迁移）
-- ⬜ 看词选译：四选一答题模式
+- ✅ 看词选译（四选一答题、判对错、自动换题、会话统计；答题结果落库 + 记录页正确率；数据库 v3 迁移）
 - ⬜ 听音辨词：听发音选正确单词
 - ⬜ 单词拼写：根据释义拼写
 - ⬜ 单词消消乐：词义配对网格

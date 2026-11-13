@@ -65,6 +65,42 @@ class StudyRepository(
         }
     }
 
+    /** 记录一次答题（看词选译）：答题也算一次学习事件，并带上对错标记用于正确率统计。 */
+    suspend fun recordQuizAnswer(wordId: Long, correct: Boolean, now: Long = System.currentTimeMillis()) {
+        database.withTransaction {
+            val existing = progressDao.findByWordId(wordId)
+            val progress = if (existing == null) {
+                WordProgressEntity(
+                    wordId = wordId,
+                    status = StudyStatus.LEARNING,
+                    firstLearnedAt = now,
+                    lastLearnedAt = now,
+                    studyCount = 1,
+                    masteredAt = null
+                )
+            } else {
+                existing.copy(
+                    lastLearnedAt = now,
+                    studyCount = existing.studyCount + 1,
+                    status = if (existing.status == StudyStatus.MASTERED) {
+                        StudyStatus.MASTERED
+                    } else {
+                        StudyStatus.LEARNING
+                    }
+                )
+            }
+            progressDao.upsert(progress)
+            eventDao.insert(
+                StudyEventEntity(
+                    date = StudyDates.formatDate(now),
+                    wordId = wordId,
+                    timestamp = now,
+                    answerCorrect = if (correct) 1 else 0
+                )
+            )
+        }
+    }
+
     /** 记录页数据快照（当前词库）。 */
     suspend fun stats(library: String, today: LocalDate = StudyDates.today()): LibraryStats {
         val totalWords = wordDao.countByLibrary(library)
@@ -78,6 +114,8 @@ class StudyRepository(
         )
         val streak = StudyStats.calculateStreak(eventDao.distinctDates(library), today)
         val totalEvents = eventDao.totalEvents(library)
+        val quizAnswered = eventDao.quizAnswered(library)
+        val quizCorrect = eventDao.quizCorrect(library)
         return LibraryStats(
             totalWords = totalWords,
             startedWords = startedWords,
@@ -85,7 +123,9 @@ class StudyRepository(
             todayStudied = todayStudied,
             weekCounts = weekCounts,
             streak = streak,
-            totalStudyEvents = totalEvents
+            totalStudyEvents = totalEvents,
+            quizAnswered = quizAnswered,
+            quizCorrect = quizCorrect
         )
     }
 

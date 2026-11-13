@@ -30,4 +30,8 @@ class WordRepository(
     /** 词典搜索：library 传 "ALL" 表示跨词库检索。 */
     suspend fun searchWords(library: String, query: String, limit: Int): List<WordEntity> =
         wordDao.searchWords(library, query, limit)
+
+    /** 四选一干扰项：随机取若干条非本题释义。 */
+    suspend fun randomMeanings(library: String, excludeSpelling: String, count: Int): List<String> =
+        wordDao.randomMeanings(library, excludeSpelling, count)
 }

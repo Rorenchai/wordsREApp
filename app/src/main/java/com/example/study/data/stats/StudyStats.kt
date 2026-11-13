@@ -54,7 +54,9 @@ data class LibraryStats(
     val todayStudied: Int,
     val weekCounts: List<com.example.study.data.db.DailyCount>,
     val streak: Int,
-    val totalStudyEvents: Long
+    val totalStudyEvents: Long,
+    val quizAnswered: Int = 0,
+    val quizCorrect: Int = 0
 ) {
     val untouchedWords: Int get() = (totalWords - startedWords).coerceAtLeast(0)
 
@@ -67,6 +69,9 @@ data class LibraryStats(
 
     /** 掌握率百分比（保留一位小数）。 */
     val masteredPercent: Float get() = percentFloat(masteredWords, totalWords)
+
+    /** 答题正确率（整数百分比）。 */
+    val quizAccuracyPercent: Int get() = percent(quizCorrect, quizAnswered)
 
     private fun percent(value: Int, total: Int): Int {
         return if (total <= 0) 0 else (value * 100 / total).coerceIn(0, 100)
