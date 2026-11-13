@@ -1,0 +1,219 @@
+package com.example.study.ui.study
+
+import android.content.Context
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.viewmodel.initializer
+import androidx.lifecycle.viewmodel.viewModelFactory
+import com.example.study.appContainer
+import com.example.study.data.db.StudyStatus
+import com.example.study.data.db.WordEntity
+import com.example.study.data.repo.SettingsRepository
+import com.example.study.data.repo.StudyRepository
+import com.example.study.data.repo.TtsManager
+import com.example.study.data.repo.WordRepository
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
+
+data class StudyUiState(
+    val initialized: Boolean = false,
+    val loadingWord: Boolean = true,
+    val library: String = SettingsRepository.LIB_CET4,
+    val dailyGoal: Int = SettingsRepository.DEFAULT_DAILY_GOAL,
+    val todayStudied: Int = 0,
+    val streak: Int = 0,
+    val word: WordEntity? = null,
+    val wordStatus: Int = 0,
+    val flipped: Boolean = false,
+    val filter: Int = -1,
+    val roundViewed: Int = 0,
+    val accent: String = SettingsRepository.ACCENT_US,
+    val message: String? = null
+) {
+    val goalProgress: Float
+        get() = if (dailyGoal <= 0) 0f else (todayStudied.toFloat() / dailyGoal).coerceIn(0f, 1f)
+
+    val goalReached: Boolean get() = dailyGoal > 0 && todayStudied >= dailyGoal
+}
+
+class StudyViewModel(
+    private val wordRepository: WordRepository,
+    private val studyRepository: StudyRepository,
+    private val settingsRepository: SettingsRepository,
+    private val ttsManager: TtsManager
+) : ViewModel() {
+
+    private val _uiState = MutableStateFlow(StudyUiState())
+    val uiState: StateFlow<StudyUiState> = _uiState.asStateFlow()
+
+    /** 本轮已抽过的词，保证一轮内不重复（进程重建后重开一轮，可接受）。 */
+    private val roundSeen = mutableSetOf<Long>()
+
+    init {
+        viewModelScope.launch {
+            val library = settingsRepository.currentLibrary.first()
+            val goal = settingsRepository.dailyGoal.first()
+            val accent = settingsRepository.accent.first()
+            _uiState.update { it.copy(library = library, dailyGoal = goal, accent = accent) }
+            ttsManager.setAccent(accent)
+            wordRepository.ensureReady()
+            _uiState.update { it.copy(initialized = true) }
+            loadNextWordInternal()
+        }
+        viewModelScope.launch {
+            settingsRepository.dailyGoal.collect { goal -> _uiState.update { it.copy(dailyGoal = goal) } }
+        }
+        viewModelScope.launch {
+            settingsRepository.accent.collect { accent ->
+                ttsManager.setAccent(accent)
+                _uiState.update { it.copy(accent = accent) }
+            }
+        }
+        viewModelScope.launch {
+            settingsRepository.currentLibrary.collect { library ->
+                val previous = _uiState.value.library
+                _uiState.update { it.copy(library = library) }
+                if (previous != library && _uiState.value.initialized) {
+                    roundSeen.clear()
+                    loadNextWordInternal()
+                }
+            }
+        }
+    }
+
+    fun flip() {
+        _uiState.update { it.copy(flipped = !it.flipped) }
+    }
+
+    fun setFilter(filter: Int) {
+        if (_uiState.value.filter == filter) return
+        roundSeen.clear()
+        _uiState.update { it.copy(filter = filter, roundViewed = 0) }
+        loadNextWordInternal()
+    }
+
+    fun nextWord() {
+        if (_uiState.value.loadingWord) return
+        loadNextWordInternal()
+    }
+
+    /**
+     * 标记学习状态（1 学习中 / 2 已掌握）。
+     * 只有翻到背面后的标记才算「有效学习」，写入 Room 并刷新今日目标与 streak。
+     */
+    fun markStatus(status: Int) {
+        val state = _uiState.value
+        val word = state.word ?: return
+        if (!state.flipped) {
+            _uiState.update { it.copy(message = "先点卡片翻到背面，再标记学习状态") }
+            return
+        }
+        viewModelScope.launch {
+            studyRepository.markStudied(word.id, status)
+            val stats = studyRepository.stats(state.library)
+            val reachedJustNow = !state.goalReached && stats.todayStudied >= state.dailyGoal
+            _uiState.update {
+                it.copy(
+                    wordStatus = status,
+                    todayStudied = stats.todayStudied,
+                    streak = stats.streak,
+                    message = when {
+                        reachedJustNow -> "今日目标完成！继续保持"
+                        status == StudyStatus.MASTERED -> "已掌握：${word.word}"
+                        else -> "已标记为学习中：${word.word}"
+                    }
+                )
+            }
+        }
+    }
+
+    fun speakCurrentWord() {
+        val word = _uiState.value.word ?: return
+        if (!ttsManager.speak(word.word)) {
+            _uiState.update { it.copy(message = "系统未安装可用的英语语音引擎，无法发音") }
+        }
+    }
+
+    fun clearMessage() {
+        _uiState.update { it.copy(message = null) }
+    }
+
+    /**
+     * 从数据库重新读取当前词库的今日目标/streak 与当前词状态。
+     * 用于从记录页/词库页返回学习页时刷新（例如在词库页重置进度后）。
+     */
+    fun refreshFromDatabase() {
+        viewModelScope.launch {
+            val state = _uiState.value
+            if (!state.initialized) return@launch
+            val stats = studyRepository.stats(state.library)
+            val status = state.word?.let { studyRepository.findProgress(it.id)?.status } ?: 0
+            _uiState.update {
+                it.copy(
+                    todayStudied = stats.todayStudied,
+                    streak = stats.streak,
+                    wordStatus = status
+                )
+            }
+        }
+    }
+
+    override fun onCleared() {
+        ttsManager.shutdown()
+        super.onCleared()
+    }
+
+    private fun loadNextWordInternal() {
+        viewModelScope.launch {
+            val snapshot = _uiState.value
+            if (!snapshot.initialized) return@launch
+            _uiState.update { it.copy(loadingWord = true, flipped = false) }
+            val word = pickWord(snapshot.library, snapshot.filter)
+            val status = word?.let { studyRepository.findProgress(it.id)?.status } ?: 0
+            val stats = studyRepository.stats(snapshot.library)
+            _uiState.update {
+                it.copy(
+                    word = word,
+                    wordStatus = status,
+                    loadingWord = false,
+                    flipped = false,
+                    todayStudied = stats.todayStudied,
+                    streak = stats.streak,
+                    roundViewed = roundSeen.size
+                )
+            }
+        }
+    }
+
+    /** 随机抽词并做本轮去重；一轮抽满仍无新词时重开一轮。 */
+    private suspend fun pickWord(library: String, filter: Int): WordEntity? {
+        repeat(MAX_PICK_TRIES) {
+            val candidate = wordRepository.randomWord(library, filter) ?: return null
+            if (roundSeen.add(candidate.id)) return candidate
+        }
+        roundSeen.clear()
+        return wordRepository.randomWord(library, filter)?.also { roundSeen.add(it.id) }
+    }
+
+    companion object {
+        const val FILTER_ALL = -1
+        private const val MAX_PICK_TRIES = 40
+
+        fun factory(context: Context): ViewModelProvider.Factory = viewModelFactory {
+            initializer {
+                val container = context.applicationContext.appContainer
+                StudyViewModel(
+                    wordRepository = container.wordRepository,
+                    studyRepository = container.studyRepository,
+                    settingsRepository = container.settingsRepository,
+                    ttsManager = TtsManager(context.applicationContext)
+                )
+            }
+        }
+    }
+}
