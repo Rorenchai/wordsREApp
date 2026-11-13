@@ -8,20 +8,19 @@ pluginManagement {
             }
         }
         mavenCentral()
-        gradlePluginPortal()
+        // 国内网络下 plugins.gradle.org 不可达，改用阿里云镜像兜底（项目铁律：Gradle 换源）
+        maven("https://maven.aliyun.com/repository/public")
+        maven("https://maven.aliyun.com/repository/gradle-plugin")
     }
-}
-plugins {
-    id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
 }
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
         google()
         mavenCentral()
+        maven("https://maven.aliyun.com/repository/public")
     }
 }
 
 rootProject.name = "Study"
 include(":app")
- 
