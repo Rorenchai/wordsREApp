@@ -34,4 +34,8 @@ class WordRepository(
     /** 四选一干扰项：随机取若干条非本题释义。 */
     suspend fun randomMeanings(library: String, excludeSpelling: String, count: Int): List<String> =
         wordDao.randomMeanings(library, excludeSpelling, count)
+
+    /** 听音辨词干扰项：随机取若干条非本题单词拼写。 */
+    suspend fun randomWords(library: String, excludeWord: String, count: Int): List<String> =
+        wordDao.randomWords(library, excludeWord, count)
 }

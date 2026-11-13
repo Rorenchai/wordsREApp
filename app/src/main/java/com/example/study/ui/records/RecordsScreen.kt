@@ -218,7 +218,7 @@ private fun QuizStatsCard(stats: LibraryStats) {
         verticalArrangement = Arrangement.spacedBy(6.dp)
     ) {
         Text(
-            text = "答题统计（看词选译）",
+            text = "答题统计（答题模式）",
             style = MaterialTheme.typography.titleMedium,
             color = DuoTextPrimary
         )

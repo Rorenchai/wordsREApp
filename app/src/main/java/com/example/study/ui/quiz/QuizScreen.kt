@@ -2,7 +2,6 @@ package com.example.study.ui.quiz
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -11,10 +10,8 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -41,11 +38,12 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.study.ui.components.AnswerFeedbackBanner
+import com.example.study.ui.components.AnswerOptionRow
+import com.example.study.ui.components.SessionStatsCard
 import com.example.study.ui.theme.DuoBlue
 import com.example.study.ui.theme.DuoBorder
 import com.example.study.ui.theme.DuoGreen
-import com.example.study.ui.theme.DuoGreenSoft
-import com.example.study.ui.theme.DuoRed
 import com.example.study.ui.theme.DuoSurface
 import com.example.study.ui.theme.DuoTextPrimary
 import com.example.study.ui.theme.DuoTextSecondary
@@ -104,7 +102,11 @@ fun QuizScreen(onBack: () -> Unit, modifier: Modifier = Modifier) {
                 }
             }
 
-            SessionStatsCard(state)
+            SessionStatsCard(
+                answered = state.sessionAnswered,
+                correct = state.sessionCorrect,
+                accuracy = state.sessionAccuracy
+            )
 
             val word = state.word
             if (state.loading || word == null) {
@@ -166,14 +168,19 @@ fun QuizScreen(onBack: () -> Unit, modifier: Modifier = Modifier) {
             }
 
             if (state.answered) {
-                FeedbackBanner(state = state, word = word)
+                AnswerFeedbackBanner(
+                    correct = state.correct == true,
+                    correctAnswer = word.meaning
+                )
             }
 
             state.options.forEachIndexed { index, option ->
-                OptionRow(
+                AnswerOptionRow(
                     text = option,
                     index = index,
-                    state = state,
+                    answered = state.answered,
+                    answerIndex = state.answerIndex,
+                    selectedIndex = state.selectedIndex,
                     onClick = { viewModel.selectOption(index) }
                 )
             }
@@ -183,141 +190,5 @@ fun QuizScreen(onBack: () -> Unit, modifier: Modifier = Modifier) {
             hostState = snackbarHostState,
             modifier = Modifier.align(Alignment.BottomCenter).padding(horizontal = 18.dp, vertical = 8.dp)
         )
-    }
-}
-
-@Composable
-private fun FeedbackBanner(state: QuizUiState, word: com.example.study.data.db.WordEntity) {
-    val correct = state.correct == true
-    val color = if (correct) DuoGreen else DuoRed
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .clip(RoundedCornerShape(16.dp))
-            .background(if (correct) DuoGreenSoft else DuoRed.copy(alpha = 0.10f))
-            .border(2.dp, color, RoundedCornerShape(16.dp))
-            .padding(horizontal = 16.dp, vertical = 12.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Text(
-            text = if (correct) "回答正确" else "回答错误",
-            style = MaterialTheme.typography.titleMedium,
-            color = color
-        )
-        if (!correct) {
-            Text(
-                text = "正确答案：${word.meaning}",
-                style = MaterialTheme.typography.bodyMedium,
-                color = DuoTextSecondary,
-                textAlign = TextAlign.Center
-            )
-        }
-        Text(
-            text = "即将自动进入下一题…",
-            style = MaterialTheme.typography.bodySmall,
-            color = DuoTextSecondary
-        )
-    }
-}
-
-@Composable
-private fun SessionStatsCard(state: QuizUiState) {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .clip(RoundedCornerShape(18.dp))
-            .background(DuoSurface)
-            .border(2.dp, DuoBorder, RoundedCornerShape(18.dp))
-            .padding(horizontal = 16.dp, vertical = 12.dp),
-        horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        StatText(label = "已答", value = "${state.sessionAnswered} 题")
-        StatText(label = "答对", value = "${state.sessionCorrect} 题", color = DuoGreen)
-        StatText(label = "正确率", value = "${state.sessionAccuracy}%", color = DuoBlue)
-    }
-}
-
-@Composable
-private fun StatText(label: String, value: String, color: Color = DuoTextPrimary) {
-    Column(horizontalAlignment = Alignment.CenterHorizontally) {
-        Text(
-            text = value,
-            style = MaterialTheme.typography.titleMedium,
-            color = color
-        )
-        Text(
-            text = label,
-            style = MaterialTheme.typography.bodySmall,
-            color = DuoTextSecondary
-        )
-    }
-}
-
-@Composable
-private fun OptionRow(
-    text: String,
-    index: Int,
-    state: QuizUiState,
-    onClick: () -> Unit
-) {
-    val correctIndex = state.answerIndex
-    val selected = state.selectedIndex
-    val isCorrectOption = index == correctIndex
-    val isSelected = selected == index
-
-    val background: Color
-    val borderColor: Color
-    val textColor: Color
-    when {
-        !state.answered -> {
-            background = Color.White
-            borderColor = DuoBorder
-            textColor = DuoTextPrimary
-        }
-
-        isCorrectOption -> {
-            background = DuoGreenSoft
-            borderColor = DuoGreen
-            textColor = DuoGreen
-        }
-
-        isSelected -> {
-            background = DuoRed.copy(alpha = 0.10f)
-            borderColor = DuoRed
-            textColor = DuoRed
-        }
-
-        else -> {
-            background = Color.White
-            borderColor = DuoBorder
-            textColor = DuoTextSecondary
-        }
-    }
-
-    Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .heightIn(min = 58.dp)
-            .clip(RoundedCornerShape(16.dp))
-            .background(background)
-            .border(2.dp, borderColor, RoundedCornerShape(16.dp))
-            .clickable(enabled = !state.answered, onClick = onClick)
-            .padding(horizontal = 16.dp, vertical = 10.dp),
-        contentAlignment = Alignment.CenterStart
-    ) {
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            Text(
-                text = "${'A' + index}",
-                style = MaterialTheme.typography.labelMedium,
-                color = borderColor,
-                modifier = Modifier.width(22.dp)
-            )
-            Text(
-                text = text,
-                style = MaterialTheme.typography.bodyLarge,
-                color = textColor
-            )
-        }
     }
 }

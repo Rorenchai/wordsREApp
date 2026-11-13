@@ -39,23 +39,29 @@ import com.example.study.ui.theme.DuoSurface
 import com.example.study.ui.theme.DuoTextPrimary
 import com.example.study.ui.theme.DuoTextSecondary
 
+private enum class GameAction { QUIZ, LISTENING }
+
 private data class GameEntry(
     val title: String,
     val description: String,
     val icon: ImageVector,
     val tint: Color,
-    val enabled: Boolean = false
+    val action: GameAction? = null
 )
 
 private val gameEntries = listOf(
     GameEntry("单词消消乐", "词义配对，消除全部卡片", Icons.Filled.Extension, DuoGreen),
-    GameEntry("看词选译", "四选一快速答题", Icons.Filled.Translate, DuoBlue, enabled = true),
-    GameEntry("听音辨词", "听发音选正确单词", Icons.Filled.Headphones, DuoGold),
+    GameEntry("看词选译", "四选一快速答题", Icons.Filled.Translate, DuoBlue, action = GameAction.QUIZ),
+    GameEntry("听音辨词", "听发音选正确单词", Icons.Filled.Headphones, DuoGold, action = GameAction.LISTENING),
     GameEntry("单词拼写", "根据释义拼出单词", Icons.Filled.Keyboard, Color(0xFFA855F7))
 )
 
 @Composable
-fun GamesScreen(onOpenQuiz: () -> Unit, modifier: Modifier = Modifier) {
+fun GamesScreen(
+    onOpenQuiz: () -> Unit,
+    onOpenListening: () -> Unit,
+    modifier: Modifier = Modifier
+) {
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -81,9 +87,14 @@ fun GamesScreen(onOpenQuiz: () -> Unit, modifier: Modifier = Modifier) {
                 horizontalArrangement = Arrangement.spacedBy(12.dp)
             ) {
                 rowEntries.forEach { entry ->
+                    val action = when (entry.action) {
+                        GameAction.QUIZ -> onOpenQuiz
+                        GameAction.LISTENING -> onOpenListening
+                        null -> null
+                    }
                     GameCard(
                         entry = entry,
-                        onClick = if (entry.enabled) onOpenQuiz else null,
+                        onClick = action,
                         modifier = Modifier.weight(1f)
                     )
                 }
@@ -128,9 +139,9 @@ private fun GameCard(entry: GameEntry, onClick: (() -> Unit)?, modifier: Modifie
             color = DuoTextSecondary
         )
         Text(
-            text = if (entry.enabled) "立即开始" else "第二期开放",
+            text = if (onClick != null) "立即开始" else "第二期开放",
             style = MaterialTheme.typography.labelSmall,
-            color = if (entry.enabled) DuoGreen else DuoGold
+            color = if (onClick != null) DuoGreen else DuoGold
         )
     }
 }

@@ -69,4 +69,15 @@ interface WordDao {
         """
     )
     suspend fun randomMeanings(library: String, excludeSpelling: String, count: Int): List<String>
+
+    /** 随机取若干个非本题的单词拼写，作为听音辨词的干扰项。 */
+    @Query(
+        """
+        SELECT word FROM words
+        WHERE library = :library AND word != :excludeWord
+        ORDER BY RANDOM()
+        LIMIT :count
+        """
+    )
+    suspend fun randomWords(library: String, excludeWord: String, count: Int): List<String>
 }
