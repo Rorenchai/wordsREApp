@@ -1,7 +1,8 @@
-﻿package com.example.study.ui.study
+package com.example.study.ui.study
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -66,7 +67,7 @@ import com.example.study.ui.theme.DuoTextPrimary
 import com.example.study.ui.theme.DuoTextSecondary
 
 @Composable
-fun StudyScreen(onOpenDictionary: () -> Unit, modifier: Modifier = Modifier) {
+fun StudyScreen(onOpenDictionary: () -> Unit, onOpenPlan: () -> Unit, modifier: Modifier = Modifier) {
     val context = LocalContext.current
     val viewModel: StudyViewModel = viewModel(factory = StudyViewModel.factory(context))
     val state by viewModel.uiState.collectAsStateWithLifecycle()
@@ -112,6 +113,7 @@ fun StudyScreen(onOpenDictionary: () -> Unit, modifier: Modifier = Modifier) {
             verticalArrangement = Arrangement.spacedBy(14.dp)
         ) {
             StudyHeader(state = state, onOpenDictionary = onOpenDictionary)
+            PlanCard(state = state, onOpenPlan = onOpenPlan)
             DailyGoalCard(state)
             FilterChips(selected = state.filter, onSelect = viewModel::setFilter)
             StudyCard(
@@ -139,6 +141,60 @@ fun StudyScreen(onOpenDictionary: () -> Unit, modifier: Modifier = Modifier) {
                 .align(Alignment.BottomCenter)
                 .padding(horizontal = 18.dp, vertical = 8.dp)
         )
+    }
+}
+
+@Composable
+private fun PlanCard(state: StudyUiState, onOpenPlan: () -> Unit) {
+    val shape = RoundedCornerShape(20.dp)
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clip(shape)
+            .background(DuoCard)
+            .border(2.dp, if (state.hasPlan) DuoBlue else DuoBorder, shape)
+            .clickable(onClick = onOpenPlan)
+            .padding(16.dp),
+        verticalArrangement = Arrangement.spacedBy(8.dp)
+    ) {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(
+                text = if (state.hasPlan) "📅 ${state.planName}" else "备考计划",
+                style = MaterialTheme.typography.titleMedium,
+                color = DuoTextPrimary
+            )
+            Text(
+                text = if (state.hasPlan) "查看计划 ›" else "创建计划 ›",
+                style = MaterialTheme.typography.labelMedium,
+                color = DuoBlue
+            )
+        }
+        if (state.hasPlan) {
+            Text(
+                text = "距考试 ${state.planDaysLeft} 天 · 已学 ${state.planLearnedWords} / ${state.planTargetWords} 词",
+                style = MaterialTheme.typography.bodySmall,
+                color = DuoTextSecondary
+            )
+            Text(
+                text = "今日新词 ${state.planTodayNewLearned} / ${state.planTodayNewTotal} 个 · 待复习 ${state.planDueReviewCount} 个",
+                style = MaterialTheme.typography.bodyMedium,
+                color = DuoTextPrimary
+            )
+            val progress = if (state.planTargetWords <= 0) 0f else {
+                (state.planLearnedWords.toFloat() / state.planTargetWords).coerceIn(0f, 1f)
+            }
+            ProgressTrack(progress = progress, modifier = Modifier.fillMaxWidth())
+        } else {
+            Text(
+                text = "按艾宾浩斯遗忘曲线安排每日新词与复习，考试前完成多轮巩固。",
+                style = MaterialTheme.typography.bodySmall,
+                color = DuoTextSecondary
+            )
+        }
     }
 }
 

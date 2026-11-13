@@ -10,6 +10,7 @@ import com.example.study.appContainer
 import com.example.study.data.db.StudyStatus
 import com.example.study.data.db.WordEntity
 import com.example.study.data.repo.FavoriteRepository
+import com.example.study.data.plan.PlanRepository
 import com.example.study.data.repo.SettingsRepository
 import com.example.study.data.repo.StudyRepository
 import com.example.study.data.repo.TtsManager
@@ -20,6 +21,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import java.time.LocalDate
 
 data class StudyUiState(
     val initialized: Boolean = false,
@@ -35,6 +37,15 @@ data class StudyUiState(
     val roundViewed: Int = 0,
     val accent: String = SettingsRepository.ACCENT_US,
     val isFavorite: Boolean = false,
+    val hasPlan: Boolean = false,
+    val planName: String = "",
+    val planDaysLeft: Int = 0,
+    val planTargetWords: Int = 0,
+    val planLearnedWords: Int = 0,
+    val planMasteredWords: Int = 0,
+    val planTodayNewTotal: Int = 0,
+    val planTodayNewLearned: Int = 0,
+    val planDueReviewCount: Int = 0,
     val message: String? = null
 ) {
     val goalProgress: Float
@@ -48,6 +59,7 @@ class StudyViewModel(
     private val studyRepository: StudyRepository,
     private val settingsRepository: SettingsRepository,
     private val favoriteRepository: FavoriteRepository,
+    private val planRepository: PlanRepository,
     private val ttsManager: TtsManager
 ) : ViewModel() {
 
@@ -71,6 +83,7 @@ class StudyViewModel(
             roundSeen.clear()
             roundSeen.addAll(studyRepository.loadRound(library, _uiState.value.filter))
             _uiState.update { it.copy(initialized = true, roundViewed = roundSeen.size) }
+            loadPlanSummary()
             loadNextWordInternal()
         }
         viewModelScope.launch {
@@ -204,6 +217,7 @@ class StudyViewModel(
         viewModelScope.launch {
             val state = _uiState.value
             if (!state.initialized) return@launch
+            loadPlanSummary()
             val persistedRound = studyRepository.loadRound(state.library, state.filter)
             roundSeen.clear()
             roundSeen.addAll(persistedRound)
@@ -224,6 +238,43 @@ class StudyViewModel(
         onStudySessionStop()
         ttsManager.shutdown()
         super.onCleared()
+    }
+
+    /** 加载当前专项计划的今日任务摘要（无计划时清空）。 */
+    private suspend fun loadPlanSummary() {
+        val plan = planRepository.activePlan()
+        if (plan == null) {
+            _uiState.update {
+                it.copy(
+                    hasPlan = false,
+                    planName = "",
+                    planDaysLeft = 0,
+                    planTargetWords = 0,
+                    planLearnedWords = 0,
+                    planMasteredWords = 0,
+                    planTodayNewTotal = 0,
+                    planTodayNewLearned = 0,
+                    planDueReviewCount = 0
+                )
+            }
+            return
+        }
+        val today = LocalDate.now()
+        planRepository.ensureTodayNewWords(plan, today)
+        val summary = planRepository.summary(plan, today)
+        _uiState.update {
+            it.copy(
+                hasPlan = true,
+                planName = plan.name,
+                planDaysLeft = summary.daysUntilExam,
+                planTargetWords = summary.targetWords,
+                planLearnedWords = summary.learnedWords,
+                planMasteredWords = summary.masteredWords,
+                planTodayNewTotal = summary.todayNewTotal,
+                planTodayNewLearned = summary.todayNewLearned,
+                planDueReviewCount = summary.dueReviewCount
+            )
+        }
     }
 
     private fun loadNextWordInternal() {
@@ -280,6 +331,7 @@ class StudyViewModel(
                     studyRepository = container.studyRepository,
                     settingsRepository = container.settingsRepository,
                     favoriteRepository = container.favoriteRepository,
+                    planRepository = container.planRepository,
                     ttsManager = TtsManager(context.applicationContext)
                 )
             }

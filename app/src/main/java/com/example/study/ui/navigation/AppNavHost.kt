@@ -1,4 +1,4 @@
-﻿package com.example.study.ui.navigation
+package com.example.study.ui.navigation
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -30,6 +30,7 @@ import com.example.study.ui.favorites.FavoritesScreen
 import com.example.study.ui.games.GamesScreen
 import com.example.study.ui.listening.ListeningScreen
 import com.example.study.ui.match.MatchScreen
+import com.example.study.ui.plan.PlanScreen
 import com.example.study.ui.quiz.QuizScreen
 import com.example.study.ui.review.ReviewScreen
 import com.example.study.ui.spelling.SpellingScreen
@@ -65,7 +66,10 @@ fun AppNavHost() {
 
     Scaffold(
         bottomBar = {
-            if (currentDestination?.route !in setOf("dictionary", "quiz", "listening", "spelling", "match", "wrongbook", "review", "vocab")) {
+            if (currentDestination?.route !in setOf(
+                    "dictionary", "quiz", "listening", "spelling", "match", "wrongbook", "review", "vocab", "plan"
+                )
+            ) {
                 NavigationBar(containerColor = DuoBackground) {
                     bottomNavItems.forEach { item ->
                         val selected = currentDestination?.hierarchy?.any { it.route == item.route } == true
@@ -103,9 +107,14 @@ fun AppNavHost() {
                 .padding(innerPadding)
         ) {
             composable("study") {
-                StudyScreen(onOpenDictionary = {
-                    navController.navigate("dictionary") { launchSingleTop = true }
-                })
+                StudyScreen(
+                    onOpenDictionary = {
+                        navController.navigate("dictionary") { launchSingleTop = true }
+                    },
+                    onOpenPlan = {
+                        navController.navigate("plan") { launchSingleTop = true }
+                    }
+                )
             }
             composable("records") {
                 RecordsScreen(
@@ -153,6 +162,9 @@ fun AppNavHost() {
             }
             composable("vocab") {
                 VocabTestScreen(onBack = { navController.popBackStack() })
+            }
+            composable("plan") {
+                PlanScreen(onBack = { navController.popBackStack() })
             }
         }
     }
