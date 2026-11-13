@@ -5,6 +5,7 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.emptyPreferences
+import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
@@ -38,6 +39,12 @@ class SettingsRepository(
     /** 最近一次词汇量评测日期（yyyy-MM-dd）。 */
     val vocabTestDate: Flow<String> = safeData.map { it[KEY_VOCAB_DATE] ?: "" }
 
+    /** 每日学习提醒开关。 */
+    val reminderEnabled: Flow<Boolean> = safeData.map { it[KEY_REMINDER_ENABLED] ?: false }
+
+    /** 每日学习提醒时间（小时，默认 20 点）。 */
+    val reminderHour: Flow<Int> = safeData.map { it[KEY_REMINDER_HOUR] ?: 20 }
+
     suspend fun setCurrentLibrary(library: String) {
         dataStore.edit { it[KEY_LIBRARY] = library }
     }
@@ -57,6 +64,14 @@ class SettingsRepository(
         }
     }
 
+    suspend fun setReminderEnabled(enabled: Boolean) {
+        dataStore.edit { it[KEY_REMINDER_ENABLED] = enabled }
+    }
+
+    suspend fun setReminderTime(hour: Int) {
+        dataStore.edit { it[KEY_REMINDER_HOUR] = hour.coerceIn(0, 23) }
+    }
+
     companion object {
         const val LIB_CET4 = "CET-4"
         const val LIB_CET6 = "CET-6"
@@ -74,6 +89,8 @@ class SettingsRepository(
         private val KEY_ACCENT = stringPreferencesKey("accent")
         private val KEY_VOCAB_ESTIMATE = intPreferencesKey("vocab_estimate")
         private val KEY_VOCAB_DATE = stringPreferencesKey("vocab_test_date")
+        private val KEY_REMINDER_ENABLED = booleanPreferencesKey("reminder_enabled")
+        private val KEY_REMINDER_HOUR = intPreferencesKey("reminder_hour")
 
         fun create(context: Context): SettingsRepository {
             return SettingsRepository(context.applicationContext.settingsDataStore)

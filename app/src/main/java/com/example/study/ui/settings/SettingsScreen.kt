@@ -80,6 +80,28 @@ fun SettingsScreen(modifier: Modifier = Modifier) {
     ) { uri ->
         if (uri != null) viewModel.importBackup(uri)
     }
+    val notificationPermissionLauncher = rememberLauncherForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { granted ->
+        if (granted) viewModel.enableReminder() else viewModel.onNotificationPermissionDenied()
+    }
+
+    fun onReminderToggle(enabled: Boolean) {
+        if (!enabled) {
+            viewModel.disableReminder()
+            return
+        }
+        val needsPermission = android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU &&
+            androidx.core.content.ContextCompat.checkSelfPermission(
+                context,
+                android.Manifest.permission.POST_NOTIFICATIONS
+            ) != android.content.pm.PackageManager.PERMISSION_GRANTED
+        if (needsPermission) {
+            notificationPermissionLauncher.launch(android.Manifest.permission.POST_NOTIFICATIONS)
+        } else {
+            viewModel.enableReminder()
+        }
+    }
 
     LaunchedEffect(state.message) {
         val message = state.message ?: return@LaunchedEffect
@@ -195,6 +217,50 @@ fun SettingsScreen(modifier: Modifier = Modifier) {
                     modifier = Modifier.fillMaxWidth(),
                     style = DuoButtonStyle.Secondary
                 )
+            }
+
+            SettingsSection(title = "学习提醒") {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Column(modifier = Modifier.weight(1f)) {
+                        Text(
+                            text = "每日提醒",
+                            style = MaterialTheme.typography.titleMedium,
+                            color = DuoTextPrimary
+                        )
+                        Text(
+                            text = "每天定时提醒你完成背单词目标",
+                            style = MaterialTheme.typography.bodySmall,
+                            color = DuoTextSecondary
+                        )
+                    }
+                    androidx.compose.material3.Switch(
+                        checked = state.reminderEnabled,
+                        onCheckedChange = ::onReminderToggle
+                    )
+                }
+                if (state.reminderEnabled) {
+                    Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                        listOf(19, 20, 21, 22).forEach { hour ->
+                            OptionChip(
+                                text = "%02d:00".format(hour),
+                                selected = state.reminderHour == hour,
+                                onClick = { viewModel.setReminderTime(hour) }
+                            )
+                        }
+                    }
+                    Text(
+                        text = "由系统 WorkManager 每日调度，实际触发时间可能有几分钟误差。",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = DuoTextSecondary
+                    )
+                }
+                TextButton(onClick = viewModel::postTestReminder) {
+                    Text("发送测试提醒", color = DuoBlue)
+                }
             }
 
             SettingsSection(title = "关于与许可") {

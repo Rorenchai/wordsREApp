@@ -14,6 +14,7 @@ import com.example.study.data.backup.BackupSettings
 import com.example.study.data.repo.SettingsRepository
 import com.example.study.data.repo.StudyRepository
 import com.example.study.data.repo.WordRepository
+import com.example.study.reminder.ReminderScheduler
 import com.google.gson.GsonBuilder
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -27,7 +28,9 @@ data class SettingsUiState(
     val dailyGoal: Int = SettingsRepository.DEFAULT_DAILY_GOAL,
     val accent: String = SettingsRepository.ACCENT_US,
     val wordCounts: Map<String, Int> = emptyMap(),
-    val message: String? = null
+    val message: String? = null,
+    val reminderEnabled: Boolean = false,
+    val reminderHour: Int = 20
 )
 
 class SettingsViewModel(
@@ -35,6 +38,7 @@ class SettingsViewModel(
     private val studyRepository: StudyRepository,
     private val settingsRepository: SettingsRepository,
     private val backupRepository: BackupRepository,
+    private val reminderScheduler: ReminderScheduler,
     private val appContext: Context
 ) : ViewModel() {
 
@@ -64,6 +68,16 @@ class SettingsViewModel(
         viewModelScope.launch {
             settingsRepository.accent.collect { accent ->
                 _uiState.update { it.copy(accent = accent) }
+            }
+        }
+        viewModelScope.launch {
+            settingsRepository.reminderEnabled.collect { enabled ->
+                _uiState.update { it.copy(reminderEnabled = enabled) }
+            }
+        }
+        viewModelScope.launch {
+            settingsRepository.reminderHour.collect { hour ->
+                _uiState.update { it.copy(reminderHour = hour) }
             }
         }
     }
@@ -99,6 +113,47 @@ class SettingsViewModel(
 
     fun clearMessage() {
         _uiState.update { it.copy(message = null) }
+    }
+
+    /** 开启每日提醒（通知权限由界面先申请）。 */
+    fun enableReminder() {
+        viewModelScope.launch {
+            val hour = _uiState.value.reminderHour
+            settingsRepository.setReminderEnabled(true)
+            reminderScheduler.schedule(hour, 0)
+            _uiState.update { it.copy(message = "已开启每日提醒：每天 ${"%02d".format(hour)}:00") }
+        }
+    }
+
+    fun disableReminder() {
+        viewModelScope.launch {
+            settingsRepository.setReminderEnabled(false)
+            reminderScheduler.cancel()
+            _uiState.update { it.copy(message = "已关闭每日提醒") }
+        }
+    }
+
+    fun setReminderTime(hour: Int) {
+        viewModelScope.launch {
+            settingsRepository.setReminderTime(hour)
+            if (_uiState.value.reminderEnabled) {
+                reminderScheduler.schedule(hour, 0)
+            }
+            _uiState.update { it.copy(message = "提醒时间已设为 ${"%02d".format(hour)}:00") }
+        }
+    }
+
+    fun postTestReminder() {
+        val ok = reminderScheduler.postTestNotification()
+        _uiState.update {
+            it.copy(
+                message = if (ok) "已发送测试提醒，请下拉通知栏查看" else "发送失败：请先允许通知权限"
+            )
+        }
+    }
+
+    fun onNotificationPermissionDenied() {
+        _uiState.update { it.copy(message = "未授予通知权限，无法开启每日提醒（可在系统设置中开启）") }
     }
 
     /** 导出学习数据到用户选择的 JSON 文件。 */
@@ -165,6 +220,7 @@ class SettingsViewModel(
                     studyRepository = container.studyRepository,
                     settingsRepository = container.settingsRepository,
                     backupRepository = container.backupRepository,
+                    reminderScheduler = ReminderScheduler(context.applicationContext),
                     appContext = context.applicationContext
                 )
             }
