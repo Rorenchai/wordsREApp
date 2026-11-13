@@ -30,6 +30,7 @@ import com.example.study.ui.favorites.FavoritesScreen
 import com.example.study.ui.games.GamesScreen
 import com.example.study.ui.listening.ListeningScreen
 import com.example.study.ui.quiz.QuizScreen
+import com.example.study.ui.spelling.SpellingScreen
 import com.example.study.ui.records.RecordsScreen
 import com.example.study.ui.settings.SettingsScreen
 import com.example.study.ui.study.StudyScreen
@@ -59,7 +60,7 @@ fun AppNavHost() {
 
     Scaffold(
         bottomBar = {
-            if (currentDestination?.route !in setOf("dictionary", "quiz", "listening")) {
+            if (currentDestination?.route !in setOf("dictionary", "quiz", "listening", "spelling")) {
                 NavigationBar(containerColor = Color.White) {
                     bottomNavItems.forEach { item ->
                         val selected = currentDestination?.hierarchy?.any { it.route == item.route } == true
@@ -106,7 +107,8 @@ fun AppNavHost() {
             composable("games") {
                 GamesScreen(
                     onOpenQuiz = { navController.navigate("quiz") { launchSingleTop = true } },
-                    onOpenListening = { navController.navigate("listening") { launchSingleTop = true } }
+                    onOpenListening = { navController.navigate("listening") { launchSingleTop = true } },
+                    onOpenSpelling = { navController.navigate("spelling") { launchSingleTop = true } }
                 )
             }
             composable("settings") { SettingsScreen() }
@@ -118,6 +120,9 @@ fun AppNavHost() {
             }
             composable("listening") {
                 ListeningScreen(onBack = { navController.popBackStack() })
+            }
+            composable("spelling") {
+                SpellingScreen(onBack = { navController.popBackStack() })
             }
         }
     }
