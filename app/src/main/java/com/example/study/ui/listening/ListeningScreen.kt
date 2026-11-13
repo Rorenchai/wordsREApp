@@ -1,4 +1,4 @@
-﻿package com.example.study.ui.listening
+package com.example.study.ui.listening
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -49,9 +49,9 @@ import com.example.study.ui.theme.DuoTextPrimary
 import com.example.study.ui.theme.DuoTextSecondary
 
 @Composable
-fun ListeningScreen(onBack: () -> Unit, modifier: Modifier = Modifier) {
+fun ListeningScreen(onBack: () -> Unit, planMode: Boolean = false, modifier: Modifier = Modifier) {
     val context = LocalContext.current
-    val viewModel: ListeningViewModel = viewModel(factory = ListeningViewModel.factory(context))
+    val viewModel: ListeningViewModel = viewModel(factory = ListeningViewModel.factory(context, planMode))
     val state by viewModel.uiState.collectAsStateWithLifecycle()
     val snackbarHostState = remember { SnackbarHostState() }
 

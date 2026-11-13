@@ -1,4 +1,4 @@
-﻿package com.example.study.ui.spelling
+package com.example.study.ui.spelling
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -53,9 +53,9 @@ import com.example.study.ui.theme.DuoTextPrimary
 import com.example.study.ui.theme.DuoTextSecondary
 
 @Composable
-fun SpellingScreen(onBack: () -> Unit, modifier: Modifier = Modifier) {
+fun SpellingScreen(onBack: () -> Unit, planMode: Boolean = false, modifier: Modifier = Modifier) {
     val context = LocalContext.current
-    val viewModel: SpellingViewModel = viewModel(factory = SpellingViewModel.factory(context))
+    val viewModel: SpellingViewModel = viewModel(factory = SpellingViewModel.factory(context, planMode))
     val state by viewModel.uiState.collectAsStateWithLifecycle()
     val snackbarHostState = remember { SnackbarHostState() }
     val keyboardController = LocalSoftwareKeyboardController.current

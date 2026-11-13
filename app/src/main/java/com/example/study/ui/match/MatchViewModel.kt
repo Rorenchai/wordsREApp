@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.study.appContainer
+import com.example.study.data.plan.PlanRepository
 import com.example.study.data.repo.SettingsRepository
 import com.example.study.data.repo.WordRepository
 import kotlinx.coroutines.Job
@@ -17,6 +18,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import java.time.LocalDate
 
 /** 网格中的一张卡片：英文单词或其中文释义，pairId 相同的两张为一对。 */
 data class MatchCard(
@@ -52,7 +54,9 @@ data class MatchUiState(
  */
 class MatchViewModel(
     private val wordRepository: WordRepository,
-    private val settingsRepository: SettingsRepository
+    private val settingsRepository: SettingsRepository,
+    private val planRepository: PlanRepository,
+    private val planMode: Boolean
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(MatchUiState())
@@ -106,6 +110,14 @@ class MatchViewModel(
                 )
             }
             Log.d(TAG, "matched pair ${firstCard.pairId} progress=$matchedPairs/${state.totalPairs}")
+            if (planMode) {
+                viewModelScope.launch {
+                    val plan = planRepository.activePlan()
+                    if (plan != null && planRepository.recordGameReview(plan, firstCard.pairId, true, LocalDate.now())) {
+                        _uiState.update { it.copy(message = "已计入计划复习") }
+                    }
+                }
+            }
         } else {
             val wrongCards = flippedCards.mapIndexed { i, c ->
                 if (i == firstIndex || i == index) c.copy(wrong = true) else c
@@ -158,8 +170,24 @@ class MatchViewModel(
                 it.copy(loading = true, cards = emptyList(), firstIndex = null, locked = false, matchedPairs = 0, mistakes = 0, finished = false)
             }
             val library = _uiState.value.library
-            val words = wordRepository
-                .randomWordEntities(library, MatchUiState.PAIR_COUNT * 3)
+            val poolWords = if (planMode) {
+                planRepository.activePlan()?.let { plan ->
+                    val pool = planRepository.gamePool(plan, LocalDate.now())
+                    (pool.due + pool.fresh).distinctBy { it.id }
+                } ?: emptyList()
+            } else {
+                emptyList()
+            }
+            val baseWords = if (poolWords.isNotEmpty()) {
+                poolWords.shuffled().take(MatchUiState.PAIR_COUNT)
+            } else {
+                wordRepository.randomWordEntities(library, MatchUiState.PAIR_COUNT * 3)
+            }
+            val words = (baseWords + if (baseWords.size < MatchUiState.PAIR_COUNT) {
+                wordRepository.randomWordEntities(library, MatchUiState.PAIR_COUNT * 2)
+            } else {
+                emptyList()
+            })
                 .distinctBy { it.meaning }
                 .take(MatchUiState.PAIR_COUNT)
             if (words.size < MatchUiState.PAIR_COUNT) {
@@ -191,12 +219,14 @@ class MatchViewModel(
         private const val TAG = "MatchGame"
         private const val FLIP_BACK_DELAY_MS = 750L
 
-        fun factory(context: Context): ViewModelProvider.Factory = viewModelFactory {
+        fun factory(context: Context, planMode: Boolean): ViewModelProvider.Factory = viewModelFactory {
             initializer {
                 val container = context.applicationContext.appContainer
                 MatchViewModel(
                     wordRepository = container.wordRepository,
-                    settingsRepository = container.settingsRepository
+                    settingsRepository = container.settingsRepository,
+                    planRepository = container.planRepository,
+                    planMode = planMode
                 )
             }
         }

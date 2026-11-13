@@ -149,4 +149,51 @@ class PlanRepository(
     }
 
     suspend fun finishPlan(planId: Long) = planDao.finishPlan(planId)
+
+    /**
+     * 小游戏计划词池：优先今日到期复习词，其次今日待学新词（去重）。
+     */
+    suspend fun gamePool(plan: PlanEntity, today: LocalDate): GamePlanPool {
+        val due = planDao.dueReviews(plan.id, today.toString(), plan.dailyReviewLimit.coerceAtLeast(1))
+            .map { it.word }
+            .distinctBy { it.id }
+        val dueIds = due.map { it.id }.toSet()
+        val fresh = planDao.todaysNewWords(plan.id, today.toString())
+            .map { it.word }
+            .filter { it.id !in dueIds }
+            .distinctBy { it.id }
+        return GamePlanPool(due = due, fresh = fresh)
+    }
+
+    /**
+     * 游戏作答对计划词的复习推进：仅当该词今日到期且今日尚未推进过时生效。
+     * 答对推进一轮，答错次日重试；返回是否真正计入计划复习。
+     */
+    suspend fun recordGameReview(
+        plan: PlanEntity,
+        wordId: Long,
+        correct: Boolean,
+        today: LocalDate
+    ): Boolean {
+        val word = planDao.planWord(plan.id, wordId) ?: return false
+        if (word.learnedAt == null || word.nextReviewDate == null) return false
+        if (word.lastReviewDate == today.toString()) return false
+        if (word.nextReviewDate > today.toString()) return false
+        submitReview(plan, wordId, correct, today)
+        return true
+    }
+}
+
+/** 游戏计划词池：到期复习优先，新词其次。 */
+data class GamePlanPool(
+    val due: List<com.example.study.data.db.WordEntity>,
+    val fresh: List<com.example.study.data.db.WordEntity>
+) {
+    val isEmpty: Boolean get() = due.isEmpty() && fresh.isEmpty()
+    val size: Int get() = due.size + fresh.size
+
+    fun randomWord(): com.example.study.data.db.WordEntity? {
+        val pool = if (due.isNotEmpty()) due else fresh
+        return pool.randomOrNull()
+    }
 }

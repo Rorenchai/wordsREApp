@@ -1,4 +1,4 @@
-﻿package com.example.study.ui.match
+package com.example.study.ui.match
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -52,9 +52,9 @@ import com.example.study.ui.theme.DuoTextPrimary
 import com.example.study.ui.theme.DuoTextSecondary
 
 @Composable
-fun MatchScreen(onBack: () -> Unit, modifier: Modifier = Modifier) {
+fun MatchScreen(onBack: () -> Unit, planMode: Boolean = false, modifier: Modifier = Modifier) {
     val context = LocalContext.current
-    val viewModel: MatchViewModel = viewModel(factory = MatchViewModel.factory(context))
+    val viewModel: MatchViewModel = viewModel(factory = MatchViewModel.factory(context, planMode))
     val state by viewModel.uiState.collectAsStateWithLifecycle()
     val snackbarHostState = remember { SnackbarHostState() }
 

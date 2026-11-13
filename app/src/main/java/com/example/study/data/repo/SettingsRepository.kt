@@ -48,6 +48,9 @@ class SettingsRepository(
     /** 主题模式：system / light / dark。 */
     val themeMode: Flow<String> = safeData.map { it[KEY_THEME_MODE] ?: THEME_SYSTEM }
 
+    /** 小游戏是否优先使用计划词池。 */
+    val gamePlanMode: Flow<Boolean> = safeData.map { it[KEY_GAME_PLAN_MODE] ?: false }
+
     suspend fun setCurrentLibrary(library: String) {
         dataStore.edit { it[KEY_LIBRARY] = library }
     }
@@ -79,6 +82,10 @@ class SettingsRepository(
         dataStore.edit { it[KEY_THEME_MODE] = mode }
     }
 
+    suspend fun setGamePlanMode(enabled: Boolean) {
+        dataStore.edit { it[KEY_GAME_PLAN_MODE] = enabled }
+    }
+
     companion object {
         const val LIB_CET4 = "CET-4"
         const val LIB_CET6 = "CET-6"
@@ -102,6 +109,7 @@ class SettingsRepository(
         private val KEY_REMINDER_ENABLED = booleanPreferencesKey("reminder_enabled")
         private val KEY_REMINDER_HOUR = intPreferencesKey("reminder_hour")
         private val KEY_THEME_MODE = stringPreferencesKey("theme_mode")
+        private val KEY_GAME_PLAN_MODE = booleanPreferencesKey("game_plan_mode")
 
         fun create(context: Context): SettingsRepository {
             return SettingsRepository(context.applicationContext.settingsDataStore)

@@ -1,4 +1,4 @@
-﻿package com.example.study.ui.quiz
+package com.example.study.ui.quiz
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -50,9 +50,9 @@ import com.example.study.ui.theme.DuoTextPrimary
 import com.example.study.ui.theme.DuoTextSecondary
 
 @Composable
-fun QuizScreen(onBack: () -> Unit, modifier: Modifier = Modifier) {
+fun QuizScreen(onBack: () -> Unit, planMode: Boolean = false, modifier: Modifier = Modifier) {
     val context = LocalContext.current
-    val viewModel: QuizViewModel = viewModel(factory = QuizViewModel.factory(context))
+    val viewModel: QuizViewModel = viewModel(factory = QuizViewModel.factory(context, planMode))
     val state by viewModel.uiState.collectAsStateWithLifecycle()
     val snackbarHostState = remember { SnackbarHostState() }
 

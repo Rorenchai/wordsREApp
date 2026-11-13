@@ -1,4 +1,4 @@
-﻿package com.example.study.ui.games
+package com.example.study.ui.games
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -25,12 +25,17 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.study.ui.theme.DuoBackground
 import com.example.study.ui.theme.DuoBlue
 import com.example.study.ui.theme.DuoBorder
@@ -59,12 +64,18 @@ private val gameEntries = listOf(
 
 @Composable
 fun GamesScreen(
-    onOpenMatch: () -> Unit,
-    onOpenQuiz: () -> Unit,
-    onOpenListening: () -> Unit,
-    onOpenSpelling: () -> Unit,
+    onOpenMatch: (Boolean) -> Unit,
+    onOpenQuiz: (Boolean) -> Unit,
+    onOpenListening: (Boolean) -> Unit,
+    onOpenSpelling: (Boolean) -> Unit,
     modifier: Modifier = Modifier
 ) {
+    val context = LocalContext.current
+    val viewModel: GamesViewModel = viewModel(factory = GamesViewModel.factory(context))
+    val state by viewModel.uiState.collectAsStateWithLifecycle()
+
+    LaunchedEffect(Unit) { viewModel.refreshPlan() }
+
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -80,17 +91,20 @@ fun GamesScreen(
             color = DuoTextPrimary
         )
         Text(
-            text = "核心学习闭环已上线，以下趣味模式将在第二期开放。",
+            text = "4 个趣味模式已上线；开启「优先练计划词」可在游戏里同步复习计划词。",
             style = MaterialTheme.typography.bodyMedium,
             color = DuoTextSecondary
         )
+
+        PlanBanner(state = state, onToggle = viewModel::setPlanMode)
+
         gameEntries.chunked(2).forEach { rowEntries ->
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(12.dp)
             ) {
                 rowEntries.forEach { entry ->
-                    val action = when (entry.action) {
+                    val action: ((Boolean) -> Unit)? = when (entry.action) {
                         GameAction.MATCH -> onOpenMatch
                         GameAction.QUIZ -> onOpenQuiz
                         GameAction.LISTENING -> onOpenListening
@@ -99,7 +113,8 @@ fun GamesScreen(
                     }
                     GameCard(
                         entry = entry,
-                        onClick = action,
+                        onClick = action?.let { callback -> { callback(state.planMode) } },
+                        planMode = state.planMode,
                         modifier = Modifier.weight(1f)
                     )
                 }
@@ -110,7 +125,58 @@ fun GamesScreen(
 }
 
 @Composable
-private fun GameCard(entry: GameEntry, onClick: (() -> Unit)?, modifier: Modifier = Modifier) {
+private fun PlanBanner(state: GamesUiState, onToggle: (Boolean) -> Unit) {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(20.dp))
+            .background(DuoSurface)
+            .border(2.dp, DuoBorder, RoundedCornerShape(20.dp))
+            .padding(16.dp),
+        verticalArrangement = Arrangement.spacedBy(6.dp)
+    ) {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Column(modifier = Modifier.weight(1f)) {
+                Text(
+                    text = if (state.hasPlan) "计划：${state.planName}" else "暂无专项计划",
+                    style = MaterialTheme.typography.titleMedium,
+                    color = DuoTextPrimary
+                )
+                Text(
+                    text = if (state.hasPlan) {
+                        "今日新词 ${state.todayNewLearned}/${state.todayNewTotal} · 待复习 ${state.dueReviewCount} · 词池 ${state.poolSize}"
+                    } else {
+                        "创建计划后，游戏可优先练习计划词并推进复习"
+                    },
+                    style = MaterialTheme.typography.bodySmall,
+                    color = DuoTextSecondary
+                )
+            }
+            androidx.compose.material3.Switch(
+                checked = state.planMode,
+                onCheckedChange = onToggle,
+                enabled = state.hasPlan
+            )
+        }
+        Text(
+            text = "优先练计划词：到期复习优先，其次今日新词；游戏答对到期复习词将推进艾宾浩斯阶段。",
+            style = MaterialTheme.typography.bodySmall,
+            color = DuoBlue
+        )
+    }
+}
+
+@Composable
+private fun GameCard(
+    entry: GameEntry,
+    onClick: (() -> Unit)?,
+    planMode: Boolean,
+    modifier: Modifier = Modifier
+) {
     Column(
         modifier = modifier
             .clip(RoundedCornerShape(20.dp))
@@ -148,5 +214,12 @@ private fun GameCard(entry: GameEntry, onClick: (() -> Unit)?, modifier: Modifie
             style = MaterialTheme.typography.labelSmall,
             color = if (onClick != null) DuoGreen else DuoGold
         )
+        if (planMode && entry.action != null) {
+            Text(
+                text = "计划词优先",
+                style = MaterialTheme.typography.labelSmall,
+                color = DuoBlue
+            )
+        }
     }
 }

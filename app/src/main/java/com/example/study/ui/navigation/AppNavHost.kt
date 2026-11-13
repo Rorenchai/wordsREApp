@@ -21,10 +21,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.example.study.ui.dictionary.DictionaryScreen
 import com.example.study.ui.favorites.FavoritesScreen
 import com.example.study.ui.games.GamesScreen
@@ -65,10 +67,11 @@ fun AppNavHost() {
     val navController = rememberNavController()
     val backStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = backStackEntry?.destination
+    val currentRoute = currentDestination?.route?.substringBefore("?")
 
     Scaffold(
         bottomBar = {
-            if (currentDestination?.route !in setOf(
+            if (currentRoute !in setOf(
                     "dictionary", "quiz", "listening", "spelling", "match", "wrongbook", "review", "vocab",
                     "plan", "plannew", "planreview"
                 )
@@ -132,27 +135,71 @@ fun AppNavHost() {
             composable("favorites") { FavoritesScreen() }
             composable("games") {
                 GamesScreen(
-                    onOpenMatch = { navController.navigate("match") { launchSingleTop = true } },
-                    onOpenQuiz = { navController.navigate("quiz") { launchSingleTop = true } },
-                    onOpenListening = { navController.navigate("listening") { launchSingleTop = true } },
-                    onOpenSpelling = { navController.navigate("spelling") { launchSingleTop = true } }
+                    onOpenMatch = { planMode ->
+                        navController.navigate("match?planMode=$planMode") { launchSingleTop = true }
+                    },
+                    onOpenQuiz = { planMode ->
+                        navController.navigate("quiz?planMode=$planMode") { launchSingleTop = true }
+                    },
+                    onOpenListening = { planMode ->
+                        navController.navigate("listening?planMode=$planMode") { launchSingleTop = true }
+                    },
+                    onOpenSpelling = { planMode ->
+                        navController.navigate("spelling?planMode=$planMode") { launchSingleTop = true }
+                    }
                 )
             }
             composable("settings") { SettingsScreen() }
             composable("dictionary") {
                 DictionaryScreen(onBack = { navController.popBackStack() })
             }
-            composable("quiz") {
-                QuizScreen(onBack = { navController.popBackStack() })
+            composable(
+                route = "quiz?planMode={planMode}",
+                arguments = listOf(navArgument("planMode") {
+                    type = NavType.BoolType
+                    defaultValue = false
+                })
+            ) { entry ->
+                QuizScreen(
+                    onBack = { navController.popBackStack() },
+                    planMode = entry.arguments?.getBoolean("planMode") ?: false
+                )
             }
-            composable("listening") {
-                ListeningScreen(onBack = { navController.popBackStack() })
+            composable(
+                route = "listening?planMode={planMode}",
+                arguments = listOf(navArgument("planMode") {
+                    type = NavType.BoolType
+                    defaultValue = false
+                })
+            ) { entry ->
+                ListeningScreen(
+                    onBack = { navController.popBackStack() },
+                    planMode = entry.arguments?.getBoolean("planMode") ?: false
+                )
             }
-            composable("spelling") {
-                SpellingScreen(onBack = { navController.popBackStack() })
+            composable(
+                route = "spelling?planMode={planMode}",
+                arguments = listOf(navArgument("planMode") {
+                    type = NavType.BoolType
+                    defaultValue = false
+                })
+            ) { entry ->
+                SpellingScreen(
+                    onBack = { navController.popBackStack() },
+                    planMode = entry.arguments?.getBoolean("planMode") ?: false
+                )
             }
-            composable("match") {
-                MatchScreen(onBack = { navController.popBackStack() })
+            composable(
+                route = "match?planMode={planMode}",
+                arguments = listOf(navArgument("planMode") {
+                    type = NavType.BoolType
+                    defaultValue = false
+                })
+            ) { entry ->
+                MatchScreen(
+                    onBack = { navController.popBackStack() },
+                    planMode = entry.arguments?.getBoolean("planMode") ?: false
+                )
             }
             composable("wrongbook") {
                 WrongBookScreen(

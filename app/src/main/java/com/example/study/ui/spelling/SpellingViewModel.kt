@@ -9,6 +9,7 @@ import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.study.appContainer
 import com.example.study.data.db.WordEntity
+import com.example.study.data.plan.PlanRepository
 import com.example.study.data.repo.SettingsRepository
 import com.example.study.data.repo.StudyRepository
 import com.example.study.data.repo.WordRepository
@@ -19,6 +20,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import java.time.LocalDate
 
 data class SpellingUiState(
     val library: String = SettingsRepository.LIB_CET4,
@@ -39,7 +41,9 @@ data class SpellingUiState(
 class SpellingViewModel(
     private val wordRepository: WordRepository,
     private val studyRepository: StudyRepository,
-    private val settingsRepository: SettingsRepository
+    private val settingsRepository: SettingsRepository,
+    private val planRepository: PlanRepository,
+    private val planMode: Boolean
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(SpellingUiState())
@@ -86,7 +90,15 @@ class SpellingViewModel(
                 sessionCorrect = it.sessionCorrect + if (correct) 1 else 0
             )
         }
-        viewModelScope.launch { studyRepository.recordQuizAnswer(word.id, correct) }
+        viewModelScope.launch {
+            studyRepository.recordQuizAnswer(word.id, correct)
+            if (planMode) {
+                val plan = planRepository.activePlan()
+                if (plan != null && planRepository.recordGameReview(plan, word.id, correct, LocalDate.now())) {
+                    _uiState.update { it.copy(message = "已计入计划复习：${word.word}") }
+                }
+            }
+        }
         advanceJob = viewModelScope.launch {
             delay(if (correct) ADVANCE_DELAY_CORRECT_MS else ADVANCE_DELAY_WRONG_MS)
             loadNextQuestion()
@@ -107,7 +119,15 @@ class SpellingViewModel(
             _uiState.update {
                 it.copy(loading = true, input = "", answered = false, correct = null)
             }
-            val word = wordRepository.randomWord(_uiState.value.library, ALL_STATUSES)
+            val library = _uiState.value.library
+            val planWord = if (planMode) {
+                planRepository.activePlan()?.let { plan ->
+                    planRepository.gamePool(plan, LocalDate.now()).randomWord()
+                }
+            } else {
+                null
+            }
+            val word = planWord ?: wordRepository.randomWord(library, ALL_STATUSES)
             if (word == null) {
                 _uiState.update { it.copy(loading = false, word = null) }
                 return@launch
@@ -132,13 +152,15 @@ class SpellingViewModel(
         private const val ADVANCE_DELAY_CORRECT_MS = 900L
         private const val ADVANCE_DELAY_WRONG_MS = 2200L
 
-        fun factory(context: Context): ViewModelProvider.Factory = viewModelFactory {
+        fun factory(context: Context, planMode: Boolean): ViewModelProvider.Factory = viewModelFactory {
             initializer {
                 val container = context.applicationContext.appContainer
                 SpellingViewModel(
                     wordRepository = container.wordRepository,
                     studyRepository = container.studyRepository,
-                    settingsRepository = container.settingsRepository
+                    settingsRepository = container.settingsRepository,
+                    planRepository = container.planRepository,
+                    planMode = planMode
                 )
             }
         }

@@ -8,6 +8,7 @@ import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.study.appContainer
 import com.example.study.data.db.WordEntity
+import com.example.study.data.plan.PlanRepository
 import com.example.study.data.repo.SettingsRepository
 import com.example.study.data.repo.StudyRepository
 import com.example.study.data.repo.TtsManager
@@ -19,6 +20,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import java.time.LocalDate
 
 data class QuizUiState(
     val library: String = SettingsRepository.LIB_CET4,
@@ -45,6 +47,8 @@ class QuizViewModel(
     private val wordRepository: WordRepository,
     private val studyRepository: StudyRepository,
     private val settingsRepository: SettingsRepository,
+    private val planRepository: PlanRepository,
+    private val planMode: Boolean,
     private val ttsManager: TtsManager
 ) : ViewModel() {
 
@@ -87,7 +91,15 @@ class QuizViewModel(
                 sessionCorrect = it.sessionCorrect + if (correct) 1 else 0
             )
         }
-        viewModelScope.launch { studyRepository.recordQuizAnswer(word.id, correct) }
+        viewModelScope.launch {
+            studyRepository.recordQuizAnswer(word.id, correct)
+            if (planMode) {
+                val plan = planRepository.activePlan()
+                if (plan != null && planRepository.recordGameReview(plan, word.id, correct, LocalDate.now())) {
+                    _uiState.update { it.copy(message = "已计入计划复习：${word.word}") }
+                }
+            }
+        }
         advanceJob = viewModelScope.launch {
             // 答错时停留更久，方便看清正确答案
             delay(if (correct) ADVANCE_DELAY_CORRECT_MS else ADVANCE_DELAY_WRONG_MS)
@@ -129,7 +141,14 @@ class QuizViewModel(
                 )
             }
             val library = _uiState.value.library
-            val word = wordRepository.randomWord(library, ALL_STATUSES)
+            val planWord = if (planMode) {
+                planRepository.activePlan()?.let { plan ->
+                    planRepository.gamePool(plan, LocalDate.now()).randomWord()
+                }
+            } else {
+                null
+            }
+            val word = planWord ?: wordRepository.randomWord(library, ALL_STATUSES)
             if (word == null) {
                 _uiState.update { it.copy(loading = false, word = null, options = emptyList()) }
                 return@launch
@@ -167,13 +186,15 @@ class QuizViewModel(
         private const val ADVANCE_DELAY_CORRECT_MS = 900L
         private const val ADVANCE_DELAY_WRONG_MS = 2200L
 
-        fun factory(context: Context): ViewModelProvider.Factory = viewModelFactory {
+        fun factory(context: Context, planMode: Boolean): ViewModelProvider.Factory = viewModelFactory {
             initializer {
                 val container = context.applicationContext.appContainer
                 QuizViewModel(
                     wordRepository = container.wordRepository,
                     studyRepository = container.studyRepository,
                     settingsRepository = container.settingsRepository,
+                    planRepository = container.planRepository,
+                    planMode = planMode,
                     ttsManager = TtsManager(context.applicationContext)
                 )
             }
