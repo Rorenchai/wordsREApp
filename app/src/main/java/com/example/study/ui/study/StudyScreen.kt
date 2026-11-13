@@ -479,7 +479,7 @@ private fun RoundIndicator(state: StudyUiState) {
         else -> "全部"
     }
     Text(
-        text = "本轮已浏览 ${state.roundViewed} 个词 · 筛选：$filterLabel · 本轮内不重复抽词",
+        text = "本轮已浏览 ${state.roundViewed} 个词 · 筛选：$filterLabel · 本轮内不重复抽词 · 进度自动保存",
         style = MaterialTheme.typography.bodySmall,
         color = DuoTextSecondary,
         modifier = Modifier.fillMaxWidth(),

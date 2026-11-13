@@ -2,6 +2,8 @@ package com.example.study.data.repo
 
 import androidx.room.withTransaction
 import com.example.study.data.db.ProgressDao
+import com.example.study.data.db.RoundSeenDao
+import com.example.study.data.db.RoundSeenEntity
 import com.example.study.data.db.StudyDatabase
 import com.example.study.data.db.StudyEventDao
 import com.example.study.data.db.StudyEventEntity
@@ -21,6 +23,7 @@ class StudyRepository(
     private val wordDao: WordDao,
     private val progressDao: ProgressDao,
     private val eventDao: StudyEventDao,
+    private val roundSeenDao: RoundSeenDao,
     private val database: StudyDatabase
 ) {
 
@@ -129,11 +132,33 @@ class StudyRepository(
         )
     }
 
-    /** 重置当前词库的学习进度与学习事件（词库本身保留）。 */
+    /** 重置当前词库的学习进度与学习事件（词库本身保留），并清空该词库的本轮记录。 */
     suspend fun resetLibrary(library: String) {
         database.withTransaction {
             progressDao.deleteByLibrary(library)
             eventDao.deleteByLibrary(library)
+            roundSeenDao.clearLibrary(library)
         }
+    }
+
+    /** 读取 (词库, 筛选) 下的本轮已浏览词（用于进程重启后恢复轮次）。 */
+    suspend fun loadRound(library: String, filter: Int): Set<Long> =
+        roundSeenDao.wordIds(library, filter).toSet()
+
+    /** 记录本轮已抽到某个词（持久化，跨进程保留）。 */
+    suspend fun markRoundSeen(library: String, filter: Int, wordId: Long, now: Long = System.currentTimeMillis()) {
+        roundSeenDao.insert(
+            RoundSeenEntity(
+                library = library,
+                filter = filter,
+                wordId = wordId,
+                seenAt = now
+            )
+        )
+    }
+
+    /** 一轮抽满后重开一轮：清空该 (词库, 筛选) 的已浏览记录。 */
+    suspend fun clearRound(library: String, filter: Int) {
+        roundSeenDao.clear(library, filter)
     }
 }

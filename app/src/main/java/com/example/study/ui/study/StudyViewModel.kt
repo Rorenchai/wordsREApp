@@ -54,7 +54,7 @@ class StudyViewModel(
     private val _uiState = MutableStateFlow(StudyUiState())
     val uiState: StateFlow<StudyUiState> = _uiState.asStateFlow()
 
-    /** 本轮已抽过的词，保证一轮内不重复（进程重建后重开一轮，可接受）。 */
+    /** 本轮已抽过的词，保证一轮内不重复；持久化到 round_seen，进程重启后恢复。 */
     private val roundSeen = mutableSetOf<Long>()
 
     init {
@@ -65,7 +65,9 @@ class StudyViewModel(
             _uiState.update { it.copy(library = library, dailyGoal = goal, accent = accent) }
             ttsManager.setAccent(accent)
             wordRepository.ensureReady()
-            _uiState.update { it.copy(initialized = true) }
+            roundSeen.clear()
+            roundSeen.addAll(studyRepository.loadRound(library, _uiState.value.filter))
+            _uiState.update { it.copy(initialized = true, roundViewed = roundSeen.size) }
             loadNextWordInternal()
         }
         viewModelScope.launch {
@@ -83,6 +85,8 @@ class StudyViewModel(
                 _uiState.update { it.copy(library = library) }
                 if (previous != library && _uiState.value.initialized) {
                     roundSeen.clear()
+                    roundSeen.addAll(studyRepository.loadRound(library, _uiState.value.filter))
+                    _uiState.update { it.copy(roundViewed = roundSeen.size) }
                     loadNextWordInternal()
                 }
             }
@@ -103,9 +107,14 @@ class StudyViewModel(
 
     fun setFilter(filter: Int) {
         if (_uiState.value.filter == filter) return
-        roundSeen.clear()
-        _uiState.update { it.copy(filter = filter, roundViewed = 0) }
-        loadNextWordInternal()
+        viewModelScope.launch {
+            val library = _uiState.value.library
+            val persisted = studyRepository.loadRound(library, filter)
+            roundSeen.clear()
+            roundSeen.addAll(persisted)
+            _uiState.update { it.copy(filter = filter, roundViewed = persisted.size) }
+            loadNextWordInternal()
+        }
     }
 
     fun nextWord() {
@@ -169,20 +178,24 @@ class StudyViewModel(
     }
 
     /**
-     * 从数据库重新读取当前词库的今日目标/streak 与当前词状态。
-     * 用于从记录页/词库页返回学习页时刷新（例如在词库页重置进度后）。
+     * 从数据库重新读取当前词库的今日目标/streak、当前词状态与本轮进度。
+     * 用于从记录页/词库页返回学习页时刷新（例如在词库页重置进度后，本轮应一并清空）。
      */
     fun refreshFromDatabase() {
         viewModelScope.launch {
             val state = _uiState.value
             if (!state.initialized) return@launch
+            val persistedRound = studyRepository.loadRound(state.library, state.filter)
+            roundSeen.clear()
+            roundSeen.addAll(persistedRound)
             val stats = studyRepository.stats(state.library)
             val status = state.word?.let { studyRepository.findProgress(it.id)?.status } ?: 0
             _uiState.update {
                 it.copy(
                     todayStudied = stats.todayStudied,
                     streak = stats.streak,
-                    wordStatus = status
+                    wordStatus = status,
+                    roundViewed = persistedRound.size
                 )
             }
         }
@@ -217,14 +230,21 @@ class StudyViewModel(
         }
     }
 
-    /** 随机抽词并做本轮去重；一轮抽满仍无新词时重开一轮。 */
+    /** 随机抽词并做本轮去重；一轮抽满仍无新词时重开一轮。抽到的词立即持久化。 */
     private suspend fun pickWord(library: String, filter: Int): WordEntity? {
         repeat(MAX_PICK_TRIES) {
             val candidate = wordRepository.randomWord(library, filter) ?: return null
-            if (roundSeen.add(candidate.id)) return candidate
+            if (roundSeen.add(candidate.id)) {
+                studyRepository.markRoundSeen(library, filter, candidate.id)
+                return candidate
+            }
         }
         roundSeen.clear()
-        return wordRepository.randomWord(library, filter)?.also { roundSeen.add(it.id) }
+        studyRepository.clearRound(library, filter)
+        return wordRepository.randomWord(library, filter)?.also {
+            roundSeen.add(it.id)
+            studyRepository.markRoundSeen(library, filter, it.id)
+        }
     }
 
     companion object {
