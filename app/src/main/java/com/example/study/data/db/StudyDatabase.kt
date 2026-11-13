@@ -9,7 +9,8 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 
 /**
  * 数据库：v1 = 词库 / 学习进度 / 学习事件；v2 新增收藏表；v3 学习事件增加答题对错标记；
- * v4 新增 round_seen（学习页本轮已浏览词持久化）；v5 新增 study_duration（学习时长）。
+ * v4 新增 round_seen（学习页本轮已浏览词持久化）；v5 新增 study_duration（学习时长）；
+ * v6 新增 plans / plan_words（艾宾浩斯专项计划）。
  * schema 与旧 Java 版不兼容，使用独立数据库文件名 wordcard.db。
  */
 @Database(
@@ -19,9 +20,11 @@ import androidx.sqlite.db.SupportSQLiteDatabase
         StudyEventEntity::class,
         FavoriteEntity::class,
         RoundSeenEntity::class,
-        StudyDurationEntity::class
+        StudyDurationEntity::class,
+        PlanEntity::class,
+        PlanWordEntity::class
     ],
-    version = 5,
+    version = 6,
     exportSchema = false
 )
 abstract class StudyDatabase : RoomDatabase() {
@@ -37,6 +40,8 @@ abstract class StudyDatabase : RoomDatabase() {
     abstract fun roundSeenDao(): RoundSeenDao
 
     abstract fun studyDurationDao(): StudyDurationDao
+
+    abstract fun planDao(): PlanDao
 
     companion object {
         private const val DB_NAME = "wordcard.db"
@@ -91,6 +96,47 @@ abstract class StudyDatabase : RoomDatabase() {
             }
         }
 
+        /** v5 → v6：新增艾宾浩斯计划表与计划单词表。 */
+        private val MIGRATION_5_6 = object : Migration(5, 6) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                db.execSQL(
+                    "CREATE TABLE IF NOT EXISTS `plans` (" +
+                        "`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
+                        "`name` TEXT NOT NULL, " +
+                        "`library` TEXT NOT NULL, " +
+                        "`startDate` TEXT NOT NULL, " +
+                        "`examDate` TEXT NOT NULL, " +
+                        "`dailyNewWords` INTEGER NOT NULL, " +
+                        "`dailyReviewLimit` INTEGER NOT NULL, " +
+                        "`status` INTEGER NOT NULL, " +
+                        "`createdAt` INTEGER NOT NULL)"
+                )
+                db.execSQL(
+                    "CREATE TABLE IF NOT EXISTS `plan_words` (" +
+                        "`planId` INTEGER NOT NULL, " +
+                        "`wordId` INTEGER NOT NULL, " +
+                        "`batchDate` TEXT NOT NULL, " +
+                        "`stage` INTEGER NOT NULL, " +
+                        "`nextReviewDate` TEXT, " +
+                        "`lastReviewDate` TEXT, " +
+                        "`learnedAt` TEXT, " +
+                        "`learnCount` INTEGER NOT NULL, " +
+                        "`correctCount` INTEGER NOT NULL, " +
+                        "`wrongCount` INTEGER NOT NULL, " +
+                        "PRIMARY KEY(`planId`, `wordId`))"
+                )
+                db.execSQL("CREATE INDEX IF NOT EXISTS `index_plan_words_planId` ON `plan_words` (`planId`)")
+                db.execSQL(
+                    "CREATE INDEX IF NOT EXISTS `index_plan_words_planId_nextReviewDate` " +
+                        "ON `plan_words` (`planId`, `nextReviewDate`)"
+                )
+                db.execSQL(
+                    "CREATE INDEX IF NOT EXISTS `index_plan_words_planId_batchDate` " +
+                        "ON `plan_words` (`planId`, `batchDate`)"
+                )
+            }
+        }
+
         @Volatile
         private var instance: StudyDatabase? = null
 
@@ -101,7 +147,7 @@ abstract class StudyDatabase : RoomDatabase() {
                     StudyDatabase::class.java,
                     DB_NAME
                 )
-                    .addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4, MIGRATION_4_5)
+                    .addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4, MIGRATION_4_5, MIGRATION_5_6)
                     .fallbackToDestructiveMigration(dropAllTables = true)
                     .build()
                     .also { instance = it }

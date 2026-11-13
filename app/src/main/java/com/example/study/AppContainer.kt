@@ -3,6 +3,7 @@ package com.example.study
 import android.content.Context
 import com.example.study.data.backup.BackupRepository
 import com.example.study.data.db.StudyDatabase
+import com.example.study.data.plan.PlanRepository
 import com.example.study.data.repo.FavoriteRepository
 import com.example.study.data.repo.SettingsRepository
 import com.example.study.data.repo.StudyRepository
@@ -28,6 +29,12 @@ class AppContainer(context: Context) {
     val settingsRepository: SettingsRepository = SettingsRepository.create(appContext)
 
     val favoriteRepository: FavoriteRepository = FavoriteRepository(database.favoriteDao())
+
+    val planRepository: PlanRepository = PlanRepository(
+        planDao = database.planDao(),
+        wordDao = database.wordDao(),
+        database = database
+    )
 
     val backupRepository: BackupRepository = BackupRepository(
         wordDao = database.wordDao(),
