@@ -39,7 +39,7 @@ import com.example.study.ui.theme.DuoSurface
 import com.example.study.ui.theme.DuoTextPrimary
 import com.example.study.ui.theme.DuoTextSecondary
 
-private enum class GameAction { QUIZ, LISTENING, SPELLING }
+private enum class GameAction { MATCH, QUIZ, LISTENING, SPELLING }
 
 private data class GameEntry(
     val title: String,
@@ -50,7 +50,7 @@ private data class GameEntry(
 )
 
 private val gameEntries = listOf(
-    GameEntry("单词消消乐", "词义配对，消除全部卡片", Icons.Filled.Extension, DuoGreen),
+    GameEntry("单词消消乐", "词义配对，消除全部卡片", Icons.Filled.Extension, DuoGreen, action = GameAction.MATCH),
     GameEntry("看词选译", "四选一快速答题", Icons.Filled.Translate, DuoBlue, action = GameAction.QUIZ),
     GameEntry("听音辨词", "听发音选正确单词", Icons.Filled.Headphones, DuoGold, action = GameAction.LISTENING),
     GameEntry("单词拼写", "根据释义拼出单词", Icons.Filled.Keyboard, Color(0xFFA855F7), action = GameAction.SPELLING)
@@ -58,6 +58,7 @@ private val gameEntries = listOf(
 
 @Composable
 fun GamesScreen(
+    onOpenMatch: () -> Unit,
     onOpenQuiz: () -> Unit,
     onOpenListening: () -> Unit,
     onOpenSpelling: () -> Unit,
@@ -89,6 +90,7 @@ fun GamesScreen(
             ) {
                 rowEntries.forEach { entry ->
                     val action = when (entry.action) {
+                        GameAction.MATCH -> onOpenMatch
                         GameAction.QUIZ -> onOpenQuiz
                         GameAction.LISTENING -> onOpenListening
                         GameAction.SPELLING -> onOpenSpelling

@@ -38,4 +38,8 @@ class WordRepository(
     /** 听音辨词干扰项：随机取若干条非本题单词拼写。 */
     suspend fun randomWords(library: String, excludeWord: String, count: Int): List<String> =
         wordDao.randomWords(library, excludeWord, count)
+
+    /** 消消乐等模式：随机取若干完整词条。 */
+    suspend fun randomWordEntities(library: String, count: Int): List<WordEntity> =
+        wordDao.randomWordEntities(library, count)
 }

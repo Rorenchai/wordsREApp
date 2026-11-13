@@ -80,4 +80,15 @@ interface WordDao {
         """
     )
     suspend fun randomWords(library: String, excludeWord: String, count: Int): List<String>
+
+    /** 随机取若干完整词条（消消乐配对用）。 */
+    @Query(
+        """
+        SELECT * FROM words
+        WHERE library = :library
+        ORDER BY RANDOM()
+        LIMIT :count
+        """
+    )
+    suspend fun randomWordEntities(library: String, count: Int): List<WordEntity>
 }
