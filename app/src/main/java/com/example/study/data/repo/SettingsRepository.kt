@@ -32,6 +32,12 @@ class SettingsRepository(
     /** 发音口音：US / UK */
     val accent: Flow<String> = safeData.map { it[KEY_ACCENT] ?: ACCENT_US }
 
+    /** 最近一次词汇量评测结果（0 = 未测过）。 */
+    val vocabEstimate: Flow<Int> = safeData.map { it[KEY_VOCAB_ESTIMATE] ?: 0 }
+
+    /** 最近一次词汇量评测日期（yyyy-MM-dd）。 */
+    val vocabTestDate: Flow<String> = safeData.map { it[KEY_VOCAB_DATE] ?: "" }
+
     suspend fun setCurrentLibrary(library: String) {
         dataStore.edit { it[KEY_LIBRARY] = library }
     }
@@ -42,6 +48,13 @@ class SettingsRepository(
 
     suspend fun setAccent(accent: String) {
         dataStore.edit { it[KEY_ACCENT] = accent }
+    }
+
+    suspend fun saveVocabEstimate(estimate: Int, date: String) {
+        dataStore.edit {
+            it[KEY_VOCAB_ESTIMATE] = estimate
+            it[KEY_VOCAB_DATE] = date
+        }
     }
 
     companion object {
@@ -59,6 +72,8 @@ class SettingsRepository(
         private val KEY_LIBRARY = stringPreferencesKey("current_library")
         private val KEY_DAILY_GOAL = intPreferencesKey("daily_goal")
         private val KEY_ACCENT = stringPreferencesKey("accent")
+        private val KEY_VOCAB_ESTIMATE = intPreferencesKey("vocab_estimate")
+        private val KEY_VOCAB_DATE = stringPreferencesKey("vocab_test_date")
 
         fun create(context: Context): SettingsRepository {
             return SettingsRepository(context.applicationContext.settingsDataStore)

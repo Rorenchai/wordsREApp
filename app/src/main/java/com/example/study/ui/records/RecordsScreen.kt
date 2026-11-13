@@ -52,7 +52,7 @@ import com.example.study.ui.theme.DuoTextSecondary
 import java.time.LocalDate
 
 @Composable
-fun RecordsScreen(onOpenWrongBook: () -> Unit, modifier: Modifier = Modifier) {
+fun RecordsScreen(onOpenWrongBook: () -> Unit, onOpenVocab: () -> Unit, modifier: Modifier = Modifier) {
     val context = LocalContext.current
     val viewModel: RecordsViewModel = viewModel(factory = RecordsViewModel.factory(context))
     val state by viewModel.uiState.collectAsStateWithLifecycle()
@@ -117,6 +117,11 @@ fun RecordsScreen(onOpenWrongBook: () -> Unit, modifier: Modifier = Modifier) {
                 WeekCard(stats)
                 LearningTimeCard(stats)
                 WrongBookCard(stats.wrongBookCount, onOpenWrongBook)
+                VocabCard(
+                    estimate = state.vocabEstimate,
+                    date = state.vocabDate,
+                    onOpen = onOpenVocab
+                )
                 CheckInCalendarCard(stats)
                 Row(
                     modifier = Modifier.fillMaxWidth(),
@@ -293,6 +298,39 @@ private fun WrongBookCard(count: Int, onOpen: () -> Unit) {
                 color = DuoGreen
             )
         }
+    }
+}
+
+@Composable
+private fun VocabCard(estimate: Int, date: String, onOpen: () -> Unit) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(20.dp))
+            .background(DuoSurface)
+            .border(2.dp, DuoBorder, RoundedCornerShape(20.dp))
+            .clickable(onClick = onOpen)
+            .padding(16.dp),
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+            Text(
+                text = "词汇量评测",
+                style = MaterialTheme.typography.titleMedium,
+                color = DuoTextPrimary
+            )
+            Text(
+                text = if (estimate > 0) "上次估算 ≈ $estimate 词 · $date" else "抽样答题，估算你的词汇量",
+                style = MaterialTheme.typography.bodySmall,
+                color = DuoTextSecondary
+            )
+        }
+        Text(
+            text = if (estimate > 0) "再测一次 ›" else "去评测 ›",
+            style = MaterialTheme.typography.titleMedium,
+            color = DuoGreen
+        )
     }
 }
 

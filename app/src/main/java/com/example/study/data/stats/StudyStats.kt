@@ -2,6 +2,7 @@ package com.example.study.data.stats
 
 import java.time.Instant
 import java.time.LocalDate
+import kotlin.math.roundToInt
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.util.Locale
@@ -95,3 +96,17 @@ fun formatStudyDuration(durationMs: Long): String {
     val rest = minutes % 60
     return if (hours > 0) "$hours 小时 $rest 分钟" else "$minutes 分钟"
 }
+
+/**
+ * 词汇量估算（四选一抽样 + 猜测校正）：
+ * 正确率 p 扣除 1/4 猜测基数后按 3/4 折算，乘以词库规模，结果取整到 50 并限制在词库范围内。
+ */
+fun estimateVocabularySize(correct: Int, answered: Int, poolSize: Int): Int {
+    if (answered <= 0 || poolSize <= 0) return 0
+    val p = correct.toFloat() / answered
+    val corrected = ((p - GUESS_RATE) / (1f - GUESS_RATE)).coerceIn(0f, 1f)
+    val raw = (corrected * poolSize / 50f).roundToInt() * 50
+    return raw.coerceIn(0, poolSize)
+}
+
+private const val GUESS_RATE = 0.25f

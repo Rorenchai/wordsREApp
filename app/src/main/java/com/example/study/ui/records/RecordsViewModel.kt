@@ -19,7 +19,9 @@ import kotlinx.coroutines.launch
 data class RecordsUiState(
     val library: String = SettingsRepository.LIB_CET4,
     val loading: Boolean = true,
-    val stats: LibraryStats? = null
+    val stats: LibraryStats? = null,
+    val vocabEstimate: Int = 0,
+    val vocabDate: String = ""
 )
 
 class RecordsViewModel(
@@ -35,6 +37,16 @@ class RecordsViewModel(
             settingsRepository.currentLibrary.collect { library ->
                 _uiState.update { it.copy(library = library, loading = true) }
                 refreshInternal(library)
+            }
+        }
+        viewModelScope.launch {
+            settingsRepository.vocabEstimate.collect { estimate ->
+                _uiState.update { it.copy(vocabEstimate = estimate) }
+            }
+        }
+        viewModelScope.launch {
+            settingsRepository.vocabTestDate.collect { date ->
+                _uiState.update { it.copy(vocabDate = date) }
             }
         }
     }

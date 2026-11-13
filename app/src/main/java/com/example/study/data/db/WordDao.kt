@@ -91,4 +91,14 @@ interface WordDao {
         """
     )
     suspend fun randomWordEntities(library: String, count: Int): List<WordEntity>
+
+    /** 跨词库随机抽词（词汇量评测等场景）。 */
+    @Query(
+        """
+        SELECT * FROM words
+        ORDER BY RANDOM()
+        LIMIT :count
+        """
+    )
+    suspend fun randomWordEntitiesAll(count: Int): List<WordEntity>
 }

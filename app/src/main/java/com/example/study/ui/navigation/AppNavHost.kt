@@ -33,6 +33,7 @@ import com.example.study.ui.match.MatchScreen
 import com.example.study.ui.quiz.QuizScreen
 import com.example.study.ui.review.ReviewScreen
 import com.example.study.ui.spelling.SpellingScreen
+import com.example.study.ui.vocab.VocabTestScreen
 import com.example.study.ui.wrongbook.WrongBookScreen
 import com.example.study.ui.records.RecordsScreen
 import com.example.study.ui.settings.SettingsScreen
@@ -63,7 +64,7 @@ fun AppNavHost() {
 
     Scaffold(
         bottomBar = {
-            if (currentDestination?.route !in setOf("dictionary", "quiz", "listening", "spelling", "match", "wrongbook", "review")) {
+            if (currentDestination?.route !in setOf("dictionary", "quiz", "listening", "spelling", "match", "wrongbook", "review", "vocab")) {
                 NavigationBar(containerColor = Color.White) {
                     bottomNavItems.forEach { item ->
                         val selected = currentDestination?.hierarchy?.any { it.route == item.route } == true
@@ -106,9 +107,14 @@ fun AppNavHost() {
                 })
             }
             composable("records") {
-                RecordsScreen(onOpenWrongBook = {
-                    navController.navigate("wrongbook") { launchSingleTop = true }
-                })
+                RecordsScreen(
+                    onOpenWrongBook = {
+                        navController.navigate("wrongbook") { launchSingleTop = true }
+                    },
+                    onOpenVocab = {
+                        navController.navigate("vocab") { launchSingleTop = true }
+                    }
+                )
             }
             composable("favorites") { FavoritesScreen() }
             composable("games") {
@@ -143,6 +149,9 @@ fun AppNavHost() {
             }
             composable("review") {
                 ReviewScreen(onBack = { navController.popBackStack() })
+            }
+            composable("vocab") {
+                VocabTestScreen(onBack = { navController.popBackStack() })
             }
         }
     }

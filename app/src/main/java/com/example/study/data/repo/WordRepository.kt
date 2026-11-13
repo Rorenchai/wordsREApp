@@ -42,4 +42,8 @@ class WordRepository(
     /** 消消乐等模式：随机取若干完整词条。 */
     suspend fun randomWordEntities(library: String, count: Int): List<WordEntity> =
         wordDao.randomWordEntities(library, count)
+
+    /** 跨词库随机抽词（词汇量评测）。 */
+    suspend fun randomWordEntitiesAll(count: Int): List<WordEntity> =
+        wordDao.randomWordEntitiesAll(count)
 }
