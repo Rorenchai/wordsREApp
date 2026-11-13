@@ -31,6 +31,8 @@ import com.example.study.ui.games.GamesScreen
 import com.example.study.ui.listening.ListeningScreen
 import com.example.study.ui.match.MatchScreen
 import com.example.study.ui.plan.PlanScreen
+import com.example.study.ui.plan.PlanStudyMode
+import com.example.study.ui.plan.PlanStudyScreen
 import com.example.study.ui.quiz.QuizScreen
 import com.example.study.ui.review.ReviewScreen
 import com.example.study.ui.spelling.SpellingScreen
@@ -67,7 +69,8 @@ fun AppNavHost() {
     Scaffold(
         bottomBar = {
             if (currentDestination?.route !in setOf(
-                    "dictionary", "quiz", "listening", "spelling", "match", "wrongbook", "review", "vocab", "plan"
+                    "dictionary", "quiz", "listening", "spelling", "match", "wrongbook", "review", "vocab",
+                    "plan", "plannew", "planreview"
                 )
             ) {
                 NavigationBar(containerColor = DuoBackground) {
@@ -164,7 +167,23 @@ fun AppNavHost() {
                 VocabTestScreen(onBack = { navController.popBackStack() })
             }
             composable("plan") {
-                PlanScreen(onBack = { navController.popBackStack() })
+                PlanScreen(
+                    onBack = { navController.popBackStack() },
+                    onStartNew = { navController.navigate("plannew") { launchSingleTop = true } },
+                    onStartReview = { navController.navigate("planreview") { launchSingleTop = true } }
+                )
+            }
+            composable("plannew") {
+                PlanStudyScreen(
+                    mode = PlanStudyMode.NEW,
+                    onBack = { navController.popBackStack() }
+                )
+            }
+            composable("planreview") {
+                PlanStudyScreen(
+                    mode = PlanStudyMode.REVIEW,
+                    onBack = { navController.popBackStack() }
+                )
             }
         }
     }

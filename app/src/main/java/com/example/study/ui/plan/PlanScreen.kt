@@ -59,7 +59,12 @@ import com.example.study.ui.theme.DuoTextSecondary
 import java.time.LocalDate
 
 @Composable
-fun PlanScreen(onBack: () -> Unit, modifier: Modifier = Modifier) {
+fun PlanScreen(
+    onBack: () -> Unit,
+    onStartNew: () -> Unit,
+    onStartReview: () -> Unit,
+    modifier: Modifier = Modifier
+) {
     val context = LocalContext.current
     val viewModel: PlanViewModel = viewModel(factory = PlanViewModel.factory(context))
     val state by viewModel.uiState.collectAsStateWithLifecycle()
@@ -124,6 +129,8 @@ fun PlanScreen(onBack: () -> Unit, modifier: Modifier = Modifier) {
             } else {
                 PlanOverview(
                     state = state,
+                    onStartNew = onStartNew,
+                    onStartReview = onStartReview,
                     onFinish = { showFinishDialog = true }
                 )
             }
@@ -317,7 +324,12 @@ private fun PlanCreationForm(
 }
 
 @Composable
-private fun PlanOverview(state: PlanUiState, onFinish: () -> Unit) {
+private fun PlanOverview(
+    state: PlanUiState,
+    onStartNew: () -> Unit,
+    onStartReview: () -> Unit,
+    onFinish: () -> Unit
+) {
     val plan = state.activePlan ?: return
     val summary = state.summary
 
@@ -355,6 +367,21 @@ private fun PlanOverview(state: PlanUiState, onFinish: () -> Unit) {
             text = "按艾宾浩斯复习间隔（1/2/4/7/15 天）自动安排，答对推进、答错次日重试；越过考试日期自动收口。",
             style = MaterialTheme.typography.bodySmall,
             color = DuoTextSecondary
+        )
+        val remainingNew = (summary?.todayNewTotal ?: 0) - (summary?.todayNewLearned ?: 0)
+        val dueReviews = summary?.dueReviewCount ?: 0
+        DuoButton(
+            text = "开始学习今日新词（剩余 $remainingNew）",
+            onClick = onStartNew,
+            modifier = Modifier.fillMaxWidth(),
+            enabled = remainingNew > 0
+        )
+        DuoButton(
+            text = "开始复习（$dueReviews）",
+            onClick = onStartReview,
+            modifier = Modifier.fillMaxWidth(),
+            style = DuoButtonStyle.Learning,
+            enabled = dueReviews > 0
         )
     }
 
