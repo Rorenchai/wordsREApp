@@ -1,6 +1,5 @@
 package com.example.study.ui.navigation
 
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
@@ -15,7 +14,6 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.navigation.NavDestination.Companion.hierarchy
@@ -24,6 +22,12 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.example.study.ui.games.GamesScreen
+import com.example.study.ui.records.RecordsScreen
+import com.example.study.ui.settings.SettingsScreen
+import com.example.study.ui.study.StudyScreen
+import com.example.study.ui.theme.DuoGreen
+import com.example.study.ui.theme.DuoTextSecondary
 
 /** 底部导航的四个页签。 */
 private data class BottomNavItem(
@@ -47,7 +51,7 @@ fun AppNavHost() {
 
     Scaffold(
         bottomBar = {
-            NavigationBar {
+            NavigationBar(containerColor = androidx.compose.ui.graphics.Color.White) {
                 bottomNavItems.forEach { item ->
                     val selected = currentDestination?.hierarchy?.any { it.route == item.route } == true
                     NavigationBarItem(
@@ -62,7 +66,14 @@ fun AppNavHost() {
                             }
                         },
                         icon = { Icon(item.icon, contentDescription = item.label) },
-                        label = { Text(item.label) }
+                        label = { Text(item.label) },
+                        colors = androidx.compose.material3.NavigationBarItemDefaults.colors(
+                            selectedIconColor = DuoGreen,
+                            selectedTextColor = DuoGreen,
+                            unselectedIconColor = DuoTextSecondary,
+                            unselectedTextColor = DuoTextSecondary,
+                            indicatorColor = DuoGreen.copy(alpha = 0.14f)
+                        )
                     )
                 }
             }
@@ -75,18 +86,10 @@ fun AppNavHost() {
                 .fillMaxSize()
                 .padding(innerPadding)
         ) {
-            composable("study") { PlaceholderScreen("学习页") }
-            composable("records") { PlaceholderScreen("记录页") }
-            composable("games") { PlaceholderScreen("游戏页") }
-            composable("settings") { PlaceholderScreen("词库页") }
+            composable("study") { StudyScreen() }
+            composable("records") { RecordsScreen() }
+            composable("games") { GamesScreen() }
+            composable("settings") { SettingsScreen() }
         }
-    }
-}
-
-/** 里程碑 1 的占位页面，后续里程碑会替换为真实页面。 */
-@Composable
-private fun PlaceholderScreen(title: String) {
-    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-        Text(text = title)
     }
 }
