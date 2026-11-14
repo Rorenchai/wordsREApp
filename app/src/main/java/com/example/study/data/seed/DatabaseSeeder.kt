@@ -16,7 +16,7 @@ import kotlinx.coroutines.withContext
 
 /**
  * 首次启动时把 assets 里的 CET-4 / CET-6 / PETS 词库解析并写入 Room。
- * 同时清理旧版本 PETS-B 词库名与测试词库（custom_test 等），并清空可再生成的缓存。
+ * 同时清理旧版本 PETS-B 词库名与测试词库（custom_test 等）。
  * 只处理「当前词库为空才导入」，重复调用安全（幂等）；整个过程在 IO 线程 + 事务内完成。
  */
 class DatabaseSeeder(
@@ -46,8 +46,8 @@ class DatabaseSeeder(
     /**
      * 数据清理：
      * 1. 删除测试词库（custom_test / test / 测试 等）及关联进度、收藏、计划、时长；
-     * 2. 旧版本 PETS-B 更名为 PETS（若 PETS 已存在则丢弃旧副本）；
-     * 3. 清空可再生成的缓存文件。
+     * 2. 旧版本 PETS-B 更名为 PETS（若 PETS 已存在则丢弃旧副本）。
+     * 不清理 cacheDir：TTS 首次启动会从 assets 复制音素数据，清理缓存可能与其初始化竞争。
      */
     private suspend fun normalizeLibraries() {
         database.withTransaction {
@@ -73,7 +73,6 @@ class DatabaseSeeder(
                 }
             }
         }
-        runCatching { context.cacheDir.deleteRecursively() }
     }
 
     private fun deleteLibraryData(db: SupportSQLiteDatabase, library: String) {

@@ -373,7 +373,7 @@ fun SettingsScreen(modifier: Modifier = Modifier) {
                 }
             }
 
-            SettingsGroupEntry(title = "关于与许可", summary = "版本 1.1.0-fix", entryKey = "about", currentKey = currentPage, onToggle = { currentPage = it }) {
+            SettingsGroupEntry(title = "关于与许可", summary = "版本 1.1.1", entryKey = "about", currentKey = currentPage, onToggle = { currentPage = it }) {
                 Text(
                     text = "词库来源：KyleBing/english-vocabulary（BSD 3-Clause License）· PETS 词库由项目整理\n" +
                         "发音：内置 Piper 神经网络女声（LJSpeech，离线），不依赖系统 TTS\n" +
@@ -399,7 +399,7 @@ fun SettingsScreen(modifier: Modifier = Modifier) {
                     }
                 }
                 Text(
-                    text = "版本 1.1.0-fix · 单词记忆卡",
+                    text = "版本 1.1.1 · 单词记忆卡",
                     style = MaterialTheme.typography.bodySmall,
                     color = DuoTextSecondary
                 )

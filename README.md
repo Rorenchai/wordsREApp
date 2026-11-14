@@ -158,6 +158,7 @@ python -I WorkBuddy/wordbank/convert_ref_wordbank.py
 - ✅ 收藏夹搜索：收藏页支持按单词 / 释义 / 音标实时过滤，显示「匹配数 / 总数」，无结果与清空搜索状态完整
 - ✅ 设置页用户资料与嵌入式列表：底部页签改为「设置」；支持自定义昵称、相册头像（持久化 URI）、恢复默认头像；设置列表改为嵌入式行（无卡片底/边框）
 - ✅ Creamy Kawaii 奶油金主题：应用图标替换为「金发 · 单词书 · 金色书签」插画；奶油金 / 杏仁白 / 蜜桃粉 / 可可深棕配色，Light/Dark 双主题；按钮文字改深棕保证对比度
+- ✅ v1.1.1 稳定性修复：修正 `tokens.txt` 的 CRLF 换行（Piper 原生解析异常导致进程退出）；TTS 改为首次点发音时才初始化，启动阶段不再加载模型
 - ✅ 新增单元测试覆盖自定义词库解析（JSON/BOM/CSV/Tab/异常输入/文件名推导）
 
 > 语音引擎：sherpa-onnx（Apache-2.0）+ Piper LJSpeech 女声模型（数据集公有领域）+ eSpeak NG 音素数据（GPL），详见应用内「关于与许可 → 离线语音引擎许可」与 `assets/licenses/piper-tts.txt`。

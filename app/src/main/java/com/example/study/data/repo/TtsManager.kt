@@ -1,4 +1,4 @@
-package com.example.study.data.repo
+﻿package com.example.study.data.repo
 
 import android.media.AudioAttributes
 import android.media.AudioFormat
@@ -29,6 +29,8 @@ class TtsManager(context: android.content.Context) {
     @Volatile
     private var failed = false
     @Volatile
+    private var initializing = false
+    @Volatile
     private var accent: String = SettingsRepository.ACCENT_US
     @Volatile
     private var pendingText: String? = null
@@ -37,9 +39,7 @@ class TtsManager(context: android.content.Context) {
     @Volatile
     private var generation = 0
 
-    init {
-        executor.execute { initialize() }
-    }
+    // 延迟到首次点击发音时再加载模型：避免应用启动阶段被原生 TTS 初始化阻塞或拖崩
 
     /** 切换美式 / 英式口音：内置女声只有一套音色，英式略放慢语速模拟。 */
     fun setAccent(newAccent: String) {
@@ -54,6 +54,10 @@ class TtsManager(context: android.content.Context) {
         if (failed) return false
         if (!ready) {
             pendingText = text
+            if (!initializing) {
+                initializing = true
+                executor.execute { initialize() }
+            }
             return true
         }
         val engine = tts ?: return false
@@ -125,13 +129,15 @@ class TtsManager(context: android.content.Context) {
         } catch (error: Throwable) {
             failed = true
             Log.e(TAG, "内置女声引擎初始化失败", error)
+        } finally {
+            initializing = false
         }
     }
 
     /** 首次启动把模型与 espeak 数据从 assets 复制到私有目录（约 20MB，只复制一次）。 */
     private fun preparePiperFiles(): File {
         val target = File(appContext.filesDir, "tts/piper")
-        val marker = File(target, ".ready_v1")
+        val marker = File(target, ".ready_v2")
         if (marker.exists()) return target
         target.deleteRecursively()
         target.mkdirs()
