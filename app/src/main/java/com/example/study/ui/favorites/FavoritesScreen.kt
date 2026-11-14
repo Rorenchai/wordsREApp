@@ -18,11 +18,14 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Clear
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.outlined.StarBorder
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
@@ -31,6 +34,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -58,6 +62,19 @@ fun FavoritesScreen(modifier: Modifier = Modifier) {
     val state by viewModel.uiState.collectAsStateWithLifecycle()
     val snackbarHostState = remember { SnackbarHostState() }
     var detailWord by remember { mutableStateOf<WordEntity?>(null) }
+    var query by rememberSaveable { mutableStateOf("") }
+    // 本地过滤：按单词 / 释义 / 音标搜索收藏，无需额外查库
+    val filteredFavorites = remember(state.favorites, query) {
+        if (query.isBlank()) {
+            state.favorites
+        } else {
+            state.favorites.filter { word ->
+                word.word.contains(query, ignoreCase = true) ||
+                    word.meaning.contains(query, ignoreCase = true) ||
+                    word.phonetic.contains(query, ignoreCase = true)
+            }
+        }
+    }
 
     LaunchedEffect(state.message) {
         val message = state.message ?: return@LaunchedEffect
@@ -81,7 +98,11 @@ fun FavoritesScreen(modifier: Modifier = Modifier) {
                 )
                 Spacer(Modifier.weight(1f))
                 Text(
-                    text = "${state.favorites.size} 个单词",
+                    text = if (query.isBlank()) {
+                        "${state.favorites.size} 个单词"
+                    } else {
+                        "${filteredFavorites.size} / ${state.favorites.size} 个单词"
+                    },
                     style = MaterialTheme.typography.labelMedium,
                     color = DuoTextSecondary
                 )
@@ -91,6 +112,26 @@ fun FavoritesScreen(modifier: Modifier = Modifier) {
                 style = MaterialTheme.typography.bodySmall,
                 color = DuoTextSecondary,
                 modifier = Modifier.padding(horizontal = 18.dp, vertical = 4.dp)
+            )
+            OutlinedTextField(
+                value = query,
+                onValueChange = { query = it },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 18.dp, vertical = 4.dp),
+                singleLine = true,
+                shape = RoundedCornerShape(14.dp),
+                placeholder = { Text("搜索收藏的单词或释义") },
+                leadingIcon = {
+                    Icon(Icons.Filled.Search, contentDescription = null, tint = DuoTextSecondary)
+                },
+                trailingIcon = {
+                    if (query.isNotBlank()) {
+                        IconButton(onClick = { query = "" }) {
+                            Icon(Icons.Filled.Clear, contentDescription = "清空搜索", tint = DuoTextSecondary)
+                        }
+                    }
+                }
             )
 
             if (!state.loading && state.favorites.isEmpty()) {
@@ -119,13 +160,32 @@ fun FavoritesScreen(modifier: Modifier = Modifier) {
                         )
                     }
                 }
+            } else if (filteredFavorites.isEmpty()) {
+                Box(
+                    modifier = Modifier.fillMaxWidth().weight(1f),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                        Text(
+                            text = "没有匹配的收藏",
+                            style = MaterialTheme.typography.titleMedium,
+                            color = DuoTextPrimary
+                        )
+                        Spacer(Modifier.height(6.dp))
+                        Text(
+                            text = "换个关键词，或清空搜索查看全部收藏",
+                            style = MaterialTheme.typography.bodySmall,
+                            color = DuoTextSecondary
+                        )
+                    }
+                }
             } else {
                 LazyColumn(
                     modifier = Modifier.fillMaxWidth().weight(1f),
                     contentPadding = PaddingValues(start = 18.dp, end = 18.dp, top = 8.dp, bottom = 18.dp),
                     verticalArrangement = Arrangement.spacedBy(10.dp)
                 ) {
-                    items(state.favorites, key = { it.id }) { word ->
+                    items(filteredFavorites, key = { it.id }) { word ->
                         FavoriteRow(
                             word = word,
                             onClick = { detailWord = word },
