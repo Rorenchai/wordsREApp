@@ -75,6 +75,7 @@ import com.example.study.ui.theme.DuoRed
 import com.example.study.ui.theme.DuoSurface
 import com.example.study.ui.theme.DuoTextPrimary
 import com.example.study.ui.theme.DuoTextSecondary
+import com.example.study.ui.theme.DuoChocolate
 
 @Composable
 fun SettingsScreen(modifier: Modifier = Modifier) {
@@ -817,7 +818,7 @@ private fun OptionChip(
         Text(
             text = text,
             style = MaterialTheme.typography.labelMedium,
-            color = if (selected) Color.White else DuoTextSecondary,
+            color = if (selected) DuoChocolate else DuoTextSecondary,
             textAlign = TextAlign.Center
         )
     }

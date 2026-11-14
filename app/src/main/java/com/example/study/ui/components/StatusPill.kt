@@ -18,6 +18,11 @@ import com.example.study.ui.theme.DuoGreen
 import com.example.study.ui.theme.DuoGreenSoft
 import com.example.study.ui.theme.DuoSurface
 import com.example.study.ui.theme.DuoTextSecondary
+import com.example.study.ui.theme.DuoSuccessSoft
+import com.example.study.ui.theme.DuoSuccessText
+import com.example.study.ui.theme.DuoGoldSoft
+import com.example.study.ui.theme.DuoChocolate
+import com.example.study.ui.theme.DuoNeutral
 
 /** 三档学习状态徽章：未学习 / 学习中 / 已掌握。 */
 @Composable
@@ -28,17 +33,17 @@ fun StatusPill(status: Int, modifier: Modifier = Modifier) {
     when (status) {
         StudyStatus.MASTERED -> {
             label = "已掌握"
-            background = DuoGreenSoft
-            foreground = DuoGreen
+            background = DuoSuccessSoft
+            foreground = DuoSuccessText
         }
         StudyStatus.LEARNING -> {
             label = "学习中"
-            background = DuoBlue.copy(alpha = 0.12f)
-            foreground = DuoBlue
+            background = DuoGoldSoft
+            foreground = DuoChocolate
         }
         else -> {
             label = "未学习"
-            background = DuoSurface
+            background = DuoNeutral.copy(alpha = 0.35f)
             foreground = DuoTextSecondary
         }
     }

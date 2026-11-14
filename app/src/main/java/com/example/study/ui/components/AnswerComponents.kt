@@ -45,6 +45,9 @@ import com.example.study.ui.theme.DuoRed
 import com.example.study.ui.theme.DuoSurface
 import com.example.study.ui.theme.DuoTextPrimary
 import com.example.study.ui.theme.DuoTextSecondary
+import com.example.study.ui.theme.DuoSuccess
+import com.example.study.ui.theme.DuoSuccessSoft
+import com.example.study.ui.theme.DuoSuccessText
 
 /** 答题模式通用：会话统计（已答 / 答对 / 正确率）。 */
 @Composable
@@ -60,7 +63,7 @@ fun SessionStatsCard(answered: Int, correct: Int, accuracy: Int, modifier: Modif
         verticalAlignment = Alignment.CenterVertically
     ) {
         StatText(label = "已答", value = "$answered 题")
-        StatText(label = "答对", value = "$correct 题", color = DuoGreen)
+        StatText(label = "答对", value = "$correct 题", color = DuoSuccess)
         StatText(label = "正确率", value = "$accuracy%", color = DuoBlue)
     }
 }
@@ -126,9 +129,9 @@ fun AnswerOptionRow(
         }
 
         isCorrectOption -> {
-            background = DuoGreenSoft
-            borderColor = DuoGreen
-            textColor = DuoGreen
+            background = DuoSuccessSoft
+            borderColor = DuoSuccess
+            textColor = DuoSuccessText
         }
 
         isSelected -> {
@@ -183,7 +186,7 @@ fun AnswerOptionRow(
 /** 答题模式通用：判对错反馈横幅。 */
 @Composable
 fun AnswerFeedbackBanner(correct: Boolean, correctAnswer: String) {
-    val color = if (correct) DuoGreen else DuoRed
+    val color = if (correct) DuoSuccess else DuoRed
     // 反馈条出现时做一次缩放 + 淡入，避免生硬弹出
     var shown by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { shown = true }
@@ -206,7 +209,7 @@ fun AnswerFeedbackBanner(correct: Boolean, correctAnswer: String) {
                 scaleY = enterScale
             }
             .clip(RoundedCornerShape(16.dp))
-            .background(if (correct) DuoGreenSoft else DuoRed.copy(alpha = 0.10f))
+            .background(if (correct) DuoSuccessSoft else DuoRed.copy(alpha = 0.10f))
             .border(2.dp, color, RoundedCornerShape(16.dp))
             .padding(horizontal = 16.dp, vertical = 12.dp),
         horizontalAlignment = Alignment.CenterHorizontally

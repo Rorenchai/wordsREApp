@@ -64,6 +64,8 @@ import com.example.study.ui.theme.DuoRed
 import com.example.study.ui.theme.DuoSurface
 import com.example.study.ui.theme.DuoTextPrimary
 import com.example.study.ui.theme.DuoTextSecondary
+import com.example.study.ui.theme.DuoSuccess
+import com.example.study.ui.theme.DuoChocolate
 
 @Composable
 fun RecordsScreen(onOpenWrongBook: () -> Unit, onOpenVocab: () -> Unit, modifier: Modifier = Modifier) {
@@ -205,7 +207,7 @@ private fun StatsGrid(stats: LibraryStats) {
             StatCell(
                 value = stats.masteredWords.toString(),
                 label = "已掌握",
-                accent = DuoGreen,
+                accent = DuoSuccess,
                 modifier = Modifier.weight(1f)
             )
             Box(
@@ -284,10 +286,10 @@ private fun ProgressOverviewCard(stats: LibraryStats) {
             Text(
                 text = String.format(java.util.Locale.US, "%.1f%%", stats.masteredPercent),
                 style = MaterialTheme.typography.titleMedium,
-                color = DuoGreen
+                color = DuoSuccess
             )
         }
-        ProgressTrack(progress = stats.masteredPercent / 100f, modifier = Modifier.fillMaxWidth())
+        ProgressTrack(progress = stats.masteredPercent / 100f, modifier = Modifier.fillMaxWidth(), fillColor = DuoSuccess)
         Text(
             text = "已掌握 ${stats.masteredWords} / ${stats.totalWords} 个单词",
             style = MaterialTheme.typography.bodySmall,
@@ -349,7 +351,7 @@ private fun CheckInCard(
                 Text(
                     text = "立即打卡 · 领取奖励",
                     style = MaterialTheme.typography.labelLarge,
-                    color = DuoCard
+                    color = DuoChocolate
                 )
             }
         }
@@ -426,7 +428,7 @@ private fun CheckInRewardDialog(streak: Int, energy: Int, onDismiss: () -> Unit)
                         .padding(vertical = 12.dp),
                     contentAlignment = Alignment.Center
                 ) {
-                    Text("收下奖励", style = MaterialTheme.typography.labelLarge, color = DuoCard)
+                    Text("收下奖励", style = MaterialTheme.typography.labelLarge, color = DuoChocolate)
                 }
             }
         }
@@ -616,7 +618,7 @@ private fun CheckInCalendarCard(stats: LibraryStats) {
                             Text(
                                 text = "$day",
                                 style = MaterialTheme.typography.labelSmall,
-                                color = if (isStudied) Color.White else DuoTextSecondary
+                                color = if (isStudied) DuoChocolate else DuoTextSecondary
                             )
                         }
                         day++

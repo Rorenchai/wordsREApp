@@ -65,6 +65,7 @@ import com.example.study.ui.theme.DuoSurface
 import com.example.study.ui.theme.DuoTextPrimary
 import com.example.study.ui.theme.DuoTextSecondary
 import java.time.LocalDate
+import com.example.study.ui.theme.DuoChocolate
 
 @Composable
 fun PlanScreen(
@@ -206,7 +207,7 @@ private fun ChoiceChip(text: String, selected: Boolean, onClick: () -> Unit) {
         Text(
             text = text,
             style = MaterialTheme.typography.labelMedium,
-            color = if (selected) Color.White else DuoTextSecondary,
+            color = if (selected) DuoChocolate else DuoTextSecondary,
             maxLines = 1,
             softWrap = false,
             overflow = TextOverflow.Ellipsis

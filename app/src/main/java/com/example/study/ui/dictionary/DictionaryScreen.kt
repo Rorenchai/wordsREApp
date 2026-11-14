@@ -58,6 +58,7 @@ import com.example.study.ui.theme.DuoGreen
 import com.example.study.ui.theme.DuoSurface
 import com.example.study.ui.theme.DuoTextPrimary
 import com.example.study.ui.theme.DuoTextSecondary
+import com.example.study.ui.theme.DuoChocolate
 
 private data class ScopeOption(val value: String, val label: String)
 
@@ -233,7 +234,7 @@ private fun ScopeChip(label: String, selected: Boolean, onClick: () -> Unit) {
         Text(
             text = label,
             style = MaterialTheme.typography.labelMedium,
-            color = if (selected) Color.White else DuoTextSecondary
+            color = if (selected) DuoChocolate else DuoTextSecondary
         )
     }
 }

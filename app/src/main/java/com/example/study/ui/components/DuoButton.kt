@@ -37,6 +37,14 @@ import com.example.study.ui.theme.DuoRed
 import com.example.study.ui.theme.DuoRedShadow
 import com.example.study.ui.theme.DuoSurface
 import com.example.study.ui.theme.DuoTextSecondary
+import com.example.study.ui.theme.CreamGold
+import com.example.study.ui.theme.CreamGoldDark
+import com.example.study.ui.theme.DuoSuccess
+import com.example.study.ui.theme.DuoSuccessShadow
+import com.example.study.ui.theme.DuoLearning
+import com.example.study.ui.theme.DuoPeach
+import com.example.study.ui.theme.DuoPeachShadow
+import com.example.study.ui.theme.DuoChocolate
 
 /** 按钮语义色：主操作 / 正确(掌握) / 学习中 / 危险 / 次要。 */
 enum class DuoButtonStyle { Primary, Correct, Learning, Danger, Secondary }
@@ -45,11 +53,11 @@ private data class ButtonColors(val face: Color, val shadow: Color)
 
 @Composable
 private fun colorsFor(style: DuoButtonStyle): ButtonColors = when (style) {
-    DuoButtonStyle.Primary -> ButtonColors(DuoGreen, DuoGreenShadow)
-    DuoButtonStyle.Correct -> ButtonColors(DuoGreen, DuoGreenShadow)
-    DuoButtonStyle.Learning -> ButtonColors(DuoBlue, DuoBlueShadow)
+    DuoButtonStyle.Primary -> ButtonColors(CreamGold, CreamGoldDark)
+    DuoButtonStyle.Correct -> ButtonColors(DuoSuccess, DuoSuccessShadow)
+    DuoButtonStyle.Learning -> ButtonColors(DuoLearning, CreamGoldDark)
     DuoButtonStyle.Danger -> ButtonColors(DuoRed, DuoRedShadow)
-    DuoButtonStyle.Secondary -> ButtonColors(DuoCard, DuoBorder)
+    DuoButtonStyle.Secondary -> ButtonColors(DuoPeach, DuoPeachShadow)
 }
 
 /**
@@ -90,8 +98,7 @@ fun DuoButton(
     }
     val textColor = when {
         !enabled -> DuoTextSecondary
-        style == DuoButtonStyle.Secondary -> DuoGreen
-        else -> Color.White
+        else -> DuoChocolate
     }
 
     Box(modifier = modifier.height(56.dp)) {

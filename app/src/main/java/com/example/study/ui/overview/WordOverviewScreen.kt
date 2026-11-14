@@ -54,6 +54,7 @@ import com.example.study.ui.theme.DuoGreen
 import com.example.study.ui.theme.DuoSurface
 import com.example.study.ui.theme.DuoTextPrimary
 import com.example.study.ui.theme.DuoTextSecondary
+import com.example.study.ui.theme.DuoChocolate
 
 @Composable
 fun WordOverviewScreen(modifier: Modifier = Modifier) {
@@ -233,7 +234,7 @@ private fun OverviewFilterChip(text: String, selected: Boolean, onClick: () -> U
         Text(
             text = text,
             style = MaterialTheme.typography.labelLarge,
-            color = if (selected) DuoCard else DuoTextSecondary
+            color = if (selected) DuoChocolate else DuoTextSecondary
         )
     }
 }

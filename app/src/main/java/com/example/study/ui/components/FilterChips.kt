@@ -27,6 +27,7 @@ import com.example.study.ui.theme.DuoBorder
 import com.example.study.ui.theme.DuoCard
 import com.example.study.ui.theme.DuoGreen
 import com.example.study.ui.theme.DuoTextSecondary
+import com.example.study.ui.theme.DuoChocolate
 
 /** 学习页筛选选项：-1 全部 / 0 未学习 / 1 学习中 / 2 已掌握。 */
 val StudyFilterOptions: List<Pair<Int, String>> = listOf(
@@ -76,7 +77,7 @@ fun FilterChips(
                 Text(
                     text = label,
                     style = MaterialTheme.typography.labelMedium,
-                    color = if (isSelected) Color.White else DuoTextSecondary,
+                    color = if (isSelected) DuoChocolate else DuoTextSecondary,
                     modifier = Modifier.padding(horizontal = 14.dp, vertical = 8.dp)
                 )
             }

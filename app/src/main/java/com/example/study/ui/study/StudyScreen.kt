@@ -74,6 +74,7 @@ import com.example.study.ui.theme.DuoGreen
 import com.example.study.ui.theme.DuoSurface
 import com.example.study.ui.theme.DuoTextPrimary
 import com.example.study.ui.theme.DuoTextSecondary
+import com.example.study.ui.theme.DuoSuccess
 
 @Composable
 fun StudyScreen(
@@ -630,7 +631,7 @@ private fun CardFace(
             .background(DuoCard)
             .border(
                 width = 2.dp,
-                color = if (status == StudyStatus.MASTERED) DuoGreen else DuoBorder,
+                color = if (status == StudyStatus.MASTERED) DuoSuccess else DuoBorder,
                 shape = shape
             )
             .padding(22.dp)

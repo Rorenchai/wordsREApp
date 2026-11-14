@@ -4,16 +4,56 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
 
-// 多邻国风格品牌色（深浅色模式通用）
-val DuoGreen = Color(0xFF58CC02)
-val DuoGreenShadow = Color(0xFF46A302)
-val DuoGreenSoft = Color(0xFFE7F8D8)
-val DuoRed = Color(0xFFFF4B4B)
-val DuoRedShadow = Color(0xFFD33131)
-val DuoBlue = Color(0xFF1CB0F6)
-val DuoBlueShadow = Color(0xFF1387BD)
-val DuoGold = Color(0xFFFFC800)
-val DuoGoldSoft = Color(0xFFFFF4CC)
+// Creamy Kawaii 品牌色板：奶油金 / 杏仁白 / 蜜桃粉 / 可可深棕
+val CreamGold = Color(0xFFD9BB59)
+val CreamGoldDark = Color(0xFFB99A3F)
+val CreamGoldSoft = Color(0xFFF7EBC4)
+val CreamIvory = Color(0xFFFFF8E8)
+val CreamCard = Color(0xFFFFFCF4)
+val PeachPink = Color(0xFFF8D9CC)
+val PeachPinkDark = Color(0xFFE4BFAE)
+val Caramel = Color(0xFFB99578)
+val CaramelDark = Color(0xFF9A7A60)
+val Chocolate = Color(0xFF57483B)
+val OatBorder = Color(0xFFEADCBF)
+val OatGray = Color(0xFFD8CBB7)
+val MutedBrown = Color(0xFF9B8977)
+val Sage = Color(0xFF91A88B)
+val SageDark = Color(0xFF5F7A59)
+val SageSoft = Color(0xFFEAF0E6)
+val Coral = Color(0xFFD98978)
+val CoralDark = Color(0xFFB96F61)
+
+// 深色模式：保留奶油金的品牌识别度，不做简单反色
+val DarkCreamBackground = Color(0xFF292522)
+val DarkCreamCard = Color(0xFF39322D)
+val DarkCreamBorder = Color(0xFF51463D)
+val DarkCreamText = Color(0xFFFFF4DF)
+val DarkCreamTextSecondary = Color(0xFFC0AE99)
+val DarkCreamPink = Color(0xFFC99280)
+
+// 兼容现有 UI 的语义别名：主品牌色统一指向奶油金
+val DuoGreen = CreamGold
+val DuoGreenShadow = CreamGoldDark
+val DuoGreenSoft = CreamGoldSoft
+val DuoRed = Coral
+val DuoRedShadow = CoralDark
+val DuoBlue = Caramel
+val DuoBlueShadow = CaramelDark
+val DuoGold = CreamGold
+val DuoGoldSoft = CreamGoldSoft
+
+/** 学习状态的辅助色：未学习 / 学习中 / 已掌握。 */
+val DuoSuccess = Sage
+val DuoSuccessShadow = Color(0xFF718A6B)
+val DuoSuccessSoft = SageSoft
+val DuoSuccessText = SageDark
+val DuoLearning = CreamGold
+val DuoLearningSoft = CreamGoldSoft
+val DuoNeutral = OatGray
+val DuoPeach = PeachPink
+val DuoPeachShadow = PeachPinkDark
+val DuoChocolate = Chocolate
 
 /** 随深浅色模式切换的主题色。 */
 data class DuoColors(
@@ -27,32 +67,32 @@ data class DuoColors(
 )
 
 val LightDuoColors = DuoColors(
-    background = Color(0xFFFFFFFF),
-    card = Color(0xFFFFFFFF),
-    surface = Color(0xFFF7F7F7),
-    border = Color(0xFFE5E5E5),
-    textPrimary = Color(0xFF3C3C3C),
-    textSecondary = Color(0xFF777777),
+    background = CreamIvory,
+    card = CreamCard,
+    surface = Color(0xFFF7EDDA),
+    border = OatBorder,
+    textPrimary = Chocolate,
+    textSecondary = MutedBrown,
     isDark = false
 )
 
 val DarkDuoColors = DuoColors(
-    background = Color(0xFF121212),
-    card = Color(0xFF1F1F1F),
-    surface = Color(0xFF262626),
-    border = Color(0xFF3A3A3A),
-    textPrimary = Color(0xFFEDEDED),
-    textSecondary = Color(0xFFA0A0A0),
+    background = DarkCreamBackground,
+    card = DarkCreamCard,
+    surface = Color(0xFF332D28),
+    border = DarkCreamBorder,
+    textPrimary = DarkCreamText,
+    textSecondary = DarkCreamTextSecondary,
     isDark = true
 )
 
 val LocalDuoColors = staticCompositionLocalOf { LightDuoColors }
 
-/** 页面背景（白 / 深灰）。 */
+/** 页面背景（杏仁白 / 深可可）。 */
 val DuoBackground: Color
     @Composable get() = LocalDuoColors.current.background
 
-/** 卡片背景（白 / 深色卡片）。 */
+/** 卡片背景（象牙奶油白 / 深色卡片）。 */
 val DuoCard: Color
     @Composable get() = LocalDuoColors.current.card
 
