@@ -227,7 +227,7 @@ private fun PlanCreationForm(
     onCreate: () -> Unit
 ) {
     Text(
-        text = "按艾宾浩斯遗忘曲线安排每日新词与复习，考试前完成多轮巩固。",
+        text = "按备考日期安排每日新词与复习，考试前完成多轮巩固。",
         style = MaterialTheme.typography.bodySmall,
         color = DuoTextSecondary
     )
@@ -311,7 +311,7 @@ private fun PlanCreationForm(
             )
         }
         Text(
-            text = "艾宾浩斯法建议新词与复习量约 1:2，单日新词不超过 ${EbbinghausSchedule.MAX_DAILY_NEW_WORDS} 个。",
+            text = "建议新词与复习量约 1:2，单日新词不超过 ${EbbinghausSchedule.MAX_DAILY_NEW_WORDS} 个。",
             style = MaterialTheme.typography.bodySmall,
             color = DuoTextSecondary
         )
@@ -413,7 +413,7 @@ private fun PlanOverview(
             color = DuoTextPrimary
         )
         Text(
-            text = "按艾宾浩斯复习间隔（1/2/4/7/15 天）自动安排，答对推进、答错次日重试；越过考试日期自动收口。",
+            text = "按 1/2/4/7/15 天复习间隔自动安排，答对推进、答错次日重试；越过考试日期自动收口。",
             style = MaterialTheme.typography.bodySmall,
             color = DuoTextSecondary
         )

@@ -1,4 +1,4 @@
-﻿package com.example.study.ui.study
+package com.example.study.ui.study
 
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.animateFloatAsState
@@ -203,7 +203,7 @@ private fun StudyTopBar(
                 text = if (state.hasPlan) {
                     "已学 ${state.planLearnedWords}/${state.planTargetWords}"
                 } else {
-                    "按遗忘曲线规划"
+                    "按备考日期规划"
                 },
                 style = MaterialTheme.typography.bodySmall,
                 color = DuoTextPrimary,
@@ -318,7 +318,7 @@ private fun PlanCard(state: StudyUiState, onOpenPlan: () -> Unit) {
             ProgressTrack(progress = progress, modifier = Modifier.fillMaxWidth())
         } else {
             Text(
-                text = "按艾宾浩斯遗忘曲线安排每日新词与复习，考试前完成多轮巩固。",
+                text = "按备考日期安排每日新词与复习，考试前完成多轮巩固。",
                 style = MaterialTheme.typography.bodySmall,
                 color = DuoTextSecondary
             )

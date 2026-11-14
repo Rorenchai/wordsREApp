@@ -204,7 +204,7 @@ fun PlanStudyScreen(mode: PlanStudyMode, onBack: () -> Unit, modifier: Modifier 
 
             Text(
                 text = if (mode == PlanStudyMode.NEW) {
-                    "学完新词后自动安排次日首次复习（艾宾浩斯第 1 轮）。"
+                    "学完新词后自动安排次日首次复习。"
                 } else {
                     "按回忆结果判定：记住了进入下一轮复习，没记住次日重试。"
                 },
