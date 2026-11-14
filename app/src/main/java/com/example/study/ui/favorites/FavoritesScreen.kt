@@ -1,4 +1,4 @@
-﻿package com.example.study.ui.favorites
+package com.example.study.ui.favorites
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -160,7 +160,8 @@ private fun FavoriteRow(word: WordEntity, onClick: () -> Unit, onRemove: () -> U
             .background(DuoSurface)
             .border(2.dp, DuoBorder, RoundedCornerShape(18.dp))
             .clickable(onClick = onClick)
-            .padding(start = 16.dp, top = 10.dp, bottom = 10.dp, end = 4.dp),
+            // 左右/上下留足内边距，避免文字贴住圆角边缘或被星标挤压
+            .padding(start = 16.dp, top = 12.dp, bottom = 12.dp, end = 10.dp),
         verticalArrangement = Arrangement.spacedBy(4.dp)
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {

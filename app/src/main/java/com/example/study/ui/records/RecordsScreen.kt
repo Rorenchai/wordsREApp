@@ -1,7 +1,8 @@
-﻿package com.example.study.ui.records
+package com.example.study.ui.records
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -17,6 +18,10 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.spring
+import androidx.compose.animation.core.tween
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.LocalFireDepartment
 import androidx.compose.material3.CircularProgressIndicator
@@ -26,13 +31,20 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import androidx.compose.ui.window.Dialog
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.study.data.stats.LibraryStats
@@ -40,7 +52,6 @@ import com.example.study.data.stats.StudyDates
 import com.example.study.data.stats.formatStudyDuration
 import com.example.study.ui.components.DayBar
 import com.example.study.ui.components.ProgressTrack
-import com.example.study.ui.components.StatCard
 import com.example.study.ui.components.WeekBarChart
 import java.time.LocalDate
 import com.example.study.ui.theme.DuoBackground
@@ -49,6 +60,7 @@ import com.example.study.ui.theme.DuoBorder
 import com.example.study.ui.theme.DuoCard
 import com.example.study.ui.theme.DuoGold
 import com.example.study.ui.theme.DuoGreen
+import com.example.study.ui.theme.DuoRed
 import com.example.study.ui.theme.DuoSurface
 import com.example.study.ui.theme.DuoTextPrimary
 import com.example.study.ui.theme.DuoTextSecondary
@@ -58,6 +70,7 @@ fun RecordsScreen(onOpenWrongBook: () -> Unit, onOpenVocab: () -> Unit, modifier
     val context = LocalContext.current
     val viewModel: RecordsViewModel = viewModel(factory = RecordsViewModel.factory(context))
     val state by viewModel.uiState.collectAsStateWithLifecycle()
+    var checkInReward by remember { mutableStateOf<CheckInReward?>(null) }
 
     LaunchedEffect(Unit) { viewModel.refresh() }
 
@@ -103,18 +116,18 @@ fun RecordsScreen(onOpenWrongBook: () -> Unit, onOpenVocab: () -> Unit, modifier
                 }
             } else if (stats != null) {
                 StatsGrid(stats)
-                RateCard(
-                    title = "学习进度",
-                    rate = stats.learnedPercent,
-                    caption = "已接触 ${stats.startedWords} / ${stats.totalWords} 个单词",
-                    color = DuoBlue
+                CheckInCard(
+                    stats = stats,
+                    lastCheckInDate = state.lastCheckInDate,
+                    onCheckIn = {
+                        viewModel.checkIn()
+                        checkInReward = CheckInReward(
+                            streak = stats.streak,
+                            energy = (10 + stats.streak * 2).coerceAtMost(50)
+                        )
+                    }
                 )
-                RateCard(
-                    title = "掌握率",
-                    rate = stats.masteredPercent,
-                    caption = "已掌握 ${stats.masteredWords} / ${stats.totalWords} 个单词",
-                    color = DuoGreen
-                )
+                ProgressOverviewCard(stats)
                 QuizStatsCard(stats)
                 WeekCard(stats)
                 LearningTimeCard(stats)
@@ -140,94 +153,296 @@ fun RecordsScreen(onOpenWrongBook: () -> Unit, onOpenVocab: () -> Unit, modifier
             }
         }
     }
+
+    checkInReward?.let { reward ->
+        CheckInRewardDialog(
+            streak = reward.streak,
+            energy = reward.energy,
+            onDismiss = { checkInReward = null }
+        )
+    }
 }
-
-
 
 @Composable
 private fun StatsGrid(stats: LibraryStats) {
-    Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.spacedBy(12.dp)
-        ) {
-            StatCard(
+    // 四个统计值合并进一张卡片，减少满屏独立圆角小卡，视觉更干净
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(14.dp))
+            .background(DuoSurface)
+            .border(2.dp, DuoBorder, RoundedCornerShape(14.dp))
+            .padding(vertical = 14.dp)
+    ) {
+        Row(modifier = Modifier.fillMaxWidth()) {
+            StatCell(
                 value = stats.totalWords.toString(),
                 label = "词库总数",
-                modifier = Modifier.weight(1f),
-                accent = DuoTextPrimary
+                accent = DuoTextPrimary,
+                modifier = Modifier.weight(1f)
             )
-            StatCard(
+            Box(
+                modifier = Modifier
+                    .width(1.dp)
+                    .height(42.dp)
+                    .background(DuoBorder)
+            )
+            StatCell(
                 value = stats.startedWords.toString(),
                 label = "已学",
-                modifier = Modifier.weight(1f),
-                accent = DuoBlue
+                accent = DuoBlue,
+                modifier = Modifier.weight(1f)
             )
         }
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.spacedBy(12.dp)
-        ) {
-            StatCard(
+        Box(
+            modifier = Modifier
+                .padding(horizontal = 16.dp, vertical = 10.dp)
+                .fillMaxWidth()
+                .height(1.dp)
+                .background(DuoBorder)
+        )
+        Row(modifier = Modifier.fillMaxWidth()) {
+            StatCell(
                 value = stats.masteredWords.toString(),
                 label = "已掌握",
-                modifier = Modifier.weight(1f),
-                accent = DuoGreen
+                accent = DuoGreen,
+                modifier = Modifier.weight(1f)
             )
-            StatCard(
+            Box(
+                modifier = Modifier
+                    .width(1.dp)
+                    .height(42.dp)
+                    .background(DuoBorder)
+            )
+            StatCell(
                 value = stats.untouchedWords.toString(),
                 label = "待学",
-                modifier = Modifier.weight(1f),
-                accent = DuoGold
+                accent = DuoGold,
+                modifier = Modifier.weight(1f)
             )
         }
     }
 }
 
 @Composable
-private fun RateCard(
-    title: String,
-    rate: Float,
-    caption: String,
-    color: androidx.compose.ui.graphics.Color
+private fun StatCell(
+    value: String,
+    label: String,
+    accent: Color,
+    modifier: Modifier = Modifier
 ) {
+    Column(
+        modifier = modifier.padding(vertical = 4.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(
+            text = value,
+            style = MaterialTheme.typography.headlineSmall,
+            color = accent,
+            textAlign = TextAlign.Center
+        )
+        Text(
+            text = label,
+            style = MaterialTheme.typography.bodySmall,
+            color = DuoTextSecondary,
+            textAlign = TextAlign.Center
+        )
+    }
+}
+
+@Composable
+private fun ProgressOverviewCard(stats: LibraryStats) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .clip(RoundedCornerShape(20.dp))
+            .clip(RoundedCornerShape(14.dp))
             .background(DuoSurface)
-            .border(2.dp, DuoBorder, RoundedCornerShape(20.dp))
+            .border(2.dp, DuoBorder, RoundedCornerShape(14.dp))
             .padding(16.dp),
-        verticalArrangement = Arrangement.spacedBy(10.dp)
+        verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            Text(title, style = MaterialTheme.typography.titleMedium, color = DuoTextPrimary)
+            Text("学习进度", style = MaterialTheme.typography.titleMedium, color = DuoTextPrimary)
             Text(
-                text = String.format(java.util.Locale.US, "%.1f%%", rate),
+                text = String.format(java.util.Locale.US, "%.1f%%", stats.learnedPercent),
                 style = MaterialTheme.typography.titleMedium,
-                color = color
+                color = DuoBlue
             )
         }
-        ProgressTrack(
-            progress = rate / 100f,
-            modifier = Modifier.fillMaxWidth(),
-            fillColor = color
+        ProgressTrack(progress = stats.learnedPercent / 100f, modifier = Modifier.fillMaxWidth(), fillColor = DuoBlue)
+        Text(
+            text = "已接触 ${stats.startedWords} / ${stats.totalWords} 个单词",
+            style = MaterialTheme.typography.bodySmall,
+            color = DuoTextSecondary
         )
-        Text(caption, style = MaterialTheme.typography.bodySmall, color = DuoTextSecondary)
+        Spacer(Modifier.height(4.dp))
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Text("掌握率", style = MaterialTheme.typography.titleMedium, color = DuoTextPrimary)
+            Text(
+                text = String.format(java.util.Locale.US, "%.1f%%", stats.masteredPercent),
+                style = MaterialTheme.typography.titleMedium,
+                color = DuoGreen
+            )
+        }
+        ProgressTrack(progress = stats.masteredPercent / 100f, modifier = Modifier.fillMaxWidth())
+        Text(
+            text = "已掌握 ${stats.masteredWords} / ${stats.totalWords} 个单词",
+            style = MaterialTheme.typography.bodySmall,
+            color = DuoTextSecondary
+        )
+    }
+}
+
+/** 今日打卡卡片的奖励数据（连续天数 + 学习能量）。 */
+private data class CheckInReward(val streak: Int, val energy: Int)
+
+@Composable
+private fun CheckInCard(
+    stats: LibraryStats,
+    lastCheckInDate: String,
+    onCheckIn: () -> Unit
+) {
+    val checkedToday = lastCheckInDate == LocalDate.now().toString()
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(14.dp))
+            .background(DuoSurface)
+            .border(2.dp, DuoBorder, RoundedCornerShape(14.dp))
+            .padding(16.dp),
+        verticalArrangement = Arrangement.spacedBy(8.dp)
+    ) {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text("每日打卡", style = MaterialTheme.typography.titleMedium, color = DuoTextPrimary)
+            Text(
+                text = if (checkedToday) "今日已打卡" else "待打卡",
+                style = MaterialTheme.typography.labelMedium,
+                color = if (checkedToday) DuoGreen else DuoGold
+            )
+        }
+        Text(
+            text = when {
+                checkedToday -> "今天已打卡 · 连续 ${stats.streak} 天，明天继续保持"
+                stats.todayStudied > 0 -> "今天已学 ${stats.todayStudied} 个单词，完成打卡可领取学习能量"
+                else -> "今天还没有学习记录，先学几个单词再打卡吧"
+            },
+            style = MaterialTheme.typography.bodySmall,
+            color = DuoTextSecondary
+        )
+        if (!checkedToday && stats.todayStudied > 0) {
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clip(RoundedCornerShape(12.dp))
+                    .background(DuoGreen)
+                    .clickable(onClick = onCheckIn)
+                    .padding(vertical = 12.dp),
+                contentAlignment = Alignment.Center
+            ) {
+                Text(
+                    text = "立即打卡 · 领取奖励",
+                    style = MaterialTheme.typography.labelLarge,
+                    color = DuoCard
+                )
+            }
+        }
     }
 }
 
 @Composable
-private fun QuizStatsCard(stats: LibraryStats) {
-    Column(
+private fun CheckInRewardDialog(streak: Int, energy: Int, onDismiss: () -> Unit) {
+    var started by remember { mutableStateOf(false) }
+    LaunchedEffect(Unit) { started = true }
+    val confettiProgress by animateFloatAsState(
+        targetValue = if (started) 1f else 0f,
+        animationSpec = tween(durationMillis = 1200),
+        label = "check-in-confetti"
+    )
+    val medalScale by animateFloatAsState(
+        targetValue = if (started) 1f else 0.4f,
+        animationSpec = spring(
+            dampingRatio = Spring.DampingRatioMediumBouncy,
+            stiffness = Spring.StiffnessMediumLow
+        ),
+        label = "check-in-medal"
+    )
+    Dialog(onDismissRequest = onDismiss) {
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .clip(RoundedCornerShape(24.dp))
+                .background(DuoCard)
+                .border(2.dp, DuoBorder, RoundedCornerShape(24.dp))
+                .padding(24.dp),
+            contentAlignment = Alignment.Center
+        ) {
+            // 简单彩带粒子：按进度从顶部飘落，形成轻量奖励反馈
+            Canvas(modifier = Modifier.matchParentSize()) {
+                val colors = listOf(DuoGreen, DuoGold, DuoBlue, DuoRed)
+                repeat(40) { index ->
+                    val seed = (index * 53) % 97
+                    val delay = (seed % 35) / 100f
+                    val progress = ((confettiProgress - delay) / (1f - delay)).coerceIn(0f, 1f)
+                    if (progress <= 0f) return@repeat
+                    val x = size.width * ((seed % 100) / 100f) +
+                        (index % 2 * 10 - 5).dp.toPx() * progress
+                    val y = -16.dp.toPx() + (size.height + 32.dp.toPx()) * progress
+                    drawCircle(
+                        color = colors[index % colors.size].copy(alpha = 1f - progress * 0.5f),
+                        radius = (2 + index % 3).dp.toPx(),
+                        center = Offset(x, y)
+                    )
+                }
+            }
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                Text(
+                    text = "🎉",
+                    fontSize = 48.sp,
+                    modifier = Modifier.graphicsLayer {
+                        scaleX = medalScale
+                        scaleY = medalScale
+                    }
+                )
+                Text("打卡成功！", style = MaterialTheme.typography.headlineSmall, color = DuoGreen)
+                Text("连续打卡 $streak 天", style = MaterialTheme.typography.titleMedium, color = DuoTextPrimary)
+                Text("获得 $energy 学习能量", style = MaterialTheme.typography.bodyMedium, color = DuoGold)
+                Spacer(Modifier.height(4.dp))
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clip(RoundedCornerShape(12.dp))
+                        .background(DuoGreen)
+                        .clickable(onClick = onDismiss)
+                        .padding(vertical = 12.dp),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text("收下奖励", style = MaterialTheme.typography.labelLarge, color = DuoCard)
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun QuizStatsCard(stats: LibraryStats) {    Column(
         modifier = Modifier
             .fillMaxWidth()
-            .clip(RoundedCornerShape(20.dp))
+            .clip(RoundedCornerShape(14.dp))
             .background(DuoSurface)
-            .border(2.dp, DuoBorder, RoundedCornerShape(20.dp))
+            .border(2.dp, DuoBorder, RoundedCornerShape(14.dp))
             .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(6.dp)
     ) {
@@ -249,9 +464,9 @@ private fun LearningTimeCard(stats: LibraryStats) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .clip(RoundedCornerShape(20.dp))
+            .clip(RoundedCornerShape(14.dp))
             .background(DuoSurface)
-            .border(2.dp, DuoBorder, RoundedCornerShape(20.dp))
+            .border(2.dp, DuoBorder, RoundedCornerShape(14.dp))
             .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(6.dp)
     ) {
@@ -273,9 +488,9 @@ private fun WrongBookCard(count: Int, onOpen: () -> Unit) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .clip(RoundedCornerShape(20.dp))
+            .clip(RoundedCornerShape(14.dp))
             .background(DuoSurface)
-            .border(2.dp, DuoBorder, RoundedCornerShape(20.dp))
+            .border(2.dp, DuoBorder, RoundedCornerShape(14.dp))
             .clickable(onClick = onOpen)
             .padding(16.dp),
         horizontalArrangement = Arrangement.SpaceBetween,
@@ -308,9 +523,9 @@ private fun VocabCard(estimate: Int, date: String, onOpen: () -> Unit) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .clip(RoundedCornerShape(20.dp))
+            .clip(RoundedCornerShape(14.dp))
             .background(DuoSurface)
-            .border(2.dp, DuoBorder, RoundedCornerShape(20.dp))
+            .border(2.dp, DuoBorder, RoundedCornerShape(14.dp))
             .clickable(onClick = onOpen)
             .padding(16.dp),
         horizontalArrangement = Arrangement.SpaceBetween,
@@ -346,9 +561,9 @@ private fun CheckInCalendarCard(stats: LibraryStats) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .clip(RoundedCornerShape(20.dp))
+            .clip(RoundedCornerShape(14.dp))
             .background(DuoSurface)
-            .border(2.dp, DuoBorder, RoundedCornerShape(20.dp))
+            .border(2.dp, DuoBorder, RoundedCornerShape(14.dp))
             .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
@@ -433,9 +648,9 @@ private fun WeekCard(stats: LibraryStats) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .clip(RoundedCornerShape(20.dp))
+            .clip(RoundedCornerShape(14.dp))
             .background(DuoSurface)
-            .border(2.dp, DuoBorder, RoundedCornerShape(20.dp))
+            .border(2.dp, DuoBorder, RoundedCornerShape(14.dp))
             .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(6.dp)
     ) {
@@ -458,9 +673,9 @@ private fun WeekCard(stats: LibraryStats) {
 private fun StreakCard(streak: Int, modifier: Modifier = Modifier) {
     Column(
         modifier = modifier
-            .clip(RoundedCornerShape(20.dp))
+            .clip(RoundedCornerShape(14.dp))
             .background(DuoSurface)
-            .border(2.dp, DuoBorder, RoundedCornerShape(20.dp))
+            .border(2.dp, DuoBorder, RoundedCornerShape(14.dp))
             .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -486,9 +701,9 @@ private fun StreakCard(streak: Int, modifier: Modifier = Modifier) {
 private fun TotalCard(totalEvents: Long, modifier: Modifier = Modifier) {
     Column(
         modifier = modifier
-            .clip(RoundedCornerShape(20.dp))
+            .clip(RoundedCornerShape(14.dp))
             .background(DuoSurface)
-            .border(2.dp, DuoBorder, RoundedCornerShape(20.dp))
+            .border(2.dp, DuoBorder, RoundedCornerShape(14.dp))
             .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {

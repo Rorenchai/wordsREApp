@@ -11,11 +11,11 @@ import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.FormatListBulleted
 import androidx.compose.material.icons.automirrored.filled.MenuBook
 import androidx.compose.material.icons.filled.BarChart
 import androidx.compose.material.icons.filled.School
 import androidx.compose.material.icons.filled.Star
-import androidx.compose.material.icons.filled.VideogameAsset
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -38,7 +38,6 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.study.ui.dictionary.DictionaryScreen
 import com.example.study.ui.favorites.FavoritesScreen
-import com.example.study.ui.games.GamesScreen
 import com.example.study.ui.listening.ListeningScreen
 import com.example.study.ui.match.MatchScreen
 import com.example.study.ui.plan.PlanScreen
@@ -49,6 +48,7 @@ import com.example.study.ui.review.ReviewScreen
 import com.example.study.ui.spelling.SpellingScreen
 import com.example.study.ui.vocab.VocabTestScreen
 import com.example.study.ui.wrongbook.WrongBookScreen
+import com.example.study.ui.overview.WordOverviewScreen
 import com.example.study.ui.records.RecordsScreen
 import com.example.study.ui.settings.SettingsScreen
 import com.example.study.ui.study.StudyScreen
@@ -56,7 +56,7 @@ import com.example.study.ui.theme.DuoBackground
 import com.example.study.ui.theme.DuoGreen
 import com.example.study.ui.theme.DuoTextSecondary
 
-/** 底部导航的四个页签。 */
+/** 底部导航的五个页签。 */
 private data class BottomNavItem(
     val route: String,
     val label: String,
@@ -67,7 +67,7 @@ private val bottomNavItems = listOf(
     BottomNavItem("study", "学习", Icons.Filled.School),
     BottomNavItem("favorites", "收藏", Icons.Filled.Star),
     BottomNavItem("records", "记录", Icons.Filled.BarChart),
-    BottomNavItem("games", "游戏", Icons.Filled.VideogameAsset),
+    BottomNavItem("overview", "总览", Icons.AutoMirrored.Filled.FormatListBulleted),
     BottomNavItem("settings", "词库", Icons.AutoMirrored.Filled.MenuBook)
 )
 
@@ -162,6 +162,9 @@ fun AppNavHost() {
                     },
                     onOpenPlan = {
                         navController.navigate("plan") { launchSingleTop = true }
+                    },
+                    onOpenGame = { game, planMode ->
+                        navController.navigate("$game?planMode=$planMode") { launchSingleTop = true }
                     }
                 )
             }
@@ -176,22 +179,7 @@ fun AppNavHost() {
                 )
             }
             composable("favorites") { FavoritesScreen() }
-            composable("games") {
-                GamesScreen(
-                    onOpenMatch = { planMode ->
-                        navController.navigate("match?planMode=$planMode") { launchSingleTop = true }
-                    },
-                    onOpenQuiz = { planMode ->
-                        navController.navigate("quiz?planMode=$planMode") { launchSingleTop = true }
-                    },
-                    onOpenListening = { planMode ->
-                        navController.navigate("listening?planMode=$planMode") { launchSingleTop = true }
-                    },
-                    onOpenSpelling = { planMode ->
-                        navController.navigate("spelling?planMode=$planMode") { launchSingleTop = true }
-                    }
-                )
-            }
+            composable("overview") { WordOverviewScreen() }
             composable("settings") { SettingsScreen() }
             composable("dictionary") {
                 DictionaryScreen(onBack = { navController.popBackStack() })

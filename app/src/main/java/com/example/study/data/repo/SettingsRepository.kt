@@ -51,6 +51,9 @@ class SettingsRepository(
     /** 小游戏是否优先使用计划词池。 */
     val gamePlanMode: Flow<Boolean> = safeData.map { it[KEY_GAME_PLAN_MODE] ?: false }
 
+    /** 最近一次打卡日期（yyyy-MM-dd，空串表示还没打卡）。 */
+    val lastCheckInDate: Flow<String> = safeData.map { it[KEY_LAST_CHECK_IN] ?: "" }
+
     suspend fun setCurrentLibrary(library: String) {
         dataStore.edit { it[KEY_LIBRARY] = library }
     }
@@ -86,6 +89,11 @@ class SettingsRepository(
         dataStore.edit { it[KEY_GAME_PLAN_MODE] = enabled }
     }
 
+    /** 记录今日已打卡，避免同一天重复领取奖励。 */
+    suspend fun setLastCheckInDate(date: String) {
+        dataStore.edit { it[KEY_LAST_CHECK_IN] = date }
+    }
+
     companion object {
         const val LIB_CET4 = "CET-4"
         const val LIB_CET6 = "CET-6"
@@ -111,6 +119,7 @@ class SettingsRepository(
         private val KEY_REMINDER_HOUR = intPreferencesKey("reminder_hour")
         private val KEY_THEME_MODE = stringPreferencesKey("theme_mode")
         private val KEY_GAME_PLAN_MODE = booleanPreferencesKey("game_plan_mode")
+        private val KEY_LAST_CHECK_IN = stringPreferencesKey("last_check_in_date")
 
         fun create(context: Context): SettingsRepository {
             return SettingsRepository(context.applicationContext.settingsDataStore)

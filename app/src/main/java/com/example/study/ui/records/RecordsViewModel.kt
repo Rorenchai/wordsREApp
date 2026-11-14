@@ -15,13 +15,15 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import java.time.LocalDate
 
 data class RecordsUiState(
     val library: String = SettingsRepository.LIB_CET4,
     val loading: Boolean = true,
     val stats: LibraryStats? = null,
     val vocabEstimate: Int = 0,
-    val vocabDate: String = ""
+    val vocabDate: String = "",
+    val lastCheckInDate: String = ""
 )
 
 class RecordsViewModel(
@@ -48,6 +50,18 @@ class RecordsViewModel(
             settingsRepository.vocabTestDate.collect { date ->
                 _uiState.update { it.copy(vocabDate = date) }
             }
+        }
+        viewModelScope.launch {
+            settingsRepository.lastCheckInDate.collect { date ->
+                _uiState.update { it.copy(lastCheckInDate = date) }
+            }
+        }
+    }
+
+    /** 记录今日打卡（奖励弹窗由界面展示）。 */
+    fun checkIn() {
+        viewModelScope.launch {
+            settingsRepository.setLastCheckInDate(LocalDate.now().toString())
         }
     }
 

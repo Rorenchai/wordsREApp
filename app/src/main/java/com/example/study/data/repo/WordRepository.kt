@@ -3,6 +3,7 @@ package com.example.study.data.repo
 import com.example.study.data.db.LibraryCount
 import com.example.study.data.db.WordDao
 import com.example.study.data.db.WordEntity
+import com.example.study.data.db.WordOverviewItem
 import com.example.study.data.seed.DatabaseSeeder
 
 /** 词库读取：负责保证 seeding 完成，再提供随机抽词 / 查词能力。 */
@@ -21,6 +22,15 @@ class WordRepository(
 
     /** 词库列表（内置 + 用户导入的自定义词库，按内置优先排序）。 */
     suspend fun libraries(): List<LibraryCount> = wordDao.libraryCounts()
+
+    /** 单词总览分页查询：filter 0 全部 / 1 已掌握 / 2 未掌握。 */
+    suspend fun overviewWords(
+        library: String,
+        filter: Int,
+        query: String,
+        limit: Int,
+        offset: Int
+    ): List<WordOverviewItem> = wordDao.overviewWords(library, filter, query.trim(), limit, offset)
 
     /** 批量导入自定义词库；重复单词按 (word, library) 忽略，返回实际新增条数。 */
     suspend fun importLibrary(library: String, words: List<WordEntity>): Int {

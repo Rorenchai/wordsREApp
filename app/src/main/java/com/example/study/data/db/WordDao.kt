@@ -42,6 +42,38 @@ interface WordDao {
     @Query("SELECT COUNT(*) FROM words WHERE library = :library")
     suspend fun countByLibrary(library: String): Int
 
+    /**
+     * 单词总览分页查询。
+     * @param statusFilter 0 = 全部、1 = 已掌握、2 = 未掌握（未学习 + 学习中）
+     * @param query 空字符串表示不搜索，否则按单词/释义模糊匹配
+     */
+    @Query(
+        """
+        SELECT w.*, COALESCE(p.status, 0) AS status FROM words w
+        LEFT JOIN word_progress p ON w.id = p.wordId
+        WHERE w.library = :library
+          AND (
+              :statusFilter = 0
+              OR (:statusFilter = 1 AND COALESCE(p.status, 0) = 2)
+              OR (:statusFilter = 2 AND COALESCE(p.status, 0) != 2)
+          )
+          AND (
+              :query = ''
+              OR w.word LIKE '%' || :query || '%'
+              OR w.meaning LIKE '%' || :query || '%'
+          )
+        ORDER BY w.word ASC
+        LIMIT :limit OFFSET :offset
+        """
+    )
+    suspend fun overviewWords(
+        library: String,
+        statusFilter: Int,
+        query: String,
+        limit: Int,
+        offset: Int
+    ): List<WordOverviewItem>
+
     @Query("SELECT * FROM words WHERE id = :id")
     suspend fun findById(id: Long): WordEntity?
 

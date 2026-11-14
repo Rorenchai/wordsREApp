@@ -64,6 +64,7 @@ import com.example.study.ui.components.FlipCard
 import com.example.study.ui.components.ProgressTrack
 import com.example.study.ui.components.SingleLineWord
 import com.example.study.ui.components.StatusPill
+import com.example.study.ui.games.GameSection
 import com.example.study.ui.theme.DuoBackground
 import com.example.study.ui.theme.DuoBlue
 import com.example.study.ui.theme.DuoBorder
@@ -75,7 +76,12 @@ import com.example.study.ui.theme.DuoTextPrimary
 import com.example.study.ui.theme.DuoTextSecondary
 
 @Composable
-fun StudyScreen(onOpenDictionary: () -> Unit, onOpenPlan: () -> Unit, modifier: Modifier = Modifier) {
+fun StudyScreen(
+    onOpenDictionary: () -> Unit,
+    onOpenPlan: () -> Unit,
+    onOpenGame: (game: String, planMode: Boolean) -> Unit,
+    modifier: Modifier = Modifier
+) {
     val context = LocalContext.current
     val viewModel: StudyViewModel = viewModel(factory = StudyViewModel.factory(context))
     val state by viewModel.uiState.collectAsStateWithLifecycle()
@@ -141,6 +147,8 @@ fun StudyScreen(onOpenDictionary: () -> Unit, onOpenPlan: () -> Unit, modifier: 
                 modifier = Modifier.fillMaxWidth(),
                 enabled = !state.loadingWord && state.word != null
             )
+            // 游戏入口移到单词卡片下方，原底部「游戏」页改为单词总览
+            GameSection(onOpenGame = onOpenGame)
             RoundIndicator(state)
         }
         SnackbarHost(
