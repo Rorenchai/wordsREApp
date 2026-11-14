@@ -157,9 +157,6 @@ fun AppNavHost() {
         ) {
             composable("study") {
                 StudyScreen(
-                    onOpenDictionary = {
-                        navController.navigate("dictionary") { launchSingleTop = true }
-                    },
                     onOpenPlan = {
                         navController.navigate("plan") { launchSingleTop = true }
                     },

@@ -3,6 +3,7 @@ package com.example.study.ui.settings
 import android.content.Context
 import android.net.Uri
 import android.provider.OpenableColumns
+import androidx.activity.compose.BackHandler
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
@@ -77,6 +78,8 @@ fun SettingsScreen(modifier: Modifier = Modifier) {
     var showImportConfirm by rememberSaveable { mutableStateOf(false) }
     var pendingCustomImport by remember { mutableStateOf<PendingCustomImport?>(null) }
     var licenseDialog by rememberSaveable { mutableStateOf<Pair<String, String>?>(null) }
+    // 设置页本地二级页面：null 显示分组列表，否则展开对应分组的详细内容
+    var currentPage by rememberSaveable { mutableStateOf<String?>(null) }
 
     val exportLauncher = rememberLauncherForActivityResult(
         ActivityResultContracts.CreateDocument("application/json")
@@ -134,6 +137,9 @@ fun SettingsScreen(modifier: Modifier = Modifier) {
         viewModel.clearMessage()
     }
 
+    // 展开二级列表时，返回键先收起详情，而不是直接退出页面
+    BackHandler(enabled = currentPage != null) { currentPage = null }
+
     Box(
         modifier = modifier
             .fillMaxSize()
@@ -153,7 +159,7 @@ fun SettingsScreen(modifier: Modifier = Modifier) {
                 color = DuoTextPrimary
             )
 
-            SettingsSection(title = "词库") {
+            SettingsGroupEntry(title = "词库", summary = "${state.library} · ${state.wordCounts[state.library] ?: 0} 词", entryKey = "library", currentKey = currentPage, onToggle = { currentPage = it }) {
                 state.libraries.forEach { item ->
                     LibraryRow(
                         name = item.library,
@@ -164,7 +170,7 @@ fun SettingsScreen(modifier: Modifier = Modifier) {
                 }
             }
 
-            SettingsSection(title = "自定义词库") {
+            SettingsGroupEntry(title = "自定义词库", summary = "JSON / CSV / TXT 导入", entryKey = "custom", currentKey = currentPage, onToggle = { currentPage = it }) {
                 Text(
                     text = "可导入自己整理的词库文件，导入后作为独立词库出现在上方列表，"
                         + "学习、计划、收藏与备份均可使用。",
@@ -186,7 +192,7 @@ fun SettingsScreen(modifier: Modifier = Modifier) {
                 )
             }
 
-            SettingsSection(title = "每日目标") {
+            SettingsGroupEntry(title = "每日目标", summary = "${state.dailyGoal} 个不同单词 / 天", entryKey = "goal", currentKey = currentPage, onToggle = { currentPage = it }) {
                 Text(
                     text = "当前目标：${state.dailyGoal} 个不同单词 / 天",
                     style = MaterialTheme.typography.bodyMedium,
@@ -208,7 +214,7 @@ fun SettingsScreen(modifier: Modifier = Modifier) {
                 }
             }
 
-            SettingsSection(title = "发音") {
+            SettingsGroupEntry(title = "发音", summary = "内置 Piper 女声 · ${if (state.accent == SettingsRepository.ACCENT_UK) "英式 UK" else "美式 US"}", entryKey = "accent", currentKey = currentPage, onToggle = { currentPage = it }) {
                 Text(
                     text = "内置 Piper 神经网络女声（LJSpeech，完全离线），不依赖系统语音包；美式 / 英式仅语速略有差异",
                     style = MaterialTheme.typography.bodyMedium,
@@ -228,7 +234,7 @@ fun SettingsScreen(modifier: Modifier = Modifier) {
                 }
             }
 
-            SettingsSection(title = "学习数据") {
+            SettingsGroupEntry(title = "学习数据", summary = "重置 ${state.library} 的学习进度", entryKey = "data", currentKey = currentPage, onToggle = { currentPage = it }) {
                 Text(
                     text = "重置仅清空当前词库（${state.library}）的学习状态与学习记录，词库本身与另一套词库不受影响。",
                     style = MaterialTheme.typography.bodyMedium,
@@ -242,7 +248,7 @@ fun SettingsScreen(modifier: Modifier = Modifier) {
                 )
             }
 
-            SettingsSection(title = "外观") {
+            SettingsGroupEntry(title = "外观", summary = "${when (state.themeMode) { SettingsRepository.THEME_LIGHT -> "浅色"; SettingsRepository.THEME_DARK -> "深色"; else -> "跟随系统" }}", entryKey = "theme", currentKey = currentPage, onToggle = { currentPage = it }) {
                 Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                     OptionChip(
                         text = "跟随系统",
@@ -267,7 +273,7 @@ fun SettingsScreen(modifier: Modifier = Modifier) {
                 )
             }
 
-            SettingsSection(title = "数据备份") {
+            SettingsGroupEntry(title = "数据备份", summary = "导出 / 导入 JSON", entryKey = "backup", currentKey = currentPage, onToggle = { currentPage = it }) {
                 Text(
                     text = "导出学习进度 / 学习记录 / 收藏 / 本轮进度 / 学习时长与设置到 JSON 文件；导入会覆盖当前全部学习数据。",
                     style = MaterialTheme.typography.bodyMedium,
@@ -291,7 +297,7 @@ fun SettingsScreen(modifier: Modifier = Modifier) {
                 )
             }
 
-            SettingsSection(title = "学习提醒") {
+            SettingsGroupEntry(title = "学习提醒", summary = "${if (state.reminderEnabled) "已开启 · " + "%02d".format(state.reminderHour) + ":00" else "未开启"}", entryKey = "reminder", currentKey = currentPage, onToggle = { currentPage = it }) {
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceBetween,
@@ -335,7 +341,7 @@ fun SettingsScreen(modifier: Modifier = Modifier) {
                 }
             }
 
-            SettingsSection(title = "关于与许可") {
+            SettingsGroupEntry(title = "关于与许可", summary = "版本 1.1.0", entryKey = "about", currentKey = currentPage, onToggle = { currentPage = it }) {
                 Text(
                     text = "词库来源：KyleBing/english-vocabulary（BSD 3-Clause License）· PETS-B 词库由项目整理\n" +
                         "发音：内置 Piper 神经网络女声（LJSpeech，离线），不依赖系统 TTS\n" +
@@ -495,6 +501,66 @@ fun SettingsScreen(modifier: Modifier = Modifier) {
             assetPath = assetPath,
             onDismiss = { licenseDialog = null }
         )
+    }
+}
+
+/**
+ * 多层列表的一级条目：显示标题与当前值摘要，点击展开/收起二级设置内容。
+ * 同一时间只展开一个分组，避免整页堆满控件。
+ */
+@Composable
+private fun SettingsGroupEntry(
+    title: String,
+    summary: String,
+    entryKey: String,
+    currentKey: String?,
+    onToggle: (String?) -> Unit,
+    content: @Composable () -> Unit
+) {
+    val expanded = currentKey == entryKey
+    Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .clip(RoundedCornerShape(14.dp))
+                .background(DuoCard)
+                .border(2.dp, DuoBorder, RoundedCornerShape(14.dp))
+                .clickable { onToggle(if (expanded) null else entryKey) }
+                .padding(horizontal = 16.dp, vertical = 14.dp),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Column(modifier = Modifier.weight(1f)) {
+                Text(
+                    text = title,
+                    style = MaterialTheme.typography.titleMedium,
+                    color = DuoTextPrimary
+                )
+                Text(
+                    text = summary,
+                    style = MaterialTheme.typography.bodySmall,
+                    color = DuoTextSecondary
+                )
+            }
+            Text(
+                text = if (expanded) "▾" else "›",
+                style = MaterialTheme.typography.titleLarge,
+                color = DuoTextSecondary
+            )
+        }
+        if (expanded) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clip(RoundedCornerShape(12.dp))
+                    .background(DuoSurface)
+                    .border(2.dp, DuoBorder, RoundedCornerShape(12.dp))
+                    .padding(16.dp),
+                verticalArrangement = Arrangement.spacedBy(10.dp)
+            ) {
+                content()
+            }
+        }
     }
 }
 

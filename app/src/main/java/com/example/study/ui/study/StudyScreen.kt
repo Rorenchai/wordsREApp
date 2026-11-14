@@ -24,7 +24,6 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.VolumeUp
 import androidx.compose.material.icons.filled.LocalFireDepartment
-import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.outlined.StarBorder
 import androidx.compose.material3.CircularProgressIndicator
@@ -77,7 +76,6 @@ import com.example.study.ui.theme.DuoTextSecondary
 
 @Composable
 fun StudyScreen(
-    onOpenDictionary: () -> Unit,
     onOpenPlan: () -> Unit,
     onOpenGame: (game: String, planMode: Boolean) -> Unit,
     modifier: Modifier = Modifier
@@ -126,9 +124,10 @@ fun StudyScreen(
                 .padding(top = 12.dp, bottom = 20.dp),
             verticalArrangement = Arrangement.spacedBy(14.dp)
         ) {
-            StudyHeader(state = state, onOpenDictionary = onOpenDictionary)
+            // 备考计划与今日目标固定在首页顶部
             PlanCard(state = state, onOpenPlan = onOpenPlan)
             DailyGoalCard(state)
+            StudyHeader(state = state)
             FilterChips(selected = state.filter, onSelect = viewModel::setFilter)
             StudyCard(
                 state = state,
@@ -215,7 +214,7 @@ private fun PlanCard(state: StudyUiState, onOpenPlan: () -> Unit) {
 }
 
 @Composable
-private fun StudyHeader(state: StudyUiState, onOpenDictionary: () -> Unit) {
+private fun StudyHeader(state: StudyUiState) {
     Row(
         modifier = Modifier.fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically,
@@ -236,13 +235,6 @@ private fun StudyHeader(state: StudyUiState, onOpenDictionary: () -> Unit) {
             )
         }
         Row(verticalAlignment = Alignment.CenterVertically) {
-            IconButton(onClick = onOpenDictionary) {
-                Icon(
-                    imageVector = Icons.Filled.Search,
-                    contentDescription = "打开词典查询",
-                    tint = DuoTextSecondary
-                )
-            }
             Box(
                 modifier = Modifier
                     .clip(RoundedCornerShape(percent = 50))
