@@ -1,5 +1,7 @@
-﻿package com.example.study.ui.plan
+package com.example.study.ui.plan
 
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -26,10 +28,13 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -128,12 +133,31 @@ fun PlanStudyScreen(mode: PlanStudyMode, onBack: () -> Unit, modifier: Modifier 
                 return@Column
             }
 
+            // 切换到下一个词时卡片淡入 + 轻微放大，与学习页保持一致的过渡
+            var cardAppeared by remember(word.word.id) { mutableStateOf(false) }
+            LaunchedEffect(word.word.id) { cardAppeared = true }
+            val cardAlpha by animateFloatAsState(
+                targetValue = if (cardAppeared) 1f else 0f,
+                animationSpec = tween(durationMillis = 220),
+                label = "plan-card-alpha"
+            )
+            val cardScale by animateFloatAsState(
+                targetValue = if (cardAppeared) 1f else 0.96f,
+                animationSpec = tween(durationMillis = 240),
+                label = "plan-card-scale"
+            )
+
             FlipCard(
                 flipped = state.flipped,
                 onFlip = viewModel::flip,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(420.dp),
+                    .height(420.dp)
+                    .graphicsLayer {
+                        alpha = cardAlpha
+                        scaleX = cardScale
+                        scaleY = cardScale
+                    },
                 front = { PlanStudyFrontFace(word.word) },
                 back = { PlanStudyBackFace(word.word) }
             )

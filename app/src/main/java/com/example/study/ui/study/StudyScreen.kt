@@ -1,5 +1,9 @@
 package com.example.study.ui.study
 
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.spring
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -34,12 +38,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -300,10 +307,29 @@ private fun StudyCard(
                 hasFilterResult = word != null
             )
         } else {
+            // 换词时卡片做一次淡入 + 轻微放大，避免文字生硬跳变
+            var cardAppeared by remember(word.id) { mutableStateOf(false) }
+            LaunchedEffect(word.id) { cardAppeared = true }
+            val cardAlpha by animateFloatAsState(
+                targetValue = if (cardAppeared) 1f else 0f,
+                animationSpec = tween(durationMillis = 220),
+                label = "study-card-alpha"
+            )
+            val cardScale by animateFloatAsState(
+                targetValue = if (cardAppeared) 1f else 0.96f,
+                animationSpec = tween(durationMillis = 240),
+                label = "study-card-scale"
+            )
             FlipCard(
                 flipped = state.flipped,
                 onFlip = onFlip,
-                modifier = Modifier.fillMaxSize(),
+                modifier = Modifier
+                    .fillMaxSize()
+                    .graphicsLayer {
+                        alpha = cardAlpha
+                        scaleX = cardScale
+                        scaleY = cardScale
+                    },
                 front = {
                     CardFace(
                         status = state.wordStatus,
@@ -503,11 +529,26 @@ private fun CardFace(
         ) {
             StatusPill(status = status)
             Spacer(Modifier.weight(1f))
+            // 收藏后星标轻微放大回弹，强调收藏状态
+            val starScale by animateFloatAsState(
+                targetValue = if (isFavorite) 1.12f else 1f,
+                animationSpec = spring(
+                    dampingRatio = Spring.DampingRatioMediumBouncy,
+                    stiffness = Spring.StiffnessMediumLow
+                ),
+                label = "favorite-star-scale"
+            )
             IconButton(onClick = onToggleFavorite) {
                 Icon(
                     imageVector = if (isFavorite) Icons.Filled.Star else Icons.Outlined.StarBorder,
                     contentDescription = if (isFavorite) "取消收藏" else "收藏",
-                    tint = if (isFavorite) DuoGold else DuoTextSecondary
+                    tint = if (isFavorite) DuoGold else DuoTextSecondary,
+                    modifier = Modifier
+                        .size(24.dp)
+                        .graphicsLayer {
+                            scaleX = starScale
+                            scaleY = starScale
+                        }
                 )
             }
         }

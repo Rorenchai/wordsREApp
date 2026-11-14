@@ -1,6 +1,9 @@
-﻿package com.example.study.ui.components
+package com.example.study.ui.components
 
+import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.animateDpAsState
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.spring
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -20,6 +23,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.dp
 import com.example.study.ui.theme.DuoBlue
@@ -66,6 +70,15 @@ fun DuoButton(
         targetValue = if (pressed && enabled) 4.dp else 0.dp,
         label = "duo-button-press"
     )
+    // 按下时整体轻微缩小，松开回弹，形成多邻国按钮的「软按压」手感
+    val scale by animateFloatAsState(
+        targetValue = if (pressed && enabled) 0.97f else 1f,
+        animationSpec = spring(
+            dampingRatio = Spring.DampingRatioMediumBouncy,
+            stiffness = Spring.StiffnessMediumLow
+        ),
+        label = "duo-button-scale"
+    )
     val shape = RoundedCornerShape(16.dp)
     val faceColor = when {
         !enabled -> DuoSurface
@@ -95,6 +108,10 @@ fun DuoButton(
                 .fillMaxWidth()
                 .height(52.dp)
                 .offset(y = offsetY)
+                .graphicsLayer {
+                    scaleX = scale
+                    scaleY = scale
+                }
                 .clip(shape)
                 .background(faceColor)
                 .clickable(

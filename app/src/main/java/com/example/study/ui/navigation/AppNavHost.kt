@@ -1,5 +1,13 @@
 package com.example.study.ui.navigation
 
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.spring
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
@@ -18,6 +26,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
@@ -90,7 +99,25 @@ fun AppNavHost() {
                                     restoreState = true
                                 }
                             },
-                            icon = { Icon(item.icon, contentDescription = item.label) },
+                            icon = {
+                                // 选中页签图标弹跳放大，强化当前页面反馈
+                                val iconScale by animateFloatAsState(
+                                    targetValue = if (selected) 1.12f else 1f,
+                                    animationSpec = spring(
+                                        dampingRatio = Spring.DampingRatioMediumBouncy,
+                                        stiffness = Spring.StiffnessMediumLow
+                                    ),
+                                    label = "nav-icon-scale"
+                                )
+                                Icon(
+                                    item.icon,
+                                    contentDescription = item.label,
+                                    modifier = Modifier.graphicsLayer {
+                                        scaleX = iconScale
+                                        scaleY = iconScale
+                                    }
+                                )
+                            },
                             label = { Text(item.label) },
                             colors = NavigationBarItemDefaults.colors(
                                 selectedIconColor = DuoGreen,
@@ -108,6 +135,22 @@ fun AppNavHost() {
         NavHost(
             navController = navController,
             startDestination = "study",
+            enterTransition = {
+                fadeIn(tween(durationMillis = 220)) +
+                    slideInHorizontally(tween(durationMillis = 260), initialOffsetX = { it / 14 })
+            },
+            exitTransition = {
+                fadeOut(tween(durationMillis = 160)) +
+                    slideOutHorizontally(tween(durationMillis = 200), targetOffsetX = { -it / 14 })
+            },
+            popEnterTransition = {
+                fadeIn(tween(durationMillis = 200)) +
+                    slideInHorizontally(tween(durationMillis = 240), initialOffsetX = { -it / 14 })
+            },
+            popExitTransition = {
+                fadeOut(tween(durationMillis = 160)) +
+                    slideOutHorizontally(tween(durationMillis = 200), targetOffsetX = { it / 14 })
+            },
             modifier = Modifier
                 .fillMaxSize()
                 .padding(innerPadding)

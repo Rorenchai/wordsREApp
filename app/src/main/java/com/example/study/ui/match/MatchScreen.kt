@@ -1,5 +1,8 @@
 package com.example.study.ui.match
 
+import androidx.compose.animation.core.Animatable
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -11,6 +14,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -34,9 +38,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -50,6 +56,7 @@ import com.example.study.ui.theme.DuoRed
 import com.example.study.ui.theme.DuoSurface
 import com.example.study.ui.theme.DuoTextPrimary
 import com.example.study.ui.theme.DuoTextSecondary
+import kotlin.math.roundToInt
 
 @Composable
 fun MatchScreen(onBack: () -> Unit, planMode: Boolean = false, modifier: Modifier = Modifier) {
@@ -220,9 +227,36 @@ private fun MatchCardView(
     }
     val shape = RoundedCornerShape(14.dp)
 
+    // 配对成功：卡片淡出并缩小；配错：左右轻微抖动
+    val matchedAlpha by animateFloatAsState(
+        targetValue = if (card.matched) 0f else 1f,
+        animationSpec = tween(durationMillis = 220),
+        label = "match-card-alpha"
+    )
+    val matchedScale by animateFloatAsState(
+        targetValue = if (card.matched) 0.88f else 1f,
+        animationSpec = tween(durationMillis = 220),
+        label = "match-card-scale"
+    )
+    val wrongShake = remember { Animatable(0f) }
+    LaunchedEffect(card.wrong) {
+        if (card.wrong) {
+            wrongShake.animateTo(-4f, tween(durationMillis = 60))
+            wrongShake.animateTo(4f, tween(durationMillis = 70))
+            wrongShake.animateTo(-2f, tween(durationMillis = 60))
+            wrongShake.animateTo(0f, tween(durationMillis = 60))
+        }
+    }
+
     Box(
         modifier = modifier
             .height(112.dp)
+            .graphicsLayer {
+                alpha = matchedAlpha
+                scaleX = matchedScale
+                scaleY = matchedScale
+            }
+            .offset { IntOffset(wrongShake.value.roundToInt(), 0) }
             .clip(shape)
             .background(background)
             .border(2.dp, borderColor, shape)
