@@ -13,6 +13,32 @@ interface WordDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertAll(words: List<WordEntity>)
 
+    @Query("SELECT COUNT(*) FROM words")
+    suspend fun countAll(): Int
+
+    /** 按词库统计词数，用于设置页 / 计划页动态展示（含内置与自定义词库）。 */
+    @Query(
+        """
+        SELECT library AS library, COUNT(*) AS count FROM words
+        GROUP BY library
+        ORDER BY
+            CASE library WHEN 'CET-4' THEN 0 WHEN 'CET-6' THEN 1 WHEN 'PETS-B' THEN 2 ELSE 3 END,
+            library ASC
+        """
+    )
+    suspend fun libraryCounts(): List<LibraryCount>
+
+    @Query(
+        """
+        SELECT library AS library, COUNT(*) AS count FROM words
+        GROUP BY library
+        ORDER BY
+            CASE library WHEN 'CET-4' THEN 0 WHEN 'CET-6' THEN 1 WHEN 'PETS-B' THEN 2 ELSE 3 END,
+            library ASC
+        """
+    )
+    fun observeLibraryCounts(): Flow<List<LibraryCount>>
+
     @Query("SELECT COUNT(*) FROM words WHERE library = :library")
     suspend fun countByLibrary(library: String): Int
 

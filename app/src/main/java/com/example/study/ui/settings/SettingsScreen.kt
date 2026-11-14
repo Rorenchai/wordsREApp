@@ -1,5 +1,8 @@
-﻿package com.example.study.ui.settings
+package com.example.study.ui.settings
 
+import android.content.Context
+import android.net.Uri
+import android.provider.OpenableColumns
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
@@ -47,6 +50,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.study.data.importer.CustomLibraryParser
+import com.example.study.data.importer.CustomWordEntry
 import com.example.study.data.repo.SettingsRepository
 import com.example.study.ui.components.DuoButton
 import com.example.study.ui.components.DuoButtonStyle
@@ -70,6 +75,7 @@ fun SettingsScreen(modifier: Modifier = Modifier) {
     var showResetDialog by rememberSaveable { mutableStateOf(false) }
     var showCustomGoalDialog by rememberSaveable { mutableStateOf(false) }
     var showImportConfirm by rememberSaveable { mutableStateOf(false) }
+    var pendingCustomImport by remember { mutableStateOf<PendingCustomImport?>(null) }
     var licenseDialog by rememberSaveable { mutableStateOf<Pair<String, String>?>(null) }
 
     val exportLauncher = rememberLauncherForActivityResult(
@@ -81,6 +87,23 @@ fun SettingsScreen(modifier: Modifier = Modifier) {
         ActivityResultContracts.OpenDocument()
     ) { uri ->
         if (uri != null) viewModel.importBackup(uri)
+    }
+    val customImportLauncher = rememberLauncherForActivityResult(
+        ActivityResultContracts.OpenDocument()
+    ) { uri ->
+        if (uri != null) {
+            val content = readTextFromUri(context, uri)
+            val fileName = queryDisplayName(context, uri) ?: "自定义词库.txt"
+            val entries = content?.let { runCatching { CustomLibraryParser.parse(fileName, it) }.getOrNull() }
+            if (entries.isNullOrEmpty()) {
+                viewModel.showMessage("未解析到单词，请检查文件格式（JSON / CSV / TXT）")
+            } else {
+                pendingCustomImport = PendingCustomImport(
+                    defaultName = CustomLibraryParser.defaultLibraryName(fileName),
+                    entries = entries
+                )
+            }
+        }
     }
     val notificationPermissionLauncher = rememberLauncherForActivityResult(
         ActivityResultContracts.RequestPermission()
@@ -131,14 +154,36 @@ fun SettingsScreen(modifier: Modifier = Modifier) {
             )
 
             SettingsSection(title = "词库") {
-                SettingsRepository.LIBRARIES.forEach { library ->
+                state.libraries.forEach { item ->
                     LibraryRow(
-                        name = library,
-                        count = state.wordCounts[library],
-                        selected = state.library == library,
-                        onClick = { viewModel.selectLibrary(library) }
+                        name = item.library,
+                        count = item.count,
+                        selected = state.library == item.library,
+                        onClick = { viewModel.selectLibrary(item.library) }
                     )
                 }
+            }
+
+            SettingsSection(title = "自定义词库") {
+                Text(
+                    text = "可导入自己整理的词库文件，导入后作为独立词库出现在上方列表，"
+                        + "学习、计划、收藏与备份均可使用。",
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = DuoTextSecondary
+                )
+                Text(
+                    text = "支持格式：\n"
+                        + "• JSON：[{\"word\":\"apple\",\"phonetic\":\"ˈæpl\",\"meaning\":\"n. 苹果\"}]\n"
+                        + "• CSV / TXT：每行「单词,释义」（也支持 Tab / | 分隔，# 开头为注释）",
+                    style = MaterialTheme.typography.bodySmall,
+                    color = DuoTextSecondary
+                )
+                DuoButton(
+                    text = "导入词库文件",
+                    onClick = { customImportLauncher.launch(arrayOf("*/*")) },
+                    modifier = Modifier.fillMaxWidth(),
+                    style = DuoButtonStyle.Secondary
+                )
             }
 
             SettingsSection(title = "每日目标") {
@@ -292,7 +337,8 @@ fun SettingsScreen(modifier: Modifier = Modifier) {
 
             SettingsSection(title = "关于与许可") {
                 Text(
-                    text = "词库来源：KyleBing/english-vocabulary（BSD 3-Clause License）\n" +
+                    text = "词库来源：KyleBing/english-vocabulary（BSD 3-Clause License）· PETS-B 词库由项目整理\n" +
+                        "发音：内置 meSpeak / eSpeak 离线语音引擎（GPL），不依赖系统 TTS\n" +
                         "字体：Nunito（SIL Open Font License 1.1）",
                     style = MaterialTheme.typography.bodyMedium,
                     color = DuoTextSecondary
@@ -308,9 +354,14 @@ fun SettingsScreen(modifier: Modifier = Modifier) {
                     }) {
                         Text("字体许可证", color = DuoBlue)
                     }
+                    TextButton(onClick = {
+                        licenseDialog = "离线语音引擎（GPL）" to "licenses/mespeak-GPL.txt"
+                    }) {
+                        Text("语音引擎许可", color = DuoBlue)
+                    }
                 }
                 Text(
-                    text = "版本 1.0 · 单词记忆卡",
+                    text = "版本 1.1.0 · 单词记忆卡",
                     style = MaterialTheme.typography.bodySmall,
                     color = DuoTextSecondary
                 )
@@ -400,6 +451,40 @@ fun SettingsScreen(modifier: Modifier = Modifier) {
             },
             dismissButton = {
                 TextButton(onClick = { showCustomGoalDialog = false }) { Text("取消") }
+            }
+        )
+    }
+
+    pendingCustomImport?.let { pending ->
+        var name by rememberSaveable(pending) { mutableStateOf(pending.defaultName) }
+        AlertDialog(
+            onDismissRequest = { pendingCustomImport = null },
+            title = { Text("导入自定义词库") },
+            text = {
+                Column {
+                    Text(
+                        text = "已解析 ${pending.entries.size} 个单词，保存为以下词库名（重名会自动合并去重）：",
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = DuoTextSecondary
+                    )
+                    Spacer(Modifier.height(10.dp))
+                    OutlinedTextField(
+                        value = name,
+                        onValueChange = { name = it.take(40) },
+                        singleLine = true,
+                        label = { Text("词库名称") }
+                    )
+                }
+            },
+            confirmButton = {
+                TextButton(onClick = {
+                    val libraryName = name.trim().ifBlank { "自定义词库" }
+                    pendingCustomImport = null
+                    viewModel.importCustomLibrary(libraryName, pending.entries)
+                }) { Text("导入", color = DuoBlue) }
+            },
+            dismissButton = {
+                TextButton(onClick = { pendingCustomImport = null }) { Text("取消") }
             }
         )
     }
@@ -544,3 +629,34 @@ private fun LicenseDialog(
 private fun formatCount(count: Int): String {
     return String.format("%,d", count)
 }
+
+/** 待确认的自定义词库导入：默认词库名 + 已解析词条。 */
+private data class PendingCustomImport(
+    val defaultName: String,
+    val entries: List<CustomWordEntry>
+)
+
+/** 读取用户选择的词库文件（限制最大 20MB，避免误选超大文件卡顿）。 */
+private fun readTextFromUri(context: Context, uri: Uri): String? {
+    return try {
+        context.contentResolver.openInputStream(uri)?.bufferedReader(Charsets.UTF_8)?.use { reader ->
+            val text = reader.readText()
+            if (text.length <= MAX_CUSTOM_IMPORT_CHARS) text else null
+        }
+    } catch (error: Exception) {
+        null
+    }
+}
+
+/** 查询文件显示名，用于生成默认词库名。 */
+private fun queryDisplayName(context: Context, uri: Uri): String? {
+    return try {
+        context.contentResolver.query(uri, arrayOf(OpenableColumns.DISPLAY_NAME), null, null, null)?.use { cursor ->
+            if (cursor.moveToFirst()) cursor.getString(0) else null
+        }
+    } catch (error: Exception) {
+        null
+    }
+}
+
+private const val MAX_CUSTOM_IMPORT_CHARS = 20_000_000

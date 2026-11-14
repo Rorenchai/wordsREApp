@@ -9,6 +9,7 @@ import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.study.appContainer
 import com.example.study.data.db.PlanEntity
 import com.example.study.data.db.PlanWordDetail
+import com.example.study.data.db.LibraryCount
 import com.example.study.data.plan.EbbinghausSchedule
 import com.example.study.data.plan.PlanCalendarDay
 import com.example.study.data.plan.PlanRepository
@@ -33,6 +34,7 @@ data class PlanUiState(
     // 创建表单
     val formLibrary: String = SettingsRepository.LIB_CET4,
     val libraryCounts: Map<String, Int> = emptyMap(),
+    val libraries: List<LibraryCount> = emptyList(),
     val formDays: Int = 60,
     val formDailyNewWords: Int = 40,
     val formReviewLimit: Int = EbbinghausSchedule.DEFAULT_DAILY_REVIEW_LIMIT,
@@ -60,9 +62,10 @@ class PlanViewModel(
     init {
         viewModelScope.launch {
             wordRepository.ensureReady()
-            val counts = SettingsRepository.LIBRARIES.associateWith { wordRepository.countWords(it) }
+            val libraries = wordRepository.libraries()
+            val counts = libraries.associate { it.library to it.count }
             val library = settingsRepository.currentLibrary.first()
-            _uiState.update { it.copy(libraryCounts = counts, formLibrary = library) }
+            _uiState.update { it.copy(libraryCounts = counts, libraries = libraries, formLibrary = library) }
             applyDefaults(library, _uiState.value.formDays)
             refresh()
         }
@@ -70,6 +73,14 @@ class PlanViewModel(
 
     fun refresh() {
         viewModelScope.launch {
+            // 词库列表可能因用户导入自定义词库而变化，每次刷新一并更新
+            val libraries = wordRepository.libraries()
+            _uiState.update {
+                it.copy(
+                    libraries = libraries,
+                    libraryCounts = libraries.associate { item -> item.library to item.count }
+                )
+            }
             val today = LocalDate.now()
             val active = planRepository.activePlan()
             if (active == null) {

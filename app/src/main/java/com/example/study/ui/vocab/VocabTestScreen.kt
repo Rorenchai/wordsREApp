@@ -1,4 +1,4 @@
-﻿package com.example.study.ui.vocab
+package com.example.study.ui.vocab
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -104,7 +104,7 @@ fun VocabTestScreen(onBack: () -> Unit, modifier: Modifier = Modifier) {
             }
 
             Text(
-                text = "第 ${state.index + 1} / ${state.total} 题 · 从 CET-4 + CET-6 共 ${state.poolSize} 词中抽样",
+                text = "第 ${state.index + 1} / ${state.total} 题 · 从全部词库共 ${state.poolSize} 词中抽样",
                 style = MaterialTheme.typography.bodySmall,
                 color = DuoTextSecondary
             )
@@ -200,7 +200,7 @@ private fun VocabResultCard(state: VocabTestUiState, onRestart: () -> Unit, onBa
         )
         Spacer(Modifier.height(6.dp))
         Text(
-            text = "按猜测校正后折算到 CET-4 + CET-6 共 ${state.poolSize} 词的词库范围，结果受抽样影响，建议多测几次取平均。",
+            text = "按猜测校正后折算到全部词库共 ${state.poolSize} 词的词库范围，结果受抽样影响，建议多测几次取平均。",
             style = MaterialTheme.typography.bodySmall,
             color = DuoTextSecondary,
             textAlign = TextAlign.Center

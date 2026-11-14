@@ -34,6 +34,7 @@ class DatabaseSeeder(
             withContext(Dispatchers.IO) {
                 seedLibrary(LIB_CET4, ASSET_CET4)
                 seedLibrary(LIB_CET6, ASSET_CET6)
+                seedLibrary(LIB_PETS_B, ASSET_PETS_B)
             }
             seeded = true
         }
@@ -84,7 +85,9 @@ class DatabaseSeeder(
 
         const val LIB_CET4 = "CET-4"
         const val LIB_CET6 = "CET-6"
+        const val LIB_PETS_B = "PETS-B"
         const val ASSET_CET4 = "wordbank_cet4.json"
         const val ASSET_CET6 = "wordbank_cet6.json"
+        const val ASSET_PETS_B = "wordbank_petsb.json"
     }
 }

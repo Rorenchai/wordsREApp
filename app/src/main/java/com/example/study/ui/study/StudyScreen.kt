@@ -62,6 +62,7 @@ import com.example.study.ui.components.DuoButtonStyle
 import com.example.study.ui.components.FilterChips
 import com.example.study.ui.components.FlipCard
 import com.example.study.ui.components.ProgressTrack
+import com.example.study.ui.components.SingleLineWord
 import com.example.study.ui.components.StatusPill
 import com.example.study.ui.theme.DuoBackground
 import com.example.study.ui.theme.DuoBlue
@@ -341,11 +342,10 @@ private fun StudyCard(
                             horizontalAlignment = Alignment.CenterHorizontally
                         ) {
                             Spacer(Modifier.weight(1f))
-                            Text(
+                            SingleLineWord(
                                 text = word.word,
                                 style = MaterialTheme.typography.displayLarge,
-                                color = DuoTextPrimary,
-                                textAlign = TextAlign.Center
+                                color = DuoTextPrimary
                             )
                             if (word.phonetic.isNotBlank()) {
                                 Spacer(Modifier.height(6.dp))
@@ -423,7 +423,7 @@ private fun LoadingCard(initialized: Boolean, hasFilterResult: Boolean) {
             )
             Spacer(Modifier.height(6.dp))
             Text(
-                text = "CET-4 + CET-6 共 8,535 个单词，首次启动只需一次",
+                text = "已内置 CET-4 / CET-6 / PETS-B 词库，首次启动只需一次",
                 style = MaterialTheme.typography.bodySmall,
                 color = DuoTextSecondary,
                 textAlign = TextAlign.Center

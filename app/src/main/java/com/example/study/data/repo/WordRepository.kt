@@ -1,5 +1,6 @@
 package com.example.study.data.repo
 
+import com.example.study.data.db.LibraryCount
 import com.example.study.data.db.WordDao
 import com.example.study.data.db.WordEntity
 import com.example.study.data.seed.DatabaseSeeder
@@ -14,6 +15,19 @@ class WordRepository(
     suspend fun ensureReady() = seeder.ensureSeeded()
 
     suspend fun countWords(library: String): Int = wordDao.countByLibrary(library)
+
+    /** 全部词库词数（含自定义词库），词汇量评测与统计使用。 */
+    suspend fun countAllWords(): Int = wordDao.countAll()
+
+    /** 词库列表（内置 + 用户导入的自定义词库，按内置优先排序）。 */
+    suspend fun libraries(): List<LibraryCount> = wordDao.libraryCounts()
+
+    /** 批量导入自定义词库；重复单词按 (word, library) 忽略，返回实际新增条数。 */
+    suspend fun importLibrary(library: String, words: List<WordEntity>): Int {
+        val before = wordDao.countByLibrary(library)
+        words.chunked(500).forEach { chunk -> wordDao.insertAll(chunk) }
+        return wordDao.countByLibrary(library) - before
+    }
 
     /**
      * 随机抽一个词。

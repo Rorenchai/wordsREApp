@@ -1,4 +1,4 @@
-﻿package com.example.study.ui.dictionary
+package com.example.study.ui.dictionary
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -65,6 +65,7 @@ private val scopeOptions = listOf(
     ScopeOption(DictionaryViewModel.SCOPE_CURRENT, "当前词库"),
     ScopeOption(SettingsRepository.LIB_CET4, "CET-4"),
     ScopeOption(SettingsRepository.LIB_CET6, "CET-6"),
+    ScopeOption(SettingsRepository.LIB_PETS_B, "PETS-B"),
     ScopeOption(DictionaryViewModel.SCOPE_ALL, "全部")
 )
 

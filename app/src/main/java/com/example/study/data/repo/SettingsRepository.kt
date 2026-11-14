@@ -89,6 +89,7 @@ class SettingsRepository(
     companion object {
         const val LIB_CET4 = "CET-4"
         const val LIB_CET6 = "CET-6"
+        const val LIB_PETS_B = "PETS-B"
         const val ACCENT_US = "US"
         const val ACCENT_UK = "UK"
         const val DEFAULT_DAILY_GOAL = 20
@@ -98,7 +99,7 @@ class SettingsRepository(
         const val THEME_LIGHT = "light"
         const val THEME_DARK = "dark"
 
-        val LIBRARIES = listOf(LIB_CET4, LIB_CET6)
+        val LIBRARIES = listOf(LIB_CET4, LIB_CET6, LIB_PETS_B)
         val DAILY_GOAL_OPTIONS = listOf(10, 20, 30, 50)
 
         private val KEY_LIBRARY = stringPreferencesKey("current_library")

@@ -26,6 +26,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
+import androidx.compose.material3.Slider
+import androidx.compose.material3.SliderDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -54,6 +56,7 @@ import com.example.study.ui.theme.DuoBlue
 import com.example.study.ui.theme.DuoBorder
 import com.example.study.ui.theme.DuoCard
 import com.example.study.ui.theme.DuoGreen
+import kotlin.math.roundToInt
 import com.example.study.ui.theme.DuoRed
 import com.example.study.ui.theme.DuoSurface
 import com.example.study.ui.theme.DuoTextPrimary
@@ -223,32 +226,53 @@ private fun PlanCreationForm(
 
     SectionCard(title = "目标词库") {
         Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            SettingsRepository.LIBRARIES.forEach { library ->
+            state.libraries.forEach { item ->
                 ChoiceChip(
-                    text = "$library（${formatCount(state.libraryCounts[library] ?: 0)} 词）",
-                    selected = state.formLibrary == library,
-                    onClick = { onLibrary(library) }
+                    text = "${item.library}（${formatCount(item.count)} 词）",
+                    selected = state.formLibrary == item.library,
+                    onClick = { onLibrary(item.library) }
                 )
             }
         }
     }
 
     SectionCard(title = "备考时长") {
-        Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            listOf(30, 45, 60, 90, 120).forEach { days ->
-                ChoiceChip(
-                    text = "$days 天",
-                    selected = state.formDays == days,
-                    onClick = { onDays(days) }
-                )
-            }
-        }
         val examDate = LocalDate.now().plusDays(state.formDays.toLong())
-        Text(
-            text = "考试日期约为 $examDate · 剩余 ${state.formDays} 天",
-            style = MaterialTheme.typography.bodySmall,
-            color = DuoTextSecondary
+        // 用滑动条替代固定档位：7–365 天连续可调，拖动时同步更新考试日期与建议每日量
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Text(
+                text = "备考 ${state.formDays} 天",
+                style = MaterialTheme.typography.titleMedium,
+                color = DuoTextPrimary
+            )
+            Text(
+                text = "考试日期约 $examDate",
+                style = MaterialTheme.typography.bodySmall,
+                color = DuoTextSecondary
+            )
+        }
+        Slider(
+            value = state.formDays.toFloat(),
+            onValueChange = { onDays(it.roundToInt()) },
+            valueRange = 7f..365f,
+            colors = SliderDefaults.colors(
+                thumbColor = DuoGreen,
+                activeTrackColor = DuoGreen,
+                inactiveTrackColor = DuoBorder
+            ),
+            modifier = Modifier.fillMaxWidth()
         )
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Text("7 天", style = MaterialTheme.typography.bodySmall, color = DuoTextSecondary)
+            Text("365 天", style = MaterialTheme.typography.bodySmall, color = DuoTextSecondary)
+        }
     }
 
     SectionCard(title = "每日新词") {

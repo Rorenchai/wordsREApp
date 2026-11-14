@@ -44,6 +44,7 @@ import com.example.study.ui.components.DuoButton
 import com.example.study.ui.components.DuoButtonStyle
 import com.example.study.ui.components.FlipCard
 import com.example.study.ui.components.ProgressTrack
+import com.example.study.ui.components.SingleLineWord
 import com.example.study.ui.theme.DuoBackground
 import com.example.study.ui.theme.DuoBorder
 import com.example.study.ui.theme.DuoCard
@@ -262,11 +263,10 @@ private fun PlanStudyFrontFace(word: com.example.study.data.db.WordEntity) {
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        Text(
+        SingleLineWord(
             text = word.word,
             style = MaterialTheme.typography.displayMedium,
-            color = DuoTextPrimary,
-            textAlign = TextAlign.Center
+            color = DuoTextPrimary
         )
         if (word.phonetic.isNotBlank()) {
             Spacer(Modifier.height(8.dp))

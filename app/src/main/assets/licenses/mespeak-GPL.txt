@@ -1,0 +1,18 @@
+内置离线语音引擎许可说明
+========================
+
+本应用内置的英语语音引擎来自 meSpeak.js / eSpeak：
+
+- meSpeak.js 项目主页：https://www.masswerk.at/mespeak
+- 打包来源：npm 包 mespeak 2.0.2
+- eSpeak 项目：http://espeak.sourceforge.net
+- 许可证：GNU General Public License (GPL)
+
+应用内的引擎文件（assets/tts/）包含：
+- mespeak.bundle.js：语音合成引擎
+- config.js：eSpeak 配置数据
+- en-us.js / en-rp.js：美式 / 英式英语音色
+- tts.html：Android WebView 内的调用页
+
+朗读过程完全在本机完成，不依赖系统 TTS 引擎，也不访问网络。
+如需对外分发本应用，请遵守 GPL 的相关要求（提供相应源代码等）。

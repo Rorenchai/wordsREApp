@@ -11,6 +11,9 @@ import com.example.study.appContainer
 import com.example.study.data.backup.BackupData
 import com.example.study.data.backup.BackupRepository
 import com.example.study.data.backup.BackupSettings
+import com.example.study.data.db.LibraryCount
+import com.example.study.data.db.WordEntity
+import com.example.study.data.importer.CustomWordEntry
 import com.example.study.data.repo.SettingsRepository
 import com.example.study.data.repo.StudyRepository
 import com.example.study.data.repo.WordRepository
@@ -28,6 +31,7 @@ data class SettingsUiState(
     val dailyGoal: Int = SettingsRepository.DEFAULT_DAILY_GOAL,
     val accent: String = SettingsRepository.ACCENT_US,
     val wordCounts: Map<String, Int> = emptyMap(),
+    val libraries: List<LibraryCount> = emptyList(),
     val message: String? = null,
     val reminderEnabled: Boolean = false,
     val reminderHour: Int = 20,
@@ -51,10 +55,7 @@ class SettingsViewModel(
     init {
         viewModelScope.launch {
             wordRepository.ensureReady()
-            val counts = SettingsRepository.LIBRARIES.associateWith { library ->
-                wordRepository.countWords(library)
-            }
-            _uiState.update { it.copy(wordCounts = counts) }
+            refreshLibraries()
         }
         viewModelScope.launch {
             settingsRepository.currentLibrary.collect { library ->
@@ -93,6 +94,53 @@ class SettingsViewModel(
             settingsRepository.setCurrentLibrary(library)
             _uiState.update { it.copy(message = "已切换到 $library 词库") }
         }
+    }
+
+    /** 重新读取词库列表与词数（内置 + 自定义词库）。 */
+    private suspend fun refreshLibraries() {
+        val libraries = wordRepository.libraries()
+        _uiState.update {
+            it.copy(
+                libraries = libraries,
+                wordCounts = libraries.associate { item -> item.library to item.count }
+            )
+        }
+    }
+
+    /**
+     * 导入用户自定义词库：写入 Room 后刷新词库列表，并自动切换到新词库。
+     * 重名/重复单词由 (word, library) 唯一约束忽略，返回实际新增数量。
+     */
+    fun importCustomLibrary(name: String, entries: List<CustomWordEntry>) {
+        if (entries.isEmpty()) {
+            _uiState.update { it.copy(message = "导入失败：文件中没有可识别的单词") }
+            return
+        }
+        viewModelScope.launch {
+            val library = name.trim().ifBlank { "自定义词库" }.take(40)
+            val words = entries.map { entry ->
+                WordEntity(
+                    word = entry.word,
+                    phonetic = entry.phonetic,
+                    pos = entry.pos,
+                    meaning = entry.meaning,
+                    example = entry.example,
+                    exampleZh = entry.exampleZh,
+                    phrase = entry.phrase,
+                    phraseZh = entry.phraseZh,
+                    library = library
+                )
+            }
+            val inserted = wordRepository.importLibrary(library, words)
+            refreshLibraries()
+            settingsRepository.setCurrentLibrary(library)
+            _uiState.update { it.copy(message = "已导入 $inserted 个单词到「$library」") }
+        }
+    }
+
+    /** 由界面在文件解析失败等场景提示信息。 */
+    fun showMessage(message: String) {
+        _uiState.update { it.copy(message = message) }
     }
 
     fun selectDailyGoal(goal: Int) {

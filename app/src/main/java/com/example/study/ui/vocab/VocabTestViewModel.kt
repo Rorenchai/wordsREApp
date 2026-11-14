@@ -119,7 +119,7 @@ class VocabTestViewModel(
                 estimate = 0
             )
         }
-        val pool = SettingsRepository.LIBRARIES.sumOf { wordRepository.countWords(it) }
+        val pool = wordRepository.countAllWords()
         questions = wordRepository.randomWordEntitiesAll(SAMPLE_SIZE)
         _uiState.update { it.copy(poolSize = pool, total = questions.size) }
         if (questions.isEmpty()) {
