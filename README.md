@@ -1,207 +1,188 @@
 # 单词记忆卡（WordsREApp · Android）
 
-一款类多邻国风格的 Android 背单词应用：**Kotlin + Jetpack Compose + Room**，内置完整 **PETS（3,664 词）/ CET-4（4,544 词）/ CET-6（3,991 词）** 三套词库，核心闭环为「翻转卡片学习 → 标记学习状态 → 每日目标 / 学习记录统计 → 词库切换 → 发音」。
+一款温暖奶油系风格的 Android 背单词应用：**Kotlin + Jetpack Compose + Room**，内置 **PETS（3,664 词）/ CET-4（4,544 词）/ CET-6（3,991 词）** 三套词库，支持自定义词库导入、翻转卡片学习、专项复习计划、单词总览、每日打卡与内置离线女声。
 
-> 状态：重构已完成并通过真机验收，**已合并 `main`**（`4413cbe`，2026-11-13）。当前开发进入第二期（小游戏 / 词典搜索 / 收藏集合等）。
+> **当前版本：v1.1.1**（`versionCode 5`，2026-11-15）
+>
+> - GitHub Release：[v1.1.1 稳定性修复](https://github.com/Rorenchai/wordsREApp/releases/tag/v1.1.1)
+> - 发布 APK：`app-release.apk`（约 58 MB，已签名）
+> - 开发分支：`main` / `phase2`（同步）
+> - 项目形态：**仅 Android**。原 Web 单页线已弃用，远程 `web` 分支已删除。
 
-## 功能（第一期核心闭环）
+## 功能
+
+### 学习闭环
 
 | 能力 | 说明 |
 |---|---|
-| 翻转卡片学习 | 正面：拼写 + 音标 + 发音按钮 + 学习状态徽章；背面：词性释义 + 双语例句 + 常用搭配。点击卡片做 3D 翻转（Compose GraphicsLayer） |
-| 三档学习状态 | 未学习 / 学习中 / 已掌握；翻到背面后点「学习中 / 已掌握」才计为一次有效学习 |
-| 筛选 chips | 全部 / 未学习 / 学习中 / 已掌握（SQL LEFT JOIN 过滤） |
-| 本轮不重复抽词 | ViewModel 内存 Set 记录本轮已抽词；抽满一轮后自动重开一轮 |
-| 今日目标 + 连续天数 | 按「不同单词」去重统计今日学习数；streak 按有学习记录的连续自然日计算 |
-| 学习记录页 | 词库总数 / 已学 / 已掌握 / 待学四宫格；学习进度与掌握率双进度条；最近 7 天柱状图（Compose Canvas）；累计学习次数 |
-| 词库切换 | CET-4 / CET-6 一键切换，两套词库的学习数据相互独立 |
-| 每日目标设置 | 10 / 20 / 30 / 50 档位 + 自定义输入（5–200） |
-| 发音 | 系统 TextToSpeech，按设置切换美式 US / 英式 UK；引擎不可用时提示 |
-| 重置进度 | 二次确认后只重置当前词库的学习状态与记录，词库本身保留 |
-| 许可与来源 | 设置页可查看词库 BSD-3 与字体 OFL 许可证全文 |
-| 词典详情 | 首页原「词典查询」入口已移除；点击单词总览 / 收藏中的单词可查看音标、释义、双语例句、常用搭配并播放发音，搜索能力由「单词总览」承接 |
-| 收藏夹 | 卡片（正反面）右上角星标一键收藏 / 取消；「收藏」页签跨词库统一展示，支持详情弹窗与发音 |
-| 看词选译 | 「游戏」页签进入四选一答题：随机主词 + 3 个干扰释义，点选即判对错（答错显示正确答案），答对 0.9s / 答错 2.2s 后自动换题；会话统计已答 / 答对 / 正确率，答题结果落库并计入记录页「答题统计」 |
-| 听音辨词 | 「游戏」页签进入：自动播放目标单词发音（可点喇叭重听），从 4 个单词中选出正确拼写；判对错与自动换题逻辑同看词选译，结果同样落库计入答题统计 |
-| 单词拼写 | 「游戏」页签进入：展示中文释义与字母数，输入正确拼写后提交；不区分大小写，答错显示正确答案；结果同样落库计入答题统计 |
-| 单词消消乐 | 「游戏」页签进入：从当前词库随机抽 6 个词，词卡与释义卡打乱成 3×4 网格；点单词再点释义配对成功即消除，配错红色提示后翻回；全部配对完成弹结算，可再来一局 |
-| 轮次持久化 | 学习页「本轮已浏览 / 本轮内不重复抽词」持久化到数据库（`round_seen`，按词库 + 筛选隔离）；杀进程、重启后自动恢复本轮进度；重置词库进度时一并清空 |
-| 学习时长 + 打卡日历 | 学习页可见期间自动计时（切后台/离开页面时上报），按「日期 + 词库」累计；记录页展示今日/累计学习时长与当月打卡日历（已打卡日期绿色高亮，今天蓝色描边） |
-| 错题本 + 错题复习 | 自动收集「最近一次答题答错」的词（含累计答错次数、最近答错日期）；记录页「错题本」入口进入列表，一键开始错题复习；答对后该词自动移出错题本，完成显示本轮复习统计 |
-| 词汇量评测 | 记录页入口；从 CET-4 + CET-6 共 8,535 词中随机抽 20 词做四选一，按正确率做 1/4 猜测校正后估算词汇量，结果与日期持久化并展示在记录页卡片 |
-| 数据备份 | 设置页「数据备份」：导出学习进度 / 学习记录 / 收藏 / 本轮进度 / 学习时长与设置到 JSON（系统文件选择器）；导入前二次确认，按「单词 + 词库」还原并覆盖旧数据，可重复导入不产生重复记录 |
-| 每日学习提醒 | 设置页「学习提醒」：开关 + 19:00/20:00/21:00/22:00 时间档位；Notification 权限申请，WorkManager 每 24 小时调度，点击通知打开学习页；提供「发送测试提醒」 |
-| 深色模式 | 设置页「外观」：跟随系统 / 浅色 / 深色；主题色通过 CompositionLocal 切换，全部页面适配，DataStore 持久化，重启后保留 |
-| 艾宾浩斯专项计划 | 学习页计划入口：创建备考计划（词库 / 备考时长 30–120 天 / 每日新词 / 每日复习上限），自动生成每日新词 + 到期复习任务；计划概览、今日任务、计划日历 |
-| 计划学习 / 复习 | 新词卡片翻面学习后安排次日首复习；复习「翻面回想 → 记住了/没记住」，答对按 1/2/4/7/15 天推进、答错次日重试、越过考试日截断 |
-| 小游戏 × 计划联动 | 游戏页展示计划进度与「优先练计划词」开关；看词选译 / 听音辨词 / 单词拼写 / 消消乐 从计划词池抽题（到期复习优先），答对到期词推进一轮复习 |
-| 游戏页 | 4 个游戏入口全部上线：看词选译 / 听音辨词 / 单词拼写 / 单词消消乐 |
-| 交互动画 | 按钮按压缩放回弹、筛选 chip 按压、卡片换词淡入放大、翻面 3D 旋转、收藏星标放大回弹、答题选项按压/答对脉冲/答错抖动、页面切换淡入滑动、导航图标弹跳、消消乐配对淡出（保留网格布局） |
-| 内置离线语音 | 内置 **sherpa-onnx + Piper 神经网络女声**（LJSpeech，22.05kHz，完全离线），不依赖系统 TextToSpeech；支持美式/英式语速，比规则合成更自然 |
-| 单词总览 | 底部「总览」页替代原「游戏」页：全部 / 未掌握 / 已掌握筛选、单词/释义搜索、分页浏览、单词详情弹窗与发音 |
-| 学习页小游戏 | 四个游戏入口移到学习页单词卡片下方（含计划词优先开关），原底部「游戏」页取消 |
-| 每日打卡 | 记录页「每日打卡」：当天有学习记录即可打卡，弹窗展示彩带 + 连续天数 + 学习能量奖励，同一天只可领取一次 |
-| 默认词库扩展 | 内置 CET-4（4,544）、CET-6（3,991）、**PETS（3,664）** 三套词库，首次启动自动入库 |
-| 自定义词库 | 设置页「自定义词库」导入 JSON / CSV / TXT 词库文件，自动解析「单词 + 释义」，作为独立词库参与学习、计划、收藏与统计 |
-| 计划时长滑动条 | 创建计划时备考时长改为 7–365 天连续滑动条，实时联动考试日期与每日建议词量 |
-| 单词单行显示 | 学习卡片与计划卡片中的单词强制单行显示，超长单词按卡片宽度自动缩小字号，保证完整字母可见 |
+| 翻转卡片 | 正面：单词 + 音标 + 发音 + 状态；背面：词性释义、双语例句、常用搭配；点击卡片 3D 翻转 |
+| 单行单词 | 学习卡片与计划卡片中的单词强制单行，超长词按宽度自动缩小字号，保证完整显示 |
+| 三档状态 | 未学习 / 学习中 / 已掌握；翻到背面后标记才计为有效学习 |
+| 筛选 | 全部 / 未学习 / 学习中 / 已掌握 |
+| 本轮去重 | 本轮已浏览词持久化到 `round_seen`，按词库 + 筛选隔离，重启后恢复 |
+| 今日目标 | 按「不同单词」去重统计；目标可在设置中调整（5–200，预设 10/20/30/50） |
+| 首页布局 | 顶部固定「备考计划 + 今日目标」紧凑栏；下方为筛选、单词卡片、操作按钮与小游戏区 |
+
+### 词库
+
+| 能力 | 说明 |
+|---|---|
+| 内置词库 | **PETS 3,664 / CET-4 4,544 / CET-6 3,991**，首次启动自动入库 |
+| 切换词库 | 设置 →「词库」；各词库学习数据相互独立 |
+| 自定义词库 | 设置 →「自定义词库」导入 JSON / CSV / TXT，自动解析单词与释义，作为独立词库参与学习、计划、收藏和统计 |
+| 单词总览 | 底部「总览」页：全部 / 未掌握 / 已掌握筛选，按单词或释义搜索，分页浏览，点击查看详情并发音 |
+| 词典详情 | 音标、释义、双语例句、常用搭配；支持播放发音 |
+
+### 专项复习计划
+
+| 能力 | 说明 |
+|---|---|
+| 创建计划 | 选择词库、备考时长（7–365 天滑动条）、每日新词、每日复习上限、计划名称；实时预览考试日期与建议词量 |
+| 今日任务 | 计划概览展示目标词数、已学/已掌握、今日新词与到期复习 |
+| 复习节奏 | 新词学习后次日首次复习；复习按 1 / 2 / 4 / 7 / 15 天推进，答对推进、答错次日重试，越过考试日期自动收口 |
+| 计划日历 | 月历展示每日新词/复习任务与完成情况，支持切月、点选日期、考试日标识 |
+| 游戏联动 | 学习页小游戏可从计划词池抽题（到期复习优先），答对到期词推进复习 |
+
+### 记录与激励
+
+| 能力 | 说明 |
+|---|---|
+| 学习记录 | 词库总数 / 已学 / 已掌握 / 待学；学习进度、掌握率、最近 7 天柱状图、答题统计、学习时长 |
+| 每日打卡 | 当天有学习记录即可打卡；奖励弹窗包含彩带、连续天数与学习能量；同一天只可领取一次 |
+| 打卡日历 | 当月打卡日历，已打卡日期高亮 |
+| 错题本 | 自动收集最近答错的词，支持错题复习，答对后移出 |
+| 词汇量评测 | 20 题抽样四选一 + 猜测校正，结果持久化并展示在记录页 |
+| 收藏夹 | 卡片星标收藏 / 取消；跨词库统一列表，支持按单词 / 释义 / 音标搜索、详情与发音 |
+
+### 小游戏
+
+游戏入口位于**学习页单词卡片下方**，不再占用底部页签：
+
+- 看词选译（四选一）
+- 听音辨词（自动发音 + 四选一）
+- 单词拼写（按释义输入）
+- 单词消消乐（词义配对）
+
+答题结果计入记录页，并可选择「优先练计划词」。
+
+### 设置与个性化
+
+| 能力 | 说明 |
+|---|---|
+| 用户资料 | 自定义昵称（最多 20 字）、相册头像（持久化 URI）、恢复默认头像 |
+| 发音 | 内置 Piper 神经网络女声（LJSpeech，22.05kHz），支持美式 / 英式语速，完全离线 |
+| 外观 | 跟随系统 / 浅色 / 深色；Creamy Kawaii 奶油金主题 |
+| 学习提醒 | 19:00 / 20:00 / 21:00 / 22:00，通知权限 + WorkManager 每日调度，可发送测试提醒 |
+| 数据备份 | JSON 导出 / 覆盖式导入；按「单词 + 词库」还原，可重复导入 |
+| 重置进度 | 二次确认后仅重置当前词库的学习状态与记录 |
+| 关于与许可 | 词库、字体、Piper / eSpeak 许可全文 |
+
+### 视觉与性能
+
+- **Creamy Kawaii 主题**：奶油金 `#D9BB59`、杏仁白 `#FFF8E8`、蜜桃粉 `#F8D9CC`、焦糖棕 `#B99578`、可可深棕 `#57483B`、燕麦米色 `#EADCBF`；
+- 深色模式：`#292522` 背景、`#39322D` 卡片、奶油金主色；
+- 学习状态：未学习燕麦灰、学习中奶油金、已掌握鼠尾草绿、错题珊瑚红；
+- 应用图标：金发 / 单词书 / 金色书签 / 星星插画，含自适应图标与全密度 mipmap；
+- 内置 TTS 在**首次点击发音时**才初始化，启动阶段不加载模型；`tokens.txt` 固定 LF，避免原生解析闪退。
 
 ## 技术栈
 
 | 项 | 选型 |
 |---|---|
-| 语言 | Kotlin 2.2.10（AGP 9 **内置 Kotlin**，不再单独应用 `org.jetbrains.kotlin.android`） |
-| UI | Jetpack Compose（BOM 2025.10.01 + Material3）、Navigation Compose、单 Activity + 底部四页签 |
-| 数据库 | Room 2.7.2 + **KSP**（suspend / Flow 查询），KSP 与 AGP 9 内置 Kotlin 的兼容开关见下文 |
-| 异步 | Kotlin 协程 + StateFlow（ViewModel + `collectAsStateWithLifecycle`） |
-| 设置存储 | DataStore Preferences（当前词库 / 每日目标 / 发音口音） |
-| JSON | Gson 2.10.1（解析 assets 词库） |
-| 依赖注入 | 手动 `AppContainer`（不引入 Hilt） |
-| 构建 | AGP 9.1.1 + Gradle 9.3.1 + JDK 21；minSdk 26 / targetSdk 36 / applicationId `com.example.study` |
+| 语言 | Kotlin 2.2.10（AGP 9 内置 Kotlin） |
+| UI | Jetpack Compose（BOM 2025.10.01 + Material3）、Navigation Compose、单 Activity + 五页签 |
+| 数据库 | Room 2.7.2 + KSP（schema v6） |
+| 异步 | Kotlin 协程 + StateFlow / ViewModel |
+| 设置存储 | DataStore Preferences |
+| 后台任务 | WorkManager（学习提醒） |
+| JSON | Gson 2.10.1 |
+| 依赖注入 | 手动 `AppContainer` |
+| 构建 | AGP 9.1.1 + Gradle 9.3.1 + JDK 21；minSdk 26 / targetSdk 36 |
+| 测试 | JVM 单元测试 31 条（日期/streak、计划调度、自定义词库解析等） |
+
+底部页签：**学习 / 收藏 / 记录 / 总览 / 设置**。
 
 ## 目录结构
 
-```
+```text
 Study/app/src/main/java/com/example/study/
-├── StudyApp.kt / MainActivity.kt / AppContainer.kt     # 入口与手动依赖容器
-├── data/db/        WordEntity / WordProgressEntity / StudyEventEntity
-│                   WordDao / ProgressDao / StudyEventDao / StudyDatabase
-├── data/seed/      WordBankDto / DatabaseSeeder        # 首启解析 assets 词库并事务入库
-├── data/repo/      WordRepository / StudyRepository / SettingsRepository / TtsManager
-├── data/stats/     StudyStats（streak 纯逻辑，可 JVM 单测）+ LibraryStats
-├── ui/theme/       Color / Type（Nunito）/ Shape / Theme
-├── ui/components/  DuoButton / ProgressTrack / FlipCard / StatusPill / FilterChips
-│                   StatCard / WeekBarChart
-├── ui/navigation/  AppNavHost（底部四页签）
-├── ui/study/       StudyScreen / StudyViewModel
-├── ui/records/     RecordsScreen / RecordsViewModel
-├── ui/settings/    SettingsScreen / SettingsViewModel
-├── ui/dictionary/  DictionaryScreen / DictionaryViewModel（词典搜索）
-├── ui/favorites/   FavoritesScreen / FavoritesViewModel（收藏夹）
-├── ui/quiz/        QuizScreen / QuizViewModel（看词选译）
-├── ui/listening/   ListeningScreen / ListeningViewModel（听音辨词）
-├── ui/spelling/    SpellingScreen / SpellingViewModel（单词拼写）
-├── ui/match/       MatchScreen / MatchViewModel（单词消消乐）
-└── ui/games/       GamesScreen（游戏入口，4 个模式全部上线）
+├── MainActivity.kt / AppContainer.kt
+├── data/db/          Room 实体、DAO、数据库与迁移（v1–v6）
+├── data/seed/        内置词库解析与首次入库、旧词库清理
+├── data/repo/        词库 / 学习记录 / 收藏 / 设置 / 计划 / TTS 仓库
+├── data/plan/        计划调度与仓库
+├── ui/study/         首页学习卡片、今日目标、小游戏入口
+├── ui/plan/          计划创建、概览、日历、计划学习/复习
+├── ui/records/       学习记录、打卡、错题本入口、词汇量评测入口
+├── ui/overview/      单词总览（筛选/搜索/详情）
+├── ui/favorites/     收藏夹与搜索
+├── ui/games/         四个小游戏与学习页游戏区
+├── ui/settings/      设置、词库、资料、主题、备份、提醒
+├── ui/theme/         Creamy Kawaii 色板、Light/Dark 主题、字体与形状
+└── ui/components/    翻转卡片、按钮、状态徽章、图表等通用组件
 ```
 
-资源：
+内置词库位于 `app/src/main/assets/wordbank_*.json`；Piper 语音资源位于 `app/src/main/assets/tts/piper/`；图标源文件位于 `design/app_icon_source.png`。
 
-- `assets/wordbank_cet4.json`（4,544 词）、`assets/wordbank_cet6.json`（3,991 词）
-- `assets/licenses/wordbank-BSD-3.txt`、`assets/licenses/Nunito-OFL.txt`
-- `res/font/nunito_regular.ttf / nunito_bold.ttf / nunito_extrabold.ttf`（由可变字体实例化生成）
+## 数据库（Room v6）
 
-## 数据库设计（Room, version 1）
+| 表 | 说明 |
+|---|---|
+| `words` | 单词主表，唯一索引 `(word, library)` |
+| `word_progress` | 每个单词的学习状态（未学习 / 学习中 / 已掌握） |
+| `study_events` | 每次有效学习事件，含答题对错 |
+| `favorites` | 收藏关系 |
+| `round_seen` | 本轮已浏览词（词库 + 筛选隔离） |
+| `study_duration` | 按日期 + 词库累计学习时长 |
+| `plans` / `plan_words` | 专项复习计划与计划内单词阶段 |
 
-| 表 | 字段 | 说明 |
-|---|---|---|
-| `words` | id, word, phonetic, pos, meaning, example, exampleZh, phrase, phraseZh, library | 词库；唯一索引 (word, library) |
-| `word_progress` | wordId(PK), status(1 学习中 / 2 已掌握), firstLearnedAt, lastLearnedAt, studyCount, masteredAt | 只存学过的词 |
-| `study_events` | id, date(yyyy-MM-dd), wordId, timestamp, answerCorrect | 每次有效学习一行；answerCorrect 1/0 = 答题对错，null = 翻卡标记；今日目标按日期+单词去重，累计次数不去重 |
-| `favorites` | id, wordId(唯一), createdAt | 收藏夹（v2 新增） |
-| `round_seen` | library, filter, wordId, seenAt（联合主键） | 学习页本轮已浏览词（v4 新增，按词库+筛选隔离） |
-| `study_duration` | date, library, durationMs（联合主键） | 学习时长（v5 新增，按日期+词库累计） |
-| `plans` | id, name, library, startDate, examDate, dailyNewWords, dailyReviewLimit, status, createdAt | 艾宾浩斯专项计划（v6 新增） |
-| `plan_words` | planId, wordId（联合主键）, batchDate, stage, nextReviewDate, lastReviewDate, learnedAt, learnCount, correctCount, wrongCount | 计划内单词与复习阶段（v6 新增） |
-
-- 数据库文件：`wordcard.db`（新重构 schema 与旧 Java 版 `study.db` 不兼容，旧库直接废弃；保留 `fallbackToDestructiveMigration` 作开发期兜底）。
-- 版本历史：v1 = 词库 / 学习进度 / 学习事件；v2 新增 `favorites` 收藏表；v3 学习事件新增 `answerCorrect` 答题对错列；v4 新增 `round_seen` 轮次持久化表；v5 新增 `study_duration` 学习时长表；**v6 新增 `plans` / `plan_words` 艾宾浩斯计划表**（`Migration(1,2)` 至 `Migration(5,6)` 增量迁移，既有数据保留）。
-- 首次启动：`DatabaseSeeder` 在 IO 线程解析两份词库 JSON 并事务批量入库（幂等，已存在则跳过）。
-- 统计口径：今日目标 = 当天学习过的不同单词数；累计学习次数 = 有效学习事件总数（复习重复计）；streak = 有学习记录的连续自然日（当天未学不清零，从昨天起算）。
+数据库版本历史：v1 基础表 → v2 收藏 → v3 答题对错 → v4 本轮进度 → v5 学习时长 → v6 计划表；迁移保持既有数据。
 
 ## 构建与运行
 
 ```bash
-# 编译 Debug APK
-./gradlew :app:assembleDebug                # Windows: gradlew.bat :app:assembleDebug
+# Debug APK
+./gradlew :app:assembleDebug          # Windows: gradlew.bat :app:assembleDebug
 
-# JVM 单元测试（streak / 日期去重等纯逻辑）
+# 单元测试
 ./gradlew :app:testDebugUnitTest
 
-# 安装到设备 / 模拟器
+# 签名 Release APK
+./gradlew :app:assembleRelease
+
+# 安装
 adb install -r app/build/outputs/apk/debug/app-debug.apk
 ```
 
-开发环境说明：
+环境说明：
 
-1. **AGP 9 内置 Kotlin**：不要再应用 `org.jetbrains.kotlin.android` 插件（会报 `extension 'kotlin' already registered`）；Compose 仍需 `org.jetbrains.kotlin.plugin.compose`。
-2. **KSP 兼容开关**：AGP 9 内置 Kotlin 默认禁止通过 `kotlin.sourceSets` 注册生成源，`gradle.properties` 中需保留 `android.disallowKotlinSourceSets=false`，否则 Room KSP 无法工作。
-3. **国内镜像**：`settings.gradle.kts` 已配置 google / mavenCentral + 阿里云镜像兜底（`plugins.gradle.org` 在部分网络不可达）。
+1. **AGP 9 内置 Kotlin**：不要应用 `org.jetbrains.kotlin.android`；Compose 使用 `org.jetbrains.kotlin.plugin.compose`。
+2. **KSP**：`gradle.properties` 保留 `android.disallowKotlinSourceSets=false`，否则 Room KSP 无法注册生成源。
+3. **ABI**：release 内置 sherpa-onnx 语音原生库为 arm64-v8a；debug 额外包含 x86_64 供模拟器调试。
 
-## 词库转换（可复现）
+## 发布信息
 
-参考 Web 应用的词库数据 → Android assets 的转换脚本：
+| 项 | 值 |
+|---|---|
+| 版本 | `1.1.1`（versionCode 5） |
+| Release | <https://github.com/Rorenchai/wordsREApp/releases/tag/v1.1.1> |
+| APK | `app-release.apk`（61,086,124 字节 / 58.26 MB） |
+| SHA-256 | `49F1AEF56061BED77C11ECB77F4F40539BE1CCBEAA2CE34F28C8ACB6D35B8627` |
+| 签名 | release keystore（`keystore/wordcard-release.jks`，不入库） |
 
-```bash
-python -I WorkBuddy/wordbank/convert_ref_wordbank.py
-```
+## 词库与许可
 
-脚本只把参考数据当纯文本解析（不执行任何 JS），校验词数 4,544 / 3,991 与字段完整性后输出 UTF-8 JSON。
+- 词库：整理自 [KyleBing/english-vocabulary](https://github.com/KyleBing/english-vocabulary)，**BSD 3-Clause License**；
+- 字体：**Nunito**，**SIL Open Font License 1.1**；
+- 离线语音：**sherpa-onnx**（Apache-2.0）+ **Piper LJSpeech** 女声（数据集公有领域）+ **eSpeak NG** 音素数据（GPL）；
+- 许可全文随 APK 打包在 `assets/licenses/`，可在应用「设置 → 关于与许可」查看。
 
-## 许可
+## 版本历史
 
-- 词库：整理自 [KyleBing/english-vocabulary](https://github.com/KyleBing/english-vocabulary)，**BSD 3-Clause License**。
-- 字体：**Nunito**，**SIL Open Font License 1.1**。
+| 版本 | 主要变化 |
+|---|---|
+| v1.0.0 | Kotlin + Compose 重构完成；CET-4 / CET-6 词库、翻转卡片、每日目标、学习记录、收藏、四游戏、计划、备份、提醒、深色模式 |
+| v1.1.0 | 计划时长滑动条、自定义词库、PETS 词库、单行单词、单词总览、每日打卡、设置页资料/头像、奶油金主题、内置 Piper 女声 |
+| v1.1.1 | 修复 TTS 启动闪退（tokens LF + 延迟初始化）；清理计划说明中的专业术语文案；更新应用图标与主题 |
 
-两份许可证全文随 APK 打包（`assets/licenses/`），并在应用「词库与设置 → 关于与许可」中可查看。
-
-## 第六期队列（v1.1 功能增强，已完成）
-
-- ✅ 计划备考时长改为 7–365 天滑动条（实时显示考试日期与建议词量）
-- ✅ 内置离线语音引擎：sherpa-onnx + Piper 神经网络**女声**（LJSpeech，22.05kHz），不依赖系统 TTS，支持 US/UK 语速；体积约 +85MB（含 arm64-v8a / x86_64 原生库与模型）
-- ✅ 自定义词库导入：JSON / CSV / TXT 解析（兼容 UTF-8 BOM），自定义词库独立参与学习/计划/收藏；内置 **PETS 3,664 词** 默认词库
-- ✅ 学习卡片与计划卡片单词强制单行显示，超长单词自动缩小字号不截断
-- ✅ 内置语音替换为 **sherpa-onnx + Piper 神经网络女声**（LJSpeech，22.05kHz，自然女声），不再使用规则合成；release 包仅含 arm64-v8a 原生库（debug 额外包含 x86_64 供模拟器），APK 约 61MB
-- ✅ UI 反馈修复与导航调整：记录页合并统计卡片并统一 14dp 小圆角、收藏夹增加内边距避免文字贴边、游戏入口移到学习页卡片下方、原「游戏」页替换为「单词总览」、新增每日打卡奖励弹窗
-- ✅ 首页与设置页微调：备考计划与今日目标置顶、移除首页词典入口；词库与设置改为「一级分组列表 + 展开二级内容」的多层列表
-- ✅ 卡片样式精简：计划/目标合并为同一行紧凑置顶栏（滚动时固定）、计划表单与记录页部分区块改为嵌入式（无卡片底/边框）、游戏入口改为嵌入式图标行
-- ✅ 收藏夹搜索：收藏页支持按单词 / 释义 / 音标实时过滤，显示「匹配数 / 总数」，无结果与清空搜索状态完整
-- ✅ 设置页用户资料与嵌入式列表：底部页签改为「设置」；支持自定义昵称、相册头像（持久化 URI）、恢复默认头像；设置列表改为嵌入式行（无卡片底/边框）
-- ✅ Creamy Kawaii 奶油金主题：应用图标替换为「金发 · 单词书 · 金色书签」插画；奶油金 / 杏仁白 / 蜜桃粉 / 可可深棕配色，Light/Dark 双主题；按钮文字改深棕保证对比度
-- ✅ v1.1.1 稳定性与文案修复：修正 `tokens.txt` 的 CRLF 换行（Piper 原生解析异常导致进程退出）；TTS 改为首次点发音时才初始化；移除应用内「艾宾浩斯 / 遗忘曲线」说明字样，计划描述改为中性的备考/复习安排文案
-- ✅ 新增单元测试覆盖自定义词库解析（JSON/BOM/CSV/Tab/异常输入/文件名推导）
-
-> 语音引擎：sherpa-onnx（Apache-2.0）+ Piper LJSpeech 女声模型（数据集公有领域）+ eSpeak NG 音素数据（GPL），详见应用内「关于与许可 → 离线语音引擎许可」与 `assets/licenses/piper-tts.txt`。
-
-## 第二期队列（Android 端全部完成，Web 端待追齐）
-
-- ✅ 词典搜索（首页搜索入口已移除；搜索能力由「单词总览」承接，详情页保留）
-- ✅ 收藏集合（卡片星标收藏 / 取消；「收藏」页签跨词库统一管理，支持详情与发音；数据库 v2 迁移）
-- ✅ 看词选译（四选一答题、判对错、自动换题、会话统计；答题结果落库 + 记录页正确率；数据库 v3 迁移）
-- ✅ 听音辨词（自动播放发音 + 四选一选单词、重听、判对错与自动换题；复用答题统计）
-- ✅ 单词拼写（按释义输入拼写、不区分大小写、判对错与自动换题；复用答题统计）
-- ✅ 单词消消乐（6 对词义词卡打乱网格、配对消除、错误提示、结算与再来一局）
-- ✅ 轮次持久化（学习页本轮进度跨进程恢复，按词库+筛选隔离，数据库 v4 迁移）
-- ⬜ Web 端追齐（独立技术线，按双端对齐原则另行排期）
-
-## 第三期队列（Android 端全部完成）
-
-- ✅ 学习时长统计 + 打卡日历（学习页计时、记录页展示今日/累计时长与当月打卡网格；数据库 v5 迁移）
-- ✅ 错题本 / 复习模式（自动收集最近答错的词，错题复习答对后自动移出）
-- ✅ 词汇量评测（20 题抽样四选一 + 猜测校正估算，结果持久化展示在记录页）
-- ✅ 数据导出与备份导入（JSON 导出 / 覆盖式导入，SAF 文件选择，幂等可重复导入）
-- ✅ 每日学习提醒（19/20/21/22 点档位、通知权限、WorkManager 每日调度、测试提醒）
-- ✅ 深色模式（跟随系统 / 浅色 / 深色，CompositionLocal 主题色全页面适配 + 持久化）
-- ⬜ Web 端追齐（独立技术线，按双端对齐原则另行排期）
-
-## 第四期队列（Android 全部完成：艾宾浩斯专项计划）
-
-设计依据：复习点采用 [新东方艾宾浩斯背词法](https://mtoutiao.xdf.cn/kaoyan/201703/10625559.html) 的 5 分钟 / 30 分钟 / 12 小时 / 1 天 / 2 天 / 4 天 / 7 天 / 15 天（应用中长期复习取 **1/2/4/7/15 天**，短期巩固以「当天再练」体现）；每日新词量与复习比例参考 [四六级备考安排](https://cet4-6.xdf.cn/202610/15436210.html)：新词 40–60/天、新词与复习约 1:2、单日新词上限 80、时间不足时优先保复习。
-
-- ✅ 计划数据模型与艾宾浩斯调度算法（数据库 v6：`plans` / `plan_words`；学习次日首复习，答对按 1/2/4/7/15 天推进、答错次日重试、越过考试日期自动截断；10 条单测）
-- ✅ 计划创建向导与概览（学习页计划卡片入口；词库 / 备考时长 30–120 天 / 每日新词 / 每日复习上限 / 计划名称；考试日期与建议量预览、可行性提示；计划概览含进度、今日新词与到期复习列表）
-- ✅ 计划学习 / 复习流程（新词卡片学习后自动安排次日首复习；复习按「翻面回想 → 记住了/没记住」推进艾宾浩斯阶段：答对 +1 轮、答错次日重试；完成页展示本次统计）
-- ✅ 小游戏与计划联动（游戏页展示计划进度与「优先练计划词」开关；看词选译 / 听音辨词 / 单词拼写 / 消消乐 从计划词池抽题（到期复习优先、新词其次）；游戏答对到期复习词推进一轮艾宾浩斯阶段，同一词每天最多计入一次）
-- ✅ 计划日历（月历视图展示备考周期内每日新词/复习任务与完成情况，支持切换月份、点选查看当日详情，考试日红框标识）
-- ⬜ Web 端追齐（独立技术线，按双端对齐原则另行排期）
-
-## 第五期队列（Web 追齐，已完成）
-
-- ✅ W1/W2 Web 基础框架与学习闭环：完整词库内嵌（CET-4 4,544 + CET-6 3,991，单文件 2.6 MB）、学习卡片翻转 / 三档状态 / 筛选 / 今日目标 / streak / 本轮去重 / TTS、记录页统计、词库与设置（目标/口音/深色模式/重置）、localStorage 持久化
-- ✅ W3 词典搜索 + 收藏夹：英文/中文检索、范围切换、结果排序与详情弹窗（发音）；卡片星标收藏、跨词库收藏页、取消收藏
-- ✅ W4 四个小游戏 + 错题本 + 词汇量评测：看词选译 / 听音辨词 / 单词拼写 / 单词消消乐（6 对配对）、答题反馈与自动换题；错题自动收集与重练移出；20 题抽样词汇量评测并保存结果；记录页答题统计
-- ✅ W5 艾宾浩斯专项计划：创建向导（词库/备考 30–120 天/每日新词/复习上限）、计划概览、今日新词学习与复习（1/2/4/7/15 天推进、答错次日、考试日截断）、计划日历（切月/点选/考试日红框）、游戏计划词优先与答对推进复习
-- ✅ W6 备份导出导入 + 学习时长 + 双端对照收尾：JSON 备份下载/校验导入覆盖恢复、学习时长按词库+日期累计与记录页展示、Web README 双端功能矩阵与差异说明
-- ✅ Web 交互动画体验优化（验收后补充）：按键/选项按压与悬浮、卡片换词入场与翻面内容、页面切换过渡、答对脉冲/答错抖动、星标弹跳、发音脉冲、弹窗/Toast 入场、消消乐配对淡出，含 `prefers-reduced-motion` 降级
-- ⬜ 小游戏与计划联动（优先练计划词池、游戏结果推进复习）
-- ⬜ 计划日历 / 收尾文档
+> 历史阶段说明：第二至第四期（小游戏 / 词典 / 收藏 / 答题 / 学习时长 / 错题本 / 词汇量 / 备份 / 提醒 / 深色模式 / 专项计划）均已完成；第五期 Web 线与 Android **不再同步维护**，Web 已弃用。
