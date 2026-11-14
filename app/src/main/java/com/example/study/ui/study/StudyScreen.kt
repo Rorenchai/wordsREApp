@@ -136,7 +136,6 @@ fun StudyScreen(
                     .padding(top = 6.dp, bottom = 20.dp),
                 verticalArrangement = Arrangement.spacedBy(14.dp)
             ) {
-                StudyHeader(state = state)
                 FilterChips(selected = state.filter, onSelect = viewModel::setFilter)
                 StudyCard(
                     state = state,
