@@ -6,6 +6,8 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -13,6 +15,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -194,6 +197,8 @@ private fun SectionCard(title: String, content: @Composable () -> Unit) {
 private fun ChoiceChip(text: String, selected: Boolean, onClick: () -> Unit) {
     Box(
         modifier = Modifier
+            // 限制单个 chip 最大宽度，超长自定义词库名用省略号，避免撑破整行
+            .widthIn(max = 280.dp)
             .clip(RoundedCornerShape(percent = 50))
             .background(if (selected) DuoGreen else DuoCard)
             .border(2.dp, if (selected) DuoGreen else DuoBorder, RoundedCornerShape(percent = 50))
@@ -203,11 +208,15 @@ private fun ChoiceChip(text: String, selected: Boolean, onClick: () -> Unit) {
         Text(
             text = text,
             style = MaterialTheme.typography.labelMedium,
-            color = if (selected) Color.White else DuoTextSecondary
+            color = if (selected) Color.White else DuoTextSecondary,
+            maxLines = 1,
+            softWrap = false,
+            overflow = TextOverflow.Ellipsis
         )
     }
 }
 
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 private fun PlanCreationForm(
     state: PlanUiState,
@@ -225,7 +234,12 @@ private fun PlanCreationForm(
     )
 
     SectionCard(title = "目标词库") {
-        Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+        // 词库数量会随自定义词库增加，用 FlowRow 自动换行，避免把 chip 挤压成两行/圆圈
+        FlowRow(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
             state.libraries.forEach { item ->
                 ChoiceChip(
                     text = "${item.library}（${formatCount(item.count)} 词）",
@@ -305,7 +319,11 @@ private fun PlanCreationForm(
     }
 
     SectionCard(title = "每日复习上限") {
-        Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+        FlowRow(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
             listOf(60, 120, 180, 240).forEach { limit ->
                 ChoiceChip(
                     text = "$limit 词",
