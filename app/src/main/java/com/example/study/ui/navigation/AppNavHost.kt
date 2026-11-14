@@ -15,6 +15,7 @@ import androidx.compose.material.icons.automirrored.filled.FormatListBulleted
 import androidx.compose.material.icons.automirrored.filled.MenuBook
 import androidx.compose.material.icons.filled.BarChart
 import androidx.compose.material.icons.filled.School
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
@@ -68,7 +69,7 @@ private val bottomNavItems = listOf(
     BottomNavItem("favorites", "收藏", Icons.Filled.Star),
     BottomNavItem("records", "记录", Icons.Filled.BarChart),
     BottomNavItem("overview", "总览", Icons.AutoMirrored.Filled.FormatListBulleted),
-    BottomNavItem("settings", "词库", Icons.AutoMirrored.Filled.MenuBook)
+    BottomNavItem("settings", "设置", Icons.Filled.Settings)
 )
 
 @Composable

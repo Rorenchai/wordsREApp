@@ -1,11 +1,14 @@
 package com.example.study.ui.settings
 
 import android.content.Context
+import android.content.Intent
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.provider.OpenableColumns
 import androidx.activity.compose.BackHandler
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -19,12 +22,15 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -45,9 +51,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.graphics.asImageBitmap
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -80,6 +90,7 @@ fun SettingsScreen(modifier: Modifier = Modifier) {
     var licenseDialog by rememberSaveable { mutableStateOf<Pair<String, String>?>(null) }
     // 设置页本地二级页面：null 显示分组列表，否则展开对应分组的详细内容
     var currentPage by rememberSaveable { mutableStateOf<String?>(null) }
+    var showProfileDialog by rememberSaveable { mutableStateOf(false) }
 
     val exportLauncher = rememberLauncherForActivityResult(
         ActivityResultContracts.CreateDocument("application/json")
@@ -106,6 +117,20 @@ fun SettingsScreen(modifier: Modifier = Modifier) {
                     entries = entries
                 )
             }
+        }
+    }
+    val avatarLauncher = rememberLauncherForActivityResult(
+        ActivityResultContracts.OpenDocument()
+    ) { uri ->
+        if (uri != null) {
+            // 持久化读取权限，应用重启后仍能显示自定义头像
+            runCatching {
+                context.contentResolver.takePersistableUriPermission(
+                    uri,
+                    Intent.FLAG_GRANT_READ_URI_PERMISSION
+                )
+            }
+            viewModel.setAvatarUri(uri.toString())
         }
     }
     val notificationPermissionLauncher = rememberLauncherForActivityResult(
@@ -154,9 +179,15 @@ fun SettingsScreen(modifier: Modifier = Modifier) {
             verticalArrangement = Arrangement.spacedBy(14.dp)
         ) {
             Text(
-                text = "词库与设置",
+                text = "设置",
                 style = MaterialTheme.typography.headlineMedium,
                 color = DuoTextPrimary
+            )
+
+            ProfileRow(
+                nickname = state.nickname,
+                avatarUri = state.avatarUri,
+                onClick = { showProfileDialog = true }
             )
 
             SettingsGroupEntry(title = "词库", summary = "${state.library} · ${state.wordCounts[state.library] ?: 0} 词", entryKey = "library", currentKey = currentPage, onToggle = { currentPage = it }) {
@@ -382,6 +413,20 @@ fun SettingsScreen(modifier: Modifier = Modifier) {
         )
     }
 
+    if (showProfileDialog) {
+        ProfileEditDialog(
+            nickname = state.nickname,
+            avatarUri = state.avatarUri,
+            onPickAvatar = { avatarLauncher.launch(arrayOf("image/*")) },
+            onClearAvatar = { viewModel.setAvatarUri("") },
+            onDismiss = { showProfileDialog = false },
+            onSave = { name ->
+                viewModel.setNickname(name)
+                showProfileDialog = false
+            }
+        )
+    }
+
     if (showImportConfirm) {
         AlertDialog(
             onDismissRequest = { showImportConfirm = false },
@@ -505,8 +550,8 @@ fun SettingsScreen(modifier: Modifier = Modifier) {
 }
 
 /**
- * 多层列表的一级条目：显示标题与当前值摘要，点击展开/收起二级设置内容。
- * 同一时间只展开一个分组，避免整页堆满控件。
+ * 多层列表的一级条目：嵌入式列表样式（无卡片底/边框）。
+ * 点击展开/收起二级设置内容，同一时间只展开一个分组。
  */
 @Composable
 private fun SettingsGroupEntry(
@@ -518,15 +563,12 @@ private fun SettingsGroupEntry(
     content: @Composable () -> Unit
 ) {
     val expanded = currentKey == entryKey
-    Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+    Column {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .clip(RoundedCornerShape(14.dp))
-                .background(DuoCard)
-                .border(2.dp, DuoBorder, RoundedCornerShape(14.dp))
                 .clickable { onToggle(if (expanded) null else entryKey) }
-                .padding(horizontal = 16.dp, vertical = 14.dp),
+                .padding(horizontal = 4.dp, vertical = 12.dp),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
@@ -552,16 +594,139 @@ private fun SettingsGroupEntry(
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .clip(RoundedCornerShape(12.dp))
-                    .background(DuoSurface)
-                    .border(2.dp, DuoBorder, RoundedCornerShape(12.dp))
-                    .padding(16.dp),
+                    .padding(start = 4.dp, end = 4.dp, top = 2.dp, bottom = 8.dp),
                 verticalArrangement = Arrangement.spacedBy(10.dp)
             ) {
                 content()
             }
         }
     }
+}
+
+@Composable
+private fun ProfileRow(nickname: String, avatarUri: String, onClick: () -> Unit) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable(onClick = onClick)
+            .padding(horizontal = 4.dp, vertical = 8.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        UserAvatar(uri = avatarUri, size = 56.dp)
+        Column(
+            modifier = Modifier
+                .weight(1f)
+                .padding(start = 14.dp)
+        ) {
+            Text(
+                text = nickname,
+                style = MaterialTheme.typography.titleLarge,
+                color = DuoTextPrimary
+            )
+            Text(
+                text = "点击设置头像与昵称",
+                style = MaterialTheme.typography.bodySmall,
+                color = DuoTextSecondary
+            )
+        }
+        Text(
+            text = "›",
+            style = MaterialTheme.typography.titleLarge,
+            color = DuoTextSecondary
+        )
+    }
+}
+
+@Composable
+private fun UserAvatar(uri: String, size: Dp, modifier: Modifier = Modifier) {
+    val context = LocalContext.current
+    var bitmap by remember(uri) { mutableStateOf<ImageBitmap?>(null) }
+    LaunchedEffect(uri) {
+        bitmap = if (uri.isBlank()) {
+            null
+        } else {
+            kotlinx.coroutines.withContext(kotlinx.coroutines.Dispatchers.IO) {
+                runCatching {
+                    context.contentResolver.openInputStream(Uri.parse(uri))?.use { input ->
+                        BitmapFactory.decodeStream(input)?.asImageBitmap()
+                    }
+                }.getOrNull()
+            }
+        }
+    }
+    Box(
+        modifier = modifier
+            .size(size)
+            .clip(CircleShape)
+            .background(DuoGreen),
+        contentAlignment = Alignment.Center
+    ) {
+        val image = bitmap
+        if (image != null) {
+            Image(
+                bitmap = image,
+                contentDescription = "用户头像",
+                contentScale = ContentScale.Crop,
+                modifier = Modifier.fillMaxSize()
+            )
+        } else {
+            Icon(
+                imageVector = Icons.Filled.Person,
+                contentDescription = "默认头像",
+                tint = DuoCard,
+                modifier = Modifier.size(size * 0.55f)
+            )
+        }
+    }
+}
+
+@Composable
+private fun ProfileEditDialog(
+    nickname: String,
+    avatarUri: String,
+    onPickAvatar: () -> Unit,
+    onClearAvatar: () -> Unit,
+    onDismiss: () -> Unit,
+    onSave: (String) -> Unit
+) {
+    var draft by remember(nickname) { mutableStateOf(nickname) }
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text("个人资料") },
+        text = {
+            Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    UserAvatar(uri = avatarUri, size = 64.dp)
+                    Column(modifier = Modifier.padding(start = 12.dp)) {
+                        TextButton(onClick = onPickAvatar) { Text("更换头像") }
+                        if (avatarUri.isNotBlank()) {
+                            TextButton(onClick = onClearAvatar) {
+                                Text("恢复默认头像", color = DuoRed)
+                            }
+                        }
+                    }
+                }
+                OutlinedTextField(
+                    value = draft,
+                    onValueChange = { if (it.length <= 20) draft = it },
+                    label = { Text("昵称") },
+                    singleLine = true,
+                    modifier = Modifier.fillMaxWidth()
+                )
+                Text(
+                    text = "昵称最多 20 个字符，头像支持从相册选择图片。",
+                    style = MaterialTheme.typography.bodySmall,
+                    color = DuoTextSecondary
+                )
+            }
+        },
+        confirmButton = {
+            TextButton(onClick = { onSave(draft) }) { Text("保存") }
+        },
+        dismissButton = {
+            TextButton(onClick = onDismiss) { Text("取消") }
+        }
+    )
 }
 
 @Composable

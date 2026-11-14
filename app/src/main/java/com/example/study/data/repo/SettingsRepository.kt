@@ -54,6 +54,12 @@ class SettingsRepository(
     /** 最近一次打卡日期（yyyy-MM-dd，空串表示还没打卡）。 */
     val lastCheckInDate: Flow<String> = safeData.map { it[KEY_LAST_CHECK_IN] ?: "" }
 
+    /** 用户昵称（默认「学习者」，可在设置页修改）。 */
+    val userNickname: Flow<String> = safeData.map { it[KEY_NICKNAME] ?: DEFAULT_NICKNAME }
+
+    /** 自定义头像的 content:// URI，空串表示使用默认头像。 */
+    val userAvatarUri: Flow<String> = safeData.map { it[KEY_AVATAR_URI] ?: "" }
+
     suspend fun setCurrentLibrary(library: String) {
         dataStore.edit { it[KEY_LIBRARY] = library }
     }
@@ -94,10 +100,19 @@ class SettingsRepository(
         dataStore.edit { it[KEY_LAST_CHECK_IN] = date }
     }
 
+    suspend fun setUserNickname(nickname: String) {
+        dataStore.edit { it[KEY_NICKNAME] = nickname.trim().ifBlank { DEFAULT_NICKNAME }.take(20) }
+    }
+
+    suspend fun setUserAvatarUri(uri: String) {
+        dataStore.edit { it[KEY_AVATAR_URI] = uri }
+    }
+
     companion object {
         const val LIB_CET4 = "CET-4"
         const val LIB_CET6 = "CET-6"
         const val LIB_PETS_B = "PETS-B"
+        const val DEFAULT_NICKNAME = "学习者"
         const val ACCENT_US = "US"
         const val ACCENT_UK = "UK"
         const val DEFAULT_DAILY_GOAL = 20
@@ -120,6 +135,8 @@ class SettingsRepository(
         private val KEY_THEME_MODE = stringPreferencesKey("theme_mode")
         private val KEY_GAME_PLAN_MODE = booleanPreferencesKey("game_plan_mode")
         private val KEY_LAST_CHECK_IN = stringPreferencesKey("last_check_in_date")
+        private val KEY_NICKNAME = stringPreferencesKey("user_nickname")
+        private val KEY_AVATAR_URI = stringPreferencesKey("user_avatar_uri")
 
         fun create(context: Context): SettingsRepository {
             return SettingsRepository(context.applicationContext.settingsDataStore)

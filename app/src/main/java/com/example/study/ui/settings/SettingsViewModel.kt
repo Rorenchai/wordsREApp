@@ -35,7 +35,9 @@ data class SettingsUiState(
     val message: String? = null,
     val reminderEnabled: Boolean = false,
     val reminderHour: Int = 20,
-    val themeMode: String = SettingsRepository.THEME_SYSTEM
+    val themeMode: String = SettingsRepository.THEME_SYSTEM,
+    val nickname: String = SettingsRepository.DEFAULT_NICKNAME,
+    val avatarUri: String = ""
 )
 
 class SettingsViewModel(
@@ -87,6 +89,24 @@ class SettingsViewModel(
                 _uiState.update { it.copy(themeMode = mode) }
             }
         }
+        viewModelScope.launch {
+            settingsRepository.userNickname.collect { nickname ->
+                _uiState.update { it.copy(nickname = nickname) }
+            }
+        }
+        viewModelScope.launch {
+            settingsRepository.userAvatarUri.collect { uri ->
+                _uiState.update { it.copy(avatarUri = uri) }
+            }
+        }
+    }
+
+    fun setNickname(nickname: String) {
+        viewModelScope.launch { settingsRepository.setUserNickname(nickname) }
+    }
+
+    fun setAvatarUri(uri: String) {
+        viewModelScope.launch { settingsRepository.setUserAvatarUri(uri) }
     }
 
     fun selectLibrary(library: String) {
