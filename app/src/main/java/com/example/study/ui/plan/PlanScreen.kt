@@ -175,13 +175,11 @@ fun PlanScreen(
 
 @Composable
 private fun SectionCard(title: String, content: @Composable () -> Unit) {
+    // 计划页表单改为嵌入式分组：只用标题分隔，不再为每组套一层圆角卡片
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .clip(RoundedCornerShape(20.dp))
-            .background(DuoCard)
-            .border(2.dp, DuoBorder, RoundedCornerShape(20.dp))
-            .padding(16.dp),
+            .padding(vertical = 4.dp),
         verticalArrangement = Arrangement.spacedBy(10.dp)
     ) {
         Text(

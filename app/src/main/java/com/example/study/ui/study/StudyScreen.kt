@@ -48,6 +48,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
@@ -116,45 +117,158 @@ fun StudyScreen(
             .fillMaxSize()
             .background(DuoBackground)
     ) {
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .verticalScroll(rememberScrollState())
-                .padding(horizontal = 18.dp)
-                .padding(top = 12.dp, bottom = 20.dp),
-            verticalArrangement = Arrangement.spacedBy(14.dp)
-        ) {
-            // 备考计划与今日目标固定在首页顶部
-            PlanCard(state = state, onOpenPlan = onOpenPlan)
-            DailyGoalCard(state)
-            StudyHeader(state = state)
-            FilterChips(selected = state.filter, onSelect = viewModel::setFilter)
-            StudyCard(
+        Column(modifier = Modifier.fillMaxSize()) {
+            // 计划与今日目标合并成一条紧凑置顶栏，滚动时固定在顶部
+            StudyTopBar(
                 state = state,
-                onFlip = viewModel::flip,
-                onSpeak = viewModel::speakCurrentWord,
-                onToggleFavorite = viewModel::toggleFavorite
+                onOpenPlan = onOpenPlan,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 18.dp)
+                    .padding(top = 10.dp, bottom = 6.dp)
             )
-            StatusActionRow(
-                state = state,
-                onFlip = viewModel::flip,
-                onMark = viewModel::markStatus
-            )
-            DuoButton(
-                text = "下一个",
-                onClick = viewModel::nextWord,
-                modifier = Modifier.fillMaxWidth(),
-                enabled = !state.loadingWord && state.word != null
-            )
-            // 游戏入口移到单词卡片下方，原底部「游戏」页改为单词总览
-            GameSection(onOpenGame = onOpenGame)
-            RoundIndicator(state)
+            Column(
+                modifier = Modifier
+                    .weight(1f)
+                    .fillMaxWidth()
+                    .verticalScroll(rememberScrollState())
+                    .padding(horizontal = 18.dp)
+                    .padding(top = 6.dp, bottom = 20.dp),
+                verticalArrangement = Arrangement.spacedBy(14.dp)
+            ) {
+                StudyHeader(state = state)
+                FilterChips(selected = state.filter, onSelect = viewModel::setFilter)
+                StudyCard(
+                    state = state,
+                    onFlip = viewModel::flip,
+                    onSpeak = viewModel::speakCurrentWord,
+                    onToggleFavorite = viewModel::toggleFavorite
+                )
+                StatusActionRow(
+                    state = state,
+                    onFlip = viewModel::flip,
+                    onMark = viewModel::markStatus
+                )
+                DuoButton(
+                    text = "下一个",
+                    onClick = viewModel::nextWord,
+                    modifier = Modifier.fillMaxWidth(),
+                    enabled = !state.loadingWord && state.word != null
+                )
+                // 游戏入口移到单词卡片下方，原底部「游戏」页改为单词总览
+                GameSection(onOpenGame = onOpenGame)
+                RoundIndicator(state)
+            }
         }
         SnackbarHost(
             hostState = snackbarHostState,
             modifier = Modifier
                 .align(Alignment.BottomCenter)
                 .padding(horizontal = 18.dp, vertical = 8.dp)
+        )
+    }
+}
+
+@Composable
+private fun StudyTopBar(
+    state: StudyUiState,
+    onOpenPlan: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    Row(modifier = modifier, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+        Column(
+            modifier = Modifier
+                .weight(1f)
+                .clip(RoundedCornerShape(12.dp))
+                .background(DuoSurface)
+                .clickable(onClick = onOpenPlan)
+                .padding(horizontal = 12.dp, vertical = 8.dp),
+            verticalArrangement = Arrangement.spacedBy(4.dp)
+        ) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Text(
+                    text = "备考计划",
+                    style = MaterialTheme.typography.labelSmall,
+                    color = DuoTextSecondary
+                )
+                Text(
+                    text = if (state.hasPlan) "剩余 ${state.planDaysLeft} 天" else "去创建",
+                    style = MaterialTheme.typography.labelSmall,
+                    color = DuoBlue
+                )
+            }
+            Text(
+                text = if (state.hasPlan) {
+                    "已学 ${state.planLearnedWords}/${state.planTargetWords}"
+                } else {
+                    "按遗忘曲线规划"
+                },
+                style = MaterialTheme.typography.bodySmall,
+                color = DuoTextPrimary,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis
+            )
+            MiniProgress(
+                progress = if (state.hasPlan && state.planTargetWords > 0) {
+                    state.planLearnedWords.toFloat() / state.planTargetWords
+                } else {
+                    0f
+                }
+            )
+        }
+        Column(
+            modifier = Modifier
+                .weight(1f)
+                .clip(RoundedCornerShape(12.dp))
+                .background(DuoSurface)
+                .padding(horizontal = 12.dp, vertical = 8.dp),
+            verticalArrangement = Arrangement.spacedBy(4.dp)
+        ) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Text(
+                    text = "今日目标",
+                    style = MaterialTheme.typography.labelSmall,
+                    color = DuoTextSecondary
+                )
+                Text(
+                    text = "${state.todayStudied}/${state.dailyGoal}",
+                    style = MaterialTheme.typography.labelSmall,
+                    color = DuoBlue
+                )
+            }
+            Text(
+                text = if (state.goalReached) "已完成" else {
+                    "还差 ${(state.dailyGoal - state.todayStudied).coerceAtLeast(0)} 个"
+                },
+                style = MaterialTheme.typography.bodySmall,
+                color = DuoTextPrimary
+            )
+            MiniProgress(progress = state.goalProgress)
+        }
+    }
+}
+
+@Composable
+private fun MiniProgress(progress: Float) {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(4.dp)
+            .clip(RoundedCornerShape(2.dp))
+            .background(DuoBorder)
+    ) {
+        Box(
+            modifier = Modifier
+                .fillMaxWidth(progress.coerceIn(0f, 1f))
+                .height(4.dp)
+                .clip(RoundedCornerShape(2.dp))
+                .background(DuoGreen)
         )
     }
 }

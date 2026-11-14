@@ -255,10 +255,7 @@ private fun ProgressOverviewCard(stats: LibraryStats) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .clip(RoundedCornerShape(14.dp))
-            .background(DuoSurface)
-            .border(2.dp, DuoBorder, RoundedCornerShape(14.dp))
-            .padding(16.dp),
+            .padding(vertical = 4.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         Row(
@@ -440,10 +437,7 @@ private fun CheckInRewardDialog(streak: Int, energy: Int, onDismiss: () -> Unit)
 private fun QuizStatsCard(stats: LibraryStats) {    Column(
         modifier = Modifier
             .fillMaxWidth()
-            .clip(RoundedCornerShape(14.dp))
-            .background(DuoSurface)
-            .border(2.dp, DuoBorder, RoundedCornerShape(14.dp))
-            .padding(16.dp),
+            .padding(vertical = 4.dp),
         verticalArrangement = Arrangement.spacedBy(6.dp)
     ) {
         Text(
@@ -464,10 +458,7 @@ private fun LearningTimeCard(stats: LibraryStats) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .clip(RoundedCornerShape(14.dp))
-            .background(DuoSurface)
-            .border(2.dp, DuoBorder, RoundedCornerShape(14.dp))
-            .padding(16.dp),
+            .padding(vertical = 4.dp),
         verticalArrangement = Arrangement.spacedBy(6.dp)
     ) {
         Text(
@@ -648,10 +639,7 @@ private fun WeekCard(stats: LibraryStats) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .clip(RoundedCornerShape(14.dp))
-            .background(DuoSurface)
-            .border(2.dp, DuoBorder, RoundedCornerShape(14.dp))
-            .padding(16.dp),
+            .padding(vertical = 4.dp),
         verticalArrangement = Arrangement.spacedBy(6.dp)
     ) {
         Row(
@@ -673,10 +661,7 @@ private fun WeekCard(stats: LibraryStats) {
 private fun StreakCard(streak: Int, modifier: Modifier = Modifier) {
     Column(
         modifier = modifier
-            .clip(RoundedCornerShape(14.dp))
-            .background(DuoSurface)
-            .border(2.dp, DuoBorder, RoundedCornerShape(14.dp))
-            .padding(16.dp),
+            .padding(vertical = 4.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
@@ -701,10 +686,7 @@ private fun StreakCard(streak: Int, modifier: Modifier = Modifier) {
 private fun TotalCard(totalEvents: Long, modifier: Modifier = Modifier) {
     Column(
         modifier = modifier
-            .clip(RoundedCornerShape(14.dp))
-            .background(DuoSurface)
-            .border(2.dp, DuoBorder, RoundedCornerShape(14.dp))
-            .padding(16.dp),
+            .padding(vertical = 4.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
