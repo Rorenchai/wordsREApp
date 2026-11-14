@@ -1,4 +1,4 @@
-package com.example.study.ui.dictionary
+﻿package com.example.study.ui.dictionary
 
 import android.content.Context
 import androidx.lifecycle.ViewModel
@@ -72,7 +72,7 @@ class DictionaryViewModel(
 
     fun speak(word: String) {
         if (!ttsManager.speak(word)) {
-            _uiState.update { it.copy(message = "系统未安装可用的英语语音引擎，无法发音") }
+            _uiState.update { it.copy(message = "内置语音引擎初始化失败，暂时无法发音") }
         }
     }
 

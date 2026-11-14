@@ -208,9 +208,9 @@ fun SettingsScreen(modifier: Modifier = Modifier) {
                 }
             }
 
-            SettingsSection(title = "发音口音") {
+            SettingsSection(title = "发音") {
                 Text(
-                    text = "点击学习页的喇叭按钮时使用的语音口音",
+                    text = "内置 Piper 神经网络女声（LJSpeech，完全离线），不依赖系统语音包；美式 / 英式仅语速略有差异",
                     style = MaterialTheme.typography.bodyMedium,
                     color = DuoTextSecondary
                 )
@@ -338,7 +338,7 @@ fun SettingsScreen(modifier: Modifier = Modifier) {
             SettingsSection(title = "关于与许可") {
                 Text(
                     text = "词库来源：KyleBing/english-vocabulary（BSD 3-Clause License）· PETS-B 词库由项目整理\n" +
-                        "发音：内置 meSpeak / eSpeak 离线语音引擎（GPL），不依赖系统 TTS\n" +
+                        "发音：内置 Piper 神经网络女声（LJSpeech，离线），不依赖系统 TTS\n" +
                         "字体：Nunito（SIL Open Font License 1.1）",
                     style = MaterialTheme.typography.bodyMedium,
                     color = DuoTextSecondary
@@ -355,7 +355,7 @@ fun SettingsScreen(modifier: Modifier = Modifier) {
                         Text("字体许可证", color = DuoBlue)
                     }
                     TextButton(onClick = {
-                        licenseDialog = "离线语音引擎（GPL）" to "licenses/mespeak-GPL.txt"
+                        licenseDialog = "离线语音引擎许可（sherpa-onnx / Piper）" to "licenses/piper-tts.txt"
                     }) {
                         Text("语音引擎许可", color = DuoBlue)
                     }

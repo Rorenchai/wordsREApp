@@ -1,0 +1,23 @@
+内置神经网络语音引擎许可说明
+============================
+
+本应用内置的英语女声引擎由以下开源项目组成：
+
+1. sherpa-onnx
+   - 项目：https://github.com/k2-fsa/sherpa-onnx
+   - 版本：v1.13.8（Android 预编译库与 Kotlin API）
+   - 许可证：Apache License 2.0
+
+2. Piper TTS 模型（LJSpeech medium）
+   - 项目：https://github.com/rhasspy/piper
+   - 模型：vits-piper-en_US-ljspeech-medium-int8
+   - 数据集：LJSpeech（公有领域，https://keithito.com/LJ-Speech-Dataset/）
+   - 许可证：模型卡见 assets/tts/piper/MODEL_CARD（Piper 项目为 MIT License）
+
+3. eSpeak NG 音素数据
+   - 项目：https://github.com/espeak-ng/espeak-ng
+   - 用途：仅用于文本转音素（espeak-ng-data）
+   - 许可证：GNU General Public License v3
+
+朗读过程完全在本机 CPU 上完成，不依赖系统 TTS 引擎，也不访问网络。
+如需对外分发本应用，请遵守上述项目的许可证（尤其 eSpeak NG 的 GPL 条款）。

@@ -1,4 +1,4 @@
-package com.example.study.ui.quiz
+﻿package com.example.study.ui.quiz
 
 import android.content.Context
 import androidx.lifecycle.ViewModel
@@ -116,7 +116,7 @@ class QuizViewModel(
     fun speakWord() {
         val word = _uiState.value.word ?: return
         if (!ttsManager.speak(word.word)) {
-            _uiState.update { it.copy(message = "系统未安装可用的英语语音引擎，无法发音") }
+            _uiState.update { it.copy(message = "内置语音引擎初始化失败，暂时无法发音") }
         }
     }
 
