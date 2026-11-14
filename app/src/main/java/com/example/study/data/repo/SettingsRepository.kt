@@ -26,7 +26,14 @@ class SettingsRepository(
         if (error is IOException) emit(emptyPreferences()) else throw error
     }
 
-    val currentLibrary: Flow<String> = safeData.map { it[KEY_LIBRARY] ?: LIB_CET4 }
+    val currentLibrary: Flow<String> = safeData.map { prefs ->
+        val library = prefs[KEY_LIBRARY] ?: LIB_CET4
+        when {
+            library == LEGACY_PETS -> LIB_PETS
+            library in LEGACY_TEST_LIBRARIES -> LIB_CET4
+            else -> library
+        }
+    }
 
     val dailyGoal: Flow<Int> = safeData.map { it[KEY_DAILY_GOAL] ?: DEFAULT_DAILY_GOAL }
 
@@ -111,7 +118,7 @@ class SettingsRepository(
     companion object {
         const val LIB_CET4 = "CET-4"
         const val LIB_CET6 = "CET-6"
-        const val LIB_PETS_B = "PETS-B"
+        const val LIB_PETS = "PETS"
         const val DEFAULT_NICKNAME = "学习者"
         const val ACCENT_US = "US"
         const val ACCENT_UK = "UK"
@@ -122,8 +129,12 @@ class SettingsRepository(
         const val THEME_LIGHT = "light"
         const val THEME_DARK = "dark"
 
-        val LIBRARIES = listOf(LIB_CET4, LIB_CET6, LIB_PETS_B)
+        val LIBRARIES = listOf(LIB_CET4, LIB_CET6, LIB_PETS)
         val DAILY_GOAL_OPTIONS = listOf(10, 20, 30, 50)
+
+        /** 旧版本词库名与测试用词库名，读取设置/启动时自动清理。 */
+        private const val LEGACY_PETS = "PETS-B"
+        private val LEGACY_TEST_LIBRARIES = setOf("custom_test", "test", "测试", "测试词库")
 
         private val KEY_LIBRARY = stringPreferencesKey("current_library")
         private val KEY_DAILY_GOAL = intPreferencesKey("daily_goal")

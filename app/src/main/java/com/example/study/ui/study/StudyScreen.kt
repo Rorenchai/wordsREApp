@@ -1,4 +1,4 @@
-package com.example.study.ui.study
+﻿package com.example.study.ui.study
 
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.animateFloatAsState
@@ -535,7 +535,7 @@ private fun LoadingCard(initialized: Boolean, hasFilterResult: Boolean) {
             )
             Spacer(Modifier.height(6.dp))
             Text(
-                text = "已内置 CET-4 / CET-6 / PETS-B 词库，首次启动只需一次",
+                text = "已内置 CET-4 / CET-6 / PETS 词库，首次启动只需一次",
                 style = MaterialTheme.typography.bodySmall,
                 color = DuoTextSecondary,
                 textAlign = TextAlign.Center

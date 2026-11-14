@@ -1,4 +1,4 @@
-package com.example.study.data.db
+﻿package com.example.study.data.db
 
 import androidx.room.Dao
 import androidx.room.Insert
@@ -22,7 +22,7 @@ interface WordDao {
         SELECT library AS library, COUNT(*) AS count FROM words
         GROUP BY library
         ORDER BY
-            CASE library WHEN 'CET-4' THEN 0 WHEN 'CET-6' THEN 1 WHEN 'PETS-B' THEN 2 ELSE 3 END,
+            CASE library WHEN 'CET-4' THEN 0 WHEN 'CET-6' THEN 1 WHEN 'PETS' THEN 2 ELSE 3 END,
             library ASC
         """
     )
@@ -33,7 +33,7 @@ interface WordDao {
         SELECT library AS library, COUNT(*) AS count FROM words
         GROUP BY library
         ORDER BY
-            CASE library WHEN 'CET-4' THEN 0 WHEN 'CET-6' THEN 1 WHEN 'PETS-B' THEN 2 ELSE 3 END,
+            CASE library WHEN 'CET-4' THEN 0 WHEN 'CET-6' THEN 1 WHEN 'PETS' THEN 2 ELSE 3 END,
             library ASC
         """
     )
