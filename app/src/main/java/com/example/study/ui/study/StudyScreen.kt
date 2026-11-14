@@ -157,7 +157,6 @@ fun StudyScreen(
                 )
                 // 游戏入口移到单词卡片下方，原底部「游戏」页改为单词总览
                 GameSection(onOpenGame = onOpenGame)
-                RoundIndicator(state)
             }
         }
         SnackbarHost(
