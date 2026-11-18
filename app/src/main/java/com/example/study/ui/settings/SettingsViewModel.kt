@@ -36,6 +36,8 @@ data class SettingsUiState(
     val reminderEnabled: Boolean = false,
     val reminderHour: Int = 20,
     val themeMode: String = SettingsRepository.THEME_SYSTEM,
+    val themeAccent: String = SettingsRepository.THEME_ACCENT_CREAM,
+    val autoRead: Boolean = true,
     val nickname: String = SettingsRepository.DEFAULT_NICKNAME,
     val avatarUri: String = ""
 )
@@ -90,6 +92,16 @@ class SettingsViewModel(
             }
         }
         viewModelScope.launch {
+            settingsRepository.themeAccent.collect { accent ->
+                _uiState.update { it.copy(themeAccent = accent) }
+            }
+        }
+        viewModelScope.launch {
+            settingsRepository.autoReadEnabled.collect { enabled ->
+                _uiState.update { it.copy(autoRead = enabled) }
+            }
+        }
+        viewModelScope.launch {
             settingsRepository.userNickname.collect { nickname ->
                 _uiState.update { it.copy(nickname = nickname) }
             }
@@ -107,6 +119,14 @@ class SettingsViewModel(
 
     fun setAvatarUri(uri: String) {
         viewModelScope.launch { settingsRepository.setUserAvatarUri(uri) }
+    }
+
+    fun setThemeAccent(presetId: String) {
+        viewModelScope.launch { settingsRepository.setThemeAccent(presetId) }
+    }
+
+    fun setAutoRead(enabled: Boolean) {
+        viewModelScope.launch { settingsRepository.setAutoReadEnabled(enabled) }
     }
 
     fun selectLibrary(library: String) {

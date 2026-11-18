@@ -50,6 +50,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.Dp
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.LocalLifecycleOwner
@@ -62,6 +63,7 @@ import com.example.study.ui.components.DuoButtonStyle
 import com.example.study.ui.components.FilterChips
 import com.example.study.ui.components.FlipCard
 import com.example.study.ui.components.ProgressTrack
+import com.example.study.ui.components.RewardBurst
 import com.example.study.ui.components.SingleLineWord
 import com.example.study.ui.components.StatusPill
 import com.example.study.ui.games.GameSection
@@ -86,6 +88,7 @@ fun StudyScreen(
     val viewModel: StudyViewModel = viewModel(factory = StudyViewModel.factory(context))
     val state by viewModel.uiState.collectAsStateWithLifecycle()
     val snackbarHostState = remember { SnackbarHostState() }
+    var showReward by remember { mutableStateOf(false) }
 
     LaunchedEffect(Unit) { viewModel.refreshFromDatabase() }
 
@@ -147,7 +150,10 @@ fun StudyScreen(
                 StatusActionRow(
                     state = state,
                     onFlip = viewModel::flip,
-                    onMark = viewModel::markStatus
+                    onMark = { status ->
+                        viewModel.markStatus(status)
+                        if (status == StudyStatus.MASTERED && state.flipped) showReward = true
+                    }
                 )
                 DuoButton(
                     text = "下一个",
@@ -164,6 +170,12 @@ fun StudyScreen(
             modifier = Modifier
                 .align(Alignment.BottomCenter)
                 .padding(horizontal = 18.dp, vertical = 8.dp)
+        )
+        RewardBurst(
+            visible = showReward,
+            title = "掌握 +1",
+            subtitle = "保持这个节奏！",
+            onFinished = { showReward = false }
         )
     }
 }
@@ -415,13 +427,18 @@ private fun StudyCard(
 ) {
     val word = state.word
     Box(modifier = Modifier.fillMaxWidth().height(348.dp)) {
+        // 多卡片叠加：当前卡片下方露出两张错位卡片，形成卡堆层次
+        if (!state.loadingWord && word != null) {
+            CardStackLayer(horizontalPadding = 0.dp, offsetX = -6.dp, offsetY = 22.dp, scale = 0.97f, alpha = 0.42f, rotation = -2.2f)
+            CardStackLayer(horizontalPadding = 0.dp, offsetX = 5.dp, offsetY = 11.dp, scale = 0.985f, alpha = 0.62f, rotation = 1.1f)
+        }
         if (state.loadingWord || word == null) {
             LoadingCard(
                 initialized = state.initialized,
                 hasFilterResult = word != null
             )
         } else {
-            // 换词时卡片做一次淡入 + 轻微放大，避免文字生硬跳变
+            // 换词时卡片做一次淡入 + 轻微放大 + 侧向归位，避免文字生硬跳变
             var cardAppeared by remember(word.id) { mutableStateOf(false) }
             LaunchedEffect(word.id) { cardAppeared = true }
             val cardAlpha by animateFloatAsState(
@@ -443,6 +460,8 @@ private fun StudyCard(
                         alpha = cardAlpha
                         scaleX = cardScale
                         scaleY = cardScale
+                        translationX = (1f - cardAlpha) * 32.dp.toPx()
+                        rotationZ = (1f - cardAlpha) * -2.5f
                     },
                 front = {
                     CardFace(
@@ -498,6 +517,33 @@ private fun StudyCard(
             )
         }
     }
+}
+
+@Composable
+private fun CardStackLayer(
+    horizontalPadding: Dp,
+    offsetX: Dp,
+    offsetY: Dp,
+    scale: Float,
+    alpha: Float,
+    rotation: Float
+) {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(horizontal = horizontalPadding)
+            .graphicsLayer {
+                translationX = offsetX.toPx()
+                translationY = offsetY.toPx()
+                scaleX = scale
+                scaleY = scale
+                rotationZ = rotation
+                this.alpha = alpha
+            }
+            .clip(RoundedCornerShape(28.dp))
+            .background(DuoSurface)
+            .border(2.dp, DuoBorder, RoundedCornerShape(28.dp))
+    )
 }
 
 @Composable

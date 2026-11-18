@@ -55,6 +55,12 @@ class SettingsRepository(
     /** 主题模式：system / light / dark。 */
     val themeMode: Flow<String> = safeData.map { it[KEY_THEME_MODE] ?: THEME_SYSTEM }
 
+    /** 全局主题色预设 id（见 ui/theme/AccentPresets）。 */
+    val themeAccent: Flow<String> = safeData.map { it[KEY_THEME_ACCENT] ?: THEME_ACCENT_CREAM }
+
+    /** 小游戏/背词切到下一词时是否自动朗读。 */
+    val autoReadEnabled: Flow<Boolean> = safeData.map { it[KEY_AUTO_READ] ?: true }
+
     /** 小游戏是否优先使用计划词池。 */
     val gamePlanMode: Flow<Boolean> = safeData.map { it[KEY_GAME_PLAN_MODE] ?: false }
 
@@ -98,6 +104,14 @@ class SettingsRepository(
         dataStore.edit { it[KEY_THEME_MODE] = mode }
     }
 
+    suspend fun setThemeAccent(presetId: String) {
+        dataStore.edit { it[KEY_THEME_ACCENT] = presetId }
+    }
+
+    suspend fun setAutoReadEnabled(enabled: Boolean) {
+        dataStore.edit { it[KEY_AUTO_READ] = enabled }
+    }
+
     suspend fun setGamePlanMode(enabled: Boolean) {
         dataStore.edit { it[KEY_GAME_PLAN_MODE] = enabled }
     }
@@ -129,6 +143,8 @@ class SettingsRepository(
         const val THEME_LIGHT = "light"
         const val THEME_DARK = "dark"
 
+        const val THEME_ACCENT_CREAM = "cream"
+
         val LIBRARIES = listOf(LIB_CET4, LIB_CET6, LIB_PETS)
         val DAILY_GOAL_OPTIONS = listOf(10, 20, 30, 50)
 
@@ -144,6 +160,8 @@ class SettingsRepository(
         private val KEY_REMINDER_ENABLED = booleanPreferencesKey("reminder_enabled")
         private val KEY_REMINDER_HOUR = intPreferencesKey("reminder_hour")
         private val KEY_THEME_MODE = stringPreferencesKey("theme_mode")
+        private val KEY_THEME_ACCENT = stringPreferencesKey("theme_accent")
+        private val KEY_AUTO_READ = booleanPreferencesKey("auto_read_enabled")
         private val KEY_GAME_PLAN_MODE = booleanPreferencesKey("game_plan_mode")
         private val KEY_LAST_CHECK_IN = stringPreferencesKey("last_check_in_date")
         private val KEY_NICKNAME = stringPreferencesKey("user_nickname")

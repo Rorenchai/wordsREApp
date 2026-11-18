@@ -1,4 +1,4 @@
-﻿package com.example.study.ui.components
+package com.example.study.ui.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -25,8 +25,9 @@ fun StatCard(
     value: String,
     label: String,
     modifier: Modifier = Modifier,
-    accent: Color = DuoGreen
+    accent: Color = Color.Unspecified
 ) {
+    val actualAccent = if (accent == Color.Unspecified) DuoGreen else accent
     Column(
         modifier = modifier
             .clip(RoundedCornerShape(16.dp))
@@ -38,7 +39,7 @@ fun StatCard(
         Text(
             text = value,
             style = MaterialTheme.typography.headlineSmall,
-            color = accent,
+            color = actualAccent,
             textAlign = TextAlign.Center
         )
         Text(

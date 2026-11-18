@@ -386,8 +386,9 @@ private fun CheckInRewardDialog(streak: Int, energy: Int, onDismiss: () -> Unit)
             contentAlignment = Alignment.Center
         ) {
             // 简单彩带粒子：按进度从顶部飘落，形成轻量奖励反馈
+            val confettiColors = listOf(DuoGreen, DuoGold, DuoBlue, DuoRed)
             Canvas(modifier = Modifier.matchParentSize()) {
-                val colors = listOf(DuoGreen, DuoGold, DuoBlue, DuoRed)
+                val colors = confettiColors
                 repeat(40) { index ->
                     val seed = (index * 53) % 97
                     val delay = (seed % 35) / 100f

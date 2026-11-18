@@ -8,14 +8,13 @@ import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.SideEffect
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 
-private val LightColorScheme = lightColorScheme(
-    primary = CreamGold,
+private fun lightScheme(preset: AccentPreset) = lightColorScheme(
+    primary = preset.primary,
     onPrimary = Chocolate,
-    primaryContainer = CreamGoldSoft,
+    primaryContainer = preset.soft,
     onPrimaryContainer = Chocolate,
     secondary = PeachPink,
     onSecondary = Chocolate,
@@ -32,14 +31,14 @@ private val LightColorScheme = lightColorScheme(
     outline = OatBorder
 )
 
-private val DarkColorScheme = darkColorScheme(
-    primary = CreamGold,
+private fun darkScheme(preset: AccentPreset) = darkColorScheme(
+    primary = preset.primary,
     onPrimary = DarkCreamBackground,
     primaryContainer = DarkCreamBorder,
     onPrimaryContainer = DarkCreamText,
     secondary = DarkCreamPink,
     onSecondary = DarkCreamBackground,
-    tertiary = CreamGold,
+    tertiary = preset.primary,
     onTertiary = DarkCreamBackground,
     error = Coral,
     onError = DarkCreamBackground,
@@ -55,14 +54,21 @@ private val DarkColorScheme = darkColorScheme(
 @Composable
 fun StudyTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
+    accentPreset: String = AccentPresets.DEFAULT_ID,
     content: @Composable () -> Unit
 ) {
-    val palette = if (darkTheme) DarkDuoColors else LightDuoColors
+    val preset = AccentPresets.byId(accentPreset)
+    val base = if (darkTheme) DarkDuoColors else LightDuoColors
+    val palette = base.copy(
+        accent = preset.primary,
+        accentShadow = preset.shadow,
+        accentSoft = preset.soft
+    )
     val view = LocalView.current
 
     CompositionLocalProvider(LocalDuoColors provides palette) {
         MaterialTheme(
-            colorScheme = if (darkTheme) DarkColorScheme else LightColorScheme,
+            colorScheme = if (darkTheme) darkScheme(preset) else lightScheme(preset),
             typography = StudyTypography,
             shapes = StudyShapes,
             content = content

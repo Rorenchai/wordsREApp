@@ -47,6 +47,9 @@ import com.example.study.ui.theme.DuoGreen
 import com.example.study.ui.theme.DuoSurface
 import com.example.study.ui.theme.DuoTextPrimary
 import com.example.study.ui.theme.DuoTextSecondary
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
+import com.example.study.ui.components.RewardBurst
 
 @Composable
 fun ListeningScreen(onBack: () -> Unit, planMode: Boolean = false, modifier: Modifier = Modifier) {
@@ -54,6 +57,10 @@ fun ListeningScreen(onBack: () -> Unit, planMode: Boolean = false, modifier: Mod
     val viewModel: ListeningViewModel = viewModel(factory = ListeningViewModel.factory(context, planMode))
     val state by viewModel.uiState.collectAsStateWithLifecycle()
     val snackbarHostState = remember { SnackbarHostState() }
+    var rewardVisible by remember { mutableStateOf(false) }
+    LaunchedEffect(state.sessionCorrect) {
+        if (state.sessionCorrect > 0 && state.sessionCorrect % 5 == 0) rewardVisible = true
+    }
 
     LaunchedEffect(state.message) {
         val message = state.message ?: return@LaunchedEffect
@@ -179,6 +186,12 @@ fun ListeningScreen(onBack: () -> Unit, planMode: Boolean = false, modifier: Mod
         SnackbarHost(
             hostState = snackbarHostState,
             modifier = Modifier.align(Alignment.BottomCenter).padding(horizontal = 18.dp, vertical = 8.dp)
+        )
+        RewardBurst(
+            visible = rewardVisible,
+            title = "连对 5 题！",
+            subtitle = "正确率 ${state.sessionAccuracy}%",
+            onFinished = { rewardVisible = false }
         )
     }
 }

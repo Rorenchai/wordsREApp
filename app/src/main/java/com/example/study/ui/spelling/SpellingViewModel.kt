@@ -12,7 +12,9 @@ import com.example.study.data.db.WordEntity
 import com.example.study.data.plan.PlanRepository
 import com.example.study.data.repo.SettingsRepository
 import com.example.study.data.repo.StudyRepository
+import com.example.study.data.repo.TtsManager
 import com.example.study.data.repo.WordRepository
+import com.example.study.ui.games.GameAutoRead
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -43,13 +45,15 @@ class SpellingViewModel(
     private val studyRepository: StudyRepository,
     private val settingsRepository: SettingsRepository,
     private val planRepository: PlanRepository,
-    private val planMode: Boolean
+    private val planMode: Boolean,
+    private val ttsManager: TtsManager
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(SpellingUiState())
     val uiState: StateFlow<SpellingUiState> = _uiState.asStateFlow()
 
     private var advanceJob: Job? = null
+    private val autoRead = GameAutoRead(ttsManager, settingsRepository, viewModelScope)
 
     init {
         viewModelScope.launch {
@@ -111,6 +115,7 @@ class SpellingViewModel(
 
     override fun onCleared() {
         advanceJob?.cancel()
+        ttsManager.shutdown()
         super.onCleared()
     }
 
@@ -141,6 +146,9 @@ class SpellingViewModel(
                     correct = null
                 )
             }
+            if (!autoRead.speakNext(word.word)) {
+                _uiState.update { it.copy(message = "内置语音引擎初始化失败，暂时无法发音") }
+            }
             Log.d(TAG, "load target=${word.word} meaning=${word.meaning}")
         }
     }
@@ -160,7 +168,8 @@ class SpellingViewModel(
                     studyRepository = container.studyRepository,
                     settingsRepository = container.settingsRepository,
                     planRepository = container.planRepository,
-                    planMode = planMode
+                    planMode = planMode,
+                    ttsManager = TtsManager(context.applicationContext)
                 )
             }
         }

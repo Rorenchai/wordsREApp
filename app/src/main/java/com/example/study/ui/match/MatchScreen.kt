@@ -57,6 +57,10 @@ import com.example.study.ui.theme.DuoSurface
 import com.example.study.ui.theme.DuoTextPrimary
 import com.example.study.ui.theme.DuoTextSecondary
 import kotlin.math.roundToInt
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
+import com.example.study.ui.components.RewardBurst
+import kotlinx.coroutines.delay
 
 @Composable
 fun MatchScreen(onBack: () -> Unit, planMode: Boolean = false, modifier: Modifier = Modifier) {
@@ -64,6 +68,18 @@ fun MatchScreen(onBack: () -> Unit, planMode: Boolean = false, modifier: Modifie
     val viewModel: MatchViewModel = viewModel(factory = MatchViewModel.factory(context, planMode))
     val state by viewModel.uiState.collectAsStateWithLifecycle()
     val snackbarHostState = remember { SnackbarHostState() }
+    var showReward by remember { mutableStateOf(false) }
+    var showFinishedDialog by remember { mutableStateOf(false) }
+    LaunchedEffect(state.finished) {
+        if (state.finished) {
+            showReward = true
+            delay(1250)
+            showFinishedDialog = true
+        } else {
+            showReward = false
+            showFinishedDialog = false
+        }
+    }
 
     LaunchedEffect(state.message) {
         val message = state.message ?: return@LaunchedEffect
@@ -173,9 +189,15 @@ fun MatchScreen(onBack: () -> Unit, planMode: Boolean = false, modifier: Modifie
             hostState = snackbarHostState,
             modifier = Modifier.align(Alignment.BottomCenter).padding(horizontal = 18.dp, vertical = 8.dp)
         )
+        RewardBurst(
+            visible = showReward,
+            title = "全部配对完成！",
+            subtitle = "错误 ${state.mistakes} 次",
+            onFinished = { showReward = false }
+        )
     }
 
-    if (state.finished) {
+    if (state.finished && showFinishedDialog) {
         AlertDialog(
             onDismissRequest = { },
             title = { Text("本局完成") },

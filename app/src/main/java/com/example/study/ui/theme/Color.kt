@@ -32,16 +32,42 @@ val DarkCreamText = Color(0xFFFFF4DF)
 val DarkCreamTextSecondary = Color(0xFFC0AE99)
 val DarkCreamPink = Color(0xFFC99280)
 
-// 兼容现有 UI 的语义别名：主品牌色统一指向奶油金
-val DuoGreen = CreamGold
-val DuoGreenShadow = CreamGoldDark
-val DuoGreenSoft = CreamGoldSoft
+// 兼容现有 UI 的语义别名：主品牌色由主题色预设动态决定
+val DuoGreen: Color
+    @Composable get() = LocalDuoColors.current.accent
+val DuoGreenShadow: Color
+    @Composable get() = LocalDuoColors.current.accentShadow
+val DuoGreenSoft: Color
+    @Composable get() = LocalDuoColors.current.accentSoft
 val DuoRed = Coral
 val DuoRedShadow = CoralDark
 val DuoBlue = Caramel
 val DuoBlueShadow = CaramelDark
 val DuoGold = CreamGold
 val DuoGoldSoft = CreamGoldSoft
+
+/** 可选全局主题色预设。 */
+data class AccentPreset(
+    val id: String,
+    val label: String,
+    val primary: Color,
+    val shadow: Color,
+    val soft: Color
+)
+
+object AccentPresets {
+    const val DEFAULT_ID = "cream"
+
+    val all = listOf(
+        AccentPreset("cream", "奶油金", CreamGold, CreamGoldDark, CreamGoldSoft),
+        AccentPreset("peach", "蜜桃粉", Color(0xFFE7A58F), Color(0xFFC98670), Color(0xFFFBE4DC)),
+        AccentPreset("sage", "鼠尾草", Sage, Color(0xFF718A6B), SageSoft),
+        AccentPreset("sky", "海盐蓝", Color(0xFF7FA9C9), Color(0xFF6287A6), Color(0xFFE3EEF7)),
+        AccentPreset("lavender", "薰衣草", Color(0xFFB49AC8), Color(0xFF9278A8), Color(0xFFF0E8F7))
+    )
+
+    fun byId(id: String): AccentPreset = all.firstOrNull { it.id == id } ?: all.first()
+}
 
 /** 学习状态的辅助色：未学习 / 学习中 / 已掌握。 */
 val DuoSuccess = Sage
@@ -63,7 +89,10 @@ data class DuoColors(
     val border: Color,
     val textPrimary: Color,
     val textSecondary: Color,
-    val isDark: Boolean
+    val isDark: Boolean,
+    val accent: Color = CreamGold,
+    val accentShadow: Color = CreamGoldDark,
+    val accentSoft: Color = CreamGoldSoft
 )
 
 val LightDuoColors = DuoColors(

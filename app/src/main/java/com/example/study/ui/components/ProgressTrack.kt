@@ -1,4 +1,4 @@
-﻿package com.example.study.ui.components
+package com.example.study.ui.components
 
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.background
@@ -23,9 +23,10 @@ fun ProgressTrack(
     progress: Float,
     modifier: Modifier = Modifier,
     height: Dp = 16.dp,
-    fillColor: Color = DuoGreen,
+    fillColor: Color = Color.Unspecified,
     trackColor: Color = DuoBorder
 ) {
+    val actualFill = if (fillColor == Color.Unspecified) DuoGreen else fillColor
     val animated by animateFloatAsState(
         targetValue = progress.coerceIn(0f, 1f),
         label = "progress-track"
@@ -42,7 +43,7 @@ fun ProgressTrack(
                 .fillMaxWidth(animated.coerceIn(0.0001f, 1f))
                 .fillMaxHeight()
                 .clip(RoundedCornerShape(percent = 50))
-                .background(fillColor)
+                .background(actualFill)
         )
     }
 }

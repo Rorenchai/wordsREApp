@@ -10,7 +10,9 @@ import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.study.appContainer
 import com.example.study.data.plan.PlanRepository
 import com.example.study.data.repo.SettingsRepository
+import com.example.study.data.repo.TtsManager
 import com.example.study.data.repo.WordRepository
+import com.example.study.ui.games.GameAutoRead
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -56,13 +58,15 @@ class MatchViewModel(
     private val wordRepository: WordRepository,
     private val settingsRepository: SettingsRepository,
     private val planRepository: PlanRepository,
-    private val planMode: Boolean
+    private val planMode: Boolean,
+    private val ttsManager: TtsManager
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(MatchUiState())
     val uiState: StateFlow<MatchUiState> = _uiState.asStateFlow()
 
     private var hideJob: Job? = null
+    private val autoRead = GameAutoRead(ttsManager, settingsRepository, viewModelScope)
 
     init {
         viewModelScope.launch {
@@ -110,6 +114,11 @@ class MatchViewModel(
                 )
             }
             Log.d(TAG, "matched pair ${firstCard.pairId} progress=$matchedPairs/${state.totalPairs}")
+            // 配对成功后朗读该词，与听音/拼写小游戏的“下一词自动朗读”统一
+            val matchedWord = if (firstCard.isWord) firstCard.text else card.text
+            if (!autoRead.speakNext(matchedWord)) {
+                _uiState.update { it.copy(message = "内置语音引擎初始化失败，暂时无法发音") }
+            }
             if (planMode) {
                 viewModelScope.launch {
                     val plan = planRepository.activePlan()
@@ -160,6 +169,7 @@ class MatchViewModel(
 
     override fun onCleared() {
         hideJob?.cancel()
+        ttsManager.shutdown()
         super.onCleared()
     }
 
@@ -226,7 +236,8 @@ class MatchViewModel(
                     wordRepository = container.wordRepository,
                     settingsRepository = container.settingsRepository,
                     planRepository = container.planRepository,
-                    planMode = planMode
+                    planMode = planMode,
+                    ttsManager = TtsManager(context.applicationContext)
                 )
             }
         }

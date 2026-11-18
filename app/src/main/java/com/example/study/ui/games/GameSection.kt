@@ -5,13 +5,22 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Extension
+import androidx.compose.material.icons.outlined.Headphones
+import androidx.compose.material.icons.outlined.Keyboard
+import androidx.compose.material.icons.outlined.Translate
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
@@ -21,6 +30,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -83,13 +93,13 @@ fun GameSection(
 
         Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
             GameTile(
-                icon = "🎯",
+                icon = Icons.Outlined.Translate,
                 name = "看词选译",
                 onClick = { onOpenGame("quiz", state.planMode) },
                 modifier = Modifier.weight(1f)
             )
             GameTile(
-                icon = "🎧",
+                icon = Icons.Outlined.Headphones,
                 name = "听音辨词",
                 onClick = { onOpenGame("listening", state.planMode) },
                 modifier = Modifier.weight(1f)
@@ -97,13 +107,13 @@ fun GameSection(
         }
         Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
             GameTile(
-                icon = "⌨️",
+                icon = Icons.Outlined.Keyboard,
                 name = "单词拼写",
                 onClick = { onOpenGame("spelling", state.planMode) },
                 modifier = Modifier.weight(1f)
             )
             GameTile(
-                icon = "🧩",
+                icon = Icons.Outlined.Extension,
                 name = "单词消消乐",
                 onClick = { onOpenGame("match", state.planMode) },
                 modifier = Modifier.weight(1f)
@@ -115,7 +125,7 @@ fun GameSection(
 
 @Composable
 private fun GameTile(
-    icon: String,
+    icon: ImageVector,
     name: String,
     onClick: () -> Unit,
     modifier: Modifier = Modifier
@@ -126,7 +136,21 @@ private fun GameTile(
             .padding(vertical = 8.dp, horizontal = 6.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(text = icon, style = MaterialTheme.typography.titleLarge)
+        Box(
+            modifier = Modifier
+                .size(48.dp)
+                .clip(CircleShape)
+                .background(DuoGreen.copy(alpha = 0.14f)),
+            contentAlignment = Alignment.Center
+        ) {
+            Icon(
+                imageVector = icon,
+                contentDescription = name,
+                tint = DuoGreen,
+                modifier = Modifier.size(25.dp)
+            )
+        }
+        Spacer(Modifier.height(6.dp))
         Text(
             text = name,
             style = MaterialTheme.typography.bodySmall,

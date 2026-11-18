@@ -21,12 +21,15 @@ class MainActivity : ComponentActivity() {
             val themeMode by appContainer.settingsRepository.themeMode.collectAsStateWithLifecycle(
                 initialValue = SettingsRepository.THEME_SYSTEM
             )
+            val themeAccent by appContainer.settingsRepository.themeAccent.collectAsStateWithLifecycle(
+                initialValue = SettingsRepository.THEME_ACCENT_CREAM
+            )
             val darkTheme = when (themeMode) {
                 SettingsRepository.THEME_DARK -> true
                 SettingsRepository.THEME_LIGHT -> false
                 else -> isSystemInDarkTheme()
             }
-            StudyTheme(darkTheme = darkTheme) {
+            StudyTheme(darkTheme = darkTheme, accentPreset = themeAccent) {
                 AppNavHost()
             }
         }

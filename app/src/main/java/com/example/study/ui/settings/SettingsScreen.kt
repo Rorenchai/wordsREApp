@@ -76,7 +76,16 @@ import com.example.study.ui.theme.DuoSurface
 import com.example.study.ui.theme.DuoTextPrimary
 import com.example.study.ui.theme.DuoTextSecondary
 import com.example.study.ui.theme.DuoChocolate
+import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.layout.width
+import androidx.compose.material3.Switch
+import com.example.study.ui.theme.AccentPreset
+import com.example.study.ui.theme.AccentPresets
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
+import com.example.study.ui.theme.LocalDuoColors
 
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun SettingsScreen(modifier: Modifier = Modifier) {
     val context = LocalContext.current
@@ -264,6 +273,21 @@ fun SettingsScreen(modifier: Modifier = Modifier) {
                         onClick = { viewModel.selectAccent(SettingsRepository.ACCENT_UK) }
                     )
                 }
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Column(modifier = Modifier.weight(1f)) {
+                        Text("自动朗读", style = MaterialTheme.typography.bodyMedium, color = DuoTextPrimary)
+                        Text(
+                            "小游戏切换到下一词时自动发音",
+                            style = MaterialTheme.typography.bodySmall,
+                            color = DuoTextSecondary
+                        )
+                    }
+                    Switch(checked = state.autoRead, onCheckedChange = viewModel::setAutoRead)
+                }
             }
 
             SettingsGroupEntry(title = "学习数据", summary = "重置 ${state.library} 的学习进度", entryKey = "data", currentKey = currentPage, onToggle = { currentPage = it }) {
@@ -280,7 +304,7 @@ fun SettingsScreen(modifier: Modifier = Modifier) {
                 )
             }
 
-            SettingsGroupEntry(title = "外观", summary = "${when (state.themeMode) { SettingsRepository.THEME_LIGHT -> "浅色"; SettingsRepository.THEME_DARK -> "深色"; else -> "跟随系统" }}", entryKey = "theme", currentKey = currentPage, onToggle = { currentPage = it }) {
+            SettingsGroupEntry(title = "外观", summary = "${when (state.themeMode) { SettingsRepository.THEME_LIGHT -> "浅色"; SettingsRepository.THEME_DARK -> "深色"; else -> "跟随系统" }} · ${AccentPresets.byId(state.themeAccent).label}", entryKey = "theme", currentKey = currentPage, onToggle = { currentPage = it }) {
                 Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                     OptionChip(
                         text = "跟随系统",
@@ -297,6 +321,24 @@ fun SettingsScreen(modifier: Modifier = Modifier) {
                         selected = state.themeMode == SettingsRepository.THEME_DARK,
                         onClick = { viewModel.setThemeMode(SettingsRepository.THEME_DARK) }
                     )
+                }
+                Text(
+                    text = "全局主题色",
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = DuoTextPrimary
+                )
+                FlowRow(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    verticalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    AccentPresets.all.forEach { preset ->
+                        ThemePresetChip(
+                            preset = preset,
+                            selected = state.themeAccent == preset.id,
+                            onClick = { viewModel.setThemeAccent(preset.id) }
+                        )
+                    }
                 }
                 Text(
                     text = "深浅色会应用到全部页面，并记住你的选择。",
@@ -373,7 +415,7 @@ fun SettingsScreen(modifier: Modifier = Modifier) {
                 }
             }
 
-            SettingsGroupEntry(title = "关于与许可", summary = "版本 1.1.1", entryKey = "about", currentKey = currentPage, onToggle = { currentPage = it }) {
+            SettingsGroupEntry(title = "关于与许可", summary = "版本 1.2.1", entryKey = "about", currentKey = currentPage, onToggle = { currentPage = it }) {
                 Text(
                     text = "词库来源：KyleBing/english-vocabulary（BSD 3-Clause License）· PETS 词库由项目整理\n" +
                         "发音：内置 Piper 神经网络女声（LJSpeech，离线），不依赖系统 TTS\n" +
@@ -399,7 +441,7 @@ fun SettingsScreen(modifier: Modifier = Modifier) {
                     }
                 }
                 Text(
-                    text = "版本 1.1.1 · 单词记忆卡",
+                    text = "版本 1.2.1 · 单词记忆卡",
                     style = MaterialTheme.typography.bodySmall,
                     color = DuoTextSecondary
                 )
@@ -794,6 +836,47 @@ private fun LibraryRow(
                 tint = DuoGreen
             )
         }
+    }
+}
+
+@Composable
+private fun ThemePresetChip(
+    preset: AccentPreset,
+    selected: Boolean,
+    onClick: () -> Unit
+) {
+    val isDark = LocalDuoColors.current.isDark
+    Row(
+        modifier = Modifier
+            .clip(RoundedCornerShape(percent = 50))
+            .background(
+                when {
+                    selected && isDark -> preset.primary.copy(alpha = 0.22f)
+                    selected -> preset.soft
+                    else -> DuoCard
+                }
+            )
+            .border(
+                2.dp,
+                if (selected) preset.primary else DuoBorder,
+                RoundedCornerShape(percent = 50)
+            )
+            .clickable(onClick = onClick)
+            .padding(horizontal = 12.dp, vertical = 8.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Box(
+            modifier = Modifier
+                .size(14.dp)
+                .clip(CircleShape)
+                .background(preset.primary)
+        )
+        Spacer(Modifier.width(6.dp))
+        Text(
+            text = preset.label,
+            style = MaterialTheme.typography.labelMedium,
+            color = if (selected) DuoTextPrimary else DuoTextSecondary
+        )
     }
 }
 

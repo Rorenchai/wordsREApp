@@ -1,4 +1,4 @@
-﻿package com.example.study.ui.listening
+package com.example.study.ui.listening
 
 import android.content.Context
 import android.util.Log
@@ -14,6 +14,7 @@ import com.example.study.data.repo.SettingsRepository
 import com.example.study.data.repo.StudyRepository
 import com.example.study.data.repo.TtsManager
 import com.example.study.data.repo.WordRepository
+import com.example.study.ui.games.GameAutoRead
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -58,6 +59,7 @@ class ListeningViewModel(
 
     private var advanceJob: Job? = null
     private var playJob: Job? = null
+    private val autoRead = GameAutoRead(ttsManager, settingsRepository, viewModelScope)
 
     init {
         viewModelScope.launch {
@@ -172,16 +174,11 @@ class ListeningViewModel(
         }
     }
 
-    /** 自动播放（TTS 引擎初始化是异步的，失败时短暂重试；切题后放弃旧任务）。 */
+    /** 自动播放（统一走 GameAutoRead；关闭自动朗读时静默跳过）。 */
     private fun autoPlay(word: WordEntity) {
         playJob?.cancel()
         playJob = viewModelScope.launch {
-            repeat(AUTO_PLAY_RETRY) { attempt ->
-                if (_uiState.value.word?.id != word.id) return@launch
-                if (ttsManager.speak(word.word)) return@launch
-                if (attempt < AUTO_PLAY_RETRY - 1) delay(AUTO_PLAY_INTERVAL_MS)
-            }
-            if (_uiState.value.word?.id == word.id) {
+            if (!autoRead.speakNext(word.word) && _uiState.value.word?.id == word.id) {
                 _uiState.update { it.copy(message = "内置语音引擎初始化失败，暂时无法发音") }
             }
         }
@@ -193,8 +190,6 @@ class ListeningViewModel(
         private const val ALL_STATUSES = -1
         private const val ADVANCE_DELAY_CORRECT_MS = 900L
         private const val ADVANCE_DELAY_WRONG_MS = 2200L
-        private const val AUTO_PLAY_RETRY = 8
-        private const val AUTO_PLAY_INTERVAL_MS = 350L
 
         fun factory(context: Context, planMode: Boolean): ViewModelProvider.Factory = viewModelFactory {
             initializer {
