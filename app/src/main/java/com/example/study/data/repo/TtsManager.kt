@@ -1,8 +1,10 @@
-﻿package com.example.study.data.repo
+package com.example.study.data.repo
 
 import android.media.AudioAttributes
 import android.media.AudioFormat
 import android.media.AudioTrack
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import com.k2fsa.sherpa.onnx.OfflineTts
 import com.k2fsa.sherpa.onnx.OfflineTtsConfig
@@ -22,6 +24,7 @@ class TtsManager(context: android.content.Context) {
 
     private val appContext = context.applicationContext
     private val executor = Executors.newSingleThreadExecutor()
+    private val mainHandler = Handler(Looper.getMainLooper())
     @Volatile
     private var tts: OfflineTts? = null
     @Volatile
@@ -39,7 +42,16 @@ class TtsManager(context: android.content.Context) {
     @Volatile
     private var generation = 0
 
-    // 延迟到首次点击发音时再加载模型：避免应用启动阶段被原生 TTS 初始化阻塞或拖崩
+    // 延迟到首次点击发音/后台预热时再加载模型：避免应用启动阶段被原生 TTS 初始化阻塞或拖崩
+
+    /** 应用启动后延迟预热，让第一次自动朗读/点读时模型已经就绪，减少 2–3 秒等待。 */
+    fun warmUp() {
+        mainHandler.postDelayed({
+            if (ready || failed || initializing) return@postDelayed
+            initializing = true
+            executor.execute { initialize() }
+        }, WARM_UP_DELAY_MS)
+    }
 
     /** 切换美式 / 英式口音：内置女声只有一套音色，英式略放慢语速模拟。 */
     fun setAccent(newAccent: String) {
@@ -76,14 +88,9 @@ class TtsManager(context: android.content.Context) {
         return true
     }
 
+    /** 页面离开时停止当前播放；引擎为 AppContainer 单例，进程存活期间不释放。 */
     fun shutdown() {
         stop()
-        executor.execute {
-            tts?.release()
-            tts = null
-            ready = false
-        }
-        executor.shutdown()
     }
 
     /** 停止当前播放（切换单词或离开页面时调用）。 */
@@ -212,5 +219,6 @@ class TtsManager(context: android.content.Context) {
 
     companion object {
         private const val TAG = "PiperTts"
+        private const val WARM_UP_DELAY_MS = 1200L
     }
 }

@@ -73,7 +73,7 @@ class FavoritesViewModel(
                 FavoritesViewModel(
                     favoriteRepository = container.favoriteRepository,
                     settingsRepository = container.settingsRepository,
-                    ttsManager = TtsManager(context.applicationContext)
+                    ttsManager = container.ttsManager
                 )
             }
         }

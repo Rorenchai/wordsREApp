@@ -1,4 +1,4 @@
-package com.example.study.ui.listening
+﻿package com.example.study.ui.listening
 
 import android.content.Context
 import android.util.Log
@@ -14,7 +14,7 @@ import com.example.study.data.repo.SettingsRepository
 import com.example.study.data.repo.StudyRepository
 import com.example.study.data.repo.TtsManager
 import com.example.study.data.repo.WordRepository
-import com.example.study.ui.games.GameAutoRead
+import com.example.study.data.repo.AutoReadController
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -59,7 +59,7 @@ class ListeningViewModel(
 
     private var advanceJob: Job? = null
     private var playJob: Job? = null
-    private val autoRead = GameAutoRead(ttsManager, settingsRepository, viewModelScope)
+    private val autoRead = AutoReadController(ttsManager, settingsRepository, viewModelScope)
 
     init {
         viewModelScope.launch {
@@ -174,7 +174,7 @@ class ListeningViewModel(
         }
     }
 
-    /** 自动播放（统一走 GameAutoRead；关闭自动朗读时静默跳过）。 */
+    /** 自动播放（统一走 AutoReadController；关闭自动朗读时静默跳过）。 */
     private fun autoPlay(word: WordEntity) {
         playJob?.cancel()
         playJob = viewModelScope.launch {
@@ -200,7 +200,7 @@ class ListeningViewModel(
                     settingsRepository = container.settingsRepository,
                     planRepository = container.planRepository,
                     planMode = planMode,
-                    ttsManager = TtsManager(context.applicationContext)
+                    ttsManager = container.ttsManager
                 )
             }
         }

@@ -7,6 +7,7 @@ import com.example.study.data.plan.PlanRepository
 import com.example.study.data.repo.FavoriteRepository
 import com.example.study.data.repo.SettingsRepository
 import com.example.study.data.repo.StudyRepository
+import com.example.study.data.repo.TtsManager
 import com.example.study.data.repo.WordRepository
 import com.example.study.data.seed.DatabaseSeeder
 
@@ -27,6 +28,9 @@ class AppContainer(context: Context) {
         database = database
     )
     val settingsRepository: SettingsRepository = SettingsRepository.create(appContext)
+
+    /** 全局唯一 TTS：模型只加载一次，首页与三个小游戏共用，页面切换不再重建。 */
+    val ttsManager: TtsManager = TtsManager(appContext).also { it.warmUp() }
 
     val favoriteRepository: FavoriteRepository = FavoriteRepository(database.favoriteDao())
 

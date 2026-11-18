@@ -1,15 +1,13 @@
-package com.example.study.ui.games
+package com.example.study.data.repo
 
-import com.example.study.data.repo.SettingsRepository
-import com.example.study.data.repo.TtsManager
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 /**
- * 小游戏统一的“下一词自动朗读”封装。
- * 三个小游戏只调用 [speakNext]，自动朗读开关与 TTS 生命周期都由这里统一处理。
+ * 全局自动朗读封装：首页单词卡与三个小游戏的“切到下一词自动发音”共用。
+ * 统一读取自动朗读开关，并复用 AppContainer 中唯一的 TtsManager。
  */
-class GameAutoRead(
+class AutoReadController(
     private val ttsManager: TtsManager,
     settingsRepository: SettingsRepository,
     scope: CoroutineScope
@@ -24,8 +22,7 @@ class GameAutoRead(
     }
 
     /**
-     * 朗读当前/下一单词。
-     * @return false 表示自动朗读已开启但内置语音引擎初始化失败；关闭开关时返回 true（静默跳过）。
+     * @return false 表示自动朗读已开启但语音引擎初始化失败；关闭开关时静默返回 true。
      */
     fun speakNext(word: String): Boolean {
         if (!enabled) return true

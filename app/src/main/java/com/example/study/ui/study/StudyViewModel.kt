@@ -1,4 +1,4 @@
-﻿package com.example.study.ui.study
+package com.example.study.ui.study
 
 import android.content.Context
 import androidx.lifecycle.ViewModel
@@ -9,12 +9,15 @@ import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.study.appContainer
 import com.example.study.data.db.StudyStatus
 import com.example.study.data.db.WordEntity
+import com.example.study.data.repo.AutoReadController
 import com.example.study.data.repo.FavoriteRepository
 import com.example.study.data.plan.PlanRepository
 import com.example.study.data.repo.SettingsRepository
 import com.example.study.data.repo.StudyRepository
 import com.example.study.data.repo.TtsManager
 import com.example.study.data.repo.WordRepository
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -65,6 +68,7 @@ class StudyViewModel(
 
     private val _uiState = MutableStateFlow(StudyUiState())
     val uiState: StateFlow<StudyUiState> = _uiState.asStateFlow()
+    private val autoRead = AutoReadController(ttsManager, settingsRepository, viewModelScope)
 
     /** 学习页停留计时起点（学习时长统计）。 */
     private var sessionStartMs: Long? = null
@@ -84,7 +88,7 @@ class StudyViewModel(
             roundSeen.addAll(studyRepository.loadRound(library, _uiState.value.filter))
             _uiState.update { it.copy(initialized = true, roundViewed = roundSeen.size) }
             loadPlanSummary()
-            loadNextWordInternal()
+            loadNextWordInternal(speak = false)
         }
         viewModelScope.launch {
             settingsRepository.dailyGoal.collect { goal -> _uiState.update { it.copy(dailyGoal = goal) } }
@@ -277,7 +281,7 @@ class StudyViewModel(
         }
     }
 
-    private fun loadNextWordInternal() {
+    private fun loadNextWordInternal(speak: Boolean = true) {
         viewModelScope.launch {
             val snapshot = _uiState.value
             if (!snapshot.initialized) return@launch
@@ -297,6 +301,11 @@ class StudyViewModel(
                     streak = stats.streak,
                     roundViewed = roundSeen.size
                 )
+            }
+            if (speak && word != null) {
+                // 等卡片入场动画先走一两帧，再启动合成，避免翻页瞬间抢 CPU 造成卡顿
+                delay(80)
+                autoRead.speakNext(word.word)
             }
         }
     }
@@ -332,7 +341,7 @@ class StudyViewModel(
                     settingsRepository = container.settingsRepository,
                     favoriteRepository = container.favoriteRepository,
                     planRepository = container.planRepository,
-                    ttsManager = TtsManager(context.applicationContext)
+                    ttsManager = container.ttsManager
                 )
             }
         }

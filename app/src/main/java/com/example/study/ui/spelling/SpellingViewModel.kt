@@ -14,7 +14,7 @@ import com.example.study.data.repo.SettingsRepository
 import com.example.study.data.repo.StudyRepository
 import com.example.study.data.repo.TtsManager
 import com.example.study.data.repo.WordRepository
-import com.example.study.ui.games.GameAutoRead
+import com.example.study.data.repo.AutoReadController
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -53,7 +53,7 @@ class SpellingViewModel(
     val uiState: StateFlow<SpellingUiState> = _uiState.asStateFlow()
 
     private var advanceJob: Job? = null
-    private val autoRead = GameAutoRead(ttsManager, settingsRepository, viewModelScope)
+    private val autoRead = AutoReadController(ttsManager, settingsRepository, viewModelScope)
 
     init {
         viewModelScope.launch {
@@ -169,7 +169,7 @@ class SpellingViewModel(
                     settingsRepository = container.settingsRepository,
                     planRepository = container.planRepository,
                     planMode = planMode,
-                    ttsManager = TtsManager(context.applicationContext)
+                    ttsManager = container.ttsManager
                 )
             }
         }

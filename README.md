@@ -1,10 +1,10 @@
-# 单词记忆卡（WordsREApp · Android）
+﻿# 单词记忆卡（WordsREApp · Android）
 
 一款温暖奶油系风格的 Android 背单词应用：**Kotlin + Jetpack Compose + Room**，内置 **PETS（3,664 词）/ CET-4（4,544 词）/ CET-6（3,991 词）** 三套词库，支持自定义词库导入、翻转卡片学习、专项复习计划、单词总览、每日打卡与内置离线女声。
 
-> **当前版本：v1.2.1**（`versionCode 6`，2026-11-18）
+> **当前版本：v1.2.2**（`versionCode 7`，2026-11-18）
 >
-> - GitHub Release：[v1.2.1 体验更新](https://github.com/Rorenchai/wordsREApp/releases/tag/v1.2.1)
+> - GitHub Release：[v1.2.2 修复更新](https://github.com/Rorenchai/wordsREApp/releases/tag/v1.2.2)
 > - 发布 APK：`app-release.apk`（约 58 MB，已签名）
 > - 开发分支：`main` / `phase2`（同步）
 > - 项目形态：**仅 Android**。原 Web 单页线已弃用，远程 `web` 分支已删除。
@@ -22,7 +22,7 @@
 | 本轮去重 | 本轮已浏览词持久化到 `round_seen`，按词库 + 筛选隔离，重启后恢复 |
 | 今日目标 | 按「不同单词」去重统计；目标可在设置中调整（5–200，预设 10/20/30/50） |
 | 首页布局 | 顶部固定「备考计划 + 今日目标」紧凑栏；下方为筛选、单词卡片、操作按钮与小游戏区 |
-| 自动朗读 | 听音辨词 / 单词拼写 / 单词消消乐进入下一词或配对成功时自动发音；设置 → 发音 →「自动朗读」可关闭 |
+| 自动朗读 | 首页单词卡翻页、听音辨词/单词拼写进入下一词、单词消消乐配对成功时自动发音；设置 → 发音 →「自动朗读」可关闭 |
 
 ### 词库
 
@@ -168,10 +168,10 @@ adb install -r app/build/outputs/apk/debug/app-debug.apk
 
 | 项 | 值 |
 |---|---|
-| 版本 | `1.2.1`（versionCode 6） |
-| Release | <https://github.com/Rorenchai/wordsREApp/releases/tag/v1.2.1> |
+| 版本 | `1.2.2`（versionCode 7） |
+| Release | <https://github.com/Rorenchai/wordsREApp/releases/tag/v1.2.2> |
 | APK | `app-release.apk`（61,102,512 字节 / 58.27 MB） |
-| SHA-256 | `C6E74A7D6E943EE30B79E15E89E08336BB86CF96EE425542F9800A85134E0EC1` |
+| SHA-256 | `D9C9D9BAF2AB5E4FDA30B1F1F7A9BD3BC6B5AB11C52B92B0871F4A26C813837F` |
 | 签名 | release keystore（`keystore/wordcard-release.jks`，不入库） |
 
 ## 词库与许可
@@ -189,5 +189,6 @@ adb install -r app/build/outputs/apk/debug/app-debug.apk
 | v1.1.0 | 计划时长滑动条、自定义词库、PETS 词库、单行单词、单词总览、每日打卡、设置页资料/头像、奶油金主题、内置 Piper 女声 |
 | v1.1.1 | 修复 TTS 启动闪退（tokens LF + 延迟初始化）；清理计划说明中的专业术语文案；更新应用图标与主题 |
 | v1.2.1 | 三小游戏下一词自动朗读（统一封装 + 开关）、奶油极简游戏图标、5 套全局主题色、卡片堆叠切换动效、连对/掌握奖励反馈 |
+| v1.2.2 | 修复首页翻页卡顿/不朗读、三小游戏自动朗读延迟/漏读；TTS 改为全局单例并启动预热；按钮/次级色全局主题适配与深色文字对比 |
 
 > 历史阶段说明：第二至第四期（小游戏 / 词典 / 收藏 / 答题 / 学习时长 / 错题本 / 词汇量 / 备份 / 提醒 / 深色模式 / 专项计划）均已完成；第五期 Web 线与 Android **不再同步维护**，Web 已弃用。

@@ -195,7 +195,7 @@ class QuizViewModel(
                     settingsRepository = container.settingsRepository,
                     planRepository = container.planRepository,
                     planMode = planMode,
-                    ttsManager = TtsManager(context.applicationContext)
+                    ttsManager = container.ttsManager
                 )
             }
         }

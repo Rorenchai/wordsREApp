@@ -120,7 +120,7 @@ class DictionaryViewModel(
                 DictionaryViewModel(
                     wordRepository = container.wordRepository,
                     settingsRepository = container.settingsRepository,
-                    ttsManager = TtsManager(context.applicationContext)
+                    ttsManager = container.ttsManager
                 )
             }
         }

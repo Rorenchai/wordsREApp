@@ -3,6 +3,7 @@ package com.example.study.ui.theme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.luminance
 
 // Creamy Kawaii 品牌色板：奶油金 / 杏仁白 / 蜜桃粉 / 可可深棕
 val CreamGold = Color(0xFFD9BB59)
@@ -41,8 +42,10 @@ val DuoGreenSoft: Color
     @Composable get() = LocalDuoColors.current.accentSoft
 val DuoRed = Coral
 val DuoRedShadow = CoralDark
-val DuoBlue = Caramel
-val DuoBlueShadow = CaramelDark
+val DuoBlue: Color
+    @Composable get() = LocalDuoColors.current.secondary
+val DuoBlueShadow: Color
+    @Composable get() = LocalDuoColors.current.secondaryShadow
 val DuoGold = CreamGold
 val DuoGoldSoft = CreamGoldSoft
 
@@ -52,18 +55,20 @@ data class AccentPreset(
     val label: String,
     val primary: Color,
     val shadow: Color,
-    val soft: Color
+    val soft: Color,
+    val secondary: Color,
+    val secondaryShadow: Color
 )
 
 object AccentPresets {
     const val DEFAULT_ID = "cream"
 
     val all = listOf(
-        AccentPreset("cream", "奶油金", CreamGold, CreamGoldDark, CreamGoldSoft),
-        AccentPreset("peach", "蜜桃粉", Color(0xFFE7A58F), Color(0xFFC98670), Color(0xFFFBE4DC)),
-        AccentPreset("sage", "鼠尾草", Sage, Color(0xFF718A6B), SageSoft),
-        AccentPreset("sky", "海盐蓝", Color(0xFF7FA9C9), Color(0xFF6287A6), Color(0xFFE3EEF7)),
-        AccentPreset("lavender", "薰衣草", Color(0xFFB49AC8), Color(0xFF9278A8), Color(0xFFF0E8F7))
+        AccentPreset("cream", "奶油金", CreamGold, CreamGoldDark, CreamGoldSoft, Caramel, CaramelDark),
+        AccentPreset("peach", "蜜桃粉", Color(0xFFE7A58F), Color(0xFFC98670), Color(0xFFFBE4DC), Color(0xFFB96F61), Color(0xFF9D5A4F)),
+        AccentPreset("sage", "鼠尾草", Sage, Color(0xFF718A6B), SageSoft, Color(0xFF718A6B), Color(0xFF5F7A59)),
+        AccentPreset("sky", "海盐蓝", Color(0xFF7FA9C9), Color(0xFF6287A6), Color(0xFFE3EEF7), Color(0xFF6287A6), Color(0xFF4D6C88)),
+        AccentPreset("lavender", "薰衣草", Color(0xFFB49AC8), Color(0xFF9278A8), Color(0xFFF0E8F7), Color(0xFF9278A8), Color(0xFF7A628E))
     )
 
     fun byId(id: String): AccentPreset = all.firstOrNull { it.id == id } ?: all.first()
@@ -92,7 +97,9 @@ data class DuoColors(
     val isDark: Boolean,
     val accent: Color = CreamGold,
     val accentShadow: Color = CreamGoldDark,
-    val accentSoft: Color = CreamGoldSoft
+    val accentSoft: Color = CreamGoldSoft,
+    val secondary: Color = Caramel,
+    val secondaryShadow: Color = CaramelDark
 )
 
 val LightDuoColors = DuoColors(
@@ -136,3 +143,8 @@ val DuoTextPrimary: Color
 
 val DuoTextSecondary: Color
     @Composable get() = LocalDuoColors.current.textSecondary
+
+
+/** 根据底色亮度选择深色/浅色文字，保证自定义主题下按钮文字可读。 */
+fun onColorFor(background: Color): Color =
+    if (background.luminance() > 0.25f) Chocolate else CreamIvory

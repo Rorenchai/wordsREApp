@@ -62,7 +62,9 @@ fun StudyTheme(
     val palette = base.copy(
         accent = preset.primary,
         accentShadow = preset.shadow,
-        accentSoft = preset.soft
+        accentSoft = preset.soft,
+        secondary = preset.secondary,
+        secondaryShadow = preset.secondaryShadow
     )
     val view = LocalView.current
 
