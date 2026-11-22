@@ -99,7 +99,7 @@
 | 项 | 选型 |
 |---|---|
 | 语言 | Kotlin 2.2.10（AGP 9 内置 Kotlin） |
-| UI | Jetpack Compose（BOM 2025.10.01 + Material3）、Navigation Compose、单 Activity + 五页签 |
+| UI | Jetpack Compose（BOM 2025.10.01 + Material3）、Navigation Compose、单 Activity + 四页签 |
 | 数据库 | Room 2.7.2 + KSP（schema v6） |
 | 异步 | Kotlin 协程 + StateFlow / ViewModel |
 | 设置存储 | DataStore Preferences |
