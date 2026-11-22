@@ -55,6 +55,9 @@ import com.example.study.ui.theme.DuoRed
 import com.example.study.ui.theme.DuoSurface
 import com.example.study.ui.theme.DuoTextPrimary
 import com.example.study.ui.theme.DuoTextSecondary
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Checkbox
+import androidx.compose.material3.TextButton
 
 @Composable
 fun WrongBookScreen(onBack: () -> Unit, onStartReview: () -> Unit, modifier: Modifier = Modifier) {
@@ -62,6 +65,9 @@ fun WrongBookScreen(onBack: () -> Unit, onStartReview: () -> Unit, modifier: Mod
     val viewModel: WrongBookViewModel = viewModel(factory = WrongBookViewModel.factory(context))
     val state by viewModel.uiState.collectAsStateWithLifecycle()
     var detailWord by remember { mutableStateOf<WordEntity?>(null) }
+    var managing by remember { mutableStateOf(false) }
+    var selectedIds by remember { mutableStateOf(setOf<Long>()) }
+    var showDeleteConfirm by remember { mutableStateOf(false) }
 
     LaunchedEffect(Unit) { viewModel.refresh() }
 
@@ -86,6 +92,12 @@ fun WrongBookScreen(onBack: () -> Unit, onStartReview: () -> Unit, modifier: Mod
                     color = DuoTextPrimary
                 )
                 Spacer(Modifier.weight(1f))
+                if (state.words.isNotEmpty()) {
+                    TextButton(onClick = {
+                        managing = !managing
+                        if (!managing) selectedIds = emptySet()
+                    }) { Text(if (managing) "完成" else "管理") }
+                }
                 Text(
                     text = "${state.words.size} 个词",
                     style = MaterialTheme.typography.labelMedium,
@@ -128,19 +140,50 @@ fun WrongBookScreen(onBack: () -> Unit, onStartReview: () -> Unit, modifier: Mod
                     }
                 }
             } else {
-                DuoButton(
-                    text = "开始复习（${state.words.size} 个错词）",
-                    onClick = onStartReview,
-                    modifier = Modifier.fillMaxWidth().padding(horizontal = 18.dp)
-                )
-                Spacer(Modifier.height(10.dp))
+                if (!managing) {
+                    DuoButton(
+                        text = "开始复习（${state.words.size} 个错词）",
+                        onClick = onStartReview,
+                        modifier = Modifier.fillMaxWidth().padding(horizontal = 18.dp)
+                    )
+                    Spacer(Modifier.height(10.dp))
+                } else {
+                    Row(
+                        modifier = Modifier.fillMaxWidth().padding(horizontal = 18.dp),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Checkbox(
+                            checked = selectedIds.size == state.words.size,
+                            onCheckedChange = { checked ->
+                                selectedIds = if (checked) state.words.map { it.word.id }.toSet() else emptySet()
+                            }
+                        )
+                        Text("全选", color = DuoTextPrimary)
+                        Spacer(Modifier.weight(1f))
+                        TextButton(
+                            enabled = selectedIds.isNotEmpty(),
+                            onClick = { showDeleteConfirm = true }
+                        ) { Text("删除（${selectedIds.size}）", color = DuoRed) }
+                    }
+                }
                 LazyColumn(
                     modifier = Modifier.fillMaxWidth().weight(1f),
                     contentPadding = PaddingValues(start = 18.dp, end = 18.dp, bottom = 18.dp),
                     verticalArrangement = Arrangement.spacedBy(10.dp)
                 ) {
                     items(state.words, key = { it.word.id }) { row ->
-                        WrongWordCard(row = row, onClick = { detailWord = row.word })
+                        WrongWordCard(
+                            row = row,
+                            onClick = {
+                                if (managing) {
+                                    selectedIds = if (row.word.id in selectedIds) selectedIds - row.word.id else selectedIds + row.word.id
+                                } else {
+                                    detailWord = row.word
+                                }
+                            },
+                            selectable = managing,
+                            selected = row.word.id in selectedIds
+                        )
                     }
                 }
             }
@@ -150,10 +193,27 @@ fun WrongBookScreen(onBack: () -> Unit, onStartReview: () -> Unit, modifier: Mod
     detailWord?.let { word ->
         WordDetailDialog(word = word, onSpeak = { }, onDismiss = { detailWord = null })
     }
+
+    if (showDeleteConfirm) {
+        AlertDialog(
+            onDismissRequest = { showDeleteConfirm = false },
+            title = { Text("删除错题") },
+            text = { Text("确认删除选中的 ${selectedIds.size} 个错题？删除后重启不会恢复。") },
+            confirmButton = {
+                TextButton(onClick = {
+                    showDeleteConfirm = false
+                    viewModel.deleteWords(selectedIds.toList())
+                    selectedIds = emptySet()
+                    managing = false
+                }) { Text("删除", color = DuoRed) }
+            },
+            dismissButton = { TextButton(onClick = { showDeleteConfirm = false }) { Text("取消") } }
+        )
+    }
 }
 
 @Composable
-private fun WrongWordCard(row: WrongWordRow, onClick: () -> Unit) {
+private fun WrongWordCard(row: WrongWordRow, onClick: () -> Unit, selectable: Boolean = false, selected: Boolean = false) {
     val date = runCatching {
         Instant.ofEpochMilli(row.lastWrongAt)
             .atZone(ZoneId.systemDefault())
@@ -172,6 +232,9 @@ private fun WrongWordCard(row: WrongWordRow, onClick: () -> Unit) {
         verticalArrangement = Arrangement.spacedBy(4.dp)
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
+            if (selectable) {
+                Checkbox(checked = selected, onCheckedChange = { onClick() })
+            }
             Text(
                 text = row.word.word,
                 style = MaterialTheme.typography.titleMedium,

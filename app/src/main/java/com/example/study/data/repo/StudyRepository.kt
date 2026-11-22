@@ -113,6 +113,7 @@ class StudyRepository(
         val startedWords = progressDao.countStarted(library)
         val masteredWords = progressDao.countMastered(library)
         val todayStudied = eventDao.distinctWordsOn(library, StudyDates.format(today))
+        val todayCorrect = eventDao.todayCorrectWords(library, StudyDates.format(today))
         val weekCounts = eventDao.dailyCounts(
             library = library,
             fromDate = StudyDates.format(today.minusDays(6)),
@@ -133,6 +134,7 @@ class StudyRepository(
             startedWords = startedWords,
             masteredWords = masteredWords,
             todayStudied = todayStudied,
+            todayCorrect = todayCorrect,
             weekCounts = weekCounts,
             streak = streak,
             totalStudyEvents = totalEvents,
@@ -183,4 +185,23 @@ class StudyRepository(
 
     /** 错题本列表：最近一次答题答错的词（答对后自动移出）。 */
     suspend fun wrongWords(library: String): List<WrongWordRow> = eventDao.wrongWords(library)
+
+    /** 手动清理错题（单词 id 列表）。 */
+    suspend fun deleteWrongBooks(wordIds: List<Long>) {
+        if (wordIds.isNotEmpty()) eventDao.deleteWrongEvents(wordIds)
+    }
+
+    /** 手动清空当前词库错题。 */
+    suspend fun clearWrongBooks(library: String) {
+        eventDao.deleteAllWrongEvents(library)
+    }
+
+    /** 单词总览手动归类：复用有效学习记录，保持首页/总览状态一致。 */
+    suspend fun setWordStatus(wordId: Long, status: Int, now: Long = System.currentTimeMillis()) {
+        markStudied(wordId, status, now)
+    }
+
+    /** 词族归纳自定义词库用：读取某词库全部词条（按字母序）。 */
+    suspend fun wordsOfLibrary(library: String): List<com.example.study.data.db.WordEntity> =
+        wordDao.wordsByLibrary(library)
 }

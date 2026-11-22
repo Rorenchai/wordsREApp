@@ -28,6 +28,8 @@ import java.time.LocalDate
 
 data class StudyUiState(
     val initialized: Boolean = false,
+    val startupError: String? = null,
+    val preparingLibrary: Boolean = false,
     val loadingWord: Boolean = true,
     val library: String = SettingsRepository.LIB_CET4,
     val dailyGoal: Int = SettingsRepository.DEFAULT_DAILY_GOAL,
@@ -76,20 +78,13 @@ class StudyViewModel(
     /** 本轮已抽过的词，保证一轮内不重复；持久化到 round_seen，进程重启后恢复。 */
     private val roundSeen = mutableSetOf<Long>()
 
+    /** 上下滑动切词的返回栈；只保存本页访问过的词。 */
+    private val previousWords = kotlin.collections.ArrayDeque<WordEntity>()
+
+    private var starting = false
+
     init {
-        viewModelScope.launch {
-            val library = settingsRepository.currentLibrary.first()
-            val goal = settingsRepository.dailyGoal.first()
-            val accent = settingsRepository.accent.first()
-            _uiState.update { it.copy(library = library, dailyGoal = goal, accent = accent) }
-            ttsManager.setAccent(accent)
-            wordRepository.ensureReady()
-            roundSeen.clear()
-            roundSeen.addAll(studyRepository.loadRound(library, _uiState.value.filter))
-            _uiState.update { it.copy(initialized = true, roundViewed = roundSeen.size) }
-            loadPlanSummary()
-            loadNextWordInternal(speak = false)
-        }
+        startInitialization()
         viewModelScope.launch {
             settingsRepository.dailyGoal.collect { goal -> _uiState.update { it.copy(dailyGoal = goal) } }
         }
@@ -106,7 +101,8 @@ class StudyViewModel(
                 if (previous != library && _uiState.value.initialized) {
                     roundSeen.clear()
                     roundSeen.addAll(studyRepository.loadRound(library, _uiState.value.filter))
-                    _uiState.update { it.copy(roundViewed = roundSeen.size) }
+                    previousWords.clear()
+                    _uiState.update { it.copy(roundViewed = roundSeen.size, preparingLibrary = true) }
                     loadNextWordInternal()
                 }
             }
@@ -121,6 +117,43 @@ class StudyViewModel(
         }
     }
 
+    private fun startInitialization() {
+        if (starting) return
+        starting = true
+        viewModelScope.launch {
+            try {
+                val library = settingsRepository.currentLibrary.first()
+                val goal = settingsRepository.dailyGoal.first()
+                val accent = settingsRepository.accent.first()
+                _uiState.update { it.copy(library = library, dailyGoal = goal, accent = accent, startupError = null, preparingLibrary = true) }
+                ttsManager.setAccent(accent)
+                wordRepository.ensureReady()
+                roundSeen.clear()
+                roundSeen.addAll(studyRepository.loadRound(library, _uiState.value.filter))
+                _uiState.update { it.copy(initialized = true, roundViewed = roundSeen.size) }
+                loadPlanSummary()
+                delay(280)
+                loadNextWordInternal(speak = false)
+            } catch (error: Throwable) {
+                _uiState.update {
+                    it.copy(
+                        initialized = false,
+                        loadingWord = false,
+                        preparingLibrary = false,
+                        startupError = "词库准备失败：${error.message ?: "未知错误"}"
+                    )
+                }
+            } finally {
+                starting = false
+            }
+        }
+    }
+
+    fun retryStartup() {
+        _uiState.update { it.copy(startupError = null, loadingWord = true) }
+        startInitialization()
+    }
+
     fun flip() {
         _uiState.update { it.copy(flipped = !it.flipped) }
     }
@@ -132,6 +165,7 @@ class StudyViewModel(
             val persisted = studyRepository.loadRound(library, filter)
             roundSeen.clear()
             roundSeen.addAll(persisted)
+            previousWords.clear()
             _uiState.update { it.copy(filter = filter, roundViewed = persisted.size) }
             loadNextWordInternal()
         }
@@ -139,7 +173,37 @@ class StudyViewModel(
 
     fun nextWord() {
         if (_uiState.value.loadingWord) return
+        _uiState.value.word?.let { previousWords.addLast(it) }
         loadNextWordInternal()
+    }
+
+    /** 上滑切到上一个词（本地返回栈；没有上一词时提示边界）。 */
+    fun previousWord() {
+        if (_uiState.value.loadingWord) return
+        val previous = if (previousWords.isEmpty()) null else previousWords.removeLast()
+        if (previous == null) {
+            _uiState.update { it.copy(message = "已经是第一个单词") }
+            return
+        }
+        viewModelScope.launch {
+            _uiState.update { it.copy(loadingWord = true, flipped = false) }
+            val status = studyRepository.findProgress(previous.id)?.status ?: 0
+            val favorite = favoriteRepository.isFavorite(previous.id)
+            val stats = studyRepository.stats(_uiState.value.library)
+            _uiState.update {
+                it.copy(
+                    word = previous,
+                    wordStatus = status,
+                    loadingWord = false,
+                    flipped = false,
+                    isFavorite = favorite,
+                    todayStudied = stats.todayStudied,
+                    streak = stats.streak
+                )
+            }
+            delay(80)
+            autoRead.speakNext(previous.word)
+        }
     }
 
     /**
@@ -169,6 +233,7 @@ class StudyViewModel(
                     }
                 )
             }
+            loadPlanSummary()
         }
     }
 
@@ -299,7 +364,8 @@ class StudyViewModel(
                     isFavorite = favorite,
                     todayStudied = stats.todayStudied,
                     streak = stats.streak,
-                    roundViewed = roundSeen.size
+                    roundViewed = roundSeen.size,
+                    preparingLibrary = false
                 )
             }
             if (speak && word != null) {

@@ -66,21 +66,11 @@ import com.example.study.ui.theme.DuoTextPrimary
 import com.example.study.ui.theme.DuoTextSecondary
 import com.example.study.ui.theme.DuoSuccess
 import com.example.study.ui.theme.DuoChocolate
+import androidx.lifecycle.compose.LifecycleResumeEffect
 
 @Composable
 fun RecordsScreen(onOpenWrongBook: () -> Unit, onOpenVocab: () -> Unit, modifier: Modifier = Modifier) {
-    val context = LocalContext.current
-    val viewModel: RecordsViewModel = viewModel(factory = RecordsViewModel.factory(context))
-    val state by viewModel.uiState.collectAsStateWithLifecycle()
-    var checkInReward by remember { mutableStateOf<CheckInReward?>(null) }
-
-    LaunchedEffect(Unit) { viewModel.refresh() }
-
-    Box(
-        modifier = modifier
-            .fillMaxSize()
-            .background(DuoBackground)
-    ) {
+    Box(modifier = modifier.fillMaxSize().background(DuoBackground)) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -89,21 +79,54 @@ fun RecordsScreen(onOpenWrongBook: () -> Unit, onOpenVocab: () -> Unit, modifier
                 .padding(top = 14.dp, bottom = 20.dp),
             verticalArrangement = Arrangement.spacedBy(14.dp)
         ) {
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Text(
-                    text = "学习记录",
-                    style = MaterialTheme.typography.headlineMedium,
-                    color = DuoTextPrimary
-                )
-                Text(
-                    text = state.library,
-                    style = MaterialTheme.typography.labelMedium,
-                    color = DuoTextSecondary
-                )
+            RecordsContent(
+                onOpenWrongBook = onOpenWrongBook,
+                onOpenVocab = onOpenVocab,
+                showHeader = true
+            )
+        }
+    }
+}
+
+@Composable
+fun RecordsContent(
+    onOpenWrongBook: () -> Unit,
+    onOpenVocab: () -> Unit,
+    showHeader: Boolean = false,
+    modifier: Modifier = Modifier
+) {
+    val context = LocalContext.current
+    val viewModel: RecordsViewModel = viewModel(factory = RecordsViewModel.factory(context))
+    val state by viewModel.uiState.collectAsStateWithLifecycle()
+    var checkInReward by remember { mutableStateOf<CheckInReward?>(null) }
+
+    LaunchedEffect(Unit) { viewModel.refresh() }
+    LifecycleResumeEffect(Unit) {
+        viewModel.refresh()
+        onPauseOrDispose { }
+    }
+
+    Column(
+        modifier = modifier.fillMaxWidth(),
+        verticalArrangement = Arrangement.spacedBy(14.dp)
+    ) {
+            if (showHeader) {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(
+                        text = "学习记录",
+                        style = MaterialTheme.typography.headlineMedium,
+                        color = DuoTextPrimary
+                    )
+                    Text(
+                        text = state.library,
+                        style = MaterialTheme.typography.labelMedium,
+                        color = DuoTextSecondary
+                    )
+                }
             }
 
             val stats = state.stats
@@ -122,10 +145,11 @@ fun RecordsScreen(onOpenWrongBook: () -> Unit, onOpenVocab: () -> Unit, modifier
                     stats = stats,
                     lastCheckInDate = state.lastCheckInDate,
                     onCheckIn = {
+                        val points = viewModel.checkInPoints()
                         viewModel.checkIn()
                         checkInReward = CheckInReward(
                             streak = stats.streak,
-                            energy = (10 + stats.streak * 2).coerceAtMost(50)
+                            energy = points
                         )
                     }
                 )
@@ -153,7 +177,6 @@ fun RecordsScreen(onOpenWrongBook: () -> Unit, onOpenVocab: () -> Unit, modifier
                     color = DuoTextSecondary
                 )
             }
-        }
     }
 
     checkInReward?.let { reward ->
@@ -418,7 +441,7 @@ private fun CheckInRewardDialog(streak: Int, energy: Int, onDismiss: () -> Unit)
                 )
                 Text("打卡成功！", style = MaterialTheme.typography.headlineSmall, color = DuoGreen)
                 Text("连续打卡 $streak 天", style = MaterialTheme.typography.titleMedium, color = DuoTextPrimary)
-                Text("获得 $energy 学习能量", style = MaterialTheme.typography.bodyMedium, color = DuoGold)
+                Text("获得 $energy 积分", style = MaterialTheme.typography.bodyMedium, color = DuoGold)
                 Spacer(Modifier.height(4.dp))
                 Box(
                     modifier = Modifier

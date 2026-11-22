@@ -1,0 +1,6443 @@
+{
+  "library": "PETS",
+  "families": [
+    {
+      "root": "access",
+      "base": "access",
+      "words": [
+        {
+          "word": "access",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 使用；存取；接近；n. 进入；使用权；通路"
+        },
+        {
+          "word": "accessible",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 易接近的；可进入的；可理解的"
+        }
+      ]
+    },
+    {
+      "root": "achiev",
+      "base": "achieve",
+      "words": [
+        {
+          "word": "achieve",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 取得；获得；实现；成功"
+        },
+        {
+          "word": "achievement",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 成就；完成；达到；成绩"
+        }
+      ]
+    },
+    {
+      "root": "act",
+      "base": "act",
+      "words": [
+        {
+          "word": "act",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 扮演；装作；举动像；n. 行为；行动；法令；法案；（戏剧；歌剧的）一幕；段；装腔作势"
+        },
+        {
+          "word": "action",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 行动；活动；功能；战斗；情节"
+        },
+        {
+          "word": "active",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 积极的；活跃的；主动的；有效的；现役的；n. 主动语态；积极分子"
+        },
+        {
+          "word": "activity",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 活动；行动；活跃"
+        },
+        {
+          "word": "actor",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 男演员；行动者；作用物"
+        }
+      ]
+    },
+    {
+      "root": "adapt",
+      "base": "adapt",
+      "words": [
+        {
+          "word": "adapt",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 使适应；改编"
+        },
+        {
+          "word": "adaptation",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 适应；改编；改编本；改写本"
+        }
+      ]
+    },
+    {
+      "root": "add",
+      "base": "add",
+      "words": [
+        {
+          "word": "add",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 加；增加；加起来；做加法；n. 加法；加法运算"
+        },
+        {
+          "word": "addition",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 添加；[数] 加法；增加物"
+        }
+      ]
+    },
+    {
+      "root": "adjust",
+      "base": "adjust",
+      "words": [
+        {
+          "word": "adjust",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 调整；使…适合；校准"
+        },
+        {
+          "word": "adjustment",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 调整；调节；调节器"
+        }
+      ]
+    },
+    {
+      "root": "admir",
+      "base": "admire",
+      "words": [
+        {
+          "word": "admirable",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 令人钦佩的；极好的；值得赞扬的"
+        },
+        {
+          "word": "admire",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 钦佩；赞美"
+        }
+      ]
+    },
+    {
+      "root": "advertis",
+      "base": "advertise",
+      "words": [
+        {
+          "word": "advertise",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 通知；为…做广告；使突出"
+        },
+        {
+          "word": "advertisement",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 广告；宣传"
+        }
+      ]
+    },
+    {
+      "root": "affect",
+      "base": "affect",
+      "words": [
+        {
+          "word": "affect",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 影响；感染；感动；假装；n. 情感；引起感情的因素"
+        },
+        {
+          "word": "affection",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 喜爱；感情；影响；感染"
+        }
+      ]
+    },
+    {
+      "root": "aggress",
+      "base": "aggression",
+      "words": [
+        {
+          "word": "aggression",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 侵略；进攻；侵犯；侵害"
+        },
+        {
+          "word": "aggressive",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 侵略性的；好斗的；有进取心的；有闯劲的"
+        }
+      ]
+    },
+    {
+      "root": "agre",
+      "base": "agree",
+      "words": [
+        {
+          "word": "agree",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 同意；赞成；承认；约定；商定"
+        },
+        {
+          "word": "agreement",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 协议；同意；一致"
+        }
+      ]
+    },
+    {
+      "root": "agricultur",
+      "base": "agriculture",
+      "words": [
+        {
+          "word": "agricultural",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 农业的；农艺的"
+        },
+        {
+          "word": "agriculture",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 农业；农耕；农业生产；农艺；农学"
+        }
+      ]
+    },
+    {
+      "root": "aid",
+      "base": "aid",
+      "words": [
+        {
+          "word": "aid",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 援助；帮助；助手；帮助者；v. 援助；帮助；有助于"
+        },
+        {
+          "word": "AIDS",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "abbr. 获得性免疫缺乏综合征；爱滋病（Acquired Immune Deficiency Syndrome）"
+        }
+      ]
+    },
+    {
+      "root": "allow",
+      "base": "allow",
+      "words": [
+        {
+          "word": "allow",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 允许；给予；认可"
+        },
+        {
+          "word": "allowance",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 津贴；零用钱；允许；限额；v. 定量供应"
+        }
+      ]
+    },
+    {
+      "root": "amaz",
+      "base": "amaze",
+      "words": [
+        {
+          "word": "amaze",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 使吃惊"
+        },
+        {
+          "word": "amazing",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 令人惊异的；v. 使吃惊（amaze的ing形式）"
+        }
+      ]
+    },
+    {
+      "root": "amus",
+      "base": "amuse",
+      "words": [
+        {
+          "word": "amuse",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 娱乐；消遣；使发笑；使愉快"
+        },
+        {
+          "word": "amusement",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 消遣；娱乐；乐趣"
+        }
+      ]
+    },
+    {
+      "root": "announc",
+      "base": "announce",
+      "words": [
+        {
+          "word": "announce",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 宣布；述说；预示；播报"
+        },
+        {
+          "word": "announcement",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 公告；宣告；发表；通告"
+        }
+      ]
+    },
+    {
+      "root": "apart",
+      "base": "apart",
+      "words": [
+        {
+          "word": "apart",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adv. 相距；与众不同地；分离着；adj. 分离的；与众不同的"
+        },
+        {
+          "word": "apartment",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 公寓；房间"
+        }
+      ]
+    },
+    {
+      "root": "appear",
+      "base": "appear",
+      "words": [
+        {
+          "word": "appear",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 出现；显得；似乎；出庭；登场"
+        },
+        {
+          "word": "appearance",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 外貌；外观；出现；露面"
+        }
+      ]
+    },
+    {
+      "root": "app",
+      "base": "apply",
+      "words": [
+        {
+          "word": "appeal",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 呼吁；恳求；上诉；诉诸；求助；有吸引力；迎合爱好；（体育比赛中）诉诸裁判；n. 呼吁；请求；吸引力；感染力；上诉；诉诸裁判"
+        },
+        {
+          "word": "apply",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 申请；涂；敷；应用"
+        }
+      ]
+    },
+    {
+      "root": "appoint",
+      "base": "appoint",
+      "words": [
+        {
+          "word": "appoint",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 任命；指定；约定"
+        },
+        {
+          "word": "appointment",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 任命；约定；任命的职位"
+        }
+      ]
+    },
+    {
+      "root": "appreciat",
+      "base": "appreciate",
+      "words": [
+        {
+          "word": "appreciate",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 欣赏；感激；领会；鉴别"
+        },
+        {
+          "word": "appreciation",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 欣赏；鉴别；增值；感谢"
+        }
+      ]
+    },
+    {
+      "root": "architect",
+      "base": "architect",
+      "words": [
+        {
+          "word": "architect",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 建筑师"
+        },
+        {
+          "word": "architecture",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 建筑学；建筑风格；建筑式样；架构"
+        }
+      ]
+    },
+    {
+      "root": "argu",
+      "base": "argue",
+      "words": [
+        {
+          "word": "argue",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 争论；辩论；提出理由"
+        },
+        {
+          "word": "argument",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 论证；论据；争吵；内容提要"
+        }
+      ]
+    },
+    {
+      "root": "arrang",
+      "base": "arrange",
+      "words": [
+        {
+          "word": "arrange",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 安排；排列；整理"
+        },
+        {
+          "word": "arrangement",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 布置；整理；准备"
+        }
+      ]
+    },
+    {
+      "root": "assess",
+      "base": "assess",
+      "words": [
+        {
+          "word": "assess",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 评定；估价；对…征税"
+        },
+        {
+          "word": "assessment",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 评定；估价"
+        }
+      ]
+    },
+    {
+      "root": "assist",
+      "base": "assist",
+      "words": [
+        {
+          "word": "assist",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 帮助；助攻；v. 参加；出席"
+        },
+        {
+          "word": "assistance",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 援助；帮助；辅助设备"
+        }
+      ]
+    },
+    {
+      "root": "associat",
+      "base": "associate",
+      "words": [
+        {
+          "word": "associate",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 交往；结交；n. 同事；伙伴；关联的事物；adj. 副的；联合的"
+        },
+        {
+          "word": "association",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 协会；联盟；社团；联合；联想"
+        }
+      ]
+    },
+    {
+      "root": "athletic",
+      "base": "athletic",
+      "words": [
+        {
+          "word": "athletic",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 运动的；运动员的；体格健壮的"
+        },
+        {
+          "word": "athletics",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 竞技；体育运动；田径运动"
+        }
+      ]
+    },
+    {
+      "root": "attent",
+      "base": "attention",
+      "words": [
+        {
+          "word": "attention",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 注意力；关心；立正！（口令）"
+        },
+        {
+          "word": "attentively",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adv. 注意地；聚精会神地；周到地"
+        }
+      ]
+    },
+    {
+      "root": "attract",
+      "base": "attract",
+      "words": [
+        {
+          "word": "attract",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 吸引；引起"
+        },
+        {
+          "word": "attraction",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 吸引；吸引力；引力；吸引人的事物"
+        },
+        {
+          "word": "attractive",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 吸引人的；有魅力的；引人注目的"
+        }
+      ]
+    },
+    {
+      "root": "auth",
+      "base": "author",
+      "words": [
+        {
+          "word": "author",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 作者；作家；创始人；v. 创作出版"
+        },
+        {
+          "word": "authority",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 权威；权力；当局"
+        }
+      ]
+    },
+    {
+      "root": "bad",
+      "base": "bad",
+      "words": [
+        {
+          "word": "bad",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 坏的；严重的；劣质的；n. 坏事；坏人；adv. 很；非常；坏地；邪恶地"
+        },
+        {
+          "word": "badly",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adv. 非常；很；严重地；厉害地；恶劣地"
+        }
+      ]
+    },
+    {
+      "root": "bar",
+      "base": "bar",
+      "words": [
+        {
+          "word": "bar",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 条；棒；酒吧；障碍；法庭；v. 禁止；阻拦；prep. 除……外"
+        },
+        {
+          "word": "bare",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 空的；赤裸的；无遮蔽的；v. 露出；使赤裸"
+        }
+      ]
+    },
+    {
+      "root": "bas",
+      "base": "base",
+      "words": [
+        {
+          "word": "base",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 基础；底部；垒；adj. 卑鄙的；低劣的；v. 以…作基础"
+        },
+        {
+          "word": "basement",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 地下室；地窖"
+        }
+      ]
+    },
+    {
+      "root": "bath",
+      "base": "bath",
+      "words": [
+        {
+          "word": "bath",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 沐浴；浴室；浴盆；v. 洗澡"
+        },
+        {
+          "word": "bathe",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 沐浴；用水洗；n. 洗澡；游泳"
+        }
+      ]
+    },
+    {
+      "root": "besid",
+      "base": "beside",
+      "words": [
+        {
+          "word": "beside",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "prep. 在旁边；与…相比；和…无关"
+        },
+        {
+          "word": "besides",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adv. 此外；而且；prep. 除…之外"
+        }
+      ]
+    },
+    {
+      "root": "bill",
+      "base": "bill",
+      "words": [
+        {
+          "word": "bill",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. [法] 法案；广告；账单；[金融] 票据；钞票；清单；v. 宣布；开账单；用海报宣传"
+        },
+        {
+          "word": "billion",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 十亿；大量；num. 十亿；adj. 十亿的"
+        }
+      ]
+    },
+    {
+      "root": "bit",
+      "base": "bit",
+      "words": [
+        {
+          "word": "bit",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. [计] 比特（二进位制信息单位）；少量；马嚼子；辅币；老一套；一点；一块；vt. 控制；adj. 很小的；微不足道的"
+        },
+        {
+          "word": "bite",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 咬；刺痛；n. 咬；一口；咬伤；刺痛；abbr. 机内测试设备（Built-In Test Equipment）"
+        }
+      ]
+    },
+    {
+      "root": "boat",
+      "base": "boat",
+      "words": [
+        {
+          "word": "boat",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 小船；轮船；v. 划船"
+        },
+        {
+          "word": "boating",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 划船；adj. 划船的；v. 划船（boat的ing形式）"
+        }
+      ]
+    },
+    {
+      "root": "bor",
+      "base": "bored",
+      "words": [
+        {
+          "word": "bored",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 无聊的；无趣的；烦人的；v. 使厌烦（bore的过去式）；烦扰"
+        },
+        {
+          "word": "boring",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 无聊的；令人厌烦的；n. 钻孔；v. 钻孔；使厌烦；挖空（bore的ing形式）"
+        }
+      ]
+    },
+    {
+      "root": "bowl",
+      "base": "bowl",
+      "words": [
+        {
+          "word": "bowl",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 碗；木球；大酒杯；v. 玩保龄球；滑动；平稳快速移动"
+        },
+        {
+          "word": "bowling",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 滚木球戏；保龄球戏；v. 打保龄球（bowl的现在分词）"
+        }
+      ]
+    },
+    {
+      "root": "box",
+      "base": "box",
+      "words": [
+        {
+          "word": "box",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 箱；盒子；包厢；一拳；v. 拳击"
+        },
+        {
+          "word": "boxing",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 拳击；装箱；围模；做箱的材料；v. 将…装入盒中（box的ing形式）"
+        }
+      ]
+    },
+    {
+      "root": "breath",
+      "base": "breath",
+      "words": [
+        {
+          "word": "breath",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 呼吸；气息；一口气；（呼吸的）一次；瞬间；瞬息；微风；迹象；无声音；气音"
+        },
+        {
+          "word": "breathe",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 呼吸；低语；松口气；（风）轻拂"
+        },
+        {
+          "word": "breathless",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 喘不过气来的；停止呼吸的"
+        }
+      ]
+    },
+    {
+      "root": "build",
+      "base": "build",
+      "words": [
+        {
+          "word": "build",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 建立；建筑；n. 构造；体形；体格"
+        },
+        {
+          "word": "building",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 建筑；建筑物；v. 建筑；建立；增加（build的ing形式）"
+        }
+      ]
+    },
+    {
+      "root": "car",
+      "base": "car",
+      "words": [
+        {
+          "word": "car",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 汽车；车厢"
+        },
+        {
+          "word": "care",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 关怀；照料；谨慎；忧虑；v. 照顾；关心；喜爱；顾虑"
+        },
+        {
+          "word": "careful",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 仔细的；小心的"
+        },
+        {
+          "word": "careless",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 粗心的；无忧无虑的；淡漠的"
+        }
+      ]
+    },
+    {
+      "root": "cat",
+      "base": "cat",
+      "words": [
+        {
+          "word": "cat",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 猫；猫科动物"
+        },
+        {
+          "word": "cater",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 投合；迎合；满足需要；提供饮食及服务"
+        }
+      ]
+    },
+    {
+      "root": "celebrat",
+      "base": "celebrate",
+      "words": [
+        {
+          "word": "celebrate",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 庆祝；举行；赞美；祝贺；宣告"
+        },
+        {
+          "word": "celebration",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 庆典；庆祝会；庆祝；颂扬"
+        }
+      ]
+    },
+    {
+      "root": "centr",
+      "base": "centre",
+      "words": [
+        {
+          "word": "central",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 中心的；主要的；中枢的；n. 电话总机"
+        },
+        {
+          "word": "centre",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 以…为中心；n. 中心；adj. 中央的"
+        }
+      ]
+    },
+    {
+      "root": "certain",
+      "base": "certain",
+      "words": [
+        {
+          "word": "certain",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 某一；必然的；确信；无疑的；有把握的；pron. 某些；某几个"
+        },
+        {
+          "word": "certainly",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adv. 当然；行（用于回答）；必定"
+        }
+      ]
+    },
+    {
+      "root": "challeng",
+      "base": "challenge",
+      "words": [
+        {
+          "word": "challenge",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 挑战；怀疑；v. 向…挑战；对…质疑"
+        },
+        {
+          "word": "challenging",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 挑战的；引起挑战性兴趣的；v. 要求；质疑；反对；向…挑战；盘问（challenge的ing形式）"
+        }
+      ]
+    },
+    {
+      "root": "chang",
+      "base": "change",
+      "words": [
+        {
+          "word": "change",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 改变；交换；n. 变化；找回的零钱"
+        },
+        {
+          "word": "changeable",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 无常的；可改变的；易变的；不定的"
+        }
+      ]
+    },
+    {
+      "root": "che",
+      "base": "cheer",
+      "words": [
+        {
+          "word": "cheer",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 欢呼；使高兴；为…加油；n. 欢呼；愉快；心情；令人愉快的事"
+        },
+        {
+          "word": "cheerful",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 快乐的；愉快的；高兴的"
+        },
+        {
+          "word": "cheers",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 感谢；谢谢；再见"
+        }
+      ]
+    },
+    {
+      "root": "classic",
+      "base": "classic",
+      "words": [
+        {
+          "word": "classic",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 经典的；古典的；传统的；最优秀的；n. 名著；经典著作；大艺术家"
+        },
+        {
+          "word": "classical",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 古典的；经典的；传统的；第一流的；n. 古典音乐"
+        }
+      ]
+    },
+    {
+      "root": "clean",
+      "base": "clean",
+      "words": [
+        {
+          "word": "clean",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 清洁的；干净的；清白的；v. 使干净；adv. 完全地"
+        },
+        {
+          "word": "cleaner",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. [化工] 清洁剂；清洁工；干洗店；干洗商；洗洁器"
+        }
+      ]
+    },
+    {
+      "root": "clear",
+      "base": "clear",
+      "words": [
+        {
+          "word": "clear",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 清楚的；清澈的；晴朗的；无罪的；v. 通过；清除；使干净；跳过；adv. 清晰地；完全地"
+        },
+        {
+          "word": "clearly",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adv. 清晰地；明显地；无疑地；明净地"
+        }
+      ]
+    },
+    {
+      "root": "cloth",
+      "base": "cloth",
+      "words": [
+        {
+          "word": "cloth",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 布；织物；桌布；adj. 布制的"
+        },
+        {
+          "word": "clothes",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 衣服"
+        },
+        {
+          "word": "clothing",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. （总称）[服装] 服装；帆装；v. 覆盖（clothe的ing形式）；给…穿衣"
+        }
+      ]
+    },
+    {
+      "root": "collect",
+      "base": "collect",
+      "words": [
+        {
+          "word": "collect",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 收集；募捐；adv. 由收件人付款地；adj. 由收件人付款的"
+        },
+        {
+          "word": "collection",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 采集；聚集；[税收] 征收；收藏品；募捐"
+        }
+      ]
+    },
+    {
+      "root": "com",
+      "base": "come",
+      "words": [
+        {
+          "word": "come",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 来；开始；出现；发生；变成；到达；int. 嗨！"
+        },
+        {
+          "word": "comment",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 评论；意见；批评；v. 发表评论；发表意见"
+        }
+      ]
+    },
+    {
+      "root": "comfort",
+      "base": "comfort",
+      "words": [
+        {
+          "word": "comfort",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 安慰；舒适；安慰者；v. 安慰；使（痛苦等）缓和"
+        },
+        {
+          "word": "comfortable",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 舒适的；舒服的；n. 盖被"
+        }
+      ]
+    },
+    {
+      "root": "commit",
+      "base": "commit",
+      "words": [
+        {
+          "word": "commit",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 犯罪；做错事；把交托给；指派…作战；使…承担义务"
+        },
+        {
+          "word": "commitment",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 承诺；保证；委托；承担义务；献身"
+        }
+      ]
+    },
+    {
+      "root": "communicat",
+      "base": "communicate",
+      "words": [
+        {
+          "word": "communicate",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 通讯；传达；相通；交流；感染"
+        },
+        {
+          "word": "communication",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 通讯；[通信] 通信；交流；信函"
+        }
+      ]
+    },
+    {
+      "root": "compet",
+      "base": "compete",
+      "words": [
+        {
+          "word": "compete",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 竞争；比赛；对抗"
+        },
+        {
+          "word": "competence",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 能力；胜任；权限；作证能力；足以过舒适生活的收入"
+        },
+        {
+          "word": "competition",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 竞争；比赛；竞赛"
+        }
+      ]
+    },
+    {
+      "root": "conduct",
+      "base": "conduct",
+      "words": [
+        {
+          "word": "conduct",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 导电；带领；n. 进行；行为；实施"
+        },
+        {
+          "word": "conductor",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 导体；售票员；领导者；管理人"
+        }
+      ]
+    },
+    {
+      "root": "congratulat",
+      "base": "congratulate",
+      "words": [
+        {
+          "word": "congratulate",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 祝贺；恭喜；庆贺"
+        },
+        {
+          "word": "congratulation",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 祝贺；贺辞"
+        }
+      ]
+    },
+    {
+      "root": "connect",
+      "base": "connect",
+      "words": [
+        {
+          "word": "connect",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 连接；联合；关连"
+        },
+        {
+          "word": "connection",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 连接；关系；人脉；连接件"
+        }
+      ]
+    },
+    {
+      "root": "conservat",
+      "base": "conservation",
+      "words": [
+        {
+          "word": "conservation",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 保存；保持；保护"
+        },
+        {
+          "word": "conservative",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 保守的；n. 保守派；守旧者"
+        }
+      ]
+    },
+    {
+      "root": "consid",
+      "base": "consider",
+      "words": [
+        {
+          "word": "consider",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 考虑；认为；考虑到；细想"
+        },
+        {
+          "word": "consideration",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 考虑；原因；关心；报酬"
+        }
+      ]
+    },
+    {
+      "root": "construct",
+      "base": "construct",
+      "words": [
+        {
+          "word": "construct",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 建造；构造；创立；n. 构想；概念"
+        },
+        {
+          "word": "construction",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 建设；建筑物；解释；造句"
+        }
+      ]
+    },
+    {
+      "root": "contain",
+      "base": "contain",
+      "words": [
+        {
+          "word": "contain",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 包含；控制；容纳；牵制（敌军）"
+        },
+        {
+          "word": "container",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 集装箱；容器"
+        }
+      ]
+    },
+    {
+      "root": "contribut",
+      "base": "contribute",
+      "words": [
+        {
+          "word": "contribute",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 贡献；出力；投稿；捐献"
+        },
+        {
+          "word": "contribution",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 贡献；捐献；投稿"
+        }
+      ]
+    },
+    {
+      "root": "cook",
+      "base": "cook",
+      "words": [
+        {
+          "word": "cook",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 烹调；煮；n. 厨师；厨子"
+        },
+        {
+          "word": "cooker",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 炊具；烹饪用水果；窜改者"
+        }
+      ]
+    },
+    {
+      "root": "corn",
+      "base": "corn",
+      "words": [
+        {
+          "word": "corn",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. （美）玉米；（英）谷物；[皮肤] 鸡眼；v. 腌；使成颗粒"
+        },
+        {
+          "word": "corner",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 角落；拐角处；地区；偏僻处；困境；窘境；v. 囤积；相交成角"
+        }
+      ]
+    },
+    {
+      "root": "correct",
+      "base": "correct",
+      "words": [
+        {
+          "word": "correct",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 改正；告诫；adj. 正确的；恰当的；端正的"
+        },
+        {
+          "word": "correction",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 改正；修正"
+        }
+      ]
+    },
+    {
+      "root": "count",
+      "base": "count",
+      "words": [
+        {
+          "word": "count",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 计算；认为；n. 计数；计算；伯爵"
+        },
+        {
+          "word": "counter",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 柜台；对立面；计数器；（某些棋盘游戏的）筹码；v. 反击；还击；反向移动；对着干；反驳；回答；adj. 相反的"
+        }
+      ]
+    },
+    {
+      "root": "creat",
+      "base": "create",
+      "words": [
+        {
+          "word": "create",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 创造；创作；造成"
+        },
+        {
+          "word": "creature",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 动物；生物；人；创造物"
+        }
+      ]
+    },
+    {
+      "root": "cross",
+      "base": "cross",
+      "words": [
+        {
+          "word": "cross",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 交叉；十字；十字架；十字形物；v. 交叉；杂交；横过；adj. 交叉的；相反的；乖戾的；生气的"
+        },
+        {
+          "word": "crossing",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 十字路口；杂交；横渡；横道；v. 横越（cross的现在分词）"
+        }
+      ]
+    },
+    {
+      "root": "crowd",
+      "base": "crowd",
+      "words": [
+        {
+          "word": "crowd",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 群众；一伙;一堆；许多；大众；v. 拥挤；挤满；挤进"
+        },
+        {
+          "word": "crowded",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 拥挤的；塞满的；v. 拥挤（crowd的过去分词）"
+        }
+      ]
+    },
+    {
+      "root": "custom",
+      "base": "custom",
+      "words": [
+        {
+          "word": "custom",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 习惯；惯例；风俗；海关；关税；经常光顾；[总称]（经常性的）顾客；adj. （衣服等）定做的；定制的"
+        },
+        {
+          "word": "customer",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 顾客；家伙"
+        },
+        {
+          "word": "customs",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 海关；风俗（custom的复数）；习惯；关税"
+        }
+      ]
+    },
+    {
+      "root": "dang",
+      "base": "danger",
+      "words": [
+        {
+          "word": "danger",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 危险；危险物；威胁"
+        },
+        {
+          "word": "dangerous",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 危险的"
+        }
+      ]
+    },
+    {
+      "root": "dark",
+      "base": "dark",
+      "words": [
+        {
+          "word": "dark",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 黑暗的；深色的；模糊的；无知的；忧郁的；n. 黑暗；夜；黄昏；模糊"
+        },
+        {
+          "word": "darkness",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 黑暗；模糊；无知；阴郁"
+        }
+      ]
+    },
+    {
+      "root": "decorat",
+      "base": "decorate",
+      "words": [
+        {
+          "word": "decorate",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 装饰；布置；授勋给"
+        },
+        {
+          "word": "decoration",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 装饰；装潢；装饰品；奖章"
+        }
+      ]
+    },
+    {
+      "root": "deep",
+      "base": "deep",
+      "words": [
+        {
+          "word": "deep",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 深处；深渊；adj. 深的；低沉的；深奥的；adv. 深入地；深深地；迟"
+        },
+        {
+          "word": "deeply",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adv. 深刻地；浓浓地；在深处"
+        }
+      ]
+    },
+    {
+      "root": "delight",
+      "base": "delight",
+      "words": [
+        {
+          "word": "delight",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 高兴；v. 高兴"
+        },
+        {
+          "word": "delighted",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 高兴的；欣喜的；v. 使…兴高采烈；感到快乐（delight的过去分词）"
+        }
+      ]
+    },
+    {
+      "root": "depart",
+      "base": "departure",
+      "words": [
+        {
+          "word": "department",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 部；部门；系；科；局"
+        },
+        {
+          "word": "departure",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 离开；出发；违背"
+        }
+      ]
+    },
+    {
+      "root": "determin",
+      "base": "determine",
+      "words": [
+        {
+          "word": "determination",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 决心；果断；测定"
+        },
+        {
+          "word": "determine",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. （使）下决心；（使）做出决定"
+        }
+      ]
+    },
+    {
+      "root": "develop",
+      "base": "develop",
+      "words": [
+        {
+          "word": "develop",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 开发；进步；使成长；使显影"
+        },
+        {
+          "word": "development",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 发展；开发；发育；住宅小区（专指由同一开发商开发的）；[摄] 显影"
+        }
+      ]
+    },
+    {
+      "root": "devot",
+      "base": "devote",
+      "words": [
+        {
+          "word": "devote",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 致力于；奉献"
+        },
+        {
+          "word": "devotion",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 献身；奉献；忠诚；热爱"
+        }
+      ]
+    },
+    {
+      "root": "diff",
+      "base": "differ",
+      "words": [
+        {
+          "word": "differ",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 使…相异；使…不同"
+        },
+        {
+          "word": "difference",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 差异；不同；争执"
+        }
+      ]
+    },
+    {
+      "root": "direct",
+      "base": "direct",
+      "words": [
+        {
+          "word": "direct",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 直接的；直系的；亲身的；恰好的；v. 管理；指挥；导演；指向；adv. 直接地；正好；按直系关系"
+        },
+        {
+          "word": "director",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 主任；主管；导演；人事助理"
+        }
+      ]
+    },
+    {
+      "root": "disagre",
+      "base": "disagree",
+      "words": [
+        {
+          "word": "disagree",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 不同意；不一致；争执；不适宜"
+        },
+        {
+          "word": "disagreement",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 不一致；争论；意见不同"
+        }
+      ]
+    },
+    {
+      "root": "disappoint",
+      "base": "disappoint",
+      "words": [
+        {
+          "word": "disappoint",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 使失望"
+        },
+        {
+          "word": "disappointment",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 失望；沮丧"
+        }
+      ]
+    },
+    {
+      "root": "discuss",
+      "base": "discuss",
+      "words": [
+        {
+          "word": "discuss",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 讨论；论述；辩论"
+        },
+        {
+          "word": "discussion",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 讨论；议论"
+        }
+      ]
+    },
+    {
+      "root": "disturb",
+      "base": "disturb",
+      "words": [
+        {
+          "word": "disturb",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 打扰；妨碍；使不安；弄乱；使恼怒"
+        },
+        {
+          "word": "disturbing",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 令人不安的；烦扰的；v. 干扰；打断（disturb的ing形式）"
+        }
+      ]
+    },
+    {
+      "root": "draw",
+      "base": "draw",
+      "words": [
+        {
+          "word": "draw",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 画；拉；吸引；n. 平局；抽签"
+        },
+        {
+          "word": "drawer",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 抽屉；开票人；出票人；起草者；酒馆侍"
+        },
+        {
+          "word": "drawing",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 图画；牵引；素描术；v. 绘画；吸引（draw的ing形式）；拖曳"
+        }
+      ]
+    },
+    {
+      "root": "driv",
+      "base": "drive",
+      "words": [
+        {
+          "word": "drive",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 开车；猛击；飞跑；n. 驱动器；驾车；[心理] 内驱力；推进力；快车道"
+        },
+        {
+          "word": "driver",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 驾驶员；驱动程序；起子；传动器"
+        }
+      ]
+    },
+    {
+      "root": "ear",
+      "base": "ear",
+      "words": [
+        {
+          "word": "ear",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 耳朵；穗；听觉；倾听；vi. （美俚）听见；抽穗"
+        },
+        {
+          "word": "early",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 早期的；早熟的；adv. 提早；在初期"
+        }
+      ]
+    },
+    {
+      "root": "east",
+      "base": "east",
+      "words": [
+        {
+          "word": "east",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 东方；东风；东方国家；adj. 东方的；向东的；从东方来的；adv. 向东方；在东方"
+        },
+        {
+          "word": "Easter",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 复活节"
+        }
+      ]
+    },
+    {
+      "root": "edit",
+      "base": "editor",
+      "words": [
+        {
+          "word": "edition",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 版本"
+        },
+        {
+          "word": "editor",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 编者；编辑；社论撰写人；编辑装置"
+        }
+      ]
+    },
+    {
+      "root": "educat",
+      "base": "educate",
+      "words": [
+        {
+          "word": "educate",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 教育；培养；训练"
+        },
+        {
+          "word": "education",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 教育；培养；教育学"
+        },
+        {
+          "word": "educator",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 教育家；教育工作者；教师"
+        }
+      ]
+    },
+    {
+      "root": "electric",
+      "base": "electric",
+      "words": [
+        {
+          "word": "electric",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 电的；电动的；发电的；导电的；令人震惊的；n. 电；电气车辆；带电体"
+        },
+        {
+          "word": "electrical",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 有关电的；电气科学的"
+        },
+        {
+          "word": "electricity",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 电力；电流；强烈的紧张情绪"
+        }
+      ]
+    },
+    {
+      "root": "encourag",
+      "base": "encourage",
+      "words": [
+        {
+          "word": "encourage",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 鼓励；怂恿；激励；支持"
+        },
+        {
+          "word": "encouragement",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 鼓励"
+        }
+      ]
+    },
+    {
+      "root": "end",
+      "base": "end",
+      "words": [
+        {
+          "word": "end",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 结束；目标；尽头；末端；死亡；v. 结束；终止；终结"
+        },
+        {
+          "word": "ending",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 结局；结尾"
+        },
+        {
+          "word": "endless",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 无止境的；连续的；环状的；漫无目的的"
+        }
+      ]
+    },
+    {
+      "root": "engin",
+      "base": "engine",
+      "words": [
+        {
+          "word": "engine",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 引擎；发动机；机车；火车头；工具"
+        },
+        {
+          "word": "engineer",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 工程师；工兵；火车司机；v. 设计；策划；精明地处理"
+        }
+      ]
+    },
+    {
+      "root": "enjoy",
+      "base": "enjoy",
+      "words": [
+        {
+          "word": "enjoy",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 欣赏；享受；喜爱；使过得快活"
+        },
+        {
+          "word": "enjoyable",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 快乐的；有乐趣的；令人愉快的"
+        }
+      ]
+    },
+    {
+      "root": "equ",
+      "base": "equal",
+      "words": [
+        {
+          "word": "equal",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 平等的；相等的；胜任的；v. 等于；比得上；n. 对手；匹敌；同辈；相等的事物"
+        },
+        {
+          "word": "equality",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 平等；相等；[数] 等式"
+        }
+      ]
+    },
+    {
+      "root": "equip",
+      "base": "equip",
+      "words": [
+        {
+          "word": "equip",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 装备；配备"
+        },
+        {
+          "word": "equipment",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 设备；装备；器材"
+        }
+      ]
+    },
+    {
+      "root": "even",
+      "base": "even",
+      "words": [
+        {
+          "word": "even",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. [数] 偶数的；平坦的；相等的；adv. 甚至；即使；还；实际上；v. 使平坦；使相等"
+        },
+        {
+          "word": "evening",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 晚上；傍晚；（联欢性的）晚会；后期；adj. 在晚上的；为晚上的；晚上用的；int. 晚上好（等于good evening）"
+        }
+      ]
+    },
+    {
+      "root": "exact",
+      "base": "exact",
+      "words": [
+        {
+          "word": "exact",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 准确的；精密的；精确的；v. 要求；强求；急需"
+        },
+        {
+          "word": "exactly",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adv. 恰好地；正是；精确地；正确地"
+        }
+      ]
+    },
+    {
+      "root": "exist",
+      "base": "exist",
+      "words": [
+        {
+          "word": "exist",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 存在；生存；生活；继续存在"
+        },
+        {
+          "word": "existence",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 存在；实在；生存；生活；存在物；实在物"
+        }
+      ]
+    },
+    {
+      "root": "expect",
+      "base": "expect",
+      "words": [
+        {
+          "word": "expect",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 期望；指望；认为；预料"
+        },
+        {
+          "word": "expectation",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 期待；预期；指望"
+        }
+      ]
+    },
+    {
+      "root": "experi",
+      "base": "experience",
+      "words": [
+        {
+          "word": "experience",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 经验；经历；体验；v. 经验；经历；体验"
+        },
+        {
+          "word": "experiment",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 尝试；进行实验；n. 实验；试验；尝试"
+        }
+      ]
+    },
+    {
+      "root": "express",
+      "base": "express",
+      "words": [
+        {
+          "word": "express",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 表达；快递；adj. 明确的；迅速的；专门的；n. 快车；快递；专使；捷运公司"
+        },
+        {
+          "word": "expression",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 表现；表示；表达；表情；脸色；态度；腔调；声调；式；符号；词句；语句；措辞；说法"
+        }
+      ]
+    },
+    {
+      "root": "extrem",
+      "base": "extreme",
+      "words": [
+        {
+          "word": "extreme",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 极端的；极度的；偏激的；尽头的；n. 极端；末端；最大程度；极端的事物"
+        },
+        {
+          "word": "extremely",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adv. 非常；极其；极端地"
+        }
+      ]
+    },
+    {
+      "root": "fail",
+      "base": "fail",
+      "words": [
+        {
+          "word": "fail",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 失败；不及格；破产；缺乏；衰退；n. 不及格"
+        },
+        {
+          "word": "failure",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 失败；故障；失败者；破产"
+        }
+      ]
+    },
+    {
+      "root": "fair",
+      "base": "fair",
+      "words": [
+        {
+          "word": "fair",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 公平的；美丽的；白皙的；[气象] 晴朗的；adv. 公平地；直接地；清楚地；v. 转晴"
+        },
+        {
+          "word": "fairly",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adv. 相当地；公平地；简直"
+        },
+        {
+          "word": "fairness",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 公平；美好；清晰；顺利性"
+        }
+      ]
+    },
+    {
+      "root": "far",
+      "base": "far",
+      "words": [
+        {
+          "word": "far",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adv. 很；遥远地；久远地；到很远的距离；到很深的程度；adj. 远的；久远的；n. 远方"
+        },
+        {
+          "word": "fare",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 经营；进展；遭遇；过活；n. 票价；费用；旅客；食物"
+        }
+      ]
+    },
+    {
+      "root": "farm",
+      "base": "farm",
+      "words": [
+        {
+          "word": "farm",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 种田；务农；经营农场；n. 农场；农家；畜牧场"
+        },
+        {
+          "word": "farmer",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 农夫；农民"
+        }
+      ]
+    },
+    {
+      "root": "feel",
+      "base": "feel",
+      "words": [
+        {
+          "word": "feel",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 感觉；认为；触摸；试探；n. 感觉；触摸"
+        },
+        {
+          "word": "feeling",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 感觉；触觉；感情；情绪；同情；adj. 有感觉的；有同情心的；富于感情的；v. 感觉；认为（feel的现在分词）；触摸"
+        }
+      ]
+    },
+    {
+      "root": "fin",
+      "base": "fine",
+      "words": [
+        {
+          "word": "final",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 最终的；决定性的；不可更改的；n. 决赛；期末考试；当日报纸的末版"
+        },
+        {
+          "word": "finance",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 财政；财政学；金融；v. 负担经费；供给…经费"
+        },
+        {
+          "word": "fine",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 好的；优良的；细小的；精美的；健康的；晴朗的；n. 罚款；v. 罚款；澄清"
+        }
+      ]
+    },
+    {
+      "root": "firm",
+      "base": "firm",
+      "words": [
+        {
+          "word": "firm",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 坚定的；牢固的；严格的；结实的；v. 使坚定；使牢固；adv. 稳固地"
+        },
+        {
+          "word": "firmly",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adv. 坚定地；坚决地；坚固地；稳固地"
+        }
+      ]
+    },
+    {
+      "root": "flam",
+      "base": "flame",
+      "words": [
+        {
+          "word": "flame",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 火焰；热情；光辉；v. 焚烧；泛红"
+        },
+        {
+          "word": "flaming",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 燃烧的；火红的；激昂的；v. 燃烧；变亮；发光（flame的ing形式）"
+        }
+      ]
+    },
+    {
+      "root": "flow",
+      "base": "flow",
+      "words": [
+        {
+          "word": "flow",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 流动；涌流；川流不息；飘扬；n. 流动；流量；涨潮；泛滥"
+        },
+        {
+          "word": "flower",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 花；精华；开花植物；v. 成熟；发育；开花；繁荣；旺盛"
+        }
+      ]
+    },
+    {
+      "root": "follow",
+      "base": "follow",
+      "words": [
+        {
+          "word": "follow",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 跟随；遵循；追求；密切注意；注视；注意；倾听；n. 跟随；追随"
+        },
+        {
+          "word": "following",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 下面的；其次的；接着的；n. 下列事物；一批追随者；v. 跟随；沿行（follow的ing形式）"
+        }
+      ]
+    },
+    {
+      "root": "foreign",
+      "base": "foreign",
+      "words": [
+        {
+          "word": "foreign",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 外国的；外交的；异质的；不相关的"
+        },
+        {
+          "word": "foreigner",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 外地人；外国人"
+        }
+      ]
+    },
+    {
+      "root": "forget",
+      "base": "forget",
+      "words": [
+        {
+          "word": "forget",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 忘记；忽略"
+        },
+        {
+          "word": "forgetful",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 健忘的；不注意的；疏忽的；使遗忘的"
+        }
+      ]
+    },
+    {
+      "root": "form",
+      "base": "form",
+      "words": [
+        {
+          "word": "form",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 形式；形状；形态；外形；方式；表格；v. 构成；组成；排列；组织；产生；塑造"
+        },
+        {
+          "word": "former",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 从前的；前者的；前任的；n. 模型；样板；起形成作用的人"
+        }
+      ]
+    },
+    {
+      "root": "found",
+      "base": "found",
+      "words": [
+        {
+          "word": "found",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 创立；建立；创办"
+        },
+        {
+          "word": "founding",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 创办的；发起的；v. [机] 铸造；建造；以…为基础（found的ing形式）；n. [机] 铸造；溶解"
+        }
+      ]
+    },
+    {
+      "root": "freez",
+      "base": "freeze",
+      "words": [
+        {
+          "word": "freeze",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 冻结；冷冻；僵硬；n. 冻结；凝固"
+        },
+        {
+          "word": "freezing",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 冰冻的；严寒的；冷冻用的"
+        }
+      ]
+    },
+    {
+      "root": "friend",
+      "base": "friend",
+      "words": [
+        {
+          "word": "friend",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 朋友；助手；赞助者"
+        },
+        {
+          "word": "friendly",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 友好的；亲切的；支持的；融洽的；和睦的；adv. 友善地；温和地"
+        }
+      ]
+    },
+    {
+      "root": "fun",
+      "base": "fun",
+      "words": [
+        {
+          "word": "fun",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 乐趣；玩笑；有趣的人或事；adj. 供娱乐用的；vi. 开玩笑"
+        },
+        {
+          "word": "funeral",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 葬礼；麻烦事；adj. 丧葬的；出殡的"
+        }
+      ]
+    },
+    {
+      "root": "garden",
+      "base": "garden",
+      "words": [
+        {
+          "word": "garden",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 花园；菜园；v. 栽培花木"
+        },
+        {
+          "word": "gardening",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 园艺；园林工人的工作"
+        }
+      ]
+    },
+    {
+      "root": "gen",
+      "base": "general",
+      "words": [
+        {
+          "word": "general",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 一般的；普通的；综合的；大体的；n. 一般；将军；上将；常规"
+        },
+        {
+          "word": "generation",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 一代；产生；一代人；生殖"
+        },
+        {
+          "word": "generous",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 慷慨的；大方的；宽宏大量的；有雅量的"
+        }
+      ]
+    },
+    {
+      "root": "gift",
+      "base": "gift",
+      "words": [
+        {
+          "word": "gift",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 礼物；天赋；赠品；v. 赋予；向…赠送"
+        },
+        {
+          "word": "gifted",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 有天赋的；有才华的；v. 给予（gift的过去分词）"
+        }
+      ]
+    },
+    {
+      "root": "good",
+      "base": "good",
+      "words": [
+        {
+          "word": "good",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 好的；优良的；愉快的；虔诚的；n. 好处；善行；慷慨的行为；adv. 好"
+        },
+        {
+          "word": "goodness",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "int. 天哪；n. 善良；优秀 ；精华；养分"
+        },
+        {
+          "word": "goods",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 商品；动产；合意的人；真本领"
+        }
+      ]
+    },
+    {
+      "root": "govern",
+      "base": "govern",
+      "words": [
+        {
+          "word": "govern",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 管理；支配；统治；控制"
+        },
+        {
+          "word": "government",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 政府；政体；管辖"
+        }
+      ]
+    },
+    {
+      "root": "graduat",
+      "base": "graduate",
+      "words": [
+        {
+          "word": "graduate",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 授予…学位；分等级；标上刻度；n. 研究生；毕业生；adj. 毕业的；研究生的"
+        },
+        {
+          "word": "graduation",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 毕业；毕业典礼；刻度；分度；分等级"
+        }
+      ]
+    },
+    {
+      "root": "greet",
+      "base": "greet",
+      "words": [
+        {
+          "word": "greet",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 欢迎；迎接；致敬；致意；映入眼帘"
+        },
+        {
+          "word": "greeting",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 问候；招呼；祝贺；v. 致敬；欢迎（greet的现在分词）"
+        }
+      ]
+    },
+    {
+      "root": "guid",
+      "base": "guide",
+      "words": [
+        {
+          "word": "guidance",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 指导；引导；领导"
+        },
+        {
+          "word": "guide",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 指南；向导；入门书；v. 引导；带领；操纵"
+        }
+      ]
+    },
+    {
+      "root": "hand",
+      "base": "hand",
+      "words": [
+        {
+          "word": "hand",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 手；手艺；帮助；指针；插手；v. 传递；交给；支持；搀扶"
+        },
+        {
+          "word": "handful",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 少数；一把；棘手事"
+        }
+      ]
+    },
+    {
+      "root": "happi",
+      "base": "happily",
+      "words": [
+        {
+          "word": "happily",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adv. 快乐地；幸福地；幸运地；恰当地"
+        },
+        {
+          "word": "happiness",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 幸福"
+        }
+      ]
+    },
+    {
+      "root": "hard",
+      "base": "hard",
+      "words": [
+        {
+          "word": "hard",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 努力的；硬的；困难的；辛苦的；确实的；严厉的；猛烈的；冷酷无情的；adv. 努力地；困难地；辛苦地；接近地；猛烈地；牢固地"
+        },
+        {
+          "word": "hardly",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adv. 几乎不；简直不；刚刚"
+        }
+      ]
+    },
+    {
+      "root": "harm",
+      "base": "harm",
+      "words": [
+        {
+          "word": "harm",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 伤害；损害；v. 伤害；危害；损害"
+        },
+        {
+          "word": "harmful",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 有害的；能造成损害的"
+        },
+        {
+          "word": "harmless",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 无害的；无恶意的"
+        }
+      ]
+    },
+    {
+      "root": "hat",
+      "base": "hat",
+      "words": [
+        {
+          "word": "hat",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 帽子；v. 给……戴上帽子"
+        },
+        {
+          "word": "hate",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 憎恨；厌恶；遗憾；n. 憎恨；反感"
+        }
+      ]
+    },
+    {
+      "root": "hear",
+      "base": "hear",
+      "words": [
+        {
+          "word": "hear",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 听到；听；听说；审理"
+        },
+        {
+          "word": "hearing",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 听力；审讯；听讯；v. 听见（hear的ing形式）"
+        }
+      ]
+    },
+    {
+      "root": "help",
+      "base": "help",
+      "words": [
+        {
+          "word": "help",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 帮助；促进；治疗；补救；n. 帮助；补救办法；帮忙者；有益的东西"
+        },
+        {
+          "word": "helpful",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 有帮助的；有益的"
+        }
+      ]
+    },
+    {
+      "root": "her",
+      "base": "her",
+      "words": [
+        {
+          "word": "her",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "pron. 她（she的宾格）；她的（she的所有格）；她（指某个国家；一艘船）"
+        },
+        {
+          "word": "here",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adv. 在这里；此时；int. 嘿！；喂！；n. 这里"
+        },
+        {
+          "word": "hers",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "pron. 她的（所有格）"
+        }
+      ]
+    },
+    {
+      "root": "hibernat",
+      "base": "hibernate",
+      "words": [
+        {
+          "word": "hibernate",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 过冬；（动物）冬眠；（人等）避寒"
+        },
+        {
+          "word": "hibernation",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 冬眠；过冬；避寒"
+        }
+      ]
+    },
+    {
+      "root": "hop",
+      "base": "hope",
+      "words": [
+        {
+          "word": "hope",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 希望；期望；信心；v. 希望；期望"
+        },
+        {
+          "word": "hopeful",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 有希望的；有前途的；n. 有希望成功的人"
+        }
+      ]
+    },
+    {
+      "root": "hug",
+      "base": "hug",
+      "words": [
+        {
+          "word": "hug",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 拥抱；紧抱；抱有；坚持；n. 拥抱；紧抱；固执"
+        },
+        {
+          "word": "huge",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 巨大的；庞大的；无限的"
+        }
+      ]
+    },
+    {
+      "root": "hunt",
+      "base": "hunt",
+      "words": [
+        {
+          "word": "hunt",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 打猎；搜索；n. 狩猎；搜寻"
+        },
+        {
+          "word": "hunter",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 猎人；猎犬；搜寻者"
+        }
+      ]
+    },
+    {
+      "root": "ill",
+      "base": "ill",
+      "words": [
+        {
+          "word": "ill",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 生病的；坏的；邪恶的；不吉利的；adv. 不利地；恶劣地；几乎不；n. 疾病；不幸"
+        },
+        {
+          "word": "illness",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 病；疾病"
+        }
+      ]
+    },
+    {
+      "root": "immediat",
+      "base": "immediate",
+      "words": [
+        {
+          "word": "immediate",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 立即的；直接的；最接近的"
+        },
+        {
+          "word": "immediately",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adv. 立即；立刻；直接地；conj. 一…就"
+        }
+      ]
+    },
+    {
+      "root": "import",
+      "base": "import",
+      "words": [
+        {
+          "word": "import",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 进口；进口货；输入；意思；含义；重要性；v. 输入；进口；含…的意思"
+        },
+        {
+          "word": "importance",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 价值；重要；重大；傲慢"
+        }
+      ]
+    },
+    {
+      "root": "impress",
+      "base": "impress",
+      "words": [
+        {
+          "word": "impress",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 盖印；强征；传送；给予某人深刻印象；n. 印象；印记；特征；痕迹"
+        },
+        {
+          "word": "impression",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 印象；效果；影响；压痕；印记；感想；曝光（衡量广告被显示的次数。打开一个带有该广告的网页；则该广告的impression 次数增加一次）"
+        }
+      ]
+    },
+    {
+      "root": "inform",
+      "base": "inform",
+      "words": [
+        {
+          "word": "inform",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 通知；告诉；报告"
+        },
+        {
+          "word": "information",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 信息；资料；知识；情报；通知"
+        }
+      ]
+    },
+    {
+      "root": "institut",
+      "base": "institute",
+      "words": [
+        {
+          "word": "institute",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 开始（调查）；制定；创立；提起（诉讼）；n. 学会；协会；学院"
+        },
+        {
+          "word": "institution",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 制度；建立；（社会或宗教等）公共机构；习俗"
+        }
+      ]
+    },
+    {
+      "root": "instruct",
+      "base": "instruct",
+      "words": [
+        {
+          "word": "instruct",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 指导；通知；命令；教授"
+        },
+        {
+          "word": "instruction",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 指令；命令；指示；教导；用法说明"
+        }
+      ]
+    },
+    {
+      "root": "insur",
+      "base": "insure",
+      "words": [
+        {
+          "word": "insurance",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 保险；保险费；保险契约；赔偿金"
+        },
+        {
+          "word": "insure",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 确保；保证；给…保险"
+        }
+      ]
+    },
+    {
+      "root": "interest",
+      "base": "interest",
+      "words": [
+        {
+          "word": "interest",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 兴趣；爱好；利息；趣味；同行；v. 使……感兴趣；引起……的关心；使……参与"
+        },
+        {
+          "word": "interesting",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 有趣的；引起兴趣的；令人关注的"
+        }
+      ]
+    },
+    {
+      "root": "invent",
+      "base": "invent",
+      "words": [
+        {
+          "word": "invent",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 发明；创造；虚构"
+        },
+        {
+          "word": "invention",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 发明；发明物；虚构；发明才能"
+        },
+        {
+          "word": "inventor",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 发明家；[专利] 发明人；创造者"
+        }
+      ]
+    },
+    {
+      "root": "invit",
+      "base": "invite",
+      "words": [
+        {
+          "word": "invitation",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 邀请；引诱；请帖；邀请函"
+        },
+        {
+          "word": "invite",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 邀请；招待；招致；n. 邀请"
+        }
+      ]
+    },
+    {
+      "root": "irrigat",
+      "base": "irrigate",
+      "words": [
+        {
+          "word": "irrigate",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 灌溉；冲洗；使清新"
+        },
+        {
+          "word": "irrigation",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 灌溉；[临床] 冲洗；冲洗法"
+        }
+      ]
+    },
+    {
+      "root": "judg",
+      "base": "judge",
+      "words": [
+        {
+          "word": "judge",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 判断；审判；n. 法官；裁判员"
+        },
+        {
+          "word": "judgement",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 意见；判断力；[法] 审判；评价"
+        }
+      ]
+    },
+    {
+      "root": "keep",
+      "base": "keep",
+      "words": [
+        {
+          "word": "keep",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 保持；经营；遵守；饲养；n. 保持；生计；生活费"
+        },
+        {
+          "word": "keeper",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 监护人；饲养员；看守人；管理人"
+        }
+      ]
+    },
+    {
+      "root": "kind",
+      "base": "kind",
+      "words": [
+        {
+          "word": "kind",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 种类；性质；adj. 和蔼的；宽容的；令人感激的"
+        },
+        {
+          "word": "kindness",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 仁慈；好意；友好的行为"
+        }
+      ]
+    },
+    {
+      "root": "labour",
+      "base": "labour",
+      "words": [
+        {
+          "word": "labour",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 劳动力；人工；分娩；v. 劳动；分娩；费力地前进"
+        },
+        {
+          "word": "labourer",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 劳动者；劳工"
+        }
+      ]
+    },
+    {
+      "root": "lat",
+      "base": "late",
+      "words": [
+        {
+          "word": "late",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 晚的；迟的；已故的；最近的；adv. 晚；迟；最近；在晚期"
+        },
+        {
+          "word": "later",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adv. 后来；稍后；随后；adj. 更迟的；更后的"
+        }
+      ]
+    },
+    {
+      "root": "lead",
+      "base": "lead",
+      "words": [
+        {
+          "word": "lead",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 领导；铅；导线；榜样；v. 领导；致使；引导；指挥；adj. 带头的；最重要的"
+        },
+        {
+          "word": "leader",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 领导者；首领；指挥者"
+        },
+        {
+          "word": "leading",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 领导的；主要的；n. 领导；铅板；行距；v. 领导（lead的ing形式）"
+        }
+      ]
+    },
+    {
+      "root": "learn",
+      "base": "learn",
+      "words": [
+        {
+          "word": "learn",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 学习；得知；认识到"
+        },
+        {
+          "word": "learned",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 博学的；有学问的；学术上的"
+        }
+      ]
+    },
+    {
+      "root": "leg",
+      "base": "leg",
+      "words": [
+        {
+          "word": "leg",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 腿；支柱"
+        },
+        {
+          "word": "legal",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 法律的；合法的；法定的；依照法律的"
+        }
+      ]
+    },
+    {
+      "root": "liberat",
+      "base": "liberate",
+      "words": [
+        {
+          "word": "liberate",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 解放；放出；释放"
+        },
+        {
+          "word": "liberation",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 释放；解放"
+        }
+      ]
+    },
+    {
+      "root": "lik",
+      "base": "like",
+      "words": [
+        {
+          "word": "like",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 喜欢；想；愿意；prep. 像；如同；adj. 同样的；相似的"
+        },
+        {
+          "word": "likely",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 很可能的；合适的；有希望的；adv. 很可能；或许"
+        }
+      ]
+    },
+    {
+      "root": "liv",
+      "base": "live",
+      "words": [
+        {
+          "word": "live",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 活的；生动的；实况转播的；精力充沛的；v. 经历；度过"
+        },
+        {
+          "word": "lively",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 活泼的；生动的；真实的；生气勃勃的"
+        },
+        {
+          "word": "living",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 活的；现存的；活跃的；逼真的；n. 生活；生存；生计；v. 生活；居住（live的ing形式）；度过"
+        }
+      ]
+    },
+    {
+      "root": "loud",
+      "base": "loud",
+      "words": [
+        {
+          "word": "loud",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 大声的；高声的；不断的；喧吵的；adv. 大声地；高声地；响亮地"
+        },
+        {
+          "word": "loudly",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adv. 大声地；响亮地"
+        }
+      ]
+    },
+    {
+      "root": "lov",
+      "base": "love",
+      "words": [
+        {
+          "word": "love",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 恋爱；亲爱的；酷爱；喜爱的事物；爱情；爱意；疼爱；热爱；爱人；所爱之物；v. 爱；热爱；爱戴；赞美；称赞；喜爱；喜好；喜欢；爱慕"
+        },
+        {
+          "word": "lovely",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 可爱的；令人愉快的；爱恋的；秀丽的；优美的；n. 美女；可爱的东西"
+        }
+      ]
+    },
+    {
+      "root": "maj",
+      "base": "major",
+      "words": [
+        {
+          "word": "major",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 主要的；重要的；主修的；较多的；n. [人类] 成年人；主修科目；陆军少校；v. 主修"
+        },
+        {
+          "word": "majority",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 多数；成年"
+        }
+      ]
+    },
+    {
+      "root": "manag",
+      "base": "manage",
+      "words": [
+        {
+          "word": "manage",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 管理；经营；控制；设法"
+        },
+        {
+          "word": "manager",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 经理；管理人员"
+        }
+      ]
+    },
+    {
+      "root": "mean",
+      "base": "mean",
+      "words": [
+        {
+          "word": "mean",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 平均的；卑鄙的；低劣的；吝啬的；v. 意味；想要；意欲；n. 平均值"
+        },
+        {
+          "word": "meaning",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 意义；含义；意图；adj. 意味深长的；v. 意味；意思是（mean的ing形式）"
+        },
+        {
+          "word": "means",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 手段；方法；财产；v. 意思是；打算（mean的第三人称单数） [ 复数means ]"
+        }
+      ]
+    },
+    {
+      "root": "meet",
+      "base": "meet",
+      "words": [
+        {
+          "word": "meet",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 满足；遇见；对付；n. 集会；adj. 合适的；适宜的"
+        },
+        {
+          "word": "meeting",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 会议；会见；集会；汇合点；v. 会面；会合（meet的ing形式）"
+        }
+      ]
+    },
+    {
+      "root": "ment",
+      "base": "mental",
+      "words": [
+        {
+          "word": "mental",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 精神的；脑力的；疯的；n. 精神病患者"
+        },
+        {
+          "word": "mentally",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adv. 精神上；智力上；心理上"
+        },
+        {
+          "word": "mention",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 提到；谈到；提及；论及；说起；n. 提及；说起"
+        }
+      ]
+    },
+    {
+      "root": "min",
+      "base": "mine",
+      "words": [
+        {
+          "word": "mine",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 矿；矿藏；矿山；矿井；地雷；水雷；v. 开采；采掘；在…布雷；pron. 我的"
+        },
+        {
+          "word": "mineral",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 矿物；（英）矿泉水；无机物；苏打水（常用复数表示）；adj. 矿物的；矿质的"
+        },
+        {
+          "word": "minority",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 少数民族；少数派；未成年；adj. 少数的；属于少数派的"
+        }
+      ]
+    },
+    {
+      "root": "mor",
+      "base": "more",
+      "words": [
+        {
+          "word": "moral",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 道德的；精神上的；品性端正的；n. 道德；寓意"
+        },
+        {
+          "word": "more",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adv. 更多；此外；更大程度地；adj. 更多的；附加的；pron. 更多的数量"
+        }
+      ]
+    },
+    {
+      "root": "mountain",
+      "base": "mountain",
+      "words": [
+        {
+          "word": "mountain",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 山；山脉"
+        },
+        {
+          "word": "mountainous",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 多山的；巨大的；山一般的"
+        }
+      ]
+    },
+    {
+      "root": "mouth",
+      "base": "mouth",
+      "words": [
+        {
+          "word": "mouth",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 口；嘴；河口；v. 做作地说；装腔作势地说；喃喃地说出"
+        },
+        {
+          "word": "mouthful",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 一口；满口"
+        }
+      ]
+    },
+    {
+      "root": "mov",
+      "base": "move",
+      "words": [
+        {
+          "word": "move",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 移动；步骤；迁居；策略；v. 移动；搬家；迁移；离开"
+        },
+        {
+          "word": "movement",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 运动；活动；运转；乐章"
+        }
+      ]
+    },
+    {
+      "root": "music",
+      "base": "music",
+      "words": [
+        {
+          "word": "music",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 音乐；乐曲"
+        },
+        {
+          "word": "musical",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 音乐的；悦耳的；n. 音乐片"
+        }
+      ]
+    },
+    {
+      "root": "nat",
+      "base": "nation",
+      "words": [
+        {
+          "word": "nation",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 国家；民族；国民"
+        },
+        {
+          "word": "national",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 国家的；国民的；民族的；国立的；n. 国民"
+        },
+        {
+          "word": "nationality",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 国籍；国家；民族；部落"
+        },
+        {
+          "word": "native",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 本国的；土著的；天然的；与生俱来的；天赋的；n. 本地人；土产；当地居民"
+        }
+      ]
+    },
+    {
+      "root": "natur",
+      "base": "nature",
+      "words": [
+        {
+          "word": "natural",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 自然的；物质的；天生的；不做作的；n. 自然的事情；白痴；本位音"
+        },
+        {
+          "word": "nature",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 自然；性质；本性；种类"
+        }
+      ]
+    },
+    {
+      "root": "near",
+      "base": "near",
+      "words": [
+        {
+          "word": "near",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 近的；亲近的；近似的；adv. 近；接近；prep. 靠近；近似于"
+        },
+        {
+          "word": "nearly",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adv. 差不多；几乎；密切地"
+        }
+      ]
+    },
+    {
+      "root": "new",
+      "base": "new",
+      "words": [
+        {
+          "word": "new",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 新的；新鲜的；更新的；初见的；adv. 新近"
+        },
+        {
+          "word": "news",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 新闻；消息；新闻报导"
+        }
+      ]
+    },
+    {
+      "root": "not",
+      "base": "not",
+      "words": [
+        {
+          "word": "not",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adv. 表示否定；不；n. “非”（计算机中逻辑运算的一种）"
+        },
+        {
+          "word": "note",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 笔记；音符；票据；注解；纸币；便笺；照会；调子；v. 注意；记录；注解"
+        }
+      ]
+    },
+    {
+      "root": "numb",
+      "base": "numb",
+      "words": [
+        {
+          "word": "numb",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 使麻木；使发愣；使失去感觉；adj. 麻木的；发愣的"
+        },
+        {
+          "word": "number",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 数；（杂志等的）期；号码；数字；算术；v. 计入；总数达到"
+        }
+      ]
+    },
+    {
+      "root": "off",
+      "base": "off",
+      "words": [
+        {
+          "word": "off",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "prep. 离开；脱落；adv. 切断；走开；adj. 远离的；空闲的"
+        },
+        {
+          "word": "offence",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 犯罪；违反；过错；攻击"
+        },
+        {
+          "word": "offer",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 提供；出价；试图；n. 提议；出价；意图；录取通知书"
+        }
+      ]
+    },
+    {
+      "root": "offic",
+      "base": "office",
+      "words": [
+        {
+          "word": "office",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 办公室；政府机关；官职；营业处"
+        },
+        {
+          "word": "officer",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 军官；警官；公务员；政府官员；船长；v. 指挥"
+        }
+      ]
+    },
+    {
+      "root": "open",
+      "base": "open",
+      "words": [
+        {
+          "word": "open",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 公开的；敞开的；空旷的；坦率的；营业着的；v. 开始；展现；n. 公开；空旷；户外"
+        },
+        {
+          "word": "opener",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. [五金] 开启工具；开启的人"
+        },
+        {
+          "word": "opening",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 开始；机会；通路；空缺的职位；adj. 开始的；v. 开放（open的ing形式）；打开；公开"
+        }
+      ]
+    },
+    {
+      "root": "operat",
+      "base": "operate",
+      "words": [
+        {
+          "word": "operate",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 运转；动手术；起作用"
+        },
+        {
+          "word": "operation",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 操作；经营；[外科] 手术；[数][计] 运算"
+        },
+        {
+          "word": "operator",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 经营者；操作员；话务员；行家"
+        }
+      ]
+    },
+    {
+      "root": "our",
+      "base": "our",
+      "words": [
+        {
+          "word": "our",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "pron. 我们的"
+        },
+        {
+          "word": "ours",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "pron. 我们的"
+        }
+      ]
+    },
+    {
+      "root": "out",
+      "base": "out",
+      "words": [
+        {
+          "word": "out",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adv. 出现；在外；出局；出声地；不流行地；adj. 外面的；出局的；下台的；n. 出局"
+        },
+        {
+          "word": "outer",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 外面的；外部的；远离中心的；n. 环外命中"
+        },
+        {
+          "word": "outing",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 远足；短途旅游；体育比赛；adj. 远足适用的；v. 出来；暴露（out的ing形式）"
+        }
+      ]
+    },
+    {
+      "root": "own",
+      "base": "own",
+      "words": [
+        {
+          "word": "own",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 拥有；承认；adj. 自己的；特有的；n. 自己的"
+        },
+        {
+          "word": "owner",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. [经] 所有者；物主"
+        }
+      ]
+    },
+    {
+      "root": "pain",
+      "base": "pain",
+      "words": [
+        {
+          "word": "pain",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 疼痛；努力；v. 使…痛苦；使…烦恼"
+        },
+        {
+          "word": "painful",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 痛苦的；疼痛的；令人不快的"
+        }
+      ]
+    },
+    {
+      "root": "paint",
+      "base": "paint",
+      "words": [
+        {
+          "word": "paint",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 油漆；绘画；装饰；涂色于；描绘；（用语言；文字等）描写；擦脂粉等；n. 油漆；颜料；涂料；绘画作品；胭脂等化妆品；色彩；装饰"
+        },
+        {
+          "word": "painter",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 画家；油漆匠"
+        },
+        {
+          "word": "painting",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 绘画；油画；着色；v. 绘画（paint的ing形式）；涂色于"
+        }
+      ]
+    },
+    {
+      "root": "park",
+      "base": "park",
+      "words": [
+        {
+          "word": "park",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 公园；[交] 停车场；v. 停放；放置；寄存"
+        },
+        {
+          "word": "parking",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 停车；adj. 停车的；v. 停车（park的ing形式）"
+        }
+      ]
+    },
+    {
+      "root": "part",
+      "base": "part",
+      "words": [
+        {
+          "word": "part",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 部分；角色；零件；一些；片段；v. 分离；分配；分开；adv. 部分地"
+        },
+        {
+          "word": "partly",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adv. 部分地；在一定程度上"
+        }
+      ]
+    },
+    {
+      "root": "pass",
+      "base": "pass",
+      "words": [
+        {
+          "word": "pass",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 及格；经过；护照；途径；传球；v. 经过；传递；变化；终止"
+        },
+        {
+          "word": "passive",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 被动的；消极的；被动语态的；n. 被动语态"
+        }
+      ]
+    },
+    {
+      "root": "peac",
+      "base": "peace",
+      "words": [
+        {
+          "word": "peace",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 和平；平静；和睦；秩序"
+        },
+        {
+          "word": "peaceful",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 和平的；爱好和平的；平静的"
+        }
+      ]
+    },
+    {
+      "root": "pen",
+      "base": "pen",
+      "words": [
+        {
+          "word": "pen",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 钢笔；作家；围栏；v. 写；关入栏中"
+        },
+        {
+          "word": "pension",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 退休金；抚恤金；津贴；膳宿费；v. 发给养老金或抚恤金"
+        }
+      ]
+    },
+    {
+      "root": "perform",
+      "base": "perform",
+      "words": [
+        {
+          "word": "perform",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 执行；完成；演奏"
+        },
+        {
+          "word": "performance",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 性能；绩效；表演；执行；表现"
+        },
+        {
+          "word": "performer",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 演出者；执行者；演奏者"
+        }
+      ]
+    },
+    {
+      "root": "person",
+      "base": "person",
+      "words": [
+        {
+          "word": "person",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 人；身体；容貌；外表；人称"
+        },
+        {
+          "word": "personal",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 个人的；身体的；亲自的；n. 人事消息栏；人称代名词"
+        },
+        {
+          "word": "personally",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adv. 亲自地；当面；个别地；就自己而言"
+        }
+      ]
+    },
+    {
+      "root": "photograph",
+      "base": "photograph",
+      "words": [
+        {
+          "word": "photograph",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 为…拍照；使深深印入；n. 照片；相片"
+        },
+        {
+          "word": "photographer",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 摄影师；照相师"
+        }
+      ]
+    },
+    {
+      "root": "physic",
+      "base": "physics",
+      "words": [
+        {
+          "word": "physical",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. [物] 物理的；身体的；物质的；根据自然规律的；符合自然法则的；n. 体格检查"
+        },
+        {
+          "word": "physics",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 物理学；物理现象"
+        }
+      ]
+    },
+    {
+      "root": "pin",
+      "base": "pin",
+      "words": [
+        {
+          "word": "pin",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 大头针；别针；针；栓；琐碎物；v. 钉住；压住；将……用针别住"
+        },
+        {
+          "word": "pine",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 渴望；痛苦；憔悴；n. [林] 松树；凤梨；菠萝；adj. 松木的；似松的"
+        }
+      ]
+    },
+    {
+      "root": "plan",
+      "base": "plan",
+      "words": [
+        {
+          "word": "plan",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 计划；平面图；v. 计划；设计；打算"
+        },
+        {
+          "word": "plane",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 飞机；平面；程度；水平；v. 刨；乘飞机旅行；翱翔；adj. 平的；平面的"
+        }
+      ]
+    },
+    {
+      "root": "play",
+      "base": "play",
+      "words": [
+        {
+          "word": "play",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 游戏；扮演；演奏；播放；同…比赛；n. 游戏；比赛；剧本"
+        },
+        {
+          "word": "player",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 运动员；比赛者；游戏者；做游戏的人；演奏者；表演者；演员；播放器"
+        }
+      ]
+    },
+    {
+      "root": "plea",
+      "base": "pleased",
+      "words": [
+        {
+          "word": "pleased",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 高兴的；喜欢的；乐意做某事；v. 满意；愿意（please的过去分词形式）"
+        },
+        {
+          "word": "pleasure",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 快乐；希望；娱乐；令人高兴的事；vt. 使高兴；使满意；vi. 高兴；寻欢作乐"
+        }
+      ]
+    },
+    {
+      "root": "poison",
+      "base": "poison",
+      "words": [
+        {
+          "word": "poison",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 污染；使中毒；放毒于；败坏；阻碍；n. 毒药；毒物；酒；有毒害的事物；[助剂] 抑制剂；adj. 有毒的"
+        },
+        {
+          "word": "poisonous",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 有毒的；恶毒的；讨厌的"
+        }
+      ]
+    },
+    {
+      "root": "politic",
+      "base": "politics",
+      "words": [
+        {
+          "word": "political",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 政治的；党派的"
+        },
+        {
+          "word": "politics",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 政治；政治学；政治活动；政纲"
+        }
+      ]
+    },
+    {
+      "root": "pollut",
+      "base": "pollute",
+      "words": [
+        {
+          "word": "pollute",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 污染；玷污；败坏"
+        },
+        {
+          "word": "pollution",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 污染"
+        }
+      ]
+    },
+    {
+      "root": "port",
+      "base": "port",
+      "words": [
+        {
+          "word": "port",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 港口；口岸；（计算机的）端口；左舷；舱门；v. 转向左舷"
+        },
+        {
+          "word": "portable",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 手提的；便携式的；轻便的；n. 手提式打字机"
+        },
+        {
+          "word": "porter",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 门房；服务员；行李搬运工；守门人"
+        }
+      ]
+    },
+    {
+      "root": "possess",
+      "base": "possess",
+      "words": [
+        {
+          "word": "possess",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 控制；使掌握；持有；迷住；拥有；具备"
+        },
+        {
+          "word": "possession",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 拥有；财产；领地；自制；着迷"
+        }
+      ]
+    },
+    {
+      "root": "poss",
+      "base": "possible",
+      "words": [
+        {
+          "word": "possibility",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 可能性；可能发生的事物"
+        },
+        {
+          "word": "possible",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 可能的；合理的；合适的；n. 可能性；合适的人；可能的事物"
+        }
+      ]
+    },
+    {
+      "root": "post",
+      "base": "post",
+      "words": [
+        {
+          "word": "post",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 岗位；邮件；标杆；v. 张贴；公布；邮递；布置"
+        },
+        {
+          "word": "poster",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 海报；广告；招贴"
+        }
+      ]
+    },
+    {
+      "root": "pow",
+      "base": "power",
+      "words": [
+        {
+          "word": "power",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 力量；能力；电力；功率；政权；势力；[数] 幂；v. 激励；供以动力；使…有力量；adj. 借影响有权势人物以操纵权力的"
+        },
+        {
+          "word": "powerful",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 强大的；强有力的；adv. 很；非常"
+        }
+      ]
+    },
+    {
+      "root": "practic",
+      "base": "practice",
+      "words": [
+        {
+          "word": "practical",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 实际的；实用性的"
+        },
+        {
+          "word": "practice",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 实践；练习；惯例；v. 练习；实习；实行"
+        }
+      ]
+    },
+    {
+      "root": "pray",
+      "base": "pray",
+      "words": [
+        {
+          "word": "pray",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 祈祷；恳求；央求"
+        },
+        {
+          "word": "prayer",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 祈祷；祷告；恳求；祈祷文"
+        }
+      ]
+    },
+    {
+      "root": "pref",
+      "base": "prefer",
+      "words": [
+        {
+          "word": "prefer",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 更喜欢；宁愿；提出；提升"
+        },
+        {
+          "word": "preference",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 偏爱；倾向；优先权"
+        }
+      ]
+    },
+    {
+      "root": "prepar",
+      "base": "prepare",
+      "words": [
+        {
+          "word": "preparation",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 预备；准备"
+        },
+        {
+          "word": "prepare",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 准备；使适合；装备；起草"
+        }
+      ]
+    },
+    {
+      "root": "present",
+      "base": "present",
+      "words": [
+        {
+          "word": "present",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 提出；介绍；呈现；赠送；adj. 现在的；出席的；n. 现在；礼物；瞄准"
+        },
+        {
+          "word": "presentation",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 展示；描述；陈述；介绍；赠送"
+        }
+      ]
+    },
+    {
+      "root": "press",
+      "base": "press",
+      "words": [
+        {
+          "word": "press",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 压；按；逼迫；紧抱；n. 压；按；新闻；出版社；[印刷] 印刷机"
+        },
+        {
+          "word": "pressure",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 压力；压迫；[物] 压强；v. 迫使；密封；使……增压"
+        }
+      ]
+    },
+    {
+      "root": "print",
+      "base": "print",
+      "words": [
+        {
+          "word": "print",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 印刷业；印花布；印刷字体；印章；印记；v. 印刷；打印；刊载；用印刷体写；在…印花样"
+        },
+        {
+          "word": "printer",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. [计] 打印机；印刷工；印花工"
+        },
+        {
+          "word": "printing",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 印刷；印刷术"
+        }
+      ]
+    },
+    {
+      "root": "prison",
+      "base": "prison",
+      "words": [
+        {
+          "word": "prison",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 监狱；监禁；拘留所；vt. 监禁；关押"
+        },
+        {
+          "word": "prisoner",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 囚犯；犯人；俘虏；刑事被告"
+        }
+      ]
+    },
+    {
+      "root": "product",
+      "base": "product",
+      "words": [
+        {
+          "word": "product",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 产品；结果；[数] 乘积；作品"
+        },
+        {
+          "word": "production",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 成果；产品；生产；作品"
+        }
+      ]
+    },
+    {
+      "root": "prop",
+      "base": "proper",
+      "words": [
+        {
+          "word": "proper",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 适当的；本身的；特有的；正派的；adv. 完全地"
+        },
+        {
+          "word": "properly",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adv. 适当地；正确地；恰当地"
+        }
+      ]
+    },
+    {
+      "root": "protect",
+      "base": "protect",
+      "words": [
+        {
+          "word": "protect",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 保护；防卫；警戒"
+        },
+        {
+          "word": "protection",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 保护；防卫；护照"
+        }
+      ]
+    },
+    {
+      "root": "public",
+      "base": "public",
+      "words": [
+        {
+          "word": "public",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 公众的；政府的；公用的；公立的；n. 公众；社会；公共场所"
+        },
+        {
+          "word": "publicly",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adv. 公然地；以公众名义"
+        }
+      ]
+    },
+    {
+      "root": "punctuat",
+      "base": "punctuate",
+      "words": [
+        {
+          "word": "punctuate",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 不时打断；强调；加标点于"
+        },
+        {
+          "word": "punctuation",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 标点；标点符号"
+        }
+      ]
+    },
+    {
+      "root": "punish",
+      "base": "punish",
+      "words": [
+        {
+          "word": "punish",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 惩罚；严厉对待；贪婪地吃喝"
+        },
+        {
+          "word": "punishment",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 惩罚；严厉对待；虐待"
+        }
+      ]
+    },
+    {
+      "root": "puzzl",
+      "base": "puzzle",
+      "words": [
+        {
+          "word": "puzzle",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 使…困惑；使…为难；苦思而得出；n. 谜；难题；迷惑"
+        },
+        {
+          "word": "puzzled",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 困惑的；茫然的；搞糊涂的"
+        }
+      ]
+    },
+    {
+      "root": "quit",
+      "base": "quit",
+      "words": [
+        {
+          "word": "quit",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 离开；放弃；停止；使…解除；n. 离开；[计] 退出；adj. 摆脱了…的；已经了结的"
+        },
+        {
+          "word": "quite",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adv. 很；相当；完全"
+        }
+      ]
+    },
+    {
+      "root": "rat",
+      "base": "rat",
+      "words": [
+        {
+          "word": "rat",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 鼠；卑鄙小人；叛徒；v. 捕鼠；背叛；告密"
+        },
+        {
+          "word": "rate",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 比率；率；速度；价格；等级；v. 认为；估价；责骂"
+        }
+      ]
+    },
+    {
+      "root": "read",
+      "base": "read",
+      "words": [
+        {
+          "word": "read",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 阅读；读懂；理解；n. 阅读；读物；adj. 有学问的"
+        },
+        {
+          "word": "reading",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 阅读；朗读；读物；读数；adj. 阅读的；v. 阅读（read的ing形式）"
+        }
+      ]
+    },
+    {
+      "root": "real",
+      "base": "real",
+      "words": [
+        {
+          "word": "real",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 实际的；真实的；实在的；adv. 真正地；确实地；n. 现实；实数"
+        },
+        {
+          "word": "reality",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 现实；实际；真实"
+        }
+      ]
+    },
+    {
+      "root": "reason",
+      "base": "reason",
+      "words": [
+        {
+          "word": "reason",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 理由；理性；动机；v. 推论；劝说"
+        },
+        {
+          "word": "reasonable",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 合理的；公道的；通情达理的"
+        }
+      ]
+    },
+    {
+      "root": "record",
+      "base": "record",
+      "words": [
+        {
+          "word": "record",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 记录；记载；标明；将录音；n. 档案；履历；唱片；最高纪录；adj. 创纪录的"
+        },
+        {
+          "word": "recorder",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 录音机；记录器；记录员；八孔直笛"
+        }
+      ]
+    },
+    {
+      "root": "ref",
+      "base": "refer",
+      "words": [
+        {
+          "word": "refer",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 参考；涉及；提到；查阅"
+        },
+        {
+          "word": "reference",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 参考；参照；涉及；提及；参考书目；介绍信；证明书；v. 引用"
+        }
+      ]
+    },
+    {
+      "root": "refresh",
+      "base": "refresh",
+      "words": [
+        {
+          "word": "refresh",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 更新；使……恢复；使……清新；消除……的疲劳"
+        },
+        {
+          "word": "refreshments",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 点心；[食品] 茶点；小吃"
+        }
+      ]
+    },
+    {
+      "root": "regard",
+      "base": "regard",
+      "words": [
+        {
+          "word": "regard",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 注意；尊重；问候；凝视；v. 注重；考虑；看待；尊敬；把…看作；与…有关"
+        },
+        {
+          "word": "regardless",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 不管的；不顾的；不注意的；adv. 不顾后果地；不管怎样；无论如何；不惜费用地"
+        },
+        {
+          "word": "regards",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 致意；问候；v. 视为；注意（regard的第三人称单数）"
+        }
+      ]
+    },
+    {
+      "root": "relat",
+      "base": "relate",
+      "words": [
+        {
+          "word": "relate",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 叙述；使…有联系"
+        },
+        {
+          "word": "relation",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 关系；叙述；故事；亲属关系"
+        },
+        {
+          "word": "relative",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 相对的；有关系的；成比例的；n. 亲戚；相关物；[语] 关系词；亲缘植物"
+        }
+      ]
+    },
+    {
+      "root": "repair",
+      "base": "repair",
+      "words": [
+        {
+          "word": "repair",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 修理；修复；n. 修理；修补；修补部位"
+        },
+        {
+          "word": "repairs",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 修理；[会计] 修理费；备件；修理工作（repair的复数形式）；v. 修理；恢复（repair的三单形式）；弥补；纠正"
+        }
+      ]
+    },
+    {
+      "root": "report",
+      "base": "report",
+      "words": [
+        {
+          "word": "report",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 报告；报道；成绩单；v. 报告；报导；使报到"
+        },
+        {
+          "word": "reporter",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 记者"
+        }
+      ]
+    },
+    {
+      "root": "requir",
+      "base": "require",
+      "words": [
+        {
+          "word": "require",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 需要；要求；命令"
+        },
+        {
+          "word": "requirement",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 要求；必要条件；必需品"
+        }
+      ]
+    },
+    {
+      "root": "reserv",
+      "base": "reserve",
+      "words": [
+        {
+          "word": "reservation",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 预约；预订；保留"
+        },
+        {
+          "word": "reserve",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 储备；储存；自然保护区；预备队；缄默；[金融] 储备金；v. 储备；保留；预约"
+        }
+      ]
+    },
+    {
+      "root": "restrict",
+      "base": "restrict",
+      "words": [
+        {
+          "word": "restrict",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 限制；约束；限定"
+        },
+        {
+          "word": "restriction",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 限制；约束；束缚"
+        }
+      ]
+    },
+    {
+      "root": "review",
+      "base": "review",
+      "words": [
+        {
+          "word": "review",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 回顾；复习；评论；检讨；检阅；v. 回顾；检查；复审"
+        },
+        {
+          "word": "reviewer",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 评论者；评论家"
+        }
+      ]
+    },
+    {
+      "root": "rid",
+      "base": "rid",
+      "words": [
+        {
+          "word": "rid",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 使摆脱；使去掉"
+        },
+        {
+          "word": "ride",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 骑马；乘车；依靠；漂浮；n. 骑；乘坐；交通工具；可供骑行的路；（乘坐汽车等的）旅行；乘骑；（乘车或骑车的）短途旅程；供乘骑的游乐设施"
+        }
+      ]
+    },
+    {
+      "root": "roll",
+      "base": "roll",
+      "words": [
+        {
+          "word": "roll",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 卷；滚动；转动；辗；n. 卷；卷形物；名单；摇晃"
+        },
+        {
+          "word": "roller",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. [机] 滚筒；[机] 滚轴；辊子；滚转机"
+        }
+      ]
+    },
+    {
+      "root": "rul",
+      "base": "rule",
+      "words": [
+        {
+          "word": "rule",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 统治；管辖；裁定；n. 统治；规则"
+        },
+        {
+          "word": "ruler",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 尺；统治者；[测] 划线板；划线的人"
+        }
+      ]
+    },
+    {
+      "root": "runn",
+      "base": "runner",
+      "words": [
+        {
+          "word": "runner",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 跑步者；走私者；推销员；送信人"
+        },
+        {
+          "word": "running",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 运转；赛跑；流出；adj. 连续的；流动的；跑着的；运转着的；v. 跑；运转（run的ing形式）；行驶"
+        }
+      ]
+    },
+    {
+      "root": "sad",
+      "base": "sad",
+      "words": [
+        {
+          "word": "sad",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 难过的；悲哀的；令人悲痛的；凄惨的；阴郁的（形容颜色）"
+        },
+        {
+          "word": "sadness",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 悲哀"
+        }
+      ]
+    },
+    {
+      "root": "sail",
+      "base": "sail",
+      "words": [
+        {
+          "word": "sail",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 航行；启航；开船；n. 帆；篷；航行"
+        },
+        {
+          "word": "sailing",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 航行；航海；启航；航海术；adj. 航行的；v. 航行；起航（sail的现在分词形式）"
+        },
+        {
+          "word": "sailor",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 水手；海员；乘船者"
+        }
+      ]
+    },
+    {
+      "root": "sauc",
+      "base": "sauce",
+      "words": [
+        {
+          "word": "sauce",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 酱油；沙司；调味汁；v. 使增加趣味；给…调味"
+        },
+        {
+          "word": "saucer",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 茶托；浅碟；浅碟形物；眼睛"
+        }
+      ]
+    },
+    {
+      "root": "say",
+      "base": "say",
+      "words": [
+        {
+          "word": "say",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 讲；说明；例如；声称；假设；指明"
+        },
+        {
+          "word": "saying",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 话；谚语；言论；v. 说（say的ing形式）"
+        }
+      ]
+    },
+    {
+      "root": "scar",
+      "base": "scar",
+      "words": [
+        {
+          "word": "scar",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 伤害；给留下伤痕；n. 创伤；伤痕"
+        },
+        {
+          "word": "scare",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 惊吓；把…吓跑；n. 恐慌；惊吓；惊恐；adj. （美）骇人的"
+        }
+      ]
+    },
+    {
+      "root": "scor",
+      "base": "score",
+      "words": [
+        {
+          "word": "score",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 分数；二十；配乐；刻痕；v. 获得；评价；划线；刻划；把…记下"
+        },
+        {
+          "word": "scores",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 考试成绩；比分（score的复数）；v. 得分（score的第三人称单数形式）；刻划"
+        }
+      ]
+    },
+    {
+      "root": "secur",
+      "base": "secure",
+      "words": [
+        {
+          "word": "secure",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 安全的；无虑的；有把握的；稳当的；v. 保护；弄到；招致；缚住"
+        },
+        {
+          "word": "security",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 安全；保证；证券；抵押品；adj. 安全的；保安的；保密的"
+        }
+      ]
+    },
+    {
+      "root": "separat",
+      "base": "separate",
+      "words": [
+        {
+          "word": "separate",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 使分离；使分开；使分居；adj. 单独的；分开的；不同的；各自的；；n. 分开；抽印本"
+        },
+        {
+          "word": "separately",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adv. 分别地；分离地；个别地"
+        },
+        {
+          "word": "separation",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 分离；分开；间隔；距离；[法] 分居；缺口"
+        }
+      ]
+    },
+    {
+      "root": "settl",
+      "base": "settle",
+      "words": [
+        {
+          "word": "settle",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 解决；定居；沉淀；下陷；n. 有背长椅"
+        },
+        {
+          "word": "settlement",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 解决；处理；[会计] 结算；沉降；殖民"
+        },
+        {
+          "word": "settler",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 移居者；殖民者"
+        }
+      ]
+    },
+    {
+      "root": "sharpen",
+      "base": "sharpen",
+      "words": [
+        {
+          "word": "sharpen",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 削尖；磨快；使敏捷；加重"
+        },
+        {
+          "word": "sharpener",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 卷笔刀；[机] 磨具；研磨者"
+        }
+      ]
+    },
+    {
+      "root": "shav",
+      "base": "shave",
+      "words": [
+        {
+          "word": "shave",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 剃须；剃毛；n. 刮脸；剃胡子；修面；<口>侥幸逃过；幸免；剃刀；刮刀"
+        },
+        {
+          "word": "shaver",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 理发师；电动剃刀"
+        }
+      ]
+    },
+    {
+      "root": "shoot",
+      "base": "shoot",
+      "words": [
+        {
+          "word": "shoot",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 射击；射中；拍摄；发芽；使爆炸；给…注射；n. 射击；摄影；狩猎；急流"
+        },
+        {
+          "word": "shooting",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 射击；打猎；摄影；射门；v. 射击（shoot的ing形式）"
+        }
+      ]
+    },
+    {
+      "root": "short",
+      "base": "short",
+      "words": [
+        {
+          "word": "short",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 短的；不足的；矮的；低的；n. 短；缺乏；短路；短裤；adv. 不足；突然；唐突地"
+        },
+        {
+          "word": "shortly",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adv. 立刻；简短地；唐突地"
+        },
+        {
+          "word": "shorts",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 短裤"
+        }
+      ]
+    },
+    {
+      "root": "should",
+      "base": "should",
+      "words": [
+        {
+          "word": "should",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "aux. 应该；就；可能；将要"
+        },
+        {
+          "word": "shoulder",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 肩；肩膀；肩部；v. 肩负；承担"
+        }
+      ]
+    },
+    {
+      "root": "show",
+      "base": "show",
+      "words": [
+        {
+          "word": "show",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 显示；说明；演出；展出；n. 显示；表演；炫耀"
+        },
+        {
+          "word": "shower",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 淋浴；（倾泻般出现的）一阵；一大批；阵雨；v. 大量地给予；把……弄湿"
+        }
+      ]
+    },
+    {
+      "root": "sick",
+      "base": "sick",
+      "words": [
+        {
+          "word": "sick",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 厌恶的；病态的；不舒服；渴望的；恶心的 ；生病的；n. 病人；v. 使狗去咬；呕吐；追击"
+        },
+        {
+          "word": "sickness",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 疾病；呕吐；弊病"
+        }
+      ]
+    },
+    {
+      "root": "sideway",
+      "base": "sideway",
+      "words": [
+        {
+          "word": "sideway",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 人行道；小巷；adv. 斜地里；adj. 旁边的；向侧面的（等于sideways）"
+        },
+        {
+          "word": "sideways",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adv. 向侧面地；向一旁；adj. 向侧面的；一旁的"
+        }
+      ]
+    },
+    {
+      "root": "sign",
+      "base": "sign",
+      "words": [
+        {
+          "word": "sign",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 迹象；符号；记号；手势；指示牌；v. 签署；签名"
+        },
+        {
+          "word": "signal",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 信号；暗号；导火线；v. 标志；用信号通知；表示；adj. 显著的；作为信号的"
+        }
+      ]
+    },
+    {
+      "root": "sil",
+      "base": "silly",
+      "words": [
+        {
+          "word": "silence",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 沉默；寂静；缄默；不谈；无声状态；v. 使沉默；使安静；压制；消除噪音；int. 安静！；别作声！"
+        },
+        {
+          "word": "silly",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 愚蠢的；不明事理的；没头脑的；n. 傻瓜"
+        }
+      ]
+    },
+    {
+      "root": "sing",
+      "base": "sing",
+      "words": [
+        {
+          "word": "sing",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 唱歌；歌颂；鸣叫；呼号；n. 演唱；鸣声；呼啸声"
+        },
+        {
+          "word": "singer",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 歌手；歌唱家"
+        }
+      ]
+    },
+    {
+      "root": "skill",
+      "base": "skill",
+      "words": [
+        {
+          "word": "skill",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 技能；技巧；本领；技术"
+        },
+        {
+          "word": "skilled",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 熟练的；有技能的；需要技能的"
+        },
+        {
+          "word": "skillful",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 熟练的；巧妙的"
+        },
+        {
+          "word": "skillfully",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adv. 巧妙地；精巧地"
+        }
+      ]
+    },
+    {
+      "root": "smok",
+      "base": "smoke",
+      "words": [
+        {
+          "word": "smoke",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 烟；抽烟；无常的事物；v. 冒烟；吸烟；抽烟；弥漫"
+        },
+        {
+          "word": "smoker",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 吸烟者；薰制工"
+        },
+        {
+          "word": "smoking",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 抽烟；冒气；adv. 冒着烟；adj. 准许吸烟的"
+        }
+      ]
+    },
+    {
+      "root": "speak",
+      "base": "speak",
+      "words": [
+        {
+          "word": "speak",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 说话；演讲；表明；陈述"
+        },
+        {
+          "word": "speaker",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 演讲者；扬声器；说话者；说某种语言的人"
+        }
+      ]
+    },
+    {
+      "root": "spell",
+      "base": "spell",
+      "words": [
+        {
+          "word": "spell",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 拼；拼写；意味着；招致；拼成；迷住；轮值；n. 符咒；一段时间；魅力"
+        },
+        {
+          "word": "spelling",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 拼写；拼字；拼法；v. 拼写；意味着（spell的ing形式）；迷住"
+        }
+      ]
+    },
+    {
+      "root": "spoon",
+      "base": "spoon",
+      "words": [
+        {
+          "word": "spoon",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 匙；勺子；一杓的量；v. 用匙舀；使成匙状"
+        },
+        {
+          "word": "spoonful",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 一匙；一匙的量"
+        }
+      ]
+    },
+    {
+      "root": "stain",
+      "base": "stain",
+      "words": [
+        {
+          "word": "stain",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 沾污；败坏；给…着色；n. 污点；瑕疵；着色剂"
+        },
+        {
+          "word": "stainless",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 不锈的；纯洁的；未被玷污的；无瑕疵的"
+        }
+      ]
+    },
+    {
+      "root": "starv",
+      "base": "starve",
+      "words": [
+        {
+          "word": "starvation",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 饿死；挨饿；绝食"
+        },
+        {
+          "word": "starve",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 饿死；挨饿；渴望"
+        }
+      ]
+    },
+    {
+      "root": "stat",
+      "base": "state",
+      "words": [
+        {
+          "word": "state",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 国家；州；情形；v. 规定；声明；陈述；adj. 国家的；州的；正式的"
+        },
+        {
+          "word": "statement",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 声明；陈述；叙述；报表；清单"
+        },
+        {
+          "word": "station",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 车站；驻地；地位；身份；v. 配置；安置；驻扎"
+        }
+      ]
+    },
+    {
+      "root": "statu",
+      "base": "statue",
+      "words": [
+        {
+          "word": "statue",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 雕像；塑像；vt. 以雕像装饰"
+        },
+        {
+          "word": "status",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 地位；状态；情形；重要身份"
+        }
+      ]
+    },
+    {
+      "root": "strang",
+      "base": "strange",
+      "words": [
+        {
+          "word": "strange",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 奇怪的；陌生的；外行的；adv. 奇怪地；陌生地；冷淡地"
+        },
+        {
+          "word": "stranger",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 陌生人；外地人；局外人"
+        }
+      ]
+    },
+    {
+      "root": "subject",
+      "base": "subject",
+      "words": [
+        {
+          "word": "subject",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 主题；科目；[语] 主语；国民；adj. 服从的；易患…的；受制于…的；v. 使…隶属；使屈从于…"
+        },
+        {
+          "word": "subjective",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 主观的；个人的；自觉的"
+        }
+      ]
+    },
+    {
+      "root": "success",
+      "base": "success",
+      "words": [
+        {
+          "word": "success",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 成功；成就；胜利；大获成功的人或事物"
+        },
+        {
+          "word": "successful",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 成功的；一帆风顺的"
+        }
+      ]
+    },
+    {
+      "root": "suff",
+      "base": "suffer",
+      "words": [
+        {
+          "word": "suffer",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 遭受；忍受；经历"
+        },
+        {
+          "word": "suffering",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 受难；苦楚；adj. 受苦的；患病的；v. 受苦；蒙受（suffer的ing形式）"
+        }
+      ]
+    },
+    {
+      "root": "suggest",
+      "base": "suggest",
+      "words": [
+        {
+          "word": "suggest",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 提议；建议；启发；使人想起；显示；暗示"
+        },
+        {
+          "word": "suggestion",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 建议；示意；微量；细微的迹象"
+        }
+      ]
+    },
+    {
+      "root": "suit",
+      "base": "suit",
+      "words": [
+        {
+          "word": "suit",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 适合；使适应；n. 诉讼；恳求；套装；西装；一套外衣"
+        },
+        {
+          "word": "suitable",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 适当的；相配的"
+        },
+        {
+          "word": "suite",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. （一套）家具；套房；组曲；（一批）随员；随从"
+        }
+      ]
+    },
+    {
+      "root": "supp",
+      "base": "supper",
+      "words": [
+        {
+          "word": "supper",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 晚餐；晚饭；夜宵"
+        },
+        {
+          "word": "supply",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 供给；补给；供应品；v. 供给；提供；补充"
+        }
+      ]
+    },
+    {
+      "root": "surround",
+      "base": "surround",
+      "words": [
+        {
+          "word": "surround",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 围绕；包围；n. 围绕物；adj. 环绕立体声的"
+        },
+        {
+          "word": "surrounding",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 周围的；附近的；n. 环境；周围的事物"
+        }
+      ]
+    },
+    {
+      "root": "sweat",
+      "base": "sweat",
+      "words": [
+        {
+          "word": "sweat",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 使出汗；流出；使干苦活；剥削；藉出汗减轻；焦急地期待；n. 汗；水珠；焦急；苦差使"
+        },
+        {
+          "word": "sweater",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 毛线衣；运动衫；大量出汗的人；发汗剂"
+        }
+      ]
+    },
+    {
+      "root": "tail",
+      "base": "tail",
+      "words": [
+        {
+          "word": "tail",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 尾巴；踪迹；辫子；燕尾服；v. 尾随；装上尾巴；adj. 从后面而来的；尾部的"
+        },
+        {
+          "word": "tailor",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 剪裁；使合适；n. 裁缝"
+        }
+      ]
+    },
+    {
+      "root": "tank",
+      "base": "tank",
+      "words": [
+        {
+          "word": "tank",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 坦克；水槽；池塘；v. 把…贮放在柜内；打败"
+        },
+        {
+          "word": "tanker",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 油轮；运油飞机；油槽车；坦克手"
+        }
+      ]
+    },
+    {
+      "root": "tap",
+      "base": "tap",
+      "words": [
+        {
+          "word": "tap",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 轻敲；轻打；装上嘴子；n. 水龙头；轻打"
+        },
+        {
+          "word": "tape",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 胶带；磁带；带子；卷尺；v. 录音；用带子捆扎；用胶布把…封住"
+        }
+      ]
+    },
+    {
+      "root": "tast",
+      "base": "taste",
+      "words": [
+        {
+          "word": "taste",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 味道；品味；审美；v. 尝；体验"
+        },
+        {
+          "word": "tasteless",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 无味的；无鉴赏力的"
+        }
+      ]
+    },
+    {
+      "root": "teach",
+      "base": "teach",
+      "words": [
+        {
+          "word": "teach",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 教；教授；教导"
+        },
+        {
+          "word": "teacher",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 教师；导师"
+        }
+      ]
+    },
+    {
+      "root": "ten",
+      "base": "ten",
+      "words": [
+        {
+          "word": "ten",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "num. 十个；十"
+        },
+        {
+          "word": "tension",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 张力；拉力；紧张；不安；电压；vt. 使紧张；使拉紧"
+        }
+      ]
+    },
+    {
+      "root": "terr",
+      "base": "terror",
+      "words": [
+        {
+          "word": "terrible",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 可怕的；很糟的；令人讨厌的；adv. 很；非常"
+        },
+        {
+          "word": "terror",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 恐怖；恐怖行动；恐怖时期；可怕的人"
+        }
+      ]
+    },
+    {
+      "root": "thank",
+      "base": "thank",
+      "words": [
+        {
+          "word": "thank",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 感谢；n. 感谢；int. 谢谢"
+        },
+        {
+          "word": "thankful",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 感谢的；欣慰的"
+        }
+      ]
+    },
+    {
+      "root": "their",
+      "base": "their",
+      "words": [
+        {
+          "word": "their",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "pron. 他们的；她们的；它们的"
+        },
+        {
+          "word": "theirs",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "pron. 他们的；她们的；它们的"
+        }
+      ]
+    },
+    {
+      "root": "them",
+      "base": "them",
+      "words": [
+        {
+          "word": "them",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "pron. 他们；它们；她们"
+        },
+        {
+          "word": "theme",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 主题；主旋律；题目；adj. 以奇想主题布置的"
+        }
+      ]
+    },
+    {
+      "root": "think",
+      "base": "think",
+      "words": [
+        {
+          "word": "think",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 想；认为；想起；想像；打算；n. 想；想法；adj. 思想的"
+        },
+        {
+          "word": "thinking",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 思考的；思想的；有理性的；好思考的；n. 思考；思想；想法；意见；见解；v. 思考（think的现在分词）"
+        }
+      ]
+    },
+    {
+      "root": "thrill",
+      "base": "thrill",
+      "words": [
+        {
+          "word": "thrill",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 激动；震颤；紧张；v. 使…颤动；使…紧张；使…感到兴奋或激动"
+        },
+        {
+          "word": "thriller",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 惊险小说；使人毛骨悚然的东西；使人毛骨悚然的小说"
+        }
+      ]
+    },
+    {
+      "root": "tir",
+      "base": "tire",
+      "words": [
+        {
+          "word": "tire",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 疲劳；厌倦；n. 轮胎；头饰"
+        },
+        {
+          "word": "tired",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 疲倦的；厌倦的；厌烦的；v. 疲倦；对…腻烦（tire的过去分词形式）"
+        }
+      ]
+    },
+    {
+      "root": "tot",
+      "base": "total",
+      "words": [
+        {
+          "word": "total",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 全部的；完全的；整个的；v. 总数达；n. 总数；合计"
+        },
+        {
+          "word": "totally",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adv. 完全地"
+        }
+      ]
+    },
+    {
+      "root": "trad",
+      "base": "trade",
+      "words": [
+        {
+          "word": "trade",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 贸易；交易；行业；职业；v. 交易；买卖；以物易物"
+        },
+        {
+          "word": "tradition",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 惯例；传统；传说"
+        },
+        {
+          "word": "traditional",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 传统的；惯例的"
+        }
+      ]
+    },
+    {
+      "root": "train",
+      "base": "train",
+      "words": [
+        {
+          "word": "train",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 火车；行列；长队；裙裾；v. 培养；训练；瞄准"
+        },
+        {
+          "word": "trainer",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 助理教练；训练员；驯马师；飞行练习器；运动鞋"
+        },
+        {
+          "word": "training",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 训练；培养；瞄准；整枝；v. 训练；教养（train的ing形式）"
+        }
+      ]
+    },
+    {
+      "root": "translat",
+      "base": "translate",
+      "words": [
+        {
+          "word": "translate",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 翻译；转化；解释；转变为；调动"
+        },
+        {
+          "word": "translation",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 翻译；译文；转化；调任"
+        },
+        {
+          "word": "translator",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 译者；翻译器"
+        }
+      ]
+    },
+    {
+      "root": "treat",
+      "base": "treat",
+      "words": [
+        {
+          "word": "treat",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 治疗；对待；探讨；视为；n. 请客；款待"
+        },
+        {
+          "word": "treatment",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 治疗；疗法；处理；对待"
+        }
+      ]
+    },
+    {
+      "root": "tru",
+      "base": "TRUE",
+      "words": [
+        {
+          "word": "TRUE",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 真实的；正确的；adv. 真实地；准确地；n. 真实；准确"
+        },
+        {
+          "word": "truly",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adv. 真实地；不假；真诚地"
+        }
+      ]
+    },
+    {
+      "root": "turn",
+      "base": "turn",
+      "words": [
+        {
+          "word": "turn",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 转动；使旋转；转弯；翻过来；兑换；n. 转弯；变化；(损害或有益于别人的)行为；举动；举止"
+        },
+        {
+          "word": "turning",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 转向；旋转；回转；转弯处；v. 旋转（turn的ing形式）"
+        }
+      ]
+    },
+    {
+      "root": "understand",
+      "base": "understand",
+      "words": [
+        {
+          "word": "understand",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 理解；懂；获悉；推断；省略"
+        },
+        {
+          "word": "understanding",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 谅解；理解；理解力；协议；adj. 了解的；聪明的；有理解力的；v. 理解；明白（understand的ing形式）"
+        }
+      ]
+    },
+    {
+      "root": "unfortunat",
+      "base": "unfortunate",
+      "words": [
+        {
+          "word": "unfortunate",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 不幸的；令人遗憾的；不成功的"
+        },
+        {
+          "word": "unfortunately",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adv. 不幸地"
+        }
+      ]
+    },
+    {
+      "root": "unit",
+      "base": "unit",
+      "words": [
+        {
+          "word": "unit",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 单位；单元；装置；[军] 部队；部件"
+        },
+        {
+          "word": "unite",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 使…混合；使…联合；使…团结"
+        }
+      ]
+    },
+    {
+      "root": "univ",
+      "base": "universal",
+      "words": [
+        {
+          "word": "universal",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 普遍的；通用的；宇宙的；全世界的；全体的；n. 一般概念；普通性"
+        },
+        {
+          "word": "university",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 大学；综合性大学；大学校舍"
+        }
+      ]
+    },
+    {
+      "root": "use",
+      "base": "use",
+      "words": [
+        {
+          "word": "use",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 使用；用途；发挥；v. 利用；耗费"
+        },
+        {
+          "word": "useful",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 有用的；有益的；有帮助的"
+        },
+        {
+          "word": "useless",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 无用的；无效的"
+        }
+      ]
+    },
+    {
+      "root": "usu",
+      "base": "usual",
+      "words": [
+        {
+          "word": "usual",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 通常的；惯例的；平常的"
+        },
+        {
+          "word": "usually",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adv. 通常；经常"
+        }
+      ]
+    },
+    {
+      "root": "valu",
+      "base": "value",
+      "words": [
+        {
+          "word": "valuable",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 有价值的；贵重的；可估价的；n. 贵重物品"
+        },
+        {
+          "word": "value",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 值；价值；价格；重要性；确切涵义；v. 评价；重视；估价"
+        }
+      ]
+    },
+    {
+      "root": "view",
+      "base": "view",
+      "words": [
+        {
+          "word": "view",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 观察；视野；意见；风景；v. 观察；考虑；查看"
+        },
+        {
+          "word": "viewer",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 观察者；观看者；观众；[仪] 指示器"
+        }
+      ]
+    },
+    {
+      "root": "villag",
+      "base": "village",
+      "words": [
+        {
+          "word": "village",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 村庄；村民；（动物的）群落"
+        },
+        {
+          "word": "villager",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 乡村居民；村民"
+        }
+      ]
+    },
+    {
+      "root": "visit",
+      "base": "visit",
+      "words": [
+        {
+          "word": "visit",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 访问；参观；逗留；v. 访问；参观；视察"
+        },
+        {
+          "word": "visitor",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 访问者；参观者；视察者；候鸟"
+        }
+      ]
+    },
+    {
+      "root": "wag",
+      "base": "wag",
+      "words": [
+        {
+          "word": "wag",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 摇摆；摇动；饶舌；n. 摇摆；爱说笑打趣的人"
+        },
+        {
+          "word": "wage",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 进行；发动；从事；n. 工资；代价；报偿"
+        }
+      ]
+    },
+    {
+      "root": "wait",
+      "base": "wait",
+      "words": [
+        {
+          "word": "wait",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 等候；推迟；延缓；n. 等待；等候"
+        },
+        {
+          "word": "waiter",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 服务员；侍者"
+        }
+      ]
+    },
+    {
+      "root": "weak",
+      "base": "weak",
+      "words": [
+        {
+          "word": "weak",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. [经] 疲软的；虚弱的；无力的；不牢固的"
+        },
+        {
+          "word": "weakness",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 弱点；软弱；嗜好"
+        }
+      ]
+    },
+    {
+      "root": "week",
+      "base": "week",
+      "words": [
+        {
+          "word": "week",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 周；星期"
+        },
+        {
+          "word": "weekly",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 每周的；周刊的；一周一次的；n. 周刊；adv. 每周一次；逐周"
+        }
+      ]
+    },
+    {
+      "root": "western",
+      "base": "western",
+      "words": [
+        {
+          "word": "western",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 西方的；西部的；有西方特征的；n. 西方人；西部片；西部小说"
+        },
+        {
+          "word": "westerner",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 西方人；欧美人；美国西部的人"
+        }
+      ]
+    },
+    {
+      "root": "will",
+      "base": "will",
+      "words": [
+        {
+          "word": "will",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 意志；决心；情感；遗嘱；意图；心愿；v. 决心要；遗赠；用意志力使；aux. 将；愿意；必须"
+        },
+        {
+          "word": "willing",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 乐意的；自愿的；心甘情愿的；v. 决心；用意志力驱使；将（财产等）遗赠某人（will的现在分词）"
+        },
+        {
+          "word": "willingly",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adv. 欣然地；愿意地；乐意地"
+        },
+        {
+          "word": "willingness",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 乐意；心甘情愿；自动自发"
+        }
+      ]
+    },
+    {
+      "root": "win",
+      "base": "win",
+      "words": [
+        {
+          "word": "win",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 赢得；在…中获胜；劝诱；n. 赢；胜利"
+        },
+        {
+          "word": "wine",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 酒；葡萄酒；紫红色；v. 喝酒"
+        }
+      ]
+    },
+    {
+      "root": "wond",
+      "base": "wonder",
+      "words": [
+        {
+          "word": "wonder",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 惊奇；奇迹；惊愕；v. 怀疑；想知道；惊讶；adj. 奇妙的；非凡的"
+        },
+        {
+          "word": "wonderful",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 极好的；精彩的；绝妙的；奇妙的；美妙；胜；神妙"
+        }
+      ]
+    },
+    {
+      "root": "work",
+      "base": "work",
+      "words": [
+        {
+          "word": "work",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 工作；[物] 功；产品；操作；职业；行为；事业；工厂；著作；文学、音乐或艺术作品；v. 使工作；操作；经营；使缓慢前进"
+        },
+        {
+          "word": "worker",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 工人；劳动者；职蚁"
+        },
+        {
+          "word": "works",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 作品；工厂；工程结构"
+        }
+      ]
+    },
+    {
+      "root": "worth",
+      "base": "worth",
+      "words": [
+        {
+          "word": "worth",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 值…的；n. 价值；财产"
+        },
+        {
+          "word": "worthless",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 无价值的；不值钱的；卑微的"
+        }
+      ]
+    },
+    {
+      "root": "wound",
+      "base": "wound",
+      "words": [
+        {
+          "word": "wound",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 创伤；伤口；v. 使受伤"
+        },
+        {
+          "word": "wounded",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "adj. 受伤的；n. 受伤者；伤员；v. 使受伤（wound的过去分词）"
+        }
+      ]
+    },
+    {
+      "root": "writ",
+      "base": "write",
+      "words": [
+        {
+          "word": "write",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "v. 写；写字；写作；作曲；写信"
+        },
+        {
+          "word": "writing",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "n. 书写；作品；著作；[法] 笔迹；v. 书写（write的ing形式）"
+        }
+      ]
+    },
+    {
+      "root": "your",
+      "base": "your",
+      "words": [
+        {
+          "word": "your",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "pron. 你的；你们的"
+        },
+        {
+          "word": "yours",
+          "phonetic": "",
+          "pos": "",
+          "meaning": "pron. 你（们）的东西；你的责任[义务]；你的家属；来信；尊函；adj. 你（们）的（东西）；信末署名前用语"
+        }
+      ]
+    }
+  ]
+}

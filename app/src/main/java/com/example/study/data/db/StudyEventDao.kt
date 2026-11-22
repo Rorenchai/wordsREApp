@@ -90,10 +90,7 @@ interface StudyEventDao {
     )
     suspend fun datesBetween(library: String, fromDate: String, toDate: String): List<String>
 
-    /**
-     * 错题本：最近一次答题是「答错」的词，附带累计答错次数与最近答错时间。
-     * 在复习/答题中答对后，最近一次记录变为正确，自动移出错题本。
-     */
+    /** 错题本列表：最近一次答题答错的词（答对后自动移出）。 */
     @Query(
         """
         SELECT w.*,
@@ -132,6 +129,29 @@ interface StudyEventDao {
         """
     )
     suspend fun wrongWordCount(library: String): Int
+
+    /** 当日答对的不同单词数（用于每日打卡积分）。 */
+    @Query(
+        """
+        SELECT COUNT(DISTINCT e.wordId) FROM study_events e
+        JOIN words w ON e.wordId = w.id
+        WHERE w.library = :library AND e.date = :date AND e.answerCorrect = 1
+        """
+    )
+    suspend fun todayCorrectWords(library: String, date: String): Int
+
+    /** 手动清理错题：删除指定单词的答错事件，答对事件保留。 */
+    @Query("DELETE FROM study_events WHERE wordId IN (:wordIds) AND answerCorrect = 0")
+    suspend fun deleteWrongEvents(wordIds: List<Long>): Int
+
+    /** 手动清理错题：删除某词库全部答错事件。 */
+    @Query(
+        """
+        DELETE FROM study_events WHERE answerCorrect = 0
+          AND wordId IN (SELECT id FROM words WHERE library = :library)
+        """
+    )
+    suspend fun deleteAllWrongEvents(library: String): Int
 
     /** 备份导出：全部学习事件（带单词字符串）。 */
     @Query(

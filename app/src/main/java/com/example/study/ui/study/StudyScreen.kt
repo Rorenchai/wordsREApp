@@ -77,6 +77,18 @@ import com.example.study.ui.theme.DuoSurface
 import com.example.study.ui.theme.DuoTextPrimary
 import com.example.study.ui.theme.DuoTextSecondary
 import com.example.study.ui.theme.DuoSuccess
+import androidx.compose.foundation.gestures.detectDragGestures
+import androidx.compose.ui.input.pointer.pointerInput
+import kotlin.math.abs
+import androidx.compose.material.icons.filled.School
+import androidx.compose.foundation.gestures.awaitEachGesture
+import androidx.compose.foundation.gestures.awaitFirstDown
+import androidx.compose.ui.input.pointer.PointerEventPass
+import androidx.compose.ui.input.pointer.positionChange
+import androidx.compose.ui.input.pointer.changedToUpIgnoreConsumed
+import androidx.compose.foundation.Image
+import androidx.compose.ui.res.painterResource
+import com.example.study.R
 
 @Composable
 fun StudyScreen(
@@ -145,21 +157,16 @@ fun StudyScreen(
                     state = state,
                     onFlip = viewModel::flip,
                     onSpeak = viewModel::speakCurrentWord,
-                    onToggleFavorite = viewModel::toggleFavorite
+                    onToggleFavorite = viewModel::toggleFavorite,
+                    onNext = viewModel::nextWord,
+                    onPrevious = viewModel::previousWord
                 )
                 StatusActionRow(
                     state = state,
-                    onFlip = viewModel::flip,
                     onMark = { status ->
                         viewModel.markStatus(status)
                         if (status == StudyStatus.MASTERED && state.flipped) showReward = true
                     }
-                )
-                DuoButton(
-                    text = "下一个",
-                    onClick = viewModel::nextWord,
-                    modifier = Modifier.fillMaxWidth(),
-                    enabled = !state.loadingWord && state.word != null
                 )
                 // 游戏入口移到单词卡片下方，原底部「游戏」页改为单词总览
                 GameSection(onOpenGame = onOpenGame)
@@ -177,6 +184,43 @@ fun StudyScreen(
             subtitle = "保持这个节奏！",
             onFinished = { showReward = false }
         )
+        if (!state.initialized || state.startupError != null || state.preparingLibrary) {
+            StartupSplash(
+                error = state.startupError,
+                onRetry = viewModel::retryStartup
+            )
+        }
+    }
+}
+
+@Composable
+private fun StartupSplash(error: String?, onRetry: () -> Unit) {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(DuoBackground),
+        contentAlignment = Alignment.Center
+    ) {
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+            Image(
+                painter = painterResource(R.drawable.ic_launcher_foreground),
+                contentDescription = "应用图标",
+                modifier = Modifier.size(92.dp)
+            )
+            Spacer(Modifier.height(22.dp))
+            if (error == null) {
+                CircularProgressIndicator(color = DuoGreen)
+                Spacer(Modifier.height(14.dp))
+                Text("正在准备词库", style = MaterialTheme.typography.titleMedium, color = DuoTextPrimary)
+                Text("首次启动只需一次，请稍候…", style = MaterialTheme.typography.bodySmall, color = DuoTextSecondary)
+            } else {
+                Text("词库准备失败", style = MaterialTheme.typography.titleMedium, color = DuoTextPrimary)
+                Spacer(Modifier.height(6.dp))
+                Text(error, style = MaterialTheme.typography.bodySmall, color = DuoTextSecondary, textAlign = TextAlign.Center)
+                Spacer(Modifier.height(14.dp))
+                DuoButton(text = "重试", onClick = onRetry)
+            }
+        }
     }
 }
 
@@ -238,6 +282,10 @@ private fun StudyTopBar(
                 .padding(horizontal = 12.dp, vertical = 8.dp),
             verticalArrangement = Arrangement.spacedBy(4.dp)
         ) {
+            val planGoal = state.hasPlan && state.planTodayNewTotal > 0
+            val goalDone = if (planGoal) state.planTodayNewLearned else state.todayStudied
+            val goalTotal = if (planGoal) state.planTodayNewTotal else state.dailyGoal
+            val goalProgress = if (goalTotal <= 0) 0f else (goalDone.toFloat() / goalTotal).coerceIn(0f, 1f)
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween
@@ -248,19 +296,19 @@ private fun StudyTopBar(
                     color = DuoTextSecondary
                 )
                 Text(
-                    text = "${state.todayStudied}/${state.dailyGoal}",
+                    text = "$goalDone/$goalTotal",
                     style = MaterialTheme.typography.labelSmall,
                     color = DuoBlue
                 )
             }
             Text(
-                text = if (state.goalReached) "已完成" else {
-                    "还差 ${(state.dailyGoal - state.todayStudied).coerceAtLeast(0)} 个"
+                text = if (goalDone >= goalTotal && goalTotal > 0) "已完成" else {
+                    "还差 ${(goalTotal - goalDone).coerceAtLeast(0)} 个"
                 },
                 style = MaterialTheme.typography.bodySmall,
                 color = DuoTextPrimary
             )
-            MiniProgress(progress = state.goalProgress)
+            MiniProgress(progress = goalProgress)
         }
     }
 }
@@ -418,19 +466,65 @@ private fun DailyGoalCard(state: StudyUiState) {
     }
 }
 
+/**
+ * 卡片手势：左右翻面，上滑下一个、下滑上一个。
+ * 在 Initial pass 拦截拖动，避免背面 verticalScroll 吃掉上下滑手势；轻点仍交给卡片内容处理。
+ */
+private fun Modifier.cardSwipeGestures(
+    onFlip: () -> Unit,
+    onNext: () -> Unit,
+    onPrevious: () -> Unit
+): Modifier = this.pointerInput(onFlip, onNext, onPrevious) {
+    awaitEachGesture {
+        val down = awaitFirstDown(requireUnconsumed = false, pass = PointerEventPass.Initial)
+        var dx = 0f
+        var dy = 0f
+        var dragging = false
+        var pressed: Boolean
+        do {
+            val event = awaitPointerEvent(PointerEventPass.Initial)
+            val change = event.changes.firstOrNull { it.id == down.id } ?: break
+            pressed = event.changes.any { it.pressed }
+            if (change.pressed) {
+                val delta = change.positionChange()
+                dx += delta.x
+                dy += delta.y
+                if (!dragging && (abs(dx) > viewConfiguration.touchSlop || abs(dy) > viewConfiguration.touchSlop)) {
+                    dragging = true
+                }
+                if (dragging) event.changes.forEach { it.consume() }
+            }
+        } while (pressed)
+        if (dragging) {
+            if (abs(dx) > abs(dy)) onFlip() else if (dy < 0) onNext() else onPrevious()
+        }
+    }
+}
+
 @Composable
 private fun StudyCard(
     state: StudyUiState,
     onFlip: () -> Unit,
     onSpeak: () -> Unit,
-    onToggleFavorite: () -> Unit
+    onToggleFavorite: () -> Unit,
+    onNext: () -> Unit,
+    onPrevious: () -> Unit
 ) {
     val word = state.word
-    Box(modifier = Modifier.fillMaxWidth().height(348.dp)) {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(348.dp)
+            .cardSwipeGestures(
+                onFlip = onFlip,
+                onNext = onNext,
+                onPrevious = onPrevious
+            )
+    ) {
         // 多卡片叠加：当前卡片下方露出两张错位卡片，形成卡堆层次
         if (!state.loadingWord && word != null) {
-            CardStackLayer(horizontalPadding = 0.dp, offsetX = -6.dp, offsetY = 22.dp, scale = 0.97f, alpha = 0.42f, rotation = -2.2f)
-            CardStackLayer(horizontalPadding = 0.dp, offsetX = 5.dp, offsetY = 11.dp, scale = 0.985f, alpha = 0.62f, rotation = 1.1f)
+            CardStackLayer(horizontalPadding = 0.dp, offsetX = -5.dp, offsetY = 12.dp, scale = 0.98f, alpha = 0.42f, rotation = -2.2f)
+            CardStackLayer(horizontalPadding = 0.dp, offsetX = 4.dp, offsetY = 6.dp, scale = 0.99f, alpha = 0.62f, rotation = 1.1f)
         }
         if (state.loadingWord || word == null) {
             LoadingCard(
@@ -498,7 +592,7 @@ private fun StudyCard(
                             }
                             Spacer(Modifier.weight(1f))
                             Text(
-                                text = "点击卡片翻面 · 查看释义",
+                                text = "上下滑动切换单词 · 左右滑动翻面查看释义",
                                 style = MaterialTheme.typography.bodySmall,
                                 color = DuoTextSecondary
                             )
@@ -576,7 +670,7 @@ private fun LoadingCard(initialized: Boolean, hasFilterResult: Boolean) {
             CircularProgressIndicator(color = DuoGreen)
             Spacer(Modifier.height(14.dp))
             Text(
-                text = "正在导入词库…",
+                text = "正在准备卡片…",
                 style = MaterialTheme.typography.titleMedium,
                 color = DuoTextPrimary
             )
@@ -719,20 +813,12 @@ private fun CardFace(
 @Composable
 private fun StatusActionRow(
     state: StudyUiState,
-    onFlip: () -> Unit,
     onMark: (Int) -> Unit
 ) {
     Row(
         modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.spacedBy(10.dp)
     ) {
-        DuoButton(
-            text = if (state.flipped) "看正面" else "翻面",
-            onClick = onFlip,
-            modifier = Modifier.weight(1f),
-            style = DuoButtonStyle.Secondary,
-            enabled = state.word != null
-        )
         DuoButton(
             text = "学习中",
             onClick = { onMark(StudyStatus.LEARNING) },

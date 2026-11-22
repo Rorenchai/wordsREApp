@@ -39,7 +39,11 @@ data class SettingsUiState(
     val themeAccent: String = SettingsRepository.THEME_ACCENT_CREAM,
     val autoRead: Boolean = true,
     val nickname: String = SettingsRepository.DEFAULT_NICKNAME,
-    val avatarUri: String = ""
+    val avatarUri: String = "",
+    val bio: String = SettingsRepository.DEFAULT_BIO,
+    val points: Int = 0,
+    val ownedFrames: Set<String> = setOf(SettingsRepository.FRAME_NONE),
+    val equippedFrame: String = SettingsRepository.FRAME_NONE
 )
 
 class SettingsViewModel(
@@ -111,6 +115,22 @@ class SettingsViewModel(
                 _uiState.update { it.copy(avatarUri = uri) }
             }
         }
+        viewModelScope.launch {
+            settingsRepository.userBio.collect { bio -> _uiState.update { it.copy(bio = bio) } }
+        }
+        viewModelScope.launch {
+            settingsRepository.points.collect { points -> _uiState.update { it.copy(points = points) } }
+        }
+        viewModelScope.launch {
+            settingsRepository.ownedFrames.collect { frames ->
+                _uiState.update { it.copy(ownedFrames = frames) }
+            }
+        }
+        viewModelScope.launch {
+            settingsRepository.equippedFrame.collect { frame ->
+                _uiState.update { it.copy(equippedFrame = frame) }
+            }
+        }
     }
 
     fun setNickname(nickname: String) {
@@ -119,6 +139,26 @@ class SettingsViewModel(
 
     fun setAvatarUri(uri: String) {
         viewModelScope.launch { settingsRepository.setUserAvatarUri(uri) }
+    }
+
+    fun setBio(bio: String) {
+        viewModelScope.launch { settingsRepository.setUserBio(bio) }
+    }
+
+    fun purchaseFrame(frameId: String, cost: Int = SettingsRepository.FRAME_PRICE) {
+        viewModelScope.launch {
+            val ok = settingsRepository.purchaseFrame(frameId, cost)
+            _uiState.update {
+                it.copy(message = if (ok) "兑换成功，已拥有该头像框" else "兑换失败：积分不足或已拥有")
+            }
+        }
+    }
+
+    fun equipFrame(frameId: String) {
+        viewModelScope.launch {
+            settingsRepository.equipFrame(frameId)
+            _uiState.update { it.copy(message = "已佩戴新头像框") }
+        }
     }
 
     fun setThemeAccent(presetId: String) {

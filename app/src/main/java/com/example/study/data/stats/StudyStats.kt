@@ -53,6 +53,7 @@ data class LibraryStats(
     val startedWords: Int,
     val masteredWords: Int,
     val todayStudied: Int,
+    val todayCorrect: Int = 0,
     val weekCounts: List<com.example.study.data.db.DailyCount>,
     val streak: Int,
     val totalStudyEvents: Long,

@@ -19,6 +19,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountTree
 import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.CircularProgressIndicator
@@ -57,7 +58,10 @@ import com.example.study.ui.theme.DuoTextSecondary
 import com.example.study.ui.theme.DuoChocolate
 
 @Composable
-fun WordOverviewScreen(modifier: Modifier = Modifier) {
+fun WordOverviewScreen(
+    onOpenWordTree: () -> Unit = {},
+    modifier: Modifier = Modifier
+) {
     val context = LocalContext.current
     val viewModel: WordOverviewViewModel = viewModel(factory = WordOverviewViewModel.factory(context))
     val state by viewModel.uiState.collectAsStateWithLifecycle()
@@ -93,11 +97,20 @@ fun WordOverviewScreen(modifier: Modifier = Modifier) {
                     style = MaterialTheme.typography.headlineMedium,
                     color = DuoTextPrimary
                 )
-                Text(
-                    text = state.library,
-                    style = MaterialTheme.typography.labelMedium,
-                    color = DuoTextSecondary
-                )
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    IconButton(onClick = onOpenWordTree) {
+                        Icon(
+                            imageVector = Icons.Filled.AccountTree,
+                            contentDescription = "同类词归纳",
+                            tint = DuoGreen
+                        )
+                    }
+                    Text(
+                        text = state.library,
+                        style = MaterialTheme.typography.labelMedium,
+                        color = DuoTextSecondary
+                    )
+                }
             }
 
             OutlinedTextField(
@@ -216,7 +229,11 @@ fun WordOverviewScreen(modifier: Modifier = Modifier) {
         WordDetailDialog(
             word = word,
             onSpeak = { viewModel.speak(word.word) },
-            onDismiss = { detailWord = null }
+            onDismiss = { detailWord = null },
+            onSetStatus = { status ->
+                viewModel.setWordStatus(word.id, status)
+                detailWord = null
+            }
         )
     }
 }

@@ -1,0 +1,7127 @@
+{
+  "library": "CET-6",
+  "families": [
+    {
+      "root": "abandon",
+      "base": "abandon",
+      "words": [
+        {
+          "word": "abandon",
+          "phonetic": "ə'bændən",
+          "pos": "vt.",
+          "meaning": "vt. 离弃， 丢弃； 遗弃； 抛弃； 放弃"
+        },
+        {
+          "word": "abandonment",
+          "phonetic": "əˈbændənmənt",
+          "pos": "n.",
+          "meaning": "n. 放弃"
+        }
+      ]
+    },
+    {
+      "root": "abnorm",
+      "base": "abnormal",
+      "words": [
+        {
+          "word": "abnormal",
+          "phonetic": "æb'nɔːml",
+          "pos": "adj.",
+          "meaning": "adj. 反常的， 异常的"
+        },
+        {
+          "word": "abnormally",
+          "phonetic": "æb'nɔ:məlɪ",
+          "pos": "adv.",
+          "meaning": "adv. 不正常的"
+        }
+      ]
+    },
+    {
+      "root": "accident",
+      "base": "accident",
+      "words": [
+        {
+          "word": "accident",
+          "phonetic": "'æksɪdənt",
+          "pos": "n.",
+          "meaning": "n. 意外， 事故"
+        },
+        {
+          "word": "accidentally",
+          "phonetic": "ˌæksɪˈdentəli",
+          "pos": "adv.",
+          "meaning": "adv. 偶然地，意外地"
+        }
+      ]
+    },
+    {
+      "root": "accommodat",
+      "base": "accommodate",
+      "words": [
+        {
+          "word": "accommodate",
+          "phonetic": "əˈkɒmədeɪt",
+          "pos": "v. · vt.",
+          "meaning": "v. 适应，容纳；vt. 容纳； 向…提供住处； 使适应， 顺应"
+        },
+        {
+          "word": "accommodation",
+          "phonetic": "əˌkɒmə'deɪʃn",
+          "pos": "n.",
+          "meaning": "n. 住处， 膳宿"
+        }
+      ]
+    },
+    {
+      "root": "accord",
+      "base": "accord",
+      "words": [
+        {
+          "word": "accord",
+          "phonetic": "ə'kɔːd",
+          "pos": "n. · v.",
+          "meaning": "n. 符合；协议；v. 相符合， 相一致， 相和谐； 授予， 赠与， 给予；n. 一致，符合；谅解，协议"
+        },
+        {
+          "word": "accordance",
+          "phonetic": "ə'kɔːdns",
+          "pos": "n.",
+          "meaning": "n. 一致， 和谐， 符合"
+        }
+      ]
+    },
+    {
+      "root": "account",
+      "base": "account",
+      "words": [
+        {
+          "word": "account",
+          "phonetic": "ə'kaunt",
+          "pos": "vi. · n.",
+          "meaning": "vi. 说明…的原因； 占…；n. 记述；解释；账目"
+        },
+        {
+          "word": "accountable",
+          "phonetic": "ə'kauntəbl",
+          "pos": "adj.",
+          "meaning": "adj. 应负责的，有责任的"
+        }
+      ]
+    },
+    {
+      "root": "accustom",
+      "base": "accustom",
+      "words": [
+        {
+          "word": "accustom",
+          "phonetic": "ə'kʌstəm",
+          "pos": "v.",
+          "meaning": "v. 使习惯"
+        },
+        {
+          "word": "accustomed",
+          "phonetic": "ə'kʌstəmd",
+          "pos": "adj.",
+          "meaning": "adj. 惯常的， 习惯的"
+        }
+      ]
+    },
+    {
+      "root": "achiev",
+      "base": "achieve",
+      "words": [
+        {
+          "word": "achieve",
+          "phonetic": "ə'tʃi:v",
+          "pos": "v.",
+          "meaning": "v. 达到，实现"
+        },
+        {
+          "word": "achievement",
+          "phonetic": "ə'tʃiːvmənt",
+          "pos": "n.",
+          "meaning": "n. 完成； 成就， 成绩"
+        }
+      ]
+    },
+    {
+      "root": "acquaint",
+      "base": "acquaint",
+      "words": [
+        {
+          "word": "acquaint",
+          "phonetic": "ə'kweɪnt",
+          "pos": "v. · vt.",
+          "meaning": "v. 使认识，使了解；vt. 使认识， 使了解； 使熟悉"
+        },
+        {
+          "word": "acquaintance",
+          "phonetic": "ə'kweɪntəns",
+          "pos": "n.",
+          "meaning": "n. 熟人；n. 认识， 了解； 熟人"
+        }
+      ]
+    },
+    {
+      "root": "acut",
+      "base": "acute",
+      "words": [
+        {
+          "word": "acute",
+          "phonetic": "ə'kjuːt",
+          "pos": "adj.",
+          "meaning": "adj. 严重的； 急性的； 灵敏的， 敏锐的； 精明的"
+        },
+        {
+          "word": "acutely",
+          "phonetic": "əˈkju:tli",
+          "pos": "adv.",
+          "meaning": "adv. 敏锐地"
+        }
+      ]
+    },
+    {
+      "root": "adapt",
+      "base": "adapt",
+      "words": [
+        {
+          "word": "adapt",
+          "phonetic": "ə'dæpt",
+          "pos": "vt.",
+          "meaning": "vt. 使适应； 改编"
+        },
+        {
+          "word": "adaptation",
+          "phonetic": "ædəp'teɪʃ(ə)n",
+          "pos": "n.",
+          "meaning": "n. 适应；改编"
+        }
+      ]
+    },
+    {
+      "root": "add",
+      "base": "addition",
+      "words": [
+        {
+          "word": "addition",
+          "phonetic": "ə'dɪʃn",
+          "pos": "n.",
+          "meaning": "n. 加， 加法； 附加物"
+        },
+        {
+          "word": "additional",
+          "phonetic": "ə'dɪʃənl",
+          "pos": "adj.",
+          "meaning": "adj. 附加的， 追加的"
+        }
+      ]
+    },
+    {
+      "root": "adjust",
+      "base": "adjust",
+      "words": [
+        {
+          "word": "adjust",
+          "phonetic": "ə'dʒʌst",
+          "pos": "vi. · vt.",
+          "meaning": "vi. 适应；vt. 调整，调节；校正"
+        },
+        {
+          "word": "adjustable",
+          "phonetic": "ə'dʒʌstəbl",
+          "pos": "adj.",
+          "meaning": "adj. 可调整的，可校准的"
+        }
+      ]
+    },
+    {
+      "root": "adopt",
+      "base": "adopt",
+      "words": [
+        {
+          "word": "adopt",
+          "phonetic": "ə'dɒpt",
+          "pos": "v. · vt.",
+          "meaning": "v. 采纳；vt. 收养； 采用， 采取； 正式通过， 批准"
+        },
+        {
+          "word": "adoption",
+          "phonetic": "ə'dɒpʃ(ə)n",
+          "pos": "n.",
+          "meaning": "n. 收养；采纳，采取"
+        }
+      ]
+    },
+    {
+      "root": "advantag",
+      "base": "advantage",
+      "words": [
+        {
+          "word": "advantage",
+          "phonetic": "əd'vɑːntɪdʒ",
+          "pos": "n.",
+          "meaning": "n. 优点， 优势； 好处"
+        },
+        {
+          "word": "advantageous",
+          "phonetic": "ædvən'teɪdʒəs",
+          "pos": "adj.",
+          "meaning": "adj. 有利的，有助的"
+        }
+      ]
+    },
+    {
+      "root": "adventur",
+      "base": "adventure",
+      "words": [
+        {
+          "word": "adventure",
+          "phonetic": "əd'ventʃə(r)",
+          "pos": "n.",
+          "meaning": "n. 冒险"
+        },
+        {
+          "word": "adventurer",
+          "phonetic": "ədˈventʃərə(r)",
+          "pos": "n.",
+          "meaning": "n. 冒险者"
+        }
+      ]
+    },
+    {
+      "root": "advers",
+      "base": "adverse",
+      "words": [
+        {
+          "word": "adverse",
+          "phonetic": "ˈædvɜ:s",
+          "pos": "adj.",
+          "meaning": "adj. 相反的，敌对的；adj. 不利的， 有害的"
+        },
+        {
+          "word": "adversely",
+          "phonetic": "əd'vɜ:slɪ",
+          "pos": "adv.",
+          "meaning": "adv. 不利地"
+        }
+      ]
+    },
+    {
+      "root": "affiliat",
+      "base": "affiliate",
+      "words": [
+        {
+          "word": "affiliate",
+          "phonetic": "əˈfɪlieɪt",
+          "pos": "v. · vt. · n.",
+          "meaning": "v. 使隶属于；vt. 使隶属于；n. 附属机构， 分公司"
+        },
+        {
+          "word": "affiliation",
+          "phonetic": "ə,fɪlɪ'eʃən",
+          "pos": "n.",
+          "meaning": "n. 隶属关系，单位团体"
+        }
+      ]
+    },
+    {
+      "root": "alleg",
+      "base": "allege",
+      "words": [
+        {
+          "word": "allege",
+          "phonetic": "ə'ledʒ",
+          "pos": "vt.",
+          "meaning": "vt. 断言， 宣称， 硬说"
+        },
+        {
+          "word": "allegedly",
+          "phonetic": "ə'ledʒɪdlɪ",
+          "pos": "adv.",
+          "meaning": "adv. 据说"
+        }
+      ]
+    },
+    {
+      "root": "alli",
+      "base": "allied",
+      "words": [
+        {
+          "word": "alliance",
+          "phonetic": "ə'laɪəns",
+          "pos": "n.",
+          "meaning": "n. 结盟； 联盟"
+        },
+        {
+          "word": "allied",
+          "phonetic": "'ælaɪd; ə'laɪd",
+          "pos": "adj.",
+          "meaning": "adj. 联合的；联姻的"
+        }
+      ]
+    },
+    {
+      "root": "alt",
+      "base": "alter",
+      "words": [
+        {
+          "word": "alter",
+          "phonetic": "'ɔːltə",
+          "pos": "vt.",
+          "meaning": "vt. 改变， 变更， 变动"
+        },
+        {
+          "word": "alteration",
+          "phonetic": "ɔːltə'reɪʃ(ə)n; 'ɒl-",
+          "pos": "n.",
+          "meaning": "n. 变更，改变"
+        }
+      ]
+    },
+    {
+      "root": "alternat",
+      "base": "alternate",
+      "words": [
+        {
+          "word": "alternate",
+          "phonetic": "'ɔːltəneɪt; 'ɒl-",
+          "pos": "v. · adj.",
+          "meaning": "v. 使交替；adj. 交替的；adj. 交替的， 轮流的； 间隔的；v. 轮流， 交替"
+        },
+        {
+          "word": "alternative",
+          "phonetic": "ɔ:lˈtɜ:nətɪv",
+          "pos": "n. · adj.",
+          "meaning": "n. 代替品；adj. 两者选一的， 供选择的； 另类的；n. 替换物，选择；选择的自由"
+        },
+        {
+          "word": "alternatively",
+          "phonetic": "ɔːl'tɜːnətɪvlɪ",
+          "pos": "adv.",
+          "meaning": "adv. 二选一地；非此即彼"
+        }
+      ]
+    },
+    {
+      "root": "annu",
+      "base": "annual",
+      "words": [
+        {
+          "word": "annual",
+          "phonetic": "'ænjuəl",
+          "pos": "adj. · n.",
+          "meaning": "adj. 每年的，一年一次的；n. 年报， 年鉴； 一年生的植物"
+        },
+        {
+          "word": "annually",
+          "phonetic": "'ænjʊəlɪ; 'ænjʊlɪ",
+          "pos": "adv.",
+          "meaning": "adv. 年年，每年"
+        }
+      ]
+    },
+    {
+      "root": "applic",
+      "base": "applicable",
+      "words": [
+        {
+          "word": "applicable",
+          "phonetic": "əˈplɪkəbl",
+          "pos": "adj.",
+          "meaning": "adj. 可应用的"
+        },
+        {
+          "word": "application",
+          "phonetic": "ˌæplɪ'keɪʃn",
+          "pos": "n.",
+          "meaning": "n. 申请， 申请书； 施用， 涂抹； 应用， 实施； 实用性"
+        }
+      ]
+    },
+    {
+      "root": "app",
+      "base": "apply",
+      "words": [
+        {
+          "word": "appeal",
+          "phonetic": "əˈpiːl",
+          "pos": "n. · vi. · vt.",
+          "meaning": "n. 请求，呼吁, 上诉；vi. 求助，诉请；要求；有吸引力；vt. 控诉，移交上级法院审理；n. 吸引力； 呼吁； 上诉"
+        },
+        {
+          "word": "apply",
+          "phonetic": "ə'plaɪ",
+          "pos": "vi. · vt.",
+          "meaning": "vi. 应用，实施，使用；适用；申请，请求；vt. 涂， 敷， 施"
+        }
+      ]
+    },
+    {
+      "root": "appreci",
+      "base": "appreciable",
+      "words": [
+        {
+          "word": "appreciable",
+          "phonetic": "ə'priːʃəb(ə)l; -ʃɪə-",
+          "pos": "adj.",
+          "meaning": "adj. 可察觉的"
+        },
+        {
+          "word": "appreciation",
+          "phonetic": "əpriːʃɪ'eɪʃ(ə)n; -sɪ-",
+          "pos": "n.",
+          "meaning": "n. 欣赏；感激"
+        }
+      ]
+    },
+    {
+      "root": "appropriat",
+      "base": "appropriate",
+      "words": [
+        {
+          "word": "appropriate",
+          "phonetic": "ə'prəʊprɪət",
+          "pos": "adj. · vt.",
+          "meaning": "adj. 适当的；adj. 适当的，恰当的；vt. 私吞； 拨款供专用"
+        },
+        {
+          "word": "appropriation",
+          "phonetic": "ə,prəʊprɪ'eɪʃ(ə)n",
+          "pos": "n.",
+          "meaning": "n. 挪用；n. 据为己有， 占有； 挪用； 拨款"
+        }
+      ]
+    },
+    {
+      "root": "approv",
+      "base": "approve",
+      "words": [
+        {
+          "word": "approval",
+          "phonetic": "ə'pruːvl",
+          "pos": "n.",
+          "meaning": "n. 赞成， 同意； 认可， 批准"
+        },
+        {
+          "word": "approve",
+          "phonetic": "ə'pru:v",
+          "pos": "v. · vi. · vt.",
+          "meaning": "v. 赞同；vi. 赞成， 称许；vt. 赞成，称许；批准"
+        }
+      ]
+    },
+    {
+      "root": "apt",
+      "base": "apt",
+      "words": [
+        {
+          "word": "apt",
+          "phonetic": "æpt",
+          "pos": "adj.",
+          "meaning": "adj. 恰当的；聪明的；adj. 易于…的， 有…倾向的； 恰当的， 适宜的； 聪明的， 反应敏捷的"
+        },
+        {
+          "word": "aptly",
+          "phonetic": "ˈæptlɪ",
+          "pos": "adv.",
+          "meaning": "adv. 适当地"
+        }
+      ]
+    },
+    {
+      "root": "arm",
+      "base": "arm",
+      "words": [
+        {
+          "word": "arm",
+          "phonetic": "ɑ:m",
+          "pos": "v.",
+          "meaning": "v. 装备，武装"
+        },
+        {
+          "word": "armor",
+          "phonetic": "'ɑːmə",
+          "pos": "n.",
+          "meaning": "n. 盔甲， 装甲； 保护物"
+        }
+      ]
+    },
+    {
+      "root": "arrang",
+      "base": "arrange",
+      "words": [
+        {
+          "word": "arrange",
+          "phonetic": "ə'reɪndʒ",
+          "pos": "v.",
+          "meaning": "v. 安排， 准备； 整理"
+        },
+        {
+          "word": "arrangement",
+          "phonetic": "ə'reɪndʒmənt",
+          "pos": "n.",
+          "meaning": "n. 整理， 排列； 安排； 准备工作"
+        }
+      ]
+    },
+    {
+      "root": "aspirat",
+      "base": "aspiration",
+      "words": [
+        {
+          "word": "aspiration",
+          "phonetic": "ˌæspə'reɪʃn",
+          "pos": "n.",
+          "meaning": "n. 强烈的愿望； 志向， 抱负"
+        },
+        {
+          "word": "aspirational",
+          "phonetic": "ˌæspəˈreɪʃənl",
+          "pos": "adj.",
+          "meaning": "adj. 渴望的"
+        }
+      ]
+    },
+    {
+      "root": "assassinat",
+      "base": "assassinate",
+      "words": [
+        {
+          "word": "assassinate",
+          "phonetic": "ə'sæsɪneɪt",
+          "pos": "v.",
+          "meaning": "v. 刺杀，暗杀；v. 暗杀，行刺；中伤"
+        },
+        {
+          "word": "assassination",
+          "phonetic": "əˌsæsɪ'neɪʃn",
+          "pos": "n.",
+          "meaning": "n. 刺杀， 暗杀"
+        }
+      ]
+    },
+    {
+      "root": "assert",
+      "base": "assert",
+      "words": [
+        {
+          "word": "assert",
+          "phonetic": "əˈsɜːt",
+          "pos": "v. · vt.",
+          "meaning": "v. 主张，断言；v. 断言，宣称；维护；vt. 肯定地说， 断言； 维护， 坚持； 坚持己见"
+        },
+        {
+          "word": "assertive",
+          "phonetic": "ə'sɜːtɪv",
+          "pos": "adj.",
+          "meaning": "adj. 断定的； 过分自信的"
+        }
+      ]
+    },
+    {
+      "root": "assess",
+      "base": "assess",
+      "words": [
+        {
+          "word": "assess",
+          "phonetic": "ə'ses",
+          "pos": "vt.",
+          "meaning": "vt. 对估价； 评价， 评论"
+        },
+        {
+          "word": "assessment",
+          "phonetic": "əˈsesmənt",
+          "pos": "n.",
+          "meaning": "n. 评估，评价；n. 估定；查定"
+        }
+      ]
+    },
+    {
+      "root": "assign",
+      "base": "assign",
+      "words": [
+        {
+          "word": "assign",
+          "phonetic": "ə'saɪn",
+          "pos": "vt.",
+          "meaning": "vt. 指派， 分配； 布置； 指定"
+        },
+        {
+          "word": "assignment",
+          "phonetic": "ə'saɪnmənt",
+          "pos": "n.",
+          "meaning": "n. 任务； 指定的作业； 分配， 指派"
+        }
+      ]
+    },
+    {
+      "root": "assimilat",
+      "base": "assimilate",
+      "words": [
+        {
+          "word": "assimilate",
+          "phonetic": "əˈsɪməleɪt",
+          "pos": "v. · vi. · vt.",
+          "meaning": "v. 同化；vi. 被吸收， 被消化； 被同化；vt. 吸收，消化；使同化"
+        },
+        {
+          "word": "assimilation",
+          "phonetic": "əˌsɪmə'leɪʃn",
+          "pos": "n.",
+          "meaning": "n. 同化， 同化作用； 消化"
+        }
+      ]
+    },
+    {
+      "root": "associat",
+      "base": "associate",
+      "words": [
+        {
+          "word": "associate",
+          "phonetic": "ə'səuʃieɪt",
+          "pos": "v. · adj. · n.",
+          "meaning": "v. 把…联系在一起；使联合，结合；交往\t[ə'səuʃiət]；adj. 副的；n. 伙伴，同事"
+        },
+        {
+          "word": "association",
+          "phonetic": "əˌsəʊʃɪ'eɪʃn",
+          "pos": "n.",
+          "meaning": "n. 联系；n. 协会， 团体； 联合， 交往"
+        }
+      ]
+    },
+    {
+      "root": "assur",
+      "base": "assure",
+      "words": [
+        {
+          "word": "assurance",
+          "phonetic": "ə'ʃʊər(ə)ns",
+          "pos": "n.",
+          "meaning": "n. 保证；n. 把握， 信心； 保证， 表示保证的话； 保险"
+        },
+        {
+          "word": "assure",
+          "phonetic": "ə'ʃuə",
+          "pos": "vt.",
+          "meaning": "vt. 使确信； 确保， 向…保证"
+        }
+      ]
+    },
+    {
+      "root": "athletic",
+      "base": "athletic",
+      "words": [
+        {
+          "word": "athletic",
+          "phonetic": "æθˈletɪk",
+          "pos": "adj.",
+          "meaning": "adj. 运动的，运动员的"
+        },
+        {
+          "word": "athletics",
+          "phonetic": "æθˈletɪks",
+          "pos": "n.",
+          "meaning": "n. 体育运动"
+        }
+      ]
+    },
+    {
+      "root": "attach",
+      "base": "attach",
+      "words": [
+        {
+          "word": "attach",
+          "phonetic": "ə'tætʃ",
+          "pos": "vt.",
+          "meaning": "vt. 缚， 系， 贴， 附加； 使依恋， 使喜爱； 使附属； 认为有"
+        },
+        {
+          "word": "attachment",
+          "phonetic": "ə'tætʃm(ə)nt",
+          "pos": "n.",
+          "meaning": "n. 爱慕；附件；连接物"
+        }
+      ]
+    },
+    {
+      "root": "attract",
+      "base": "attract",
+      "words": [
+        {
+          "word": "attract",
+          "phonetic": "ə'trækt",
+          "pos": "vt.",
+          "meaning": "vt. 吸引， 引起…注意"
+        },
+        {
+          "word": "attractive",
+          "phonetic": "ə'træktɪv",
+          "pos": "adj.",
+          "meaning": "adj. 有吸引力的， 引起注意的"
+        }
+      ]
+    },
+    {
+      "root": "auth",
+      "base": "author",
+      "words": [
+        {
+          "word": "author",
+          "phonetic": "'ɔːθə",
+          "pos": "n.",
+          "meaning": "n. 创造者，创始人；n. 著作家， 作者"
+        },
+        {
+          "word": "authority",
+          "phonetic": "ɔ:ˈθɒrəti",
+          "pos": "n.",
+          "meaning": "n. 权威；n. 官方； 权力； 当权者， 行政管理机构； 权威， 专家"
+        }
+      ]
+    },
+    {
+      "root": "authoriz",
+      "base": "authorize",
+      "words": [
+        {
+          "word": "authorization",
+          "phonetic": "ˈɔ:θəraɪzeɪʃən",
+          "pos": "n.",
+          "meaning": "n. 授权"
+        },
+        {
+          "word": "authorize",
+          "phonetic": "'ɔːθəraɪz",
+          "pos": "vt.",
+          "meaning": "vt. 授权， 批准"
+        }
+      ]
+    },
+    {
+      "root": "automatic",
+      "base": "automatic",
+      "words": [
+        {
+          "word": "automatic",
+          "phonetic": "ˌɔ:tə'mætɪk",
+          "pos": "adj. · n.",
+          "meaning": "adj. 自动的；adj. 自动的； 必然发生的； 无意识的；n. 自动机械"
+        },
+        {
+          "word": "Automatically",
+          "phonetic": "ɔːtə'mætɪklɪ",
+          "pos": "adv.",
+          "meaning": "adv. 自动地；不经思考地"
+        }
+      ]
+    },
+    {
+      "root": "avail",
+      "base": "avail",
+      "words": [
+        {
+          "word": "avail",
+          "phonetic": "ə'veɪl",
+          "pos": "v. · n.",
+          "meaning": "v. 有益于，有用；n. 效用；v. 有帮助； 有益； 有用；n. 效用，利益，帮助"
+        },
+        {
+          "word": "available",
+          "phonetic": "əˈveɪləbl",
+          "pos": "adj.",
+          "meaning": "adj. 可获得的，可利用的；adj. 现成可使用的， 通用的； 可取的； 联系的； 可得到的"
+        }
+      ]
+    },
+    {
+      "root": "awar",
+      "base": "aware",
+      "words": [
+        {
+          "word": "aware",
+          "phonetic": "ə'weə",
+          "pos": "adj.",
+          "meaning": "adj. 知道的， 意识到的"
+        },
+        {
+          "word": "awareness",
+          "phonetic": "əˈweənəs",
+          "pos": "n.",
+          "meaning": "n. 意识"
+        }
+      ]
+    },
+    {
+      "root": "axi",
+      "base": "axis",
+      "words": [
+        {
+          "word": "axial",
+          "phonetic": "'æksɪəl",
+          "pos": "adj.",
+          "meaning": "adj. 轴的；轴向的"
+        },
+        {
+          "word": "axis",
+          "phonetic": "'æksɪs",
+          "pos": "n.",
+          "meaning": "n. 轴，轴线；n. 轴， 轴线， 中心线； 坐标轴， 基准线"
+        }
+      ]
+    },
+    {
+      "root": "bank",
+      "base": "bank",
+      "words": [
+        {
+          "word": "bank",
+          "phonetic": "bæŋk",
+          "pos": "v.",
+          "meaning": "v. 把钱存入银行"
+        },
+        {
+          "word": "banker",
+          "phonetic": "'bæŋkə",
+          "pos": "n.",
+          "meaning": "n. 银行家"
+        }
+      ]
+    },
+    {
+      "root": "bitt",
+      "base": "bitter",
+      "words": [
+        {
+          "word": "bitter",
+          "phonetic": "'bɪtə(r)",
+          "pos": "adj.",
+          "meaning": "adj. 痛苦的"
+        },
+        {
+          "word": "bitterness",
+          "phonetic": "bɪtənəs",
+          "pos": "n.",
+          "meaning": "n. 苦味，辛酸，苦难"
+        }
+      ]
+    },
+    {
+      "root": "bor",
+      "base": "bore",
+      "words": [
+        {
+          "word": "bore",
+          "phonetic": "bɔː",
+          "pos": "n.",
+          "meaning": "n. 讨厌的人；麻烦事"
+        },
+        {
+          "word": "boring",
+          "phonetic": "'bɔːrɪŋ",
+          "pos": "adj.",
+          "meaning": "adj. 令人厌烦的， 乏味的， 无聊的"
+        }
+      ]
+    },
+    {
+      "root": "calculat",
+      "base": "calculate",
+      "words": [
+        {
+          "word": "calculate",
+          "phonetic": "'kælkjuleɪt",
+          "pos": "v.",
+          "meaning": "v. 计算， 推算； 计划， 打算"
+        },
+        {
+          "word": "calculation",
+          "phonetic": "ˌkælkjuˈleɪʃn",
+          "pos": "n.",
+          "meaning": "n. 计算"
+        }
+      ]
+    },
+    {
+      "root": "can",
+      "base": "can",
+      "words": [
+        {
+          "word": "can",
+          "phonetic": "kæn",
+          "pos": "v.",
+          "meaning": "v. 装罐头"
+        },
+        {
+          "word": "cane",
+          "phonetic": "keɪn",
+          "pos": "n.",
+          "meaning": "n. （藤等）茎；手杖；n. 手杖； 茎"
+        }
+      ]
+    },
+    {
+      "root": "capacit",
+      "base": "capacitor",
+      "words": [
+        {
+          "word": "capacitance",
+          "phonetic": "kə'pæsɪt(ə)ns",
+          "pos": "n.",
+          "meaning": "n. 电容，电容量"
+        },
+        {
+          "word": "capacitor",
+          "phonetic": "kə'pæsɪtə",
+          "pos": "n.",
+          "meaning": "n. 电容器"
+        }
+      ]
+    },
+    {
+      "root": "cap",
+      "base": "cape",
+      "words": [
+        {
+          "word": "capable",
+          "phonetic": "'keɪpəbl",
+          "pos": "adj.",
+          "meaning": "adj. 有能力的；adj. 有能力的， 有才能的"
+        },
+        {
+          "word": "cape",
+          "phonetic": "keɪp",
+          "pos": "n.",
+          "meaning": "n. 披肩，斗篷；海角；n. 斗篷， 披肩； 海角， 岬"
+        }
+      ]
+    },
+    {
+      "root": "capt",
+      "base": "caption",
+      "words": [
+        {
+          "word": "caption",
+          "phonetic": "'kæpʃn",
+          "pos": "n.",
+          "meaning": "n. 说明文字， 字幕"
+        },
+        {
+          "word": "captive",
+          "phonetic": "'kæptɪv",
+          "pos": "adj. · n.",
+          "meaning": "adj. 被俘虏的；adj. 被俘虏的，被捕获的；n. 俘虏"
+        },
+        {
+          "word": "capture",
+          "phonetic": "'kæptʃə(r)",
+          "pos": "v.",
+          "meaning": "v. 捕捉"
+        }
+      ]
+    },
+    {
+      "root": "chronic",
+      "base": "chronic",
+      "words": [
+        {
+          "word": "chronic",
+          "phonetic": "ˈkrɒnɪk",
+          "pos": "adj.",
+          "meaning": "adj. 长期的；慢性的；adj. 慢性的， 久病的； 长久的， 不断的； 积习难改的"
+        },
+        {
+          "word": "chronically",
+          "phonetic": "'krɑnɪkli",
+          "pos": "adv.",
+          "meaning": "adv. 慢性地；持久地"
+        }
+      ]
+    },
+    {
+      "root": "cit",
+      "base": "cite",
+      "words": [
+        {
+          "word": "citation",
+          "phonetic": "saɪ'teɪʃn",
+          "pos": "n.",
+          "meaning": "n. 引文"
+        },
+        {
+          "word": "cite",
+          "phonetic": "saɪt",
+          "pos": "v. · vt.",
+          "meaning": "v. 引证；引用；〔法院〕传召，传讯；vt. 引用， 引证； 传唤， 传讯； 表彰， 嘉奖"
+        }
+      ]
+    },
+    {
+      "root": "classic",
+      "base": "classic",
+      "words": [
+        {
+          "word": "classic",
+          "phonetic": "'klæsɪk",
+          "pos": "n. · adj.",
+          "meaning": "n. 名著；adj. 不朽的；adj. 最优秀的，典型的，标准的；传统式样的，典雅的；n. 文学名著，经典作品，杰作；优秀的典范；"
+        },
+        {
+          "word": "classical",
+          "phonetic": "'klæsɪkl",
+          "pos": "adj.",
+          "meaning": "adj. 古典的， 经典的"
+        }
+      ]
+    },
+    {
+      "root": "clear",
+      "base": "clearing",
+      "words": [
+        {
+          "word": "clearance",
+          "phonetic": "'klɪərəns",
+          "pos": "n.",
+          "meaning": "n. 净空， 余隙； 许可， 批准； 票据交换， 清算； 清除， 清理， 出空"
+        },
+        {
+          "word": "clearing",
+          "phonetic": "'klɪərɪŋ",
+          "pos": "n.",
+          "meaning": "n. （森林中的）空旷地"
+        }
+      ]
+    },
+    {
+      "root": "coincid",
+      "base": "coincide",
+      "words": [
+        {
+          "word": "coincide",
+          "phonetic": ",kəʊɪn'saɪd",
+          "pos": "v. · vi.",
+          "meaning": "v. 相巧合；相符合；vi. 同时发生； 相符， 相一致； 位置重合， 重叠"
+        },
+        {
+          "word": "coincidence",
+          "phonetic": "kəu'ɪnsɪdəns",
+          "pos": "n.",
+          "meaning": "n. 巧合， 巧事； 一致， 符合"
+        }
+      ]
+    },
+    {
+      "root": "collaborat",
+      "base": "collaborate",
+      "words": [
+        {
+          "word": "collaborate",
+          "phonetic": "kəˈlæbəreɪt",
+          "pos": "v.",
+          "meaning": "v. 合作；v. 协作，合作；协调"
+        },
+        {
+          "word": "collaboration",
+          "phonetic": "kəˌlæbə'reɪʃn",
+          "pos": "n.",
+          "meaning": "n. 合作， 协作； 勾结"
+        },
+        {
+          "word": "collaborative",
+          "phonetic": "kəˈlæbərətɪv",
+          "pos": "adj.",
+          "meaning": "adj. 合作的"
+        }
+      ]
+    },
+    {
+      "root": "combin",
+      "base": "combine",
+      "words": [
+        {
+          "word": "combination",
+          "phonetic": "kɒmbɪ'neɪʃ(ə)n",
+          "pos": "n.",
+          "meaning": "n. 组合，结合；n. 结合， 联合； 化合"
+        },
+        {
+          "word": "combine",
+          "phonetic": "kəm'baɪn",
+          "pos": "v. · n.",
+          "meaning": "v. 结合，联合；化合；n. 联合企业； 联合收割机"
+        }
+      ]
+    },
+    {
+      "root": "commit",
+      "base": "commit",
+      "words": [
+        {
+          "word": "commit",
+          "phonetic": "kə'mɪt",
+          "pos": "vt.",
+          "meaning": "vt. 犯， 干； 使承诺； 把…托付给； 调拨…供使用， 拨出"
+        },
+        {
+          "word": "commitment",
+          "phonetic": "kə'mɪtmənt",
+          "pos": "n.",
+          "meaning": "n. 承诺；n. 承诺， 许诺， 保证； 信奉， 献身； 承担的义务"
+        }
+      ]
+    },
+    {
+      "root": "communicat",
+      "base": "communicate",
+      "words": [
+        {
+          "word": "communicate",
+          "phonetic": "kə'mjuːnɪkeɪt",
+          "pos": "v.",
+          "meaning": "v. 通讯， 交际， 交流； 连接， 相通； 传达， 传播； 传染"
+        },
+        {
+          "word": "communication",
+          "phonetic": "kəˌmjuːnɪ'keɪʃn",
+          "pos": "n.",
+          "meaning": "n. 通讯， 交流， 交际； 通信工具， 交通联系"
+        }
+      ]
+    },
+    {
+      "root": "compar",
+      "base": "compare",
+      "words": [
+        {
+          "word": "comparable",
+          "phonetic": "'kɒmp(ə)rəb(ə)l",
+          "pos": "adj.",
+          "meaning": "adj. 可比较的；类似的；adj. 可比较的； 类似的； 比得上的"
+        },
+        {
+          "word": "compare",
+          "phonetic": "kəm'peə",
+          "pos": "vt.",
+          "meaning": "vt. 比较， 对照； 把…比作"
+        }
+      ]
+    },
+    {
+      "root": "compensat",
+      "base": "compensate",
+      "words": [
+        {
+          "word": "compensate",
+          "phonetic": "'kɒmpenseɪt",
+          "pos": "v.",
+          "meaning": "v. 弥补；v. 补偿，赔偿；v. 补偿， 弥补； 抵消"
+        },
+        {
+          "word": "compensation",
+          "phonetic": "kɒmpen'seɪʃ(ə)n",
+          "pos": "n.",
+          "meaning": "n. 补偿，赔偿，赔偿费"
+        }
+      ]
+    },
+    {
+      "root": "compet",
+      "base": "compete",
+      "words": [
+        {
+          "word": "compete",
+          "phonetic": "kəm'piːt",
+          "pos": "vi.",
+          "meaning": "vi. 比赛， 竞争， 对抗"
+        },
+        {
+          "word": "competence",
+          "phonetic": "ˈkɒmpɪtəns",
+          "pos": "n.",
+          "meaning": "n. 能力；n. 能力， 胜任， 称职"
+        },
+        {
+          "word": "competition",
+          "phonetic": "ˌkɒmpə'tɪʃn",
+          "pos": "n.",
+          "meaning": "n. 比赛； 竞争"
+        }
+      ]
+    },
+    {
+      "root": "competit",
+      "base": "competitor",
+      "words": [
+        {
+          "word": "competitive",
+          "phonetic": "kəm'petɪtɪv",
+          "pos": "adj.",
+          "meaning": "adj. 竞争的，比赛的；adj. 竞争的， 比赛的； 好竞争的， 求胜心切的； 有竞争力的"
+        },
+        {
+          "word": "competitor",
+          "phonetic": "kəm'petɪtə",
+          "pos": "n.",
+          "meaning": "n. 竞争者，敌手"
+        }
+      ]
+    },
+    {
+      "root": "complex",
+      "base": "complex",
+      "words": [
+        {
+          "word": "complex",
+          "phonetic": "'kɒmpleks",
+          "pos": "adj. · n.",
+          "meaning": "adj. 由许多部分组成的，复合的；复杂的，难懂的；n. 综合体， 集合体； 情结， 夸大的情绪反应"
+        },
+        {
+          "word": "complexion",
+          "phonetic": "kəm'plekʃn",
+          "pos": "n.",
+          "meaning": "n. 肤色， 面色； 局面； 性质"
+        },
+        {
+          "word": "complexity",
+          "phonetic": "kəm'pleksətɪ",
+          "pos": "n.",
+          "meaning": "n. 复杂（性）"
+        }
+      ]
+    },
+    {
+      "root": "complicat",
+      "base": "complicated",
+      "words": [
+        {
+          "word": "complicated",
+          "phonetic": "'kɒmplɪkeɪtɪd",
+          "pos": "adj.",
+          "meaning": "adj. 复杂的；adj. 复杂的， 难懂的"
+        },
+        {
+          "word": "complication",
+          "phonetic": "kɒmplɪ'keɪʃ(ə)n",
+          "pos": "n.",
+          "meaning": "n. 复杂，混乱；并发症；n. 困难， 难题； 并发症"
+        }
+      ]
+    },
+    {
+      "root": "compo",
+      "base": "composer",
+      "words": [
+        {
+          "word": "composer",
+          "phonetic": "kəm'pəʊzə",
+          "pos": "n.",
+          "meaning": "n. 作曲家"
+        },
+        {
+          "word": "composition",
+          "phonetic": "ˌkɒmpəˈzɪʃn",
+          "pos": "n.",
+          "meaning": "n. 作文；n. 组成，构成，结构"
+        }
+      ]
+    },
+    {
+      "root": "comprehen",
+      "base": "comprehension",
+      "words": [
+        {
+          "word": "comprehension",
+          "phonetic": "ˌkɒmprɪ'henʃn",
+          "pos": "n.",
+          "meaning": "n. 理解， 理解力， 领悟； 理解力测验"
+        },
+        {
+          "word": "comprehensive",
+          "phonetic": "ˌkɒmprɪˈhensɪv",
+          "pos": "adj.",
+          "meaning": "adj. 综合的，全面的；adj. 广泛的； 综合的； 理解的"
+        }
+      ]
+    },
+    {
+      "root": "concentrat",
+      "base": "concentrate",
+      "words": [
+        {
+          "word": "concentrate",
+          "phonetic": "'kɒns(ə)ntreɪt",
+          "pos": "v. · n.",
+          "meaning": "v. 浓缩，提浓；v. 全神贯注，全力以赴；集中，聚集；浓缩；n. 浓缩物， 浓缩液"
+        },
+        {
+          "word": "concentration",
+          "phonetic": "ˌkɒnsn'treɪʃn",
+          "pos": "n.",
+          "meaning": "n. 集中； 专注， 专心； 浓缩； 浓度"
+        }
+      ]
+    },
+    {
+      "root": "concept",
+      "base": "concept",
+      "words": [
+        {
+          "word": "concept",
+          "phonetic": "'kɒnsept",
+          "pos": "n.",
+          "meaning": "n. 概念， 观念； 设想"
+        },
+        {
+          "word": "conception",
+          "phonetic": "kən'sepʃ(ə)n",
+          "pos": "n.",
+          "meaning": "n. 概念，观念，想法；n. 思想， 观念， 概念； 构想， 设想； 怀孕"
+        }
+      ]
+    },
+    {
+      "root": "conf",
+      "base": "confer",
+      "words": [
+        {
+          "word": "confer",
+          "phonetic": "kənˈfɜ:(r)",
+          "pos": "v. · vi. · vt.",
+          "meaning": "v. 授予；vi. 商谈，商议；vt. 授予， 赋予"
+        },
+        {
+          "word": "conference",
+          "phonetic": "'kɒnfərəns",
+          "pos": "n.",
+          "meaning": "n. 会议， 讨论会； 讨论， 商谈"
+        }
+      ]
+    },
+    {
+      "root": "confirm",
+      "base": "confirm",
+      "words": [
+        {
+          "word": "confirm",
+          "phonetic": "kən'fɜːm",
+          "pos": "vt.",
+          "meaning": "vt. 证实， 肯定； 确认； 批准"
+        },
+        {
+          "word": "confirmation",
+          "phonetic": "kɒnfə'meɪʃ(ə)n",
+          "pos": "n.",
+          "meaning": "n. 证实，确定；确认"
+        }
+      ]
+    },
+    {
+      "root": "conform",
+      "base": "conform",
+      "words": [
+        {
+          "word": "conform",
+          "phonetic": "kən'fɔːm",
+          "pos": "v. · vi.",
+          "meaning": "v. 使遵守；一致；vi. 遵守， 适应； 顺从； 相似， 一致， 符合"
+        },
+        {
+          "word": "conformity",
+          "phonetic": "kən'fɔ:mɪtɪ",
+          "pos": "n.",
+          "meaning": "n. 一致"
+        }
+      ]
+    },
+    {
+      "root": "conqu",
+      "base": "conquer",
+      "words": [
+        {
+          "word": "conquer",
+          "phonetic": "ˈkɒŋkə(r)",
+          "pos": "v.",
+          "meaning": "v. 征服"
+        },
+        {
+          "word": "conqueror",
+          "phonetic": "'kɒŋk(ə)rə(r)",
+          "pos": "n.",
+          "meaning": "n. 征服者，胜利者"
+        }
+      ]
+    },
+    {
+      "root": "consci",
+      "base": "conscious",
+      "words": [
+        {
+          "word": "conscious",
+          "phonetic": "'kɒnʃəs",
+          "pos": "adj.",
+          "meaning": "adj. 意识到的， 自觉的； 神志清醒的； 有意的， 存心的"
+        },
+        {
+          "word": "consciousness",
+          "phonetic": "'kɒnʃəsnɪs",
+          "pos": "n.",
+          "meaning": "n. 意识；知觉"
+        }
+      ]
+    },
+    {
+      "root": "consequent",
+      "base": "consequent",
+      "words": [
+        {
+          "word": "consequent",
+          "phonetic": "'kɒnsɪkw(ə)nt",
+          "pos": "adj.",
+          "meaning": "adj. 作为结果的；必然的；adj. 作为结果的， 随之发生的"
+        },
+        {
+          "word": "consequently",
+          "phonetic": "'kɒnsɪkwəntli",
+          "pos": "adv.",
+          "meaning": "adv. 因此， 因而， 所以"
+        }
+      ]
+    },
+    {
+      "root": "conserv",
+      "base": "conserve",
+      "words": [
+        {
+          "word": "conservation",
+          "phonetic": "ˌkɒnsəˈveɪʃn",
+          "pos": "n.",
+          "meaning": "n. 保护；n. 保存， 保护， 避免浪费； 守恒"
+        },
+        {
+          "word": "conserve",
+          "phonetic": "kənˈsɜːv",
+          "pos": "v. · vt.",
+          "meaning": "v. 保留，保护；vt. 保护， 保藏， 保存"
+        }
+      ]
+    },
+    {
+      "root": "constitut",
+      "base": "constitute",
+      "words": [
+        {
+          "word": "constitute",
+          "phonetic": "'kɒnstɪtjuːt",
+          "pos": "v. · vt.",
+          "meaning": "v. 构成，组成；vt. 组成， 形成； 设立； 任命"
+        },
+        {
+          "word": "constitution",
+          "phonetic": "kɒnstɪ'tjuːʃ(ə)n",
+          "pos": "n.",
+          "meaning": "n. （人的）体格，素质；n. 宪法， 章程； 组成； 设立"
+        }
+      ]
+    },
+    {
+      "root": "construct",
+      "base": "construct",
+      "words": [
+        {
+          "word": "construct",
+          "phonetic": "kən'strʌkt",
+          "pos": "vt. · n.",
+          "meaning": "vt. 建造； 构思；n. 建筑物； 构想； 观念"
+        },
+        {
+          "word": "construction",
+          "phonetic": "kən'strʌkʃn",
+          "pos": "n.",
+          "meaning": "n. 建筑；n. 建筑结构"
+        }
+      ]
+    },
+    {
+      "root": "consult",
+      "base": "consult",
+      "words": [
+        {
+          "word": "consult",
+          "phonetic": "kən'sʌlt",
+          "pos": "v. · vt.",
+          "meaning": "v. 咨询；vt. 请教； 查阅； 商议"
+        },
+        {
+          "word": "consultation",
+          "phonetic": "ˌkɒnslˈteɪʃn",
+          "pos": "n.",
+          "meaning": "n. 商议"
+        }
+      ]
+    },
+    {
+      "root": "consum",
+      "base": "consume",
+      "words": [
+        {
+          "word": "consume",
+          "phonetic": "kən'sjuːm",
+          "pos": "vi. · vt.",
+          "meaning": "vi. 消灭， 毁灭；vt. 消费；吃完，喝光"
+        },
+        {
+          "word": "consumer",
+          "phonetic": "kən'sjuːmə",
+          "pos": "n.",
+          "meaning": "n. 消费者，用户；n. 消费者， 用户， 消耗者"
+        }
+      ]
+    },
+    {
+      "root": "contaminat",
+      "base": "contaminate",
+      "words": [
+        {
+          "word": "contaminate",
+          "phonetic": "kən'tæmɪneɪt",
+          "pos": "v. · vt.",
+          "meaning": "v. 污染，弄脏；vt. 弄脏， 污染"
+        },
+        {
+          "word": "contamination",
+          "phonetic": "kənˌtæmɪ'neɪʃən",
+          "pos": "n.",
+          "meaning": "n. 污染"
+        }
+      ]
+    },
+    {
+      "root": "content",
+      "base": "content",
+      "words": [
+        {
+          "word": "content",
+          "phonetic": "'kɒntent",
+          "pos": "adj.",
+          "meaning": "adj. 满意的"
+        },
+        {
+          "word": "contention",
+          "phonetic": "kənˈtenʃn",
+          "pos": "n.",
+          "meaning": "n. 争论；n. 论点； 争论， 争辩"
+        }
+      ]
+    },
+    {
+      "root": "continu",
+      "base": "continual",
+      "words": [
+        {
+          "word": "continual",
+          "phonetic": "kən'tɪnjuəl",
+          "pos": "adj.",
+          "meaning": "adj. 连续的； 频频的"
+        },
+        {
+          "word": "continuity",
+          "phonetic": "ˌkɒntɪ'njuːəti",
+          "pos": "n.",
+          "meaning": "n. 连续， 持续"
+        }
+      ]
+    },
+    {
+      "root": "contradict",
+      "base": "contradict",
+      "words": [
+        {
+          "word": "contradict",
+          "phonetic": "kɒntrə'dɪkt",
+          "pos": "v. · vt.",
+          "meaning": "v. 反驳，否认；vt. 反驳， 否认…的真实性； 与…发生矛盾， 与…抵触"
+        },
+        {
+          "word": "contradiction",
+          "phonetic": "ˌkɒntrə'dɪkʃn",
+          "pos": "n.",
+          "meaning": "n. 矛盾， 不一致； 否认， 反驳"
+        }
+      ]
+    },
+    {
+      "root": "contribut",
+      "base": "contribute",
+      "words": [
+        {
+          "word": "contribute",
+          "phonetic": "kən'trɪbju:t",
+          "pos": "v.",
+          "meaning": "v. 有助于；v. 捐献， 捐款； 投稿"
+        },
+        {
+          "word": "contribution",
+          "phonetic": "ˌkɒntrɪˈbju:ʃn",
+          "pos": "n.",
+          "meaning": "n. 贡献；n. 贡献； 促成作用； 捐款， 捐献物； 稿件"
+        }
+      ]
+    },
+    {
+      "root": "convent",
+      "base": "convention",
+      "words": [
+        {
+          "word": "convention",
+          "phonetic": "kən'venʃ(ə)n",
+          "pos": "n.",
+          "meaning": "n. 公约，（换俘等）协定；n. 习俗， 惯例； 公约； 会议"
+        },
+        {
+          "word": "conventional",
+          "phonetic": "kən'venʃənl",
+          "pos": "adj.",
+          "meaning": "adj. 传统的；adj. 普通的； 习惯的， 常规的； 因循守旧的"
+        }
+      ]
+    },
+    {
+      "root": "convict",
+      "base": "convict",
+      "words": [
+        {
+          "word": "convict",
+          "phonetic": "kən'vɪkt",
+          "pos": "v. · vt. · n.",
+          "meaning": "v. 证明……有罪；vt. 证明…有罪，宣判…有罪['kɒnvɪkt]；n. 囚犯"
+        },
+        {
+          "word": "conviction",
+          "phonetic": "kən'vɪkʃ(ə)n",
+          "pos": "n.",
+          "meaning": "n. 确信，信服，深信"
+        }
+      ]
+    },
+    {
+      "root": "convinc",
+      "base": "convince",
+      "words": [
+        {
+          "word": "convince",
+          "phonetic": "kən'vɪns",
+          "pos": "v. · vt.",
+          "meaning": "v. 使……相信；vt. 使确信， 使信服， 说服"
+        },
+        {
+          "word": "convincing",
+          "phonetic": "kən'vɪnsɪŋ",
+          "pos": "adj.",
+          "meaning": "adj. 令人信服的"
+        }
+      ]
+    },
+    {
+      "root": "coordinat",
+      "base": "coordinate",
+      "words": [
+        {
+          "word": "coordinate",
+          "phonetic": "kəʊ'ɔ:dɪneɪt",
+          "pos": "adj.",
+          "meaning": "adj. 同等的"
+        },
+        {
+          "word": "coordination",
+          "phonetic": "kəʊˌɔ:dnˈeɪʃən",
+          "pos": "n.",
+          "meaning": "n. 协调"
+        }
+      ]
+    },
+    {
+      "root": "correlat",
+      "base": "correlate",
+      "words": [
+        {
+          "word": "correlate",
+          "phonetic": "'kɒrəleɪt; -rɪ-",
+          "pos": "n. · vi. · vt.",
+          "meaning": "n. 互相关联的事物；vi. 相关， 关联；vt. 使相互关联"
+        },
+        {
+          "word": "correlation",
+          "phonetic": ",kɔrə'leʃən",
+          "pos": "n.",
+          "meaning": "n. 相关，关联；n. 相互关系"
+        }
+      ]
+    },
+    {
+      "root": "correspond",
+      "base": "corresponding",
+      "words": [
+        {
+          "word": "correspondence",
+          "phonetic": "kɒrɪ'spɒnd(ə)ns",
+          "pos": "n.",
+          "meaning": "n. 通信；相关；相似；n. 信件， 函件； 通信， 通信联系； 符合， 一致， 相似"
+        },
+        {
+          "word": "corresponding",
+          "phonetic": "ˌkɒrə'spɒndɪŋ",
+          "pos": "adj.",
+          "meaning": "adj. 相应的， 符合的"
+        }
+      ]
+    },
+    {
+      "root": "corrupt",
+      "base": "corrupt",
+      "words": [
+        {
+          "word": "corrupt",
+          "phonetic": "kə'rʌpt",
+          "pos": "v. · adj. · vt.",
+          "meaning": "v. 使腐化；adj. 腐败的；adj. 堕落的，腐败的，贪赃舞弊的；vt. 腐蚀， 使堕落"
+        },
+        {
+          "word": "corruption",
+          "phonetic": "kəˈrʌpʃn",
+          "pos": "n.",
+          "meaning": "n. 腐败"
+        }
+      ]
+    },
+    {
+      "root": "counsel",
+      "base": "counsel",
+      "words": [
+        {
+          "word": "counsel",
+          "phonetic": "'kaʊnsl",
+          "pos": "v. · n. · vt.",
+          "meaning": "v. 建议，忠告；n. 商议；忠告；律师；n. 律师，法律顾问；忠告，劝告；vt. 劝告， 提议"
+        },
+        {
+          "word": "counselor",
+          "phonetic": "'kaʊnsələ",
+          "pos": "n.",
+          "meaning": "n. 咨询顾问"
+        }
+      ]
+    },
+    {
+      "root": "count",
+      "base": "count",
+      "words": [
+        {
+          "word": "count",
+          "phonetic": "kaʊnt",
+          "pos": "n.",
+          "meaning": "n. 起拆理由，罪状"
+        },
+        {
+          "word": "counter",
+          "phonetic": "'kaʊntə",
+          "pos": "adv. · adj. · n.",
+          "meaning": "adv. 相反地；adj. 相反的；n. 柜台； 计数器； 筹码"
+        }
+      ]
+    },
+    {
+      "root": "court",
+      "base": "court",
+      "words": [
+        {
+          "word": "court",
+          "phonetic": "kɔːt",
+          "pos": "n.",
+          "meaning": "n. 法院， 法庭； 庭院； 宫廷； 球场"
+        },
+        {
+          "word": "courteous",
+          "phonetic": "'kɜːtjəs",
+          "pos": "adj.",
+          "meaning": "adj. 有礼貌的，谦恭的"
+        }
+      ]
+    },
+    {
+      "root": "critic",
+      "base": "critic",
+      "words": [
+        {
+          "word": "critic",
+          "phonetic": "'krɪtɪk",
+          "pos": "n.",
+          "meaning": "n. 批评家， 爱挑剔的人"
+        },
+        {
+          "word": "critical",
+          "phonetic": "ˈkrɪtɪkl",
+          "pos": "adj.",
+          "meaning": "adj. 挑剔的，批评的；关键的；adj. 决定性的； 批评的"
+        }
+      ]
+    },
+    {
+      "root": "current",
+      "base": "current",
+      "words": [
+        {
+          "word": "current",
+          "phonetic": "'kʌrənt",
+          "pos": "adj. · n.",
+          "meaning": "adj. 当前的，通用的；流行的，流传的；n. 潮流； 电流； 趋势， 倾向"
+        },
+        {
+          "word": "currently",
+          "phonetic": "'kʌrəntlɪ",
+          "pos": "adv.",
+          "meaning": "adv. 当前"
+        }
+      ]
+    },
+    {
+      "root": "deal",
+      "base": "deal",
+      "words": [
+        {
+          "word": "deal",
+          "phonetic": "diːl",
+          "pos": "v.",
+          "meaning": "v. 买卖毒品"
+        },
+        {
+          "word": "dealer",
+          "phonetic": "'diːlə",
+          "pos": "n.",
+          "meaning": "n. 商人；毒品贩；发牌者"
+        }
+      ]
+    },
+    {
+      "root": "decorat",
+      "base": "decorate",
+      "words": [
+        {
+          "word": "decorate",
+          "phonetic": "'dekəreɪt",
+          "pos": "vt.",
+          "meaning": "vt. 装饰， 装潢， 修饰"
+        },
+        {
+          "word": "decorative",
+          "phonetic": "'dek(ə)rətɪv",
+          "pos": "adj.",
+          "meaning": "adj. 装饰的；可作装饰的"
+        }
+      ]
+    },
+    {
+      "root": "deduct",
+      "base": "deduct",
+      "words": [
+        {
+          "word": "deduct",
+          "phonetic": "dɪ'dʌkt",
+          "pos": "v.",
+          "meaning": "v. 减去， 扣除"
+        },
+        {
+          "word": "deduction",
+          "phonetic": "dɪˈdʌkʃn",
+          "pos": "n.",
+          "meaning": "n. 扣款"
+        }
+      ]
+    },
+    {
+      "root": "defin",
+      "base": "define",
+      "words": [
+        {
+          "word": "define",
+          "phonetic": "dɪ'faɪn",
+          "pos": "v. · vt.",
+          "meaning": "v. 规定；立（界限）；vt. 给…下定义， 限定"
+        },
+        {
+          "word": "definition",
+          "phonetic": "ˌdefɪ'nɪʃn",
+          "pos": "n.",
+          "meaning": "n. 定义， 释义， 定界； 清晰， 鲜明"
+        }
+      ]
+    },
+    {
+      "root": "definit",
+      "base": "definite",
+      "words": [
+        {
+          "word": "definite",
+          "phonetic": "'defɪnɪt",
+          "pos": "adj.",
+          "meaning": "adj. 一定的，确切的"
+        },
+        {
+          "word": "definitely",
+          "phonetic": "'defɪnətli",
+          "pos": "adv.",
+          "meaning": "adv. 一定地， 明确地"
+        },
+        {
+          "word": "definitive",
+          "phonetic": "dɪ'fɪnətɪv",
+          "pos": "adj.",
+          "meaning": "adj. 最可靠的， 权威性的； 决定性的"
+        }
+      ]
+    },
+    {
+      "root": "deflect",
+      "base": "deflect",
+      "words": [
+        {
+          "word": "deflect",
+          "phonetic": "dɪ'flekt",
+          "pos": "v.",
+          "meaning": "v. （使）偏斜"
+        },
+        {
+          "word": "deflection",
+          "phonetic": "dɪ'flekʃ(ə)n",
+          "pos": "n.",
+          "meaning": "n. 偏斜，歪斜；偏差"
+        }
+      ]
+    },
+    {
+      "root": "deform",
+      "base": "deform",
+      "words": [
+        {
+          "word": "deform",
+          "phonetic": "dɪ'fɔːm",
+          "pos": "v.",
+          "meaning": "v. 损坏…的形状"
+        },
+        {
+          "word": "deformation",
+          "phonetic": ",diːfɔː'meɪʃ(ə)n",
+          "pos": "n.",
+          "meaning": "n. 损坏；变形；畸形"
+        }
+      ]
+    },
+    {
+      "root": "degenerat",
+      "base": "degenerate",
+      "words": [
+        {
+          "word": "degenerate",
+          "phonetic": "dɪ'dʒenəreɪt",
+          "pos": "vi. · adj. · n.",
+          "meaning": "vi. 衰退，堕落，蜕化；adj. 衰退的，堕落的；n. 堕落者"
+        },
+        {
+          "word": "degeneration",
+          "phonetic": "dɪ,dʒɛnə'reʃən",
+          "pos": "n.",
+          "meaning": "n. 退化，变质"
+        }
+      ]
+    },
+    {
+      "root": "degrad",
+      "base": "degrade",
+      "words": [
+        {
+          "word": "degradation",
+          "phonetic": ",degrə'deɪʃ(ə)n",
+          "pos": "n.",
+          "meaning": "n. 降级；退化；衰变"
+        },
+        {
+          "word": "degrade",
+          "phonetic": "dɪ'greɪd",
+          "pos": "v. · vt.",
+          "meaning": "v. 使降低；使堕落；vt. 降低…的身份， 有辱…的人格； 使降解， 使退化"
+        }
+      ]
+    },
+    {
+      "root": "deliberat",
+      "base": "deliberate",
+      "words": [
+        {
+          "word": "deliberate",
+          "phonetic": "dɪ'lɪbərət",
+          "pos": "adj. · v.",
+          "meaning": "adj. 故意的；adj. 深思熟虑的；审慎的；adj. 故意的， 蓄意的； 慎重的， 深思熟虑的；v. 仔细考虑， 思考"
+        },
+        {
+          "word": "deliberately",
+          "phonetic": "dɪ'lɪbərətli",
+          "pos": "adv.",
+          "meaning": "adv. 故意地；审慎地"
+        }
+      ]
+    },
+    {
+      "root": "demonstrat",
+      "base": "demonstrate",
+      "words": [
+        {
+          "word": "demonstrate",
+          "phonetic": "'demənstreɪt",
+          "pos": "vt.",
+          "meaning": "vt. 说明， 论证； 表露"
+        },
+        {
+          "word": "demonstration",
+          "phonetic": "ˌdemənˈstreɪʃn",
+          "pos": "n.",
+          "meaning": "n. 展示；游行"
+        }
+      ]
+    },
+    {
+      "root": "depress",
+      "base": "depress",
+      "words": [
+        {
+          "word": "depress",
+          "phonetic": "dɪ'pres",
+          "pos": "vt.",
+          "meaning": "vt. 使沮丧， 使不景气； 按下"
+        },
+        {
+          "word": "depression",
+          "phonetic": "dɪ'preʃ(ə)n",
+          "pos": "n.",
+          "meaning": "n. 消沉；不景气萧条期；n. 抑郁， 沮丧； 不景气， 萧条； 洼地， 凹陷"
+        }
+      ]
+    },
+    {
+      "root": "desir",
+      "base": "desire",
+      "words": [
+        {
+          "word": "desirable",
+          "phonetic": "dɪ'zaɪərəbl",
+          "pos": "adj.",
+          "meaning": "adj. 吸引人的， 可取的"
+        },
+        {
+          "word": "desire",
+          "phonetic": "dɪ'zaɪə",
+          "pos": "vt. · n.",
+          "meaning": "vt. 想要，渴望；n. 愿望， 欲望"
+        }
+      ]
+    },
+    {
+      "root": "destin",
+      "base": "destine",
+      "words": [
+        {
+          "word": "destination",
+          "phonetic": "ˌdestɪˈneɪʃn",
+          "pos": "n.",
+          "meaning": "n. 目的地；n. 目的地， 终点； 目标"
+        },
+        {
+          "word": "destine",
+          "phonetic": "'destɪn",
+          "pos": "v.",
+          "meaning": "v. 命定，注定；预定"
+        },
+        {
+          "word": "destined",
+          "phonetic": "'destɪnd",
+          "pos": "adj.",
+          "meaning": "adj. 命中注定的， 预定的； 以…为目的地的"
+        }
+      ]
+    },
+    {
+      "root": "destruct",
+      "base": "destruction",
+      "words": [
+        {
+          "word": "destruction",
+          "phonetic": "dɪ'strʌkʃn",
+          "pos": "n.",
+          "meaning": "n. 破坏， 毁灭； 消灭"
+        },
+        {
+          "word": "destructive",
+          "phonetic": "dɪ'strʌktɪv",
+          "pos": "adj.",
+          "meaning": "adj. 破坏性的，毁灭性的；adj. 破坏（性）的，危害的；adj. 破坏的， 毁灭的"
+        }
+      ]
+    },
+    {
+      "root": "detach",
+      "base": "detach",
+      "words": [
+        {
+          "word": "detach",
+          "phonetic": "dɪ'tætʃ",
+          "pos": "v. · vt.",
+          "meaning": "v. 分开；派遣（军队）；vt. 拆卸； 使分开， 使分离"
+        },
+        {
+          "word": "detached",
+          "phonetic": "dɪˈtætʃt",
+          "pos": "adj.",
+          "meaning": "adj. 冷漠的，超然的"
+        }
+      ]
+    },
+    {
+      "root": "detect",
+      "base": "detect",
+      "words": [
+        {
+          "word": "detect",
+          "phonetic": "dɪ'tekt",
+          "pos": "v. · vt.",
+          "meaning": "v. 发现；vt. 察觉， 发觉； 侦查出"
+        },
+        {
+          "word": "detection",
+          "phonetic": "dɪ'tekʃn",
+          "pos": "n.",
+          "meaning": "n. 察觉， 发觉； 侦查， 探测"
+        },
+        {
+          "word": "detective",
+          "phonetic": "dɪˈtektɪv",
+          "pos": "n.",
+          "meaning": "n. 侦探；n. 侦探，警探；私人侦探，私家侦探；n. 侦探， 私人侦探"
+        },
+        {
+          "word": "detector",
+          "phonetic": "dɪ'tektə",
+          "pos": "n.",
+          "meaning": "n. 发觉者，探测器"
+        }
+      ]
+    },
+    {
+      "root": "deteriorat",
+      "base": "deteriorate",
+      "words": [
+        {
+          "word": "deteriorate",
+          "phonetic": "dɪˈtɪəriəreɪt",
+          "pos": "v. · vi.",
+          "meaning": "v. 恶化；vi. 恶化， 变坏"
+        },
+        {
+          "word": "deterioration",
+          "phonetic": "dɪ,tɪərɪə'reɪʃn",
+          "pos": "n.",
+          "meaning": "n. 恶化，退化"
+        }
+      ]
+    },
+    {
+      "root": "deviat",
+      "base": "deviate",
+      "words": [
+        {
+          "word": "deviate",
+          "phonetic": "ˈdi:vieɪt",
+          "pos": "v. · vi.",
+          "meaning": "v. 偏离；v. （使）背离，偏离；vi. 背离， 偏离"
+        },
+        {
+          "word": "deviation",
+          "phonetic": "diːvɪ'eɪʃ(ə)n",
+          "pos": "n.",
+          "meaning": "n. 背离，偏离；偏差"
+        }
+      ]
+    },
+    {
+      "root": "devot",
+      "base": "devote",
+      "words": [
+        {
+          "word": "devote",
+          "phonetic": "dɪ'vəut",
+          "pos": "vt.",
+          "meaning": "vt. 将…奉献给， 把…专用"
+        },
+        {
+          "word": "devotion",
+          "phonetic": "dɪ'vəʊʃ(ə)n",
+          "pos": "n.",
+          "meaning": "n. 献身，热诚，专心"
+        }
+      ]
+    },
+    {
+      "root": "dictat",
+      "base": "dictate",
+      "words": [
+        {
+          "word": "dictate",
+          "phonetic": "dɪk'teɪt",
+          "pos": "v. · n.",
+          "meaning": "v. ['dIkteIt]；n. 口授； 命令， 规定， 要求"
+        },
+        {
+          "word": "dictator",
+          "phonetic": "dɪk'teɪtə",
+          "pos": "n.",
+          "meaning": "n. 独裁者，专政者"
+        }
+      ]
+    },
+    {
+      "root": "differentiat",
+      "base": "differentiate",
+      "words": [
+        {
+          "word": "differentiate",
+          "phonetic": "ˌdɪfə'renʃieɪt",
+          "pos": "vi. · vt.",
+          "meaning": "vi. 区分，区别；vt. 区分， 区别； 使不同， 使有差异"
+        },
+        {
+          "word": "differentiation",
+          "phonetic": "ˌdɪfəˌrenʃi'eɪʃn",
+          "pos": "n.",
+          "meaning": "n. 区别"
+        }
+      ]
+    },
+    {
+      "root": "disappear",
+      "base": "disappear",
+      "words": [
+        {
+          "word": "disappear",
+          "phonetic": "ˌdɪsə'pɪə(r)",
+          "pos": "v.",
+          "meaning": "v. 消失"
+        },
+        {
+          "word": "disappearance",
+          "phonetic": "dɪsə'pɪərəns",
+          "pos": "n.",
+          "meaning": "n. 消失，消散；失踪"
+        }
+      ]
+    },
+    {
+      "root": "discriminat",
+      "base": "discriminate",
+      "words": [
+        {
+          "word": "discriminate",
+          "phonetic": "dɪ'skrɪmɪneɪt",
+          "pos": "v. · vi.",
+          "meaning": "v. 歧视；区别；vi. 区别， 辨别； 有差别地对待， 歧视"
+        },
+        {
+          "word": "discrimination",
+          "phonetic": "dɪˌskrɪmɪˈneɪʃn",
+          "pos": "n.",
+          "meaning": "n. 歧视；n. 歧视；辨别；识别力"
+        }
+      ]
+    },
+    {
+      "root": "displac",
+      "base": "displace",
+      "words": [
+        {
+          "word": "displace",
+          "phonetic": "dɪsˈpleɪs",
+          "pos": "v. · vt.",
+          "meaning": "v. 取代；v. 移置；取代；置换；vt. 取代， 替代； 迫使…离开家园， 使离开原位"
+        },
+        {
+          "word": "displacement",
+          "phonetic": "dɪs'pleɪsm(ə)nt",
+          "pos": "n.",
+          "meaning": "n. 移置；免职；置换"
+        }
+      ]
+    },
+    {
+      "root": "dispo",
+      "base": "disposal",
+      "words": [
+        {
+          "word": "disposable",
+          "phonetic": "dɪ'spəuzəbl",
+          "pos": "adj. · n.",
+          "meaning": "adj. 可任意使用的；n. 一次性物品， 不回收物品"
+        },
+        {
+          "word": "disposal",
+          "phonetic": "dɪˈspəʊzl",
+          "pos": "n.",
+          "meaning": "n. 支配；处理；n. 丢掉， 销毁； 处理； 排列， 布置"
+        },
+        {
+          "word": "disposition",
+          "phonetic": "ˌdɪspə'zɪʃn",
+          "pos": "n.",
+          "meaning": "n. 性情， 性格； 意向， 倾向； 排列， 部署"
+        }
+      ]
+    },
+    {
+      "root": "distinct",
+      "base": "distinct",
+      "words": [
+        {
+          "word": "distinct",
+          "phonetic": "dɪ'stɪŋ(k)t",
+          "pos": "adj.",
+          "meaning": "adj. 清楚的；adj. 与其他不同的； 清楚的， 明确的"
+        },
+        {
+          "word": "distinction",
+          "phonetic": "dɪ'stɪŋkʃən",
+          "pos": "n.",
+          "meaning": "n. 区分"
+        },
+        {
+          "word": "distinctive",
+          "phonetic": "dɪˈstɪŋktɪv",
+          "pos": "adj.",
+          "meaning": "adj. 与众不同的"
+        },
+        {
+          "word": "distinctly",
+          "phonetic": "dɪ'stɪŋ(k)tlɪ",
+          "pos": "adv.",
+          "meaning": "adv. 显然，清楚地"
+        }
+      ]
+    },
+    {
+      "root": "distort",
+      "base": "distort",
+      "words": [
+        {
+          "word": "distort",
+          "phonetic": "dɪ'stɔ:t",
+          "pos": "v. · vi. · vt.",
+          "meaning": "v. 扭曲；v. 歪曲，曲解；扭曲；vi. 变形；vt. 歪曲，曲解；扭曲，使变形"
+        },
+        {
+          "word": "distortion",
+          "phonetic": "dɪ'stɔːʃ(ə)n",
+          "pos": "n.",
+          "meaning": "n. 歪曲；畸变"
+        }
+      ]
+    },
+    {
+      "root": "div",
+      "base": "diversion",
+      "words": [
+        {
+          "word": "diversion",
+          "phonetic": "daɪˈvɜ:ʃn",
+          "pos": "n.",
+          "meaning": "n. 转移；娱乐；n. 转移；改道；娱乐；n. 转移， 转向； 消遣， 娱乐； 临时绕行路"
+        },
+        {
+          "word": "diversity",
+          "phonetic": "daɪ'vɜ:sətɪ",
+          "pos": "n.",
+          "meaning": "n. 多样性"
+        }
+      ]
+    },
+    {
+      "root": "donat",
+      "base": "donate",
+      "words": [
+        {
+          "word": "donate",
+          "phonetic": "dəu'neɪt",
+          "pos": "vt.",
+          "meaning": "vt. 捐赠， 赠送"
+        },
+        {
+          "word": "donation",
+          "phonetic": "dəu'neɪʃn",
+          "pos": "n.",
+          "meaning": "n. 捐款， 捐赠物； 捐赠， 赠送"
+        }
+      ]
+    },
+    {
+      "root": "dramatic",
+      "base": "dramatic",
+      "words": [
+        {
+          "word": "dramatic",
+          "phonetic": "drə'mætɪk",
+          "pos": "adj.",
+          "meaning": "adj. 引人注目的， 激动人心的； 戏剧的"
+        },
+        {
+          "word": "dramatically",
+          "phonetic": "drə'mætɪklɪ",
+          "pos": "adv.",
+          "meaning": "adv. 大幅度地；戏剧性地"
+        }
+      ]
+    },
+    {
+      "root": "drastic",
+      "base": "drastic",
+      "words": [
+        {
+          "word": "drastic",
+          "phonetic": "'dræstɪk; 'drɑː-",
+          "pos": "adj.",
+          "meaning": "adj. 激烈的；严厉的；adj. 严厉的， 极端的； 激烈的， 迅猛的"
+        },
+        {
+          "word": "drastically",
+          "phonetic": "'drɑ:stɪklɪ",
+          "pos": "adv.",
+          "meaning": "adv. 激烈地，猛烈地"
+        }
+      ]
+    },
+    {
+      "root": "dread",
+      "base": "dread",
+      "words": [
+        {
+          "word": "dread",
+          "phonetic": "dred",
+          "pos": "vt. · n.",
+          "meaning": "vt. 担忧，忧虑；惧怕；n. 担忧， 畏惧"
+        },
+        {
+          "word": "dreadful",
+          "phonetic": "'dredfʊl; -f(ə)l",
+          "pos": "adj.",
+          "meaning": "adj. 可怕的；令人畏惧的；adj. 糟透了的， 极不合意的； 极端的， 极其大的； 可怕的"
+        }
+      ]
+    },
+    {
+      "root": "duplicat",
+      "base": "duplicate",
+      "words": [
+        {
+          "word": "duplicate",
+          "phonetic": "ˈdjuːplɪkeɪt",
+          "pos": "n. · v. · adj. · vt.",
+          "meaning": "n. 副本，复制品；n. 复制品；v. 复制；adj. 完全一样的， 复制的；n. 完全一样的东西，复制品；vt. 复制， 复印； 重复"
+        },
+        {
+          "word": "duplication",
+          "phonetic": "ˌdjuːplɪˈkeɪʃn",
+          "pos": "n.",
+          "meaning": "n. 复制品"
+        }
+      ]
+    },
+    {
+      "root": "dwell",
+      "base": "dwell",
+      "words": [
+        {
+          "word": "dwell",
+          "phonetic": "dwel",
+          "pos": "v. · vi.",
+          "meaning": "v. 居住；凝思，细想；vi. 居住"
+        },
+        {
+          "word": "dweller",
+          "phonetic": "ˈdwelə(r)",
+          "pos": "n.",
+          "meaning": "n. 居住者"
+        }
+      ]
+    },
+    {
+      "root": "dynamic",
+      "base": "dynamic",
+      "words": [
+        {
+          "word": "dynamic",
+          "phonetic": "daɪ'næmɪk",
+          "pos": "adj.",
+          "meaning": "adj. 动力的， 动力学的； 动态的； 有活力的， 有生气的"
+        },
+        {
+          "word": "dynamics",
+          "phonetic": "daɪ'næmɪks",
+          "pos": "n.",
+          "meaning": "n. 动力学"
+        }
+      ]
+    },
+    {
+      "root": "economic",
+      "base": "economic",
+      "words": [
+        {
+          "word": "economic",
+          "phonetic": "ˌiːkə'nɒmɪk",
+          "pos": "adj. · n.",
+          "meaning": "adj. 经济的；经济学的；n. 经济学； 经济状况"
+        },
+        {
+          "word": "economical",
+          "phonetic": "ˌiːkə'nɒmɪkl",
+          "pos": "adj.",
+          "meaning": "adj. 节约的； 经济学的"
+        },
+        {
+          "word": "economically",
+          "phonetic": "iːkə'nɒmɪklɪ",
+          "pos": "adv.",
+          "meaning": "adv. 在经济上；节约地"
+        },
+        {
+          "word": "economics",
+          "phonetic": "iːkə'nɒmɪks; ek-",
+          "pos": "n.",
+          "meaning": "n. 经济学；经济"
+        }
+      ]
+    },
+    {
+      "root": "elaborat",
+      "base": "elaborate",
+      "words": [
+        {
+          "word": "elaborate",
+          "phonetic": "ɪ'læb(ə)rət",
+          "pos": "adj. · v.",
+          "meaning": "adj. 复杂的； 精心制作的；v. 详述， 详细制定"
+        },
+        {
+          "word": "elaborately",
+          "phonetic": "ɪ'læbərətlɪ",
+          "pos": "adv.",
+          "meaning": "adv. 复杂地，精心设计地"
+        }
+      ]
+    },
+    {
+      "root": "electric",
+      "base": "electric",
+      "words": [
+        {
+          "word": "electric",
+          "phonetic": "ɪ'lektrɪk",
+          "pos": "adj.",
+          "meaning": "adj. 电的， 电动的"
+        },
+        {
+          "word": "electrical",
+          "phonetic": "ɪ'lektrɪkl",
+          "pos": "adj.",
+          "meaning": "adj. 电的； 电气科学的"
+        },
+        {
+          "word": "electricity",
+          "phonetic": "ɪˌlek'trɪsəti",
+          "pos": "n.",
+          "meaning": "n. 电"
+        }
+      ]
+    },
+    {
+      "root": "electronic",
+      "base": "electronic",
+      "words": [
+        {
+          "word": "electronic",
+          "phonetic": "ɪˌlek'trɒnɪk",
+          "pos": "adj. · n.",
+          "meaning": "adj. 电子的；n. 电子学； 电子设备"
+        },
+        {
+          "word": "electronics",
+          "phonetic": "ɪlek'trɒnɪks; el-",
+          "pos": "n.",
+          "meaning": "n. 电子学"
+        }
+      ]
+    },
+    {
+      "root": "ele",
+      "base": "element",
+      "words": [
+        {
+          "word": "element",
+          "phonetic": "'elɪmənt",
+          "pos": "n.",
+          "meaning": "n. 成分， 要素， 元素； 基础， 纲要； 自然力"
+        },
+        {
+          "word": "elemental",
+          "phonetic": ",elɪ'ment(ə)l",
+          "pos": "adj.",
+          "meaning": "adj. 基本的；自然力的"
+        }
+      ]
+    },
+    {
+      "root": "elevat",
+      "base": "elevate",
+      "words": [
+        {
+          "word": "elevate",
+          "phonetic": "'elɪveɪt",
+          "pos": "v. · vt.",
+          "meaning": "v. 提升，举起；使高兴；v. 提拔；抬高；vt. 提升…的职位， 提高， 改善； 使情绪高昂； 举起， 使上升"
+        },
+        {
+          "word": "elevation",
+          "phonetic": ",elɪ'veɪʃ(ə)n",
+          "pos": "n.",
+          "meaning": "n. 高度，海拔"
+        }
+      ]
+    },
+    {
+      "root": "eliminat",
+      "base": "eliminate",
+      "words": [
+        {
+          "word": "eliminate",
+          "phonetic": "ɪ'lɪmɪneɪt",
+          "pos": "v. · vt.",
+          "meaning": "v. 消除；vt. 消灭， 消除， 排除； 淘汰"
+        },
+        {
+          "word": "elimination",
+          "phonetic": "ɪ,lɪmɪ'neɪʃən",
+          "pos": "n.",
+          "meaning": "n. 消除，淘汰"
+        }
+      ]
+    },
+    {
+      "root": "end",
+      "base": "end",
+      "words": [
+        {
+          "word": "end",
+          "phonetic": "end",
+          "pos": "n.",
+          "meaning": "n. 目标，目的"
+        },
+        {
+          "word": "endless",
+          "phonetic": "ˈendləs",
+          "pos": "adj.",
+          "meaning": "adj. 无限的，没完没了的"
+        }
+      ]
+    },
+    {
+      "root": "endur",
+      "base": "endure",
+      "words": [
+        {
+          "word": "endurance",
+          "phonetic": "ɪn'djʊər(ə)ns; en-",
+          "pos": "n.",
+          "meaning": "n. 耐久力，持久力；n. 忍耐力； 持久， 耐久"
+        },
+        {
+          "word": "endure",
+          "phonetic": "ɪnˈdjʊə(r)",
+          "pos": "v.",
+          "meaning": "v. 忍受；v. 忍受， 容忍； 持久， 持续"
+        }
+      ]
+    },
+    {
+      "root": "engag",
+      "base": "engage",
+      "words": [
+        {
+          "word": "engage",
+          "phonetic": "ɪn'ɡeɪdʒ",
+          "pos": "v. · vt.",
+          "meaning": "v. 忙于，从事；雇佣；v. 使（齿轮等）啮合；vt. 使从事于， 聘用； 吸引， 占用； 使订婚"
+        },
+        {
+          "word": "engagement",
+          "phonetic": "ɪn'geɪdʒm(ə)nt; en-",
+          "pos": "n.",
+          "meaning": "n. 婚约；约会；n. 订婚， 婚约； 约会"
+        }
+      ]
+    },
+    {
+      "root": "enlighten",
+      "base": "enlighten",
+      "words": [
+        {
+          "word": "enlighten",
+          "phonetic": "ɪn'laɪt(ə)n; en-",
+          "pos": "v. · vt.",
+          "meaning": "v. 启发，开导；启蒙；vt. 启发， 开导"
+        },
+        {
+          "word": "enlightenment",
+          "phonetic": "ɪn'laɪtnmənt",
+          "pos": "n.",
+          "meaning": "n. 启发， 开导； 开明， 文明"
+        }
+      ]
+    },
+    {
+      "root": "enroll",
+      "base": "enroll",
+      "words": [
+        {
+          "word": "enroll",
+          "phonetic": "ɪn'rəʊl",
+          "pos": "v. · vi. · vt.",
+          "meaning": "v. 登记，招收，参军；vi. 入学，加入；vt. 招收， 吸收"
+        },
+        {
+          "word": "enrollment",
+          "phonetic": "ɪn'rəʊlmənt",
+          "pos": "n.",
+          "meaning": "n. 入学人数"
+        }
+      ]
+    },
+    {
+      "root": "environ",
+      "base": "environment",
+      "words": [
+        {
+          "word": "environment",
+          "phonetic": "ɪn'vaɪrənmənt",
+          "pos": "n.",
+          "meaning": "n. 环境； 外界； 围绕"
+        },
+        {
+          "word": "environmental",
+          "phonetic": "ɪnvaɪrən'ment(ə)l; en-",
+          "pos": "adj.",
+          "meaning": "adj. 环境的，环境产生的"
+        }
+      ]
+    },
+    {
+      "root": "equ",
+      "base": "equality",
+      "words": [
+        {
+          "word": "equality",
+          "phonetic": "i'kwɒləti",
+          "pos": "n.",
+          "meaning": "n. 等同； 平等； 相等"
+        },
+        {
+          "word": "equation",
+          "phonetic": "ɪ'kweɪʒ(ə)n",
+          "pos": "n.",
+          "meaning": "n. 平衡；反应式"
+        }
+      ]
+    },
+    {
+      "root": "evaluat",
+      "base": "evaluate",
+      "words": [
+        {
+          "word": "evaluate",
+          "phonetic": "ɪˈvæljueɪt",
+          "pos": "v. · vt.",
+          "meaning": "v. 评价；vt. 评价， 估…的价"
+        },
+        {
+          "word": "evaluation",
+          "phonetic": "ɪˌvæljʊ'eɪʃn",
+          "pos": "n.",
+          "meaning": "n. 评价"
+        }
+      ]
+    },
+    {
+      "root": "even",
+      "base": "even",
+      "words": [
+        {
+          "word": "even",
+          "phonetic": "'iːv(ə)n",
+          "pos": "adj.",
+          "meaning": "adj. 平稳的，均匀的"
+        },
+        {
+          "word": "evenly",
+          "phonetic": "'i:vənlɪ",
+          "pos": "adv.",
+          "meaning": "adv. 一致地；平静地"
+        }
+      ]
+    },
+    {
+      "root": "exaggerat",
+      "base": "exaggerate",
+      "words": [
+        {
+          "word": "exaggerate",
+          "phonetic": "ɪgˈzædʒəreɪt",
+          "pos": "v.",
+          "meaning": "v. 夸张；v. 夸大， 夸张"
+        },
+        {
+          "word": "exaggeration",
+          "phonetic": "ɪgˌzædʒə'reɪʃn",
+          "pos": "n.",
+          "meaning": "n. 夸张； 夸大之词"
+        }
+      ]
+    },
+    {
+      "root": "exc",
+      "base": "exceed",
+      "words": [
+        {
+          "word": "exceed",
+          "phonetic": "ɪk'si:d",
+          "pos": "v. · vt.",
+          "meaning": "v. 超过；vt. 超过， 胜过， 超出"
+        },
+        {
+          "word": "exceedingly",
+          "phonetic": "ɪk'siːdɪŋli",
+          "pos": "adv.",
+          "meaning": "adv. 极端地， 非常"
+        }
+      ]
+    },
+    {
+      "root": "except",
+      "base": "except",
+      "words": [
+        {
+          "word": "except",
+          "phonetic": "ɪk'sept; ek-",
+          "pos": "v.",
+          "meaning": "v. 把…除外，除去"
+        },
+        {
+          "word": "exception",
+          "phonetic": "ɪk'sepʃn",
+          "pos": "n.",
+          "meaning": "n. 例外， 除外"
+        },
+        {
+          "word": "exceptional",
+          "phonetic": "ɪkˈsepʃənl",
+          "pos": "adj.",
+          "meaning": "adj. 例外的；adj. 优越的；例外的；adj. 优越的， 杰出的； 例外的， 独特的， 异常的"
+        }
+      ]
+    },
+    {
+      "root": "excess",
+      "base": "excess",
+      "words": [
+        {
+          "word": "excess",
+          "phonetic": "'ekses",
+          "pos": "n. · adj.",
+          "meaning": "n. 过量，过度；n. 过度行为，暴行；adj. 过量的， 额外的；n. 超越，过量，过度['3ks3s]"
+        },
+        {
+          "word": "excessive",
+          "phonetic": "ɪkˈsesɪv",
+          "pos": "adj.",
+          "meaning": "adj. 过度的；adj. 过多的， 极度的"
+        },
+        {
+          "word": "excessively",
+          "phonetic": "ek'sesɪvlɪ",
+          "pos": "adv.",
+          "meaning": "adv. 过分，极端地"
+        }
+      ]
+    },
+    {
+      "root": "execut",
+      "base": "execute",
+      "words": [
+        {
+          "word": "execute",
+          "phonetic": "'eksɪkjuːt",
+          "pos": "vt.",
+          "meaning": "vt. 将…处死； 实施"
+        },
+        {
+          "word": "execution",
+          "phonetic": ",eksɪ'kjuːʃ(ə)n",
+          "pos": "n.",
+          "meaning": "n. 实行，执行；处死刑；n. 死刑； 实行， 执行， 履行； 演奏， 表演"
+        },
+        {
+          "word": "executive",
+          "phonetic": "ɪɡ'zekjətɪv",
+          "pos": "n. · adj.",
+          "meaning": "n. 执行官；n. （机构或公司的）主管，经理；adj. 执行的；行政的；n. 执行者"
+        }
+      ]
+    },
+    {
+      "root": "exert",
+      "base": "exert",
+      "words": [
+        {
+          "word": "exert",
+          "phonetic": "ɪɡ'zɜ:t",
+          "pos": "v. · vt.",
+          "meaning": "v. 施加；v. 发挥（威力），施加；vt. 用， 尽； 运用， 行使"
+        },
+        {
+          "word": "exertion",
+          "phonetic": "ɪɡˈzɜːʃn",
+          "pos": "n.",
+          "meaning": "n. 运用"
+        }
+      ]
+    },
+    {
+      "root": "expect",
+      "base": "expect",
+      "words": [
+        {
+          "word": "expect",
+          "phonetic": "ɪk'spekt; ek-",
+          "pos": "v.",
+          "meaning": "v. 料想，认为"
+        },
+        {
+          "word": "expectation",
+          "phonetic": "ˌekspekˈteɪʃn",
+          "pos": "n.",
+          "meaning": "n. 期望"
+        }
+      ]
+    },
+    {
+      "root": "experi",
+      "base": "experimentally",
+      "words": [
+        {
+          "word": "experimentally",
+          "phonetic": "",
+          "pos": "adv.",
+          "meaning": "adv. 实验上，实验性地"
+        },
+        {
+          "word": "experimentation",
+          "phonetic": "ɪk,sperɪmen'teɪʃən",
+          "pos": "n.",
+          "meaning": "n. 实验；试验"
+        }
+      ]
+    },
+    {
+      "root": "explor",
+      "base": "explore",
+      "words": [
+        {
+          "word": "exploration",
+          "phonetic": "eksplə'reɪʃ(ə)n",
+          "pos": "n.",
+          "meaning": "n. 考察；勘探；探查"
+        },
+        {
+          "word": "explore",
+          "phonetic": "ɪk'splɔː",
+          "pos": "v.",
+          "meaning": "v. 探险， 探索； 仔细查阅， 探究"
+        }
+      ]
+    },
+    {
+      "root": "extinct",
+      "base": "extinct",
+      "words": [
+        {
+          "word": "extinct",
+          "phonetic": "ɪk'stɪŋkt; ek-",
+          "pos": "adj.",
+          "meaning": "adj. 绝种的；adj. 灭绝的， 绝种的； 不再活跃的， 熄灭了的， 已废弃的"
+        },
+        {
+          "word": "extinction",
+          "phonetic": "ɪkˈstɪŋkʃn",
+          "pos": "n.",
+          "meaning": "n. 灭绝"
+        }
+      ]
+    },
+    {
+      "root": "extract",
+      "base": "extract",
+      "words": [
+        {
+          "word": "extract",
+          "phonetic": "ˈekstrækt",
+          "pos": "v. · n. · vt.",
+          "meaning": "v. 取出；提取；n. 摘录；vt. 取出，抽出；采掘，提炼，榨取；获得，索取；摘录['3kstrækt]；n. 摘录， 选段； 提出物， 精， 汁"
+        },
+        {
+          "word": "extraction",
+          "phonetic": "ɪk'strækʃ(ə)n; ek-",
+          "pos": "n.",
+          "meaning": "n. 抽出；提取法"
+        }
+      ]
+    },
+    {
+      "root": "fabric",
+      "base": "fabric",
+      "words": [
+        {
+          "word": "fabric",
+          "phonetic": "ˈfæbrɪk",
+          "pos": "n.",
+          "meaning": "n. 布料；n. 织物， 纺织品； 结构"
+        },
+        {
+          "word": "fabrication",
+          "phonetic": "fæbrɪ'keɪʃ(ə)n",
+          "pos": "n.",
+          "meaning": "n. 捏造；制作"
+        }
+      ]
+    },
+    {
+      "root": "fact",
+      "base": "factor",
+      "words": [
+        {
+          "word": "faction",
+          "phonetic": "'fækʃ(ə)n",
+          "pos": "n.",
+          "meaning": "n. 派别，宗派，小集团"
+        },
+        {
+          "word": "factor",
+          "phonetic": "'fæktə",
+          "pos": "n.",
+          "meaning": "n. 因素， 因子； 系数"
+        }
+      ]
+    },
+    {
+      "root": "fault",
+      "base": "fault",
+      "words": [
+        {
+          "word": "fault",
+          "phonetic": "fɔlt",
+          "pos": "n.",
+          "meaning": "n. 过失"
+        },
+        {
+          "word": "faultless",
+          "phonetic": "'fɔːltlɪs; 'fɒlt-",
+          "pos": "adj.",
+          "meaning": "adj. 无过失的；无缺点的"
+        }
+      ]
+    },
+    {
+      "root": "fear",
+      "base": "fearless",
+      "words": [
+        {
+          "word": "fearless",
+          "phonetic": "'fɪəlɪs",
+          "pos": "adj.",
+          "meaning": "adj. 无畏的，大胆的"
+        },
+        {
+          "word": "fearlessly",
+          "phonetic": "'fɪələslɪ",
+          "pos": "adv.",
+          "meaning": "adv. 无畏地，大胆地"
+        }
+      ]
+    },
+    {
+      "root": "fea",
+      "base": "feasible",
+      "words": [
+        {
+          "word": "feasibility",
+          "phonetic": ",fizə'bɪləti",
+          "pos": "n.",
+          "meaning": "n. 可行"
+        },
+        {
+          "word": "feasible",
+          "phonetic": "'fiːzɪb(ə)l",
+          "pos": "adj.",
+          "meaning": "adj. 可行的；adj. 可行的， 可能的"
+        }
+      ]
+    },
+    {
+      "root": "fed",
+      "base": "federal",
+      "words": [
+        {
+          "word": "federal",
+          "phonetic": "'fedərəl",
+          "pos": "adj.",
+          "meaning": "adj. 联邦的， 联盟的"
+        },
+        {
+          "word": "federation",
+          "phonetic": "ˌfedə'reɪʃn",
+          "pos": "n.",
+          "meaning": "n. 联合会； 联邦"
+        }
+      ]
+    },
+    {
+      "root": "feminin",
+      "base": "feminine",
+      "words": [
+        {
+          "word": "feminine",
+          "phonetic": "'femɪnɪn",
+          "pos": "adj.",
+          "meaning": "adj. 女性的；女子气的；adj. 女性的， 女子的； 女子气的"
+        },
+        {
+          "word": "femininity",
+          "phonetic": "ˌfemə'nɪnəti",
+          "pos": "n.",
+          "meaning": "n. 女性气质"
+        }
+      ]
+    },
+    {
+      "root": "fertil",
+      "base": "fertile",
+      "words": [
+        {
+          "word": "fertile",
+          "phonetic": "'fɜːtaɪl",
+          "pos": "adj.",
+          "meaning": "adj. （创造力）丰富的"
+        },
+        {
+          "word": "fertility",
+          "phonetic": "fəˈtɪləti",
+          "pos": "n.",
+          "meaning": "n. 多产，肥沃"
+        }
+      ]
+    },
+    {
+      "root": "fin",
+      "base": "finely",
+      "words": [
+        {
+          "word": "finance",
+          "phonetic": "faɪ'næns; fɪ-; 'faɪnæns",
+          "pos": "v. · n. · vt.",
+          "meaning": "v. 提供资金；n. 财政，金融；财源，财务情况；vt. 为…提供资金"
+        },
+        {
+          "word": "finely",
+          "phonetic": "'faɪnlɪ",
+          "pos": "adv.",
+          "meaning": "adv. 精细地；美好地"
+        }
+      ]
+    },
+    {
+      "root": "fluctuat",
+      "base": "fluctuate",
+      "words": [
+        {
+          "word": "fluctuate",
+          "phonetic": "ˈflʌktʃueɪt",
+          "pos": "v. · vi.",
+          "meaning": "v. 波动；v. 波动，使波动；vi. 波动， 涨落， 起伏"
+        },
+        {
+          "word": "fluctuation",
+          "phonetic": ",flʌktʃʊ'eɪʃ(ə)n; -tjʊ-",
+          "pos": "n.",
+          "meaning": "n. 波动"
+        }
+      ]
+    },
+    {
+      "root": "follow",
+      "base": "follow",
+      "words": [
+        {
+          "word": "follow",
+          "phonetic": "'fɒləʊ",
+          "pos": "v.",
+          "meaning": "v. 从事（职业），经营"
+        },
+        {
+          "word": "follower",
+          "phonetic": "'fɒləʊə",
+          "pos": "n.",
+          "meaning": "n. 信徒，追随者"
+        }
+      ]
+    },
+    {
+      "root": "form",
+      "base": "formal",
+      "words": [
+        {
+          "word": "formal",
+          "phonetic": "'fɔːm(ə)l",
+          "pos": "adj.",
+          "meaning": "adj. 正规的；庄重的；adj. 正式的； 礼仪上的"
+        },
+        {
+          "word": "formerly",
+          "phonetic": "'fɔːməlɪ",
+          "pos": "adv.",
+          "meaning": "adv. 以前，从前"
+        }
+      ]
+    },
+    {
+      "root": "formulat",
+      "base": "formulate",
+      "words": [
+        {
+          "word": "formulate",
+          "phonetic": "'fɔːmjʊleɪt",
+          "pos": "v. · vt.",
+          "meaning": "v. 制定，规划；v. 规划；制定；准备；vt. 构想出， 规划； 系统地阐述"
+        },
+        {
+          "word": "formulation",
+          "phonetic": "fɔːmjʊ'leɪʃn",
+          "pos": "n.",
+          "meaning": "n. 表述方式"
+        }
+      ]
+    },
+    {
+      "root": "fract",
+      "base": "fraction",
+      "words": [
+        {
+          "word": "fraction",
+          "phonetic": "'frækʃ(ə)n",
+          "pos": "n.",
+          "meaning": "n. 分数；n. 小部分， 片断； 【数】 分数"
+        },
+        {
+          "word": "fracture",
+          "phonetic": "'fræktʃə",
+          "pos": "n. · v.",
+          "meaning": "n. 破裂；裂痕；v. 破裂；v. 断裂，折断；n. 裂缝， 裂痕； 折断"
+        }
+      ]
+    },
+    {
+      "root": "fright",
+      "base": "fright",
+      "words": [
+        {
+          "word": "fright",
+          "phonetic": "fraɪt",
+          "pos": "n.",
+          "meaning": "n. 惊吓，恐怖"
+        },
+        {
+          "word": "frightful",
+          "phonetic": "'fraɪtfʊl; -f(ə)l",
+          "pos": "adj.",
+          "meaning": "adj. 可怕的；讨厌的"
+        }
+      ]
+    },
+    {
+      "root": "frustrat",
+      "base": "frustrate",
+      "words": [
+        {
+          "word": "frustrate",
+          "phonetic": "frʌ'streɪt",
+          "pos": "v.",
+          "meaning": "v. 使挫败，使沮丧；v. 挫败"
+        },
+        {
+          "word": "frustration",
+          "phonetic": "frʌ'streɪʃn",
+          "pos": "n.",
+          "meaning": "n. 挫败， 挫折， 受挫"
+        }
+      ]
+    },
+    {
+      "root": "fus",
+      "base": "fuse",
+      "words": [
+        {
+          "word": "fuse",
+          "phonetic": "fjuːz",
+          "pos": "n. · v.",
+          "meaning": "n. 保险丝；导火线；v. 熔合， 合并； 因保险丝熔断而中断工作；n. 保险丝，熔丝；导火线"
+        },
+        {
+          "word": "fusion",
+          "phonetic": "'fjuːʒn",
+          "pos": "n.",
+          "meaning": "n. 联合， 合并； 核聚变"
+        }
+      ]
+    },
+    {
+      "root": "gath",
+      "base": "gather",
+      "words": [
+        {
+          "word": "gather",
+          "phonetic": "'gæðə",
+          "pos": "v.",
+          "meaning": "v. 推测，推断"
+        },
+        {
+          "word": "gathering",
+          "phonetic": "'gæð(ə)rɪŋ",
+          "pos": "n.",
+          "meaning": "n. 集会，聚会，聚集"
+        }
+      ]
+    },
+    {
+      "root": "generaliz",
+      "base": "generalize",
+      "words": [
+        {
+          "word": "generalization",
+          "phonetic": ",dʒenrələ'zeɪʃən",
+          "pos": "n.",
+          "meaning": "n. 一般化；概括，综合"
+        },
+        {
+          "word": "generalize",
+          "phonetic": "ˈdʒɛnrəˌlaɪz",
+          "pos": "v. · vt.",
+          "meaning": "v. 概括出；vt. 概括， 归纳， 推断； 普及"
+        }
+      ]
+    },
+    {
+      "root": "glam",
+      "base": "glamor",
+      "words": [
+        {
+          "word": "glamor",
+          "phonetic": "'glæmə",
+          "pos": "n.",
+          "meaning": "n. 魅力， 诱惑力"
+        },
+        {
+          "word": "glamorous",
+          "phonetic": "ˈglæmərəs",
+          "pos": "adj.",
+          "meaning": "adj. 有魅力的，迷人的"
+        }
+      ]
+    },
+    {
+      "root": "glid",
+      "base": "glide",
+      "words": [
+        {
+          "word": "glide",
+          "phonetic": "glaɪd",
+          "pos": "n.",
+          "meaning": "n. 滑行， 滑动； 滑翔"
+        },
+        {
+          "word": "glider",
+          "phonetic": "'glaɪdə",
+          "pos": "n.",
+          "meaning": "n. 滑翔机；滑翔导弹"
+        }
+      ]
+    },
+    {
+      "root": "hazard",
+      "base": "hazard",
+      "words": [
+        {
+          "word": "hazard",
+          "phonetic": "'hæzəd",
+          "pos": "n. · v. · vt.",
+          "meaning": "n. 危险；v. 使遭危险；n. 危险，公害；vt. 尝试着做， 冒…风险"
+        },
+        {
+          "word": "hazardous",
+          "phonetic": "ˈhæzədəs",
+          "pos": "adj.",
+          "meaning": "adj. 危险的；adj. 危险的； 冒险的"
+        }
+      ]
+    },
+    {
+      "root": "head",
+      "base": "head",
+      "words": [
+        {
+          "word": "head",
+          "phonetic": "hed",
+          "pos": "v.",
+          "meaning": "v. 用头顶（球）；朝...行进"
+        },
+        {
+          "word": "heading",
+          "phonetic": "'hedɪŋ",
+          "pos": "n.",
+          "meaning": "n. 标题，题词，题名"
+        }
+      ]
+    },
+    {
+      "root": "hostil",
+      "base": "hostile",
+      "words": [
+        {
+          "word": "hostile",
+          "phonetic": "ˈhɔstail",
+          "pos": "adj.",
+          "meaning": "adj. 有敌意的；adj. 敌对的；不友好的；adj. 敌方的， 不友善的"
+        },
+        {
+          "word": "hostility",
+          "phonetic": "hɒ'stɪlɪtɪ",
+          "pos": "n.",
+          "meaning": "n. 敌意"
+        }
+      ]
+    },
+    {
+      "root": "hum",
+      "base": "hum",
+      "words": [
+        {
+          "word": "hum",
+          "phonetic": "hʌm",
+          "pos": "n. · v. · vi. · vt.",
+          "meaning": "n. 嗡嗡声；v. 哼曲子；vi. 哼曲子；发嗡嗡声；vt. 哼；n. 嗡嗡声， 营营声， 嘈杂声"
+        },
+        {
+          "word": "humorous",
+          "phonetic": "ˈhju:mərəs",
+          "pos": "adj.",
+          "meaning": "adj. 幽默的"
+        }
+      ]
+    },
+    {
+      "root": "ide",
+      "base": "ideal",
+      "words": [
+        {
+          "word": "ideal",
+          "phonetic": "aɪ'diːəl",
+          "pos": "adj. · n.",
+          "meaning": "adj. 理想的，观念的，空想的；n. 理想， 理想的东西"
+        },
+        {
+          "word": "ideally",
+          "phonetic": "aɪ'dɪəl(l)ɪ; aɪ'diːəl(l)ɪ",
+          "pos": "adv.",
+          "meaning": "adv. 理想地；理论上"
+        }
+      ]
+    },
+    {
+      "root": "ideologic",
+      "base": "ideological",
+      "words": [
+        {
+          "word": "ideological",
+          "phonetic": "ˌaɪdiəˈlɒdʒɪkl",
+          "pos": "adj.",
+          "meaning": "adj. 意识形态的"
+        },
+        {
+          "word": "ideologically",
+          "phonetic": "ˌaɪdɪə'lɒdʒɪklɪ",
+          "pos": "adv.",
+          "meaning": "adv. 意识形态上地"
+        }
+      ]
+    },
+    {
+      "root": "imitat",
+      "base": "imitate",
+      "words": [
+        {
+          "word": "imitate",
+          "phonetic": "ˈɪmɪteɪt",
+          "pos": "v. · vt.",
+          "meaning": "v. 模仿；vt. 模仿； 仿效； 仿制"
+        },
+        {
+          "word": "imitation",
+          "phonetic": "ɪmɪ'teɪʃ(ə)n",
+          "pos": "n.",
+          "meaning": "n. 仿制品，伪制物；n. 模仿； 仿制， 伪制品； 赝品"
+        }
+      ]
+    },
+    {
+      "root": "immens",
+      "base": "immense",
+      "words": [
+        {
+          "word": "immense",
+          "phonetic": "ɪˈmens",
+          "pos": "adj.",
+          "meaning": "adj. 巨大的；adj. 广大的， 巨大的； 无限的"
+        },
+        {
+          "word": "immensely",
+          "phonetic": "ɪˈmensli",
+          "pos": "adv.",
+          "meaning": "adv. 非常，极大地"
+        }
+      ]
+    },
+    {
+      "root": "immigrat",
+      "base": "immigrate",
+      "words": [
+        {
+          "word": "immigrate",
+          "phonetic": "'ɪmɪgreɪt",
+          "pos": "v.",
+          "meaning": "v. （使）移居入境"
+        },
+        {
+          "word": "immigration",
+          "phonetic": "ˌɪmɪˈgreɪʃn",
+          "pos": "n.",
+          "meaning": "n. 移民"
+        }
+      ]
+    },
+    {
+      "root": "incident",
+      "base": "incident",
+      "words": [
+        {
+          "word": "incident",
+          "phonetic": "'ɪnsɪdənt",
+          "pos": "n.",
+          "meaning": "n. 发生的事， 事件"
+        },
+        {
+          "word": "incidentally",
+          "phonetic": "ɪnsɪ'dent(ə)lɪ",
+          "pos": "adv.",
+          "meaning": "adv. 顺便地，附带；adv. 附带地；顺便提及；adv. 顺便提及地， 顺便提一句"
+        }
+      ]
+    },
+    {
+      "root": "inclin",
+      "base": "incline",
+      "words": [
+        {
+          "word": "inclination",
+          "phonetic": "ɪnklɪ'neɪʃ(ə)n",
+          "pos": "n.",
+          "meaning": "n. 倾斜，点头；斜坡"
+        },
+        {
+          "word": "incline",
+          "phonetic": "ɪn'klaɪn",
+          "pos": "n. · vt.",
+          "meaning": "n. 坡度；n. 斜坡[In'klaIn]；vt. 使倾斜"
+        }
+      ]
+    },
+    {
+      "root": "incompat",
+      "base": "incompatible",
+      "words": [
+        {
+          "word": "incompatibility",
+          "phonetic": "ˌɪnkəmˌpætə'bɪlətɪ",
+          "pos": "n.",
+          "meaning": "n. 不兼容"
+        },
+        {
+          "word": "incompatible",
+          "phonetic": "ɪnkəm'pætɪb(ə)l",
+          "pos": "adj.",
+          "meaning": "adj. 不相容的"
+        }
+      ]
+    },
+    {
+      "root": "indicat",
+      "base": "indicate",
+      "words": [
+        {
+          "word": "indicate",
+          "phonetic": "'ɪndɪkeɪt",
+          "pos": "v.",
+          "meaning": "v. 表明"
+        },
+        {
+          "word": "indication",
+          "phonetic": "ˌɪndɪ'keɪʃn",
+          "pos": "n.",
+          "meaning": "n. 指出， 指示； 迹象， 暗示"
+        },
+        {
+          "word": "indicative",
+          "phonetic": "ɪnˈdɪkətɪv",
+          "pos": "adj. · n.",
+          "meaning": "adj. 指示的；adj. 指示的；陈述的；adj. 标示的，指示的，象征的；陈述的；n. 【语】陈述语气"
+        }
+      ]
+    },
+    {
+      "root": "industri",
+      "base": "industrial",
+      "words": [
+        {
+          "word": "industrial",
+          "phonetic": "ɪn'dʌstriəl",
+          "pos": "adj.",
+          "meaning": "adj. 工业的， 产业的"
+        },
+        {
+          "word": "industrious",
+          "phonetic": "ɪnˈdʌstriəs",
+          "pos": "adj.",
+          "meaning": "adj. 勤奋的；adj. 勤劳的，勤奋的"
+        }
+      ]
+    },
+    {
+      "root": "inf",
+      "base": "infer",
+      "words": [
+        {
+          "word": "infer",
+          "phonetic": "ɪn'fɜː",
+          "pos": "v.",
+          "meaning": "v. 推断"
+        },
+        {
+          "word": "inference",
+          "phonetic": "'ɪnf(ə)r(ə)ns",
+          "pos": "n.",
+          "meaning": "n. 推论；推断的结果"
+        }
+      ]
+    },
+    {
+      "root": "inferi",
+      "base": "inferior",
+      "words": [
+        {
+          "word": "inferior",
+          "phonetic": "ɪnˈfɪəriə(r)",
+          "pos": "adj. · n.",
+          "meaning": "adj. 比……差；n. 下级；晚辈；次品；adj. 下等的，劣等的；n. 下级， 下属"
+        },
+        {
+          "word": "inferiority",
+          "phonetic": "ɪnˌfɪəri'ɒrəti",
+          "pos": "n.",
+          "meaning": "n. 自卑； 次等"
+        }
+      ]
+    },
+    {
+      "root": "infinit",
+      "base": "infinite",
+      "words": [
+        {
+          "word": "infinite",
+          "phonetic": "'ɪnfɪnət",
+          "pos": "n. · adj.",
+          "meaning": "n. 无限；无穷（大）；adj. 无限的， 无数的"
+        },
+        {
+          "word": "infinitely",
+          "phonetic": "'ɪnfɪnɪtlɪ",
+          "pos": "adv.",
+          "meaning": "adv. 无限地，无边地"
+        }
+      ]
+    },
+    {
+      "root": "inherit",
+      "base": "inherit",
+      "words": [
+        {
+          "word": "inherit",
+          "phonetic": "ɪn'herɪt",
+          "pos": "v. · vt.",
+          "meaning": "v. 继承；vt. 继承"
+        },
+        {
+          "word": "inheritance",
+          "phonetic": "ɪnˈherɪtəns",
+          "pos": "n.",
+          "meaning": "n. 继承；遗产"
+        }
+      ]
+    },
+    {
+      "root": "initi",
+      "base": "initial",
+      "words": [
+        {
+          "word": "initial",
+          "phonetic": "ɪ'nɪʃəl",
+          "pos": "adj. · n.",
+          "meaning": "adj. 初步的，最初的；adj. 词首的；adj. 最初的，开始的；n. 首字母"
+        },
+        {
+          "word": "initially",
+          "phonetic": "ɪ'nɪʃ(ə)lɪ",
+          "pos": "adv.",
+          "meaning": "adv. 最初，开始"
+        }
+      ]
+    },
+    {
+      "root": "initiat",
+      "base": "initiate",
+      "words": [
+        {
+          "word": "initiate",
+          "phonetic": "ɪ'nɪʃɪeɪt",
+          "pos": "v. · vt. · n.",
+          "meaning": "v. 开始，创始；启蒙；vt. 开始， 创造， 发起； 使初步了解； 接纳， 让…加入；n. 新加入组织的人"
+        },
+        {
+          "word": "initiative",
+          "phonetic": "ɪ'nɪʃətɪv",
+          "pos": "n.",
+          "meaning": "n. 主动性；n. 倡议；新方案；n. 主动性， 首创精神； 主动的行动， 倡议； 主动权"
+        }
+      ]
+    },
+    {
+      "root": "inspir",
+      "base": "inspire",
+      "words": [
+        {
+          "word": "inspiration",
+          "phonetic": "ˌɪnspəˈreɪʃn",
+          "pos": "n.",
+          "meaning": "n. 灵感；妙想；鼓舞；n. 灵感； 鼓舞人心的人"
+        },
+        {
+          "word": "inspire",
+          "phonetic": "ɪn'spaɪə(r)",
+          "pos": "v. · vt.",
+          "meaning": "v. 鼓励；vt. 鼓舞； 给…以灵感"
+        }
+      ]
+    },
+    {
+      "root": "install",
+      "base": "install",
+      "words": [
+        {
+          "word": "install",
+          "phonetic": "ɪn'stɔːl",
+          "pos": "vt.",
+          "meaning": "vt. 安装， 设置； 使就职， 任命"
+        },
+        {
+          "word": "installment",
+          "phonetic": "ɪn'stɔ:lmənt",
+          "pos": "n.",
+          "meaning": "n. 分期付款；n. 分期付款， 分期交付； 部分"
+        }
+      ]
+    },
+    {
+      "root": "instinct",
+      "base": "instinct",
+      "words": [
+        {
+          "word": "instinct",
+          "phonetic": "'ɪnstɪŋkt",
+          "pos": "n.",
+          "meaning": "n. 本能； 直觉， 生性"
+        },
+        {
+          "word": "instinctively",
+          "phonetic": "ɪn'stɪŋktɪvlɪ",
+          "pos": "adv.",
+          "meaning": "adv. 本能地"
+        }
+      ]
+    },
+    {
+      "root": "institut",
+      "base": "institute",
+      "words": [
+        {
+          "word": "institute",
+          "phonetic": "'ɪnstɪtjuːt",
+          "pos": "n. · vt.",
+          "meaning": "n. 研究所，学会，学院；n. 研究所，学院；vt. 建立， 设立"
+        },
+        {
+          "word": "institution",
+          "phonetic": "ˌɪnstɪˈtju:ʃn",
+          "pos": "n.",
+          "meaning": "n. 机构；n. 协会； 制度； 习俗"
+        }
+      ]
+    },
+    {
+      "root": "instruct",
+      "base": "instruct",
+      "words": [
+        {
+          "word": "instruct",
+          "phonetic": "ɪn'strʌkt",
+          "pos": "vt.",
+          "meaning": "vt. 教， 指示； 通知； 教育"
+        },
+        {
+          "word": "instructional",
+          "phonetic": "ɪn'strʌkʃənl",
+          "pos": "adj.",
+          "meaning": "adj. 指导的， 教育的"
+        },
+        {
+          "word": "instructor",
+          "phonetic": "ɪn'strʌktə",
+          "pos": "n.",
+          "meaning": "n. 指导者，教员"
+        }
+      ]
+    },
+    {
+      "root": "instru",
+      "base": "instrument",
+      "words": [
+        {
+          "word": "instrument",
+          "phonetic": "'ɪnstrəmənt",
+          "pos": "n.",
+          "meaning": "n. 仪器， 工具； 乐器"
+        },
+        {
+          "word": "instrumental",
+          "phonetic": "ɪnstrʊ'ment(ə)l",
+          "pos": "adj.",
+          "meaning": "adj. 器乐的；有帮助的；adj. 起作用的， 有帮助的； 用乐器演奏的"
+        }
+      ]
+    },
+    {
+      "root": "insulat",
+      "base": "insulate",
+      "words": [
+        {
+          "word": "insulate",
+          "phonetic": "'ɪnsjʊleɪt",
+          "pos": "v. · vt.",
+          "meaning": "v. 使绝缘，使绝热；vt. 使绝缘， 使隔热， 使隔音； 隔离， 使隔绝"
+        },
+        {
+          "word": "insulation",
+          "phonetic": "ˌɪnsju'leɪʃn",
+          "pos": "n.",
+          "meaning": "n. 绝缘"
+        },
+        {
+          "word": "insulator",
+          "phonetic": "'ɪnsjʊleɪtə",
+          "pos": "n.",
+          "meaning": "n. 隔离者；绝缘体"
+        }
+      ]
+    },
+    {
+      "root": "insur",
+      "base": "insurer",
+      "words": [
+        {
+          "word": "insurance",
+          "phonetic": "ɪn'ʃuərəns",
+          "pos": "n.",
+          "meaning": "n. 保险； 保险费"
+        },
+        {
+          "word": "insurer",
+          "phonetic": "ɪn'ʃʊərə",
+          "pos": "n.",
+          "meaning": "n. 保险公司；承保人"
+        }
+      ]
+    },
+    {
+      "root": "integr",
+      "base": "integral",
+      "words": [
+        {
+          "word": "integral",
+          "phonetic": "ˈɪntɪɡrəl",
+          "pos": "adj.",
+          "meaning": "adj. 完整的；adj. 作为组成部分的；内置的；adj. 构成整体所必需的， 基本的"
+        },
+        {
+          "word": "integrity",
+          "phonetic": "ɪnˈtegrəti",
+          "pos": "n.",
+          "meaning": "n. 正直；n. 诚实，正直；n. 正直， 诚实， 诚恳； 完整， 完全， 完善"
+        }
+      ]
+    },
+    {
+      "root": "intens",
+      "base": "intense",
+      "words": [
+        {
+          "word": "intense",
+          "phonetic": "ɪnˈtens",
+          "pos": "adj.",
+          "meaning": "adj. 激烈的，强烈的；adj. 强烈的； 紧张的； 认真的； 热情的"
+        },
+        {
+          "word": "intensely",
+          "phonetic": "ɪn'tenslɪ",
+          "pos": "adv.",
+          "meaning": "adv. 强烈地"
+        }
+      ]
+    },
+    {
+      "root": "interact",
+      "base": "interact",
+      "words": [
+        {
+          "word": "interact",
+          "phonetic": "ˌɪntər'ækt",
+          "pos": "v. · vi.",
+          "meaning": "v. 互动；v. 相互作用；vi. 相互作用， 相互影响"
+        },
+        {
+          "word": "interaction",
+          "phonetic": "ˌɪntər'ækʃn",
+          "pos": "n.",
+          "meaning": "n. 互动；n. 相互作用"
+        },
+        {
+          "word": "interactive",
+          "phonetic": "ɪntər'æktɪv",
+          "pos": "adj.",
+          "meaning": "adj. 互相作用的，互相影响的"
+        }
+      ]
+    },
+    {
+      "root": "interpret",
+      "base": "interpret",
+      "words": [
+        {
+          "word": "interpret",
+          "phonetic": "ɪnˈtɜ:prɪt",
+          "pos": "v.",
+          "meaning": "v. 解释；口译；v. 口译；解释；v. 解释， 说明； 口译"
+        },
+        {
+          "word": "interpretation",
+          "phonetic": "ɪnˌtɜ:prɪˈteɪʃn",
+          "pos": "n.",
+          "meaning": "n. 解释，理解"
+        }
+      ]
+    },
+    {
+      "root": "intrigu",
+      "base": "intrigue",
+      "words": [
+        {
+          "word": "intrigue",
+          "phonetic": "ɪn'triːg",
+          "pos": "vi. · vt. · n.",
+          "meaning": "vi. 耍阴谋，施诡计；vt. 激起…的好奇心，迷住；n. 阴谋， 诡计， 密谋"
+        },
+        {
+          "word": "intriguing",
+          "phonetic": "ɪnˈtri:gɪŋ",
+          "pos": "adj.",
+          "meaning": "adj. 有趣的"
+        }
+      ]
+    },
+    {
+      "root": "inva",
+      "base": "invasion",
+      "words": [
+        {
+          "word": "invasion",
+          "phonetic": "ɪnˈveɪʒn",
+          "pos": "n.",
+          "meaning": "n. 入侵"
+        },
+        {
+          "word": "invasive",
+          "phonetic": "ɪnˈveɪsɪv",
+          "pos": "adj.",
+          "meaning": "adj. 入侵的"
+        }
+      ]
+    },
+    {
+      "root": "involv",
+      "base": "involve",
+      "words": [
+        {
+          "word": "involve",
+          "phonetic": "ɪn'vɒlv",
+          "pos": "vt.",
+          "meaning": "vt. 使卷入， 牵涉； 包含， 含有"
+        },
+        {
+          "word": "involvement",
+          "phonetic": "ɪn'vɒlvmənt",
+          "pos": "n.",
+          "meaning": "n. 连累； 包含"
+        }
+      ]
+    },
+    {
+      "root": "isolat",
+      "base": "isolate",
+      "words": [
+        {
+          "word": "isolate",
+          "phonetic": "ˈaɪsəleɪt",
+          "pos": "v. · vt.",
+          "meaning": "v. 使隔离；vt. 使隔离， 使孤立"
+        },
+        {
+          "word": "isolation",
+          "phonetic": "ˌaɪsəˈleɪʃn",
+          "pos": "n.",
+          "meaning": "n. 隔绝，隔离"
+        }
+      ]
+    },
+    {
+      "root": "justifi",
+      "base": "justified",
+      "words": [
+        {
+          "word": "justifiable",
+          "phonetic": "ˈdʒʌstɪfaɪəbl",
+          "pos": "adj.",
+          "meaning": "adj. 理所应当的"
+        },
+        {
+          "word": "justified",
+          "phonetic": "'dʒʌstɪfaɪd",
+          "pos": "adj.",
+          "meaning": "adj. 正当的"
+        }
+      ]
+    },
+    {
+      "root": "legislat",
+      "base": "legislator",
+      "words": [
+        {
+          "word": "legislation",
+          "phonetic": "ˌledʒɪsˈleɪʃn",
+          "pos": "n.",
+          "meaning": "n. 立法；n. 立法；法规；n. 法律， 法规； 立法， 法律的制定"
+        },
+        {
+          "word": "legislator",
+          "phonetic": "ˈledʒɪsleɪtə(r)",
+          "pos": "n.",
+          "meaning": "n. 立法者"
+        }
+      ]
+    },
+    {
+      "root": "lib",
+      "base": "liberal",
+      "words": [
+        {
+          "word": "liberal",
+          "phonetic": "'lɪbərəl",
+          "pos": "adj.",
+          "meaning": "adj. 心胸宽大的， 慷慨的； 自由的， 自由主义的"
+        },
+        {
+          "word": "liberation",
+          "phonetic": "ˌlɪbə'reɪʃn",
+          "pos": "n.",
+          "meaning": "n. 解放"
+        }
+      ]
+    },
+    {
+      "root": "lin",
+      "base": "line",
+      "words": [
+        {
+          "word": "line",
+          "phonetic": "laɪn",
+          "pos": "v.",
+          "meaning": "v. 加衬里于"
+        },
+        {
+          "word": "liner",
+          "phonetic": "'laɪnə",
+          "pos": "n.",
+          "meaning": "n. 班船，定期班机；n. 衬里； 大客轮"
+        },
+        {
+          "word": "lining",
+          "phonetic": "'laɪnɪŋ",
+          "pos": "n.",
+          "meaning": "n. （衣服里的）衬里"
+        }
+      ]
+    },
+    {
+      "root": "lit",
+      "base": "literal",
+      "words": [
+        {
+          "word": "literal",
+          "phonetic": "ˈlɪtərəl",
+          "pos": "adj.",
+          "meaning": "adj. 字面的；adj. 文字（上）的；字面的；adj. 照字面的， 原义的； 逐字的"
+        },
+        {
+          "word": "literally",
+          "phonetic": "'lɪt(ə)rəlɪ",
+          "pos": "adv.",
+          "meaning": "adv. 照字义，逐字地"
+        }
+      ]
+    },
+    {
+      "root": "loc",
+      "base": "locality",
+      "words": [
+        {
+          "word": "locality",
+          "phonetic": "lə(ʊ)'kælɪtɪ",
+          "pos": "n.",
+          "meaning": "n. 位置，地点，发生地；n. 地区， 地点"
+        },
+        {
+          "word": "location",
+          "phonetic": "lə(ʊ)'keɪʃ(ə)n",
+          "pos": "n.",
+          "meaning": "n. 定位，测位"
+        }
+      ]
+    },
+    {
+      "root": "manufactur",
+      "base": "manufacture",
+      "words": [
+        {
+          "word": "manufacture",
+          "phonetic": "ˌmænjʊ'fæktʃə(r)",
+          "pos": "v. · vt. · n.",
+          "meaning": "v. 生产，制造；vt. 制造，加工；n. 制造， 制造业"
+        },
+        {
+          "word": "manufacturer",
+          "phonetic": "ˌmænju'fæktʃərə",
+          "pos": "n.",
+          "meaning": "n. 制造商， 制造厂"
+        }
+      ]
+    },
+    {
+      "root": "margin",
+      "base": "margin",
+      "words": [
+        {
+          "word": "margin",
+          "phonetic": "'mɑːdʒɪn",
+          "pos": "n.",
+          "meaning": "n. 利润；n. 余地；（获胜者在时间或票数上领先的）幅度，差额；利润；赚头；n. 页边空白； 差数， 差额； 余地； 边缘"
+        },
+        {
+          "word": "marginal",
+          "phonetic": "'mɑːdʒɪn(ə)l",
+          "pos": "adj.",
+          "meaning": "adj. 边缘的；记在页边的；adj. 微小的， 少量的； 不重要的； 仅以微弱多数票获胜的； 记在页边的， 有旁注的"
+        }
+      ]
+    },
+    {
+      "root": "marsh",
+      "base": "marsh",
+      "words": [
+        {
+          "word": "marsh",
+          "phonetic": "mɑːʃ",
+          "pos": "n.",
+          "meaning": "n. 沼泽地，湿地；n. 沼泽， 湿地"
+        },
+        {
+          "word": "marshal",
+          "phonetic": "'mɑːʃ(ə)l",
+          "pos": "n. · vt.",
+          "meaning": "n. 元帅；陆军元帅；n. 元帅，最高指挥官；总指挥，司仪；执法官，警察局长，消防队长；vt. 整理， 排列， 集结"
+        }
+      ]
+    },
+    {
+      "root": "mass",
+      "base": "mass",
+      "words": [
+        {
+          "word": "mass",
+          "phonetic": "mæs",
+          "pos": "adj. · v. · n.",
+          "meaning": "adj. 大量的，大规模的；v. 聚集， 集中；n. 众多，大量；团，块，堆；群众；质量"
+        },
+        {
+          "word": "massive",
+          "phonetic": "'mæsɪv",
+          "pos": "adj.",
+          "meaning": "adj. 粗大的；大而重的；adj. 大的， 大而重的； 大块的； 大量的， 大规模的"
+        }
+      ]
+    },
+    {
+      "root": "matur",
+      "base": "mature",
+      "words": [
+        {
+          "word": "mature",
+          "phonetic": "mə'tʃʊə",
+          "pos": "v. · adj. · vt.",
+          "meaning": "v. 使成熟，成熟；adj. 成熟的，成年人的；深思熟虑的；到期的，应支付的；vt. 使成熟"
+        },
+        {
+          "word": "maturity",
+          "phonetic": "mə'tʃʊərətɪ",
+          "pos": "n.",
+          "meaning": "n. 成熟"
+        }
+      ]
+    },
+    {
+      "root": "measur",
+      "base": "measure",
+      "words": [
+        {
+          "word": "measure",
+          "phonetic": "ˈmeʒə(r)",
+          "pos": "n.",
+          "meaning": "n. 措施"
+        },
+        {
+          "word": "measurement",
+          "phonetic": "'meʒəm(ə)nt",
+          "pos": "n.",
+          "meaning": "n. （量得的）尺寸，大小"
+        }
+      ]
+    },
+    {
+      "root": "mechanic",
+      "base": "mechanics",
+      "words": [
+        {
+          "word": "mechanical",
+          "phonetic": "mə'kænɪkl",
+          "pos": "adj.",
+          "meaning": "adj. 机械的， 机械制造的， 机械学的， 力学的； 呆板的"
+        },
+        {
+          "word": "mechanics",
+          "phonetic": "mɪ'kænɪks",
+          "pos": "n.",
+          "meaning": "n. 力学，机械学"
+        }
+      ]
+    },
+    {
+      "root": "ment",
+      "base": "mental",
+      "words": [
+        {
+          "word": "mental",
+          "phonetic": "'mentl",
+          "pos": "adj.",
+          "meaning": "adj. 心理的， 精神的， 思想上的； 精神病的； 智力的"
+        },
+        {
+          "word": "mention",
+          "phonetic": "'menʃn",
+          "pos": "v.",
+          "meaning": "v. 提及"
+        }
+      ]
+    },
+    {
+      "root": "mer",
+      "base": "mere",
+      "words": [
+        {
+          "word": "mere",
+          "phonetic": "mɪə",
+          "pos": "adj.",
+          "meaning": "adj. 仅仅的， 纯粹的"
+        },
+        {
+          "word": "merely",
+          "phonetic": "'mɪəli",
+          "pos": "adv.",
+          "meaning": "adv. 仅仅， 只不过"
+        }
+      ]
+    },
+    {
+      "root": "migrat",
+      "base": "migrate",
+      "words": [
+        {
+          "word": "migrate",
+          "phonetic": "maɪ'ɡreɪt",
+          "pos": "v. · vi.",
+          "meaning": "v. 移民，迁徙；v. 迁移，移居；vi. 迁徙， 移栖； 移居， 迁移"
+        },
+        {
+          "word": "migration",
+          "phonetic": "maɪ'greɪʃ(ə)n",
+          "pos": "n.",
+          "meaning": "n. 迁徙，移居"
+        }
+      ]
+    },
+    {
+      "root": "min",
+      "base": "minor",
+      "words": [
+        {
+          "word": "mining",
+          "phonetic": "ˈmaɪnɪŋ",
+          "pos": "n.",
+          "meaning": "n. 矿产"
+        },
+        {
+          "word": "minor",
+          "phonetic": "'maɪnə(r)",
+          "pos": "adj.",
+          "meaning": "adj. 次要的，小的"
+        },
+        {
+          "word": "minority",
+          "phonetic": "maɪ'nɒrətɪ",
+          "pos": "n.",
+          "meaning": "n. 少数，少数民族；n. 少数； 少数民族"
+        }
+      ]
+    },
+    {
+      "root": "mobil",
+      "base": "mobile",
+      "words": [
+        {
+          "word": "mobile",
+          "phonetic": "'məubaɪl",
+          "pos": "adj. · n.",
+          "meaning": "adj. 运动的；流动的；多变的；n. 移动电话"
+        },
+        {
+          "word": "mobility",
+          "phonetic": "məʊˈbɪləti",
+          "pos": "n.",
+          "meaning": "n. 活动"
+        }
+      ]
+    },
+    {
+      "root": "mor",
+      "base": "moral",
+      "words": [
+        {
+          "word": "moral",
+          "phonetic": "'mɒrəl",
+          "pos": "adj. · n.",
+          "meaning": "adj. 道德的，有道德的；n. 品行， 道德规范； 寓意"
+        },
+        {
+          "word": "morality",
+          "phonetic": "məˈræləti",
+          "pos": "n.",
+          "meaning": "n. 道德，美德，品行；n. 道德， 道德性； 德行， 品行； 道德观， 道德规则"
+        }
+      ]
+    },
+    {
+      "root": "mort",
+      "base": "mortal",
+      "words": [
+        {
+          "word": "mortal",
+          "phonetic": "'mɔːtl",
+          "pos": "adj. · n.",
+          "meaning": "adj. 终有一死的；致命的；你死我活的，不共戴天的；n. 凡人， 人类"
+        },
+        {
+          "word": "mortality",
+          "phonetic": "mɔ:ˈtæləti",
+          "pos": "n.",
+          "meaning": "n. 死亡率"
+        }
+      ]
+    },
+    {
+      "root": "motivat",
+      "base": "motivate",
+      "words": [
+        {
+          "word": "motivate",
+          "phonetic": "'məutɪveɪt",
+          "pos": "vt.",
+          "meaning": "vt. 作为…的动机； 激励， 激发"
+        },
+        {
+          "word": "motivation",
+          "phonetic": "ˌməʊtɪ'veɪʃn",
+          "pos": "n.",
+          "meaning": "n. 激励，刺激"
+        }
+      ]
+    },
+    {
+      "root": "mourn",
+      "base": "mourn",
+      "words": [
+        {
+          "word": "mourn",
+          "phonetic": "mɔ:n",
+          "pos": "v.",
+          "meaning": "v. 哀悼；v. 哀悼； 感到痛心"
+        },
+        {
+          "word": "mournful",
+          "phonetic": "'mɔrnfl",
+          "pos": "adj.",
+          "meaning": "adj. 悲哀的；令人惋惜的"
+        }
+      ]
+    },
+    {
+      "root": "narrat",
+      "base": "narration",
+      "words": [
+        {
+          "word": "narration",
+          "phonetic": "nə'reɪʃ(ə)n",
+          "pos": "n.",
+          "meaning": "n. 叙述；故事；叙述法"
+        },
+        {
+          "word": "narrative",
+          "phonetic": "'nærətɪv",
+          "pos": "n.",
+          "meaning": "n. 叙述文， 故事； 叙述， 讲述"
+        }
+      ]
+    },
+    {
+      "root": "navigat",
+      "base": "navigate",
+      "words": [
+        {
+          "word": "navigate",
+          "phonetic": "ˈnævɪgeɪt",
+          "pos": "v.",
+          "meaning": "v. 航行，驾驶"
+        },
+        {
+          "word": "navigation",
+          "phonetic": "ˌnævɪ'geɪʃn",
+          "pos": "n.",
+          "meaning": "n. 航行， 航海， 航空； 导航， 领航"
+        }
+      ]
+    },
+    {
+      "root": "negotiat",
+      "base": "negotiate",
+      "words": [
+        {
+          "word": "negotiate",
+          "phonetic": "nɪ'gəʊʃɪeɪt",
+          "pos": "v.",
+          "meaning": "v. 谈判，交涉，议定；v. 洽谈， 协商， 谈判； 顺利通过， 成功越过"
+        },
+        {
+          "word": "negotiation",
+          "phonetic": "nɪˌgəʊʃiˈeɪʃn",
+          "pos": "n.",
+          "meaning": "n. 协商"
+        }
+      ]
+    },
+    {
+      "root": "neutr",
+      "base": "neutral",
+      "words": [
+        {
+          "word": "neutral",
+          "phonetic": "'njuːtrəl",
+          "pos": "adj.",
+          "meaning": "adj. 中立的， 中性的"
+        },
+        {
+          "word": "neutrality",
+          "phonetic": "nju:ˈtræləti",
+          "pos": "n.",
+          "meaning": "n. 中立"
+        }
+      ]
+    },
+    {
+      "root": "not",
+      "base": "noted",
+      "words": [
+        {
+          "word": "notable",
+          "phonetic": "'nəʊtəb(ə)l",
+          "pos": "adj. · n.",
+          "meaning": "adj. 值得注意的；著名的；adj. 值得注意的，显著的；著名的；n. 名人， 要人"
+        },
+        {
+          "word": "notation",
+          "phonetic": "nəu'teɪʃn",
+          "pos": "n.",
+          "meaning": "n. 记号， 标记法"
+        },
+        {
+          "word": "noted",
+          "phonetic": "'nəʊtɪd",
+          "pos": "adj.",
+          "meaning": "adj. 著名的；adj. 著名的，知名的"
+        },
+        {
+          "word": "notion",
+          "phonetic": "ˈnəuʃən",
+          "pos": "n.",
+          "meaning": "n. 想法，观点；n. 概念；看法；n. 概念， 观念； 意图， 想法， 念头"
+        }
+      ]
+    },
+    {
+      "root": "notori",
+      "base": "notorious",
+      "words": [
+        {
+          "word": "notorious",
+          "phonetic": "nə(ʊ)'tɔːrɪəs",
+          "pos": "adj.",
+          "meaning": "adj. 臭名昭著的；adj. 臭名昭著的， 声名狼藉的"
+        },
+        {
+          "word": "notoriously",
+          "phonetic": "nəʊ'tɔ:rɪəslɪ",
+          "pos": "adv.",
+          "meaning": "adv. 臭名昭著地"
+        }
+      ]
+    },
+    {
+      "root": "nourish",
+      "base": "nourish",
+      "words": [
+        {
+          "word": "nourish",
+          "phonetic": "'nʌrɪʃ",
+          "pos": "v. · vt.",
+          "meaning": "v. 提供养分，养育；vt. 养育， 喂养， 滋养； 怀有， 增强"
+        },
+        {
+          "word": "nourishment",
+          "phonetic": "'nʌrɪʃm(ə)nt",
+          "pos": "n.",
+          "meaning": "n. 食物；营养（情况）"
+        }
+      ]
+    },
+    {
+      "root": "object",
+      "base": "object",
+      "words": [
+        {
+          "word": "object",
+          "phonetic": "'ɒbdʒɪkt; -dʒekt",
+          "pos": "vi. · n.",
+          "meaning": "vi. 反对， 不赞成；n. 实物， 物体； 目的， 目标； 对象， 客体； 宾语"
+        },
+        {
+          "word": "objection",
+          "phonetic": "əb'dʒekʃn",
+          "pos": "n.",
+          "meaning": "n. 反对， 异议； 反对的理由"
+        },
+        {
+          "word": "objective",
+          "phonetic": "əbˈdʒektɪv",
+          "pos": "n. · adj.",
+          "meaning": "n. 目标，目的；n. 目标；adj. 宾格的；adj. 客观的， 无偏见的"
+        }
+      ]
+    },
+    {
+      "root": "oblig",
+      "base": "oblige",
+      "words": [
+        {
+          "word": "obligation",
+          "phonetic": "ɒblɪ'geɪʃ(ə)n",
+          "pos": "n.",
+          "meaning": "n. 义务，职责，责任；n. 义务， 责任"
+        },
+        {
+          "word": "oblige",
+          "phonetic": "ə'blaɪdʒ",
+          "pos": "v.",
+          "meaning": "v. 迫使；v. 使感激；施恩惠于"
+        }
+      ]
+    },
+    {
+      "root": "obscur",
+      "base": "obscure",
+      "words": [
+        {
+          "word": "obscure",
+          "phonetic": "əb'skjʊə",
+          "pos": "adj. · vt.",
+          "meaning": "adj. 无名的；鲜为人知的；adj. 不著名的，不重要的；费解的，模糊不清的；vt. 使变糊， 掩盖"
+        },
+        {
+          "word": "obscurity",
+          "phonetic": "əb'skjʊrəti",
+          "pos": "n.",
+          "meaning": "n. 默默无闻"
+        }
+      ]
+    },
+    {
+      "root": "observ",
+      "base": "observe",
+      "words": [
+        {
+          "word": "observation",
+          "phonetic": "ɒbzə'veɪʃ(ə)n",
+          "pos": "n.",
+          "meaning": "n. 意见，短评，按语"
+        },
+        {
+          "word": "observe",
+          "phonetic": "əb'zɜːv",
+          "pos": "v.",
+          "meaning": "v. 说，评述，评论"
+        }
+      ]
+    },
+    {
+      "root": "off",
+      "base": "offer",
+      "words": [
+        {
+          "word": "offence",
+          "phonetic": "ə'fens",
+          "pos": "n.",
+          "meaning": "n. 犯罪，犯规；冒犯"
+        },
+        {
+          "word": "offer",
+          "phonetic": "'ɒfə",
+          "pos": "v.",
+          "meaning": "v. 出现"
+        }
+      ]
+    },
+    {
+      "root": "orient",
+      "base": "orient",
+      "words": [
+        {
+          "word": "orient",
+          "phonetic": "'ɔ:rɪənt",
+          "pos": "v. · n. · vi. · vt.",
+          "meaning": "v. 使适应，使确定方向；n. 东方；亚洲，远东；vi. 转向特定方向；适应[theO-]；vt. 使适应，使熟悉情况；使朝向，以…为方向；n. 东方， 亚洲， 东半球"
+        },
+        {
+          "word": "oriental",
+          "phonetic": "ˌɒːri'entl",
+          "pos": "adj.",
+          "meaning": "adj. 东方的； 东方人的； 东方文化的"
+        },
+        {
+          "word": "orientation",
+          "phonetic": ",ɔːrɪən'teɪʃ(ə)n; ,ɒr-",
+          "pos": "n.",
+          "meaning": "n. 定位；方向；n. 方向， 目标， 方位； 熟悉情况， 适应， 情况介绍"
+        }
+      ]
+    },
+    {
+      "root": "origin",
+      "base": "origin",
+      "words": [
+        {
+          "word": "origin",
+          "phonetic": "'ɒrɪdʒɪn",
+          "pos": "n.",
+          "meaning": "n. 起源， 起因； 出身， 血统"
+        },
+        {
+          "word": "original",
+          "phonetic": "ə'rɪdʒənl",
+          "pos": "adj. · n.",
+          "meaning": "adj. 最初的；新颖的；原版的；n. 原件， 原作"
+        }
+      ]
+    },
+    {
+      "root": "orna",
+      "base": "ornament",
+      "words": [
+        {
+          "word": "ornament",
+          "phonetic": "'ɔːnəm(ə)nt",
+          "pos": "n. · vt.",
+          "meaning": "n. 装饰物；n. 装饰品，点缀品；装饰，点缀；vt. 装饰， 点缀， 美化"
+        },
+        {
+          "word": "ornamental",
+          "phonetic": "ɔːnə'ment(ə)l",
+          "pos": "adj.",
+          "meaning": "adj. 装饰的"
+        }
+      ]
+    },
+    {
+      "root": "overwhelm",
+      "base": "overwhelm",
+      "words": [
+        {
+          "word": "overwhelm",
+          "phonetic": "ˌəʊvə'welm",
+          "pos": "v. · vt.",
+          "meaning": "v. 压倒，战胜；v. 使（某人）感到不能自持，使不知所措；压倒，击败；vt. 使受不了， 使不知所措； 征服， 制服"
+        },
+        {
+          "word": "overwhelming",
+          "phonetic": "ˌəʊvəˈwelmɪŋ",
+          "pos": "adj.",
+          "meaning": "adj. 压倒性的；adj. 压倒的，势不可挡的；adj. 势不可挡的， 压倒的； 巨大的"
+        }
+      ]
+    },
+    {
+      "root": "pant",
+      "base": "pant",
+      "words": [
+        {
+          "word": "pant",
+          "phonetic": "pænt",
+          "pos": "v.",
+          "meaning": "v. 气喘"
+        },
+        {
+          "word": "pants",
+          "phonetic": "pæn(t)s",
+          "pos": "n.",
+          "meaning": "n. 裤子；男用短衬裤"
+        }
+      ]
+    },
+    {
+      "root": "pass",
+      "base": "passion",
+      "words": [
+        {
+          "word": "passion",
+          "phonetic": "'pæʃn",
+          "pos": "n.",
+          "meaning": "n. 激情， 热情； 酷爱"
+        },
+        {
+          "word": "passive",
+          "phonetic": "'pæsɪv",
+          "pos": "adj.",
+          "meaning": "adj. 被动的， 消极的"
+        }
+      ]
+    },
+    {
+      "root": "peculiar",
+      "base": "peculiar",
+      "words": [
+        {
+          "word": "peculiar",
+          "phonetic": "pɪ'kju:lɪə(r)",
+          "pos": "adj.",
+          "meaning": "adj. 特有的，奇怪的；adj. 奇怪的， 古怪的； 特有的"
+        },
+        {
+          "word": "peculiarity",
+          "phonetic": "pɪ,kjuːlɪ'ærɪtɪ",
+          "pos": "n.",
+          "meaning": "n. 特性，独特性；怪癖"
+        }
+      ]
+    },
+    {
+      "root": "perfect",
+      "base": "perfect",
+      "words": [
+        {
+          "word": "perfect",
+          "phonetic": "ˈpəːfɪkt; (for v.) pəˈfekt",
+          "pos": "v.",
+          "meaning": "v. 使熟练，使改善"
+        },
+        {
+          "word": "perfection",
+          "phonetic": "pə'fekʃ(ə)n",
+          "pos": "n.",
+          "meaning": "n. 尽善尽美；无比精确；n. 完美， 完善"
+        }
+      ]
+    },
+    {
+      "root": "periodic",
+      "base": "periodic",
+      "words": [
+        {
+          "word": "periodic",
+          "phonetic": ",pɪərɪ'ɒdɪk",
+          "pos": "adj.",
+          "meaning": "adj. 周期的；一定时期的；adj. 周期的， 定期的， 时而发生的"
+        },
+        {
+          "word": "periodical",
+          "phonetic": "pɪərɪ'ɒdɪk(ə)l",
+          "pos": "n. · adj.",
+          "meaning": "n. 期刊，杂志；adj. 周期的； 定期的； 时而发生的；n. 期刊"
+        }
+      ]
+    },
+    {
+      "root": "persist",
+      "base": "persist",
+      "words": [
+        {
+          "word": "persist",
+          "phonetic": "pə'sɪst",
+          "pos": "v. · vi.",
+          "meaning": "v. 持续，存留；vi. 坚持， 持续"
+        },
+        {
+          "word": "persistence",
+          "phonetic": "pə'sɪst(ə)ns",
+          "pos": "n.",
+          "meaning": "n. 坚持；持续，存留"
+        }
+      ]
+    },
+    {
+      "root": "polar",
+      "base": "polar",
+      "words": [
+        {
+          "word": "polar",
+          "phonetic": "ˈpəʊlə(r)",
+          "pos": "n. · adj.",
+          "meaning": "n. （南、北）极；adj. 南（北）极的；极性的；adj. 地极的， 近地极的； 磁极的； 正好相反的， 截然对立的"
+        },
+        {
+          "word": "polarity",
+          "phonetic": "pə(ʊ)'lærɪtɪ",
+          "pos": "n.",
+          "meaning": "n. （人、意见或观念的）截然相反，截然对立；极性"
+        }
+      ]
+    },
+    {
+      "root": "pop",
+      "base": "pop",
+      "words": [
+        {
+          "word": "pop",
+          "phonetic": "pɒp",
+          "pos": "v.",
+          "meaning": "v. （意外地）出现"
+        },
+        {
+          "word": "pope",
+          "phonetic": "pəʊp",
+          "pos": "n.",
+          "meaning": "n. （罗马天主教的）教皇；n. 教皇， 罗马主教"
+        }
+      ]
+    },
+    {
+      "root": "port",
+      "base": "portion",
+      "words": [
+        {
+          "word": "portable",
+          "phonetic": "'pɔːtəb(ə)l",
+          "pos": "adj.",
+          "meaning": "adj. 可移动的"
+        },
+        {
+          "word": "portion",
+          "phonetic": "'pɔ:ʃn",
+          "pos": "n.",
+          "meaning": "n. 部分"
+        }
+      ]
+    },
+    {
+      "root": "pos",
+      "base": "pose",
+      "words": [
+        {
+          "word": "pose",
+          "phonetic": "pəʊz",
+          "pos": "v. · n.",
+          "meaning": "v. 形成；v. （使）摆好姿势；v. 造成，引起；提出，陈述；摆姿势；假装，冒充，装腔作势；n. 样子， 姿势"
+        },
+        {
+          "word": "position",
+          "phonetic": "pəˈzɪʃn",
+          "pos": "v. · n.",
+          "meaning": "v. 定位，安放；；n. 位置，职位；n. 形势；主张，立场"
+        }
+      ]
+    },
+    {
+      "root": "posit",
+      "base": "positive",
+      "words": [
+        {
+          "word": "positive",
+          "phonetic": "'pɒzɪtɪv",
+          "pos": "adj.",
+          "meaning": "adj. 正的，阳性的；正的，正极的，阳性的；正的，正数的；adj. 确实的， 明确的； 积极的， 肯定的"
+        },
+        {
+          "word": "positively",
+          "phonetic": "'pɒzətɪvlɪ",
+          "pos": "adv.",
+          "meaning": "adv. 确定的，断然"
+        }
+      ]
+    },
+    {
+      "root": "possess",
+      "base": "possess",
+      "words": [
+        {
+          "word": "possess",
+          "phonetic": "pə'zes",
+          "pos": "vt.",
+          "meaning": "vt. 占用， 拥有"
+        },
+        {
+          "word": "possession",
+          "phonetic": "pə'zeʃn",
+          "pos": "n.",
+          "meaning": "n. 拥有"
+        }
+      ]
+    },
+    {
+      "root": "post",
+      "base": "postal",
+      "words": [
+        {
+          "word": "postal",
+          "phonetic": "'pəʊst(ə)l",
+          "pos": "adj.",
+          "meaning": "adj. 邮政的，邮局的"
+        },
+        {
+          "word": "posture",
+          "phonetic": "'pɒstʃə",
+          "pos": "vi. · n.",
+          "meaning": "vi. 摆出姿势， 装模作样；n. 姿势，姿态；看法，态度"
+        }
+      ]
+    },
+    {
+      "root": "potenti",
+      "base": "potential",
+      "words": [
+        {
+          "word": "potential",
+          "phonetic": "pəˈtenʃl",
+          "pos": "adj. · n.",
+          "meaning": "adj. 潜在的；n. 潜力；adj. 潜在的，可能的；n. 潜力， 潜能"
+        },
+        {
+          "word": "potentially",
+          "phonetic": "pə'tenʃəlɪ",
+          "pos": "adv.",
+          "meaning": "adv. 潜在地"
+        }
+      ]
+    },
+    {
+      "root": "practic",
+      "base": "practice",
+      "words": [
+        {
+          "word": "practicable",
+          "phonetic": "'præktɪkəb(ə)l",
+          "pos": "adj.",
+          "meaning": "adj. 能实行的；适用的；adj. 可行的， 适用的"
+        },
+        {
+          "word": "practical",
+          "phonetic": "ˈpræktɪkl",
+          "pos": "adj.",
+          "meaning": "adj. 实践的；实用的"
+        },
+        {
+          "word": "practice",
+          "phonetic": "ˈpræktɪs",
+          "pos": "n.",
+          "meaning": "n. 做法"
+        }
+      ]
+    },
+    {
+      "root": "preci",
+      "base": "precious",
+      "words": [
+        {
+          "word": "precious",
+          "phonetic": "'preʃəs",
+          "pos": "adj.",
+          "meaning": "adj. 珍贵的， 宝贵的"
+        },
+        {
+          "word": "precision",
+          "phonetic": "prɪˈsɪʒn",
+          "pos": "n.",
+          "meaning": "n. 精确性"
+        }
+      ]
+    },
+    {
+      "root": "predict",
+      "base": "predict",
+      "words": [
+        {
+          "word": "predict",
+          "phonetic": "prɪ'dɪkt",
+          "pos": "v. · vt.",
+          "meaning": "v. 预测；vt. 预言， 预告， 预测"
+        },
+        {
+          "word": "prediction",
+          "phonetic": "prɪ'dɪkʃ(ə)n",
+          "pos": "n.",
+          "meaning": "n. 预言，预告；预报"
+        }
+      ]
+    },
+    {
+      "root": "predominant",
+      "base": "predominant",
+      "words": [
+        {
+          "word": "predominant",
+          "phonetic": "prɪ'dɒmɪnənt",
+          "pos": "adj.",
+          "meaning": "adj. 占优势的；主要的；adj. 占主导地位的， 显著的"
+        },
+        {
+          "word": "predominantly",
+          "phonetic": "prɪˈdɒmɪnəntli",
+          "pos": "adv.",
+          "meaning": "adv. 占主导地位地"
+        }
+      ]
+    },
+    {
+      "root": "pref",
+      "base": "preferable",
+      "words": [
+        {
+          "word": "preferable",
+          "phonetic": "'prefrəbl",
+          "pos": "adj.",
+          "meaning": "adj. 更可取的， 更好的， 更合意的"
+        },
+        {
+          "word": "preference",
+          "phonetic": "ˈprefrəns",
+          "pos": "n.",
+          "meaning": "n. 偏爱；n. 喜爱， 偏爱； 优先； 偏爱的事物"
+        }
+      ]
+    },
+    {
+      "root": "prematur",
+      "base": "premature",
+      "words": [
+        {
+          "word": "premature",
+          "phonetic": "'premətʃə",
+          "pos": "adj.",
+          "meaning": "adj. 比预期时间早的； 不成熟的， 仓促的"
+        },
+        {
+          "word": "prematurely",
+          "phonetic": "'premətʃəlɪ",
+          "pos": "adv.",
+          "meaning": "adv. 早熟地，过早地"
+        }
+      ]
+    },
+    {
+      "root": "present",
+      "base": "present",
+      "words": [
+        {
+          "word": "present",
+          "phonetic": "'preznt",
+          "pos": "v.",
+          "meaning": "v. 呈现，给予"
+        },
+        {
+          "word": "presentation",
+          "phonetic": "ˌpreznˈteɪʃn",
+          "pos": "n.",
+          "meaning": "n. 展示，讲话；n. 介绍；呈现；n. 提供， 显示； 外观， 图像； 授予， 赠送； 报告， 介绍； 表演"
+        }
+      ]
+    },
+    {
+      "root": "preserv",
+      "base": "preserve",
+      "words": [
+        {
+          "word": "preservation",
+          "phonetic": "prezə'veɪʃ(ə)n",
+          "pos": "n.",
+          "meaning": "n. 保存，储藏；保持"
+        },
+        {
+          "word": "preserve",
+          "phonetic": "prɪ'zɜːv",
+          "pos": "v. · vt.",
+          "meaning": "v. 保存，保护；vt. 保护， 维持； 保存， 保藏； 腌制"
+        }
+      ]
+    },
+    {
+      "root": "press",
+      "base": "press",
+      "words": [
+        {
+          "word": "press",
+          "phonetic": "pres",
+          "pos": "n.",
+          "meaning": "n. 出版社；印刷所；印刷机"
+        },
+        {
+          "word": "pressure",
+          "phonetic": "'preʃə",
+          "pos": "n. · vt.",
+          "meaning": "n. 大气压力；n. 压，压强；压迫；vt. 对…施加压力， 迫使， 说服"
+        }
+      ]
+    },
+    {
+      "root": "prevail",
+      "base": "prevail",
+      "words": [
+        {
+          "word": "prevail",
+          "phonetic": "prɪ'veɪl",
+          "pos": "v. · vi.",
+          "meaning": "v. 流行，普遍；vi. 流行， 盛行"
+        },
+        {
+          "word": "prevailing",
+          "phonetic": "prɪ'veɪlɪŋ",
+          "pos": "adj.",
+          "meaning": "adj. 流行的"
+        }
+      ]
+    },
+    {
+      "root": "princip",
+      "base": "principal",
+      "words": [
+        {
+          "word": "principal",
+          "phonetic": "'prɪnsəpl",
+          "pos": "adj. · n.",
+          "meaning": "adj. 最重要的，主要的；n. 负责人， 校长； 资本， 本金； 主要演员， 主角"
+        },
+        {
+          "word": "principally",
+          "phonetic": "'prɪnsɪp(ə)lɪ",
+          "pos": "adv.",
+          "meaning": "adv. 主要，大抵"
+        }
+      ]
+    },
+    {
+      "root": "pri",
+      "base": "prior",
+      "words": [
+        {
+          "word": "prior",
+          "phonetic": "'praɪə(r)",
+          "pos": "adj.",
+          "meaning": "adj. 优先的，先前的"
+        },
+        {
+          "word": "priority",
+          "phonetic": "praɪ'ɒrɪtɪ",
+          "pos": "n.",
+          "meaning": "n. 先，前；优先，重点；n. 优先， 重点； 优先考虑的事"
+        }
+      ]
+    },
+    {
+      "root": "privileg",
+      "base": "privilege",
+      "words": [
+        {
+          "word": "privilege",
+          "phonetic": "ˈprɪvəlɪdʒ",
+          "pos": "n.",
+          "meaning": "n. 特权；n. 特权； 优惠"
+        },
+        {
+          "word": "privileged",
+          "phonetic": "'prɪvəlɪdʒd",
+          "pos": "adj.",
+          "meaning": "adj. 有特权的"
+        }
+      ]
+    },
+    {
+      "root": "process",
+      "base": "process",
+      "words": [
+        {
+          "word": "process",
+          "phonetic": "'prəus3s",
+          "pos": "n. · vt.",
+          "meaning": "n. 过程；制作方法；程序；vt. 加工， 办理"
+        },
+        {
+          "word": "processing",
+          "phonetic": "prəu'sesɪŋ",
+          "pos": "n.",
+          "meaning": "n. 处理"
+        }
+      ]
+    },
+    {
+      "root": "product",
+      "base": "productive",
+      "words": [
+        {
+          "word": "productive",
+          "phonetic": "prə'dʌktɪv",
+          "pos": "adj.",
+          "meaning": "adj. 生产的；出产…的；adj. 多产的， 富饶的； 富有成效的"
+        },
+        {
+          "word": "productivity",
+          "phonetic": "ˌprɒdʌkˈtɪvəti",
+          "pos": "n.",
+          "meaning": "n. 生产力；n. 生产率；多产；n. 生产力； 生产率"
+        }
+      ]
+    },
+    {
+      "root": "profess",
+      "base": "profess",
+      "words": [
+        {
+          "word": "profess",
+          "phonetic": "prə'fes",
+          "pos": "vt.",
+          "meaning": "vt. 表示， 承认； 宣称信仰"
+        },
+        {
+          "word": "profession",
+          "phonetic": "prə'feʃn",
+          "pos": "n.",
+          "meaning": "n. 职业； 公开表示"
+        },
+        {
+          "word": "professional",
+          "phonetic": "prə'feʃənl",
+          "pos": "adj. · n.",
+          "meaning": "adj. 职业的，专业的，专门的；n. 自由职业者， 专业人员"
+        }
+      ]
+    },
+    {
+      "root": "project",
+      "base": "project",
+      "words": [
+        {
+          "word": "project",
+          "phonetic": "prəˈdʒekt; ˈprɒdʒekt",
+          "pos": "v. · n.",
+          "meaning": "v. 伸出； 投射； 放映；n. 方案， 计划； 课题， 项目； 工程"
+        },
+        {
+          "word": "projector",
+          "phonetic": "prə'dʒektə",
+          "pos": "n.",
+          "meaning": "n. 投影仪；探照灯"
+        }
+      ]
+    },
+    {
+      "root": "prolong",
+      "base": "prolong",
+      "words": [
+        {
+          "word": "prolong",
+          "phonetic": "prə'lɒŋ",
+          "pos": "v. · vt.",
+          "meaning": "v. 延长；v. 延长，拉长，拖延；vt. 延长， 拉长， 拖延"
+        },
+        {
+          "word": "prolonged",
+          "phonetic": "prəˈlɒŋd",
+          "pos": "adj.",
+          "meaning": "adj. 长时间的"
+        }
+      ]
+    },
+    {
+      "root": "promot",
+      "base": "promote",
+      "words": [
+        {
+          "word": "promote",
+          "phonetic": "prə'məʊt",
+          "pos": "v. · vt.",
+          "meaning": "v. 促进；vt. 促进， 增进， 发扬； 提升； 宣传， 推销"
+        },
+        {
+          "word": "promotion",
+          "phonetic": "prə'məʊʃn",
+          "pos": "n.",
+          "meaning": "n. 促销；n. 促进；提升"
+        }
+      ]
+    },
+    {
+      "root": "prompt",
+      "base": "prompt",
+      "words": [
+        {
+          "word": "prompt",
+          "phonetic": "prɒmpt",
+          "pos": "v.",
+          "meaning": "v. 敦促"
+        },
+        {
+          "word": "promptly",
+          "phonetic": "'prɒm(p)tlɪ",
+          "pos": "adv.",
+          "meaning": "adv. 敏捷地，迅速地"
+        }
+      ]
+    },
+    {
+      "root": "propagat",
+      "base": "propagate",
+      "words": [
+        {
+          "word": "propagate",
+          "phonetic": "'prɒpəgeɪt",
+          "pos": "v.",
+          "meaning": "v. 传播，普及；繁殖；v. 繁殖， 增殖； 传播， 宣传， 普及"
+        },
+        {
+          "word": "propagation",
+          "phonetic": ",prɒpə'ɡeɪʃən",
+          "pos": "n.",
+          "meaning": "n. 繁殖；传播；蔓延"
+        }
+      ]
+    },
+    {
+      "root": "prospect",
+      "base": "prospect",
+      "words": [
+        {
+          "word": "prospect",
+          "phonetic": "'prɒspekt",
+          "pos": "n.",
+          "meaning": "n. 前景；n. 前景， 前途， 可能性； 景象， 景色； 可能成为主顾的人， 有希望的候选人"
+        },
+        {
+          "word": "prospective",
+          "phonetic": "prəˈspektɪv",
+          "pos": "adj.",
+          "meaning": "adj. 未来的，预期的；adj. 预期的； 未来的； 可能的"
+        }
+      ]
+    },
+    {
+      "root": "prosp",
+      "base": "prosperity",
+      "words": [
+        {
+          "word": "prosperity",
+          "phonetic": "prɒ'sperətɪ",
+          "pos": "n.",
+          "meaning": "n. 繁荣"
+        },
+        {
+          "word": "prosperous",
+          "phonetic": "'prɒspərəs",
+          "pos": "adj.",
+          "meaning": "adj. 繁荣的， 兴旺的"
+        }
+      ]
+    },
+    {
+      "root": "puzzl",
+      "base": "puzzle",
+      "words": [
+        {
+          "word": "puzzle",
+          "phonetic": "'pʌz(ə)l",
+          "pos": "v.",
+          "meaning": "v. 迷惑"
+        },
+        {
+          "word": "puzzling",
+          "phonetic": "'pʌzlɪŋ",
+          "pos": "adj.",
+          "meaning": "adj. 迷惑的，困扰的"
+        }
+      ]
+    },
+    {
+      "root": "quart",
+      "base": "quart",
+      "words": [
+        {
+          "word": "quart",
+          "phonetic": "kwɔːt",
+          "pos": "n.",
+          "meaning": "n. 夸脱"
+        },
+        {
+          "word": "quarterly",
+          "phonetic": "'kwɔːtəlɪ",
+          "pos": "adj&adv. · adv. · adj. · n.",
+          "meaning": "adj&adv. 季度的（地）；adv. 按季度，一季一次；adj. 季度的，每季一次的；n. 季刊"
+        }
+      ]
+    },
+    {
+      "root": "quest",
+      "base": "quest",
+      "words": [
+        {
+          "word": "quest",
+          "phonetic": "kwest",
+          "pos": "v. · n.",
+          "meaning": "v. 寻找，追求；n. 寻找， 搜索； 追求"
+        },
+        {
+          "word": "question",
+          "phonetic": "'kwestʃ(ə)n",
+          "pos": "v.",
+          "meaning": "v. 问，询问，讯问"
+        },
+        {
+          "word": "questionable",
+          "phonetic": "'kwestʃ(ə)nəb(ə)l",
+          "pos": "adj.",
+          "meaning": "adj. 可疑的，不可靠的"
+        }
+      ]
+    },
+    {
+      "root": "radiat",
+      "base": "radiate",
+      "words": [
+        {
+          "word": "radiate",
+          "phonetic": "'reɪdieɪt",
+          "pos": "v.",
+          "meaning": "v. 发出， 辐射； 流露， 显示"
+        },
+        {
+          "word": "radiator",
+          "phonetic": "'reɪdɪeɪtə",
+          "pos": "n.",
+          "meaning": "n. 暖气片；散热器"
+        }
+      ]
+    },
+    {
+      "root": "random",
+      "base": "random",
+      "words": [
+        {
+          "word": "random",
+          "phonetic": "'rændəm",
+          "pos": "n. · adj.",
+          "meaning": "n. 随机；adj. 随机的；adj. 任意的， 随机的"
+        },
+        {
+          "word": "randomly",
+          "phonetic": "'rændəmlɪ",
+          "pos": "adv.",
+          "meaning": "adv. 随机地"
+        }
+      ]
+    },
+    {
+      "root": "rap",
+      "base": "rap",
+      "words": [
+        {
+          "word": "rap",
+          "phonetic": "ræp",
+          "pos": "n. · v. · vi. · vt.",
+          "meaning": "n. 轻敲击声；v. 敲击；vi. 说唱；vt. 敲击，急敲；突然厉声说出；责备，训斥；n. 敲击， 急敲"
+        },
+        {
+          "word": "rape",
+          "phonetic": "reɪp",
+          "pos": "n. · n&vt.",
+          "meaning": "n. 强奸；n&vt. 强奸"
+        }
+      ]
+    },
+    {
+      "root": "rar",
+      "base": "rare",
+      "words": [
+        {
+          "word": "rare",
+          "phonetic": "reə(r)",
+          "pos": "adj.",
+          "meaning": "adj. 罕见的，稀少的"
+        },
+        {
+          "word": "rarely",
+          "phonetic": "'reəli",
+          "pos": "adv.",
+          "meaning": "adv. 不常， 难得"
+        }
+      ]
+    },
+    {
+      "root": "rat",
+      "base": "rate",
+      "words": [
+        {
+          "word": "rate",
+          "phonetic": "reɪt",
+          "pos": "n. · v.",
+          "meaning": "n. 费用；n. 价格；v. 对…评定"
+        },
+        {
+          "word": "rating",
+          "phonetic": "'reɪtɪŋ",
+          "pos": "n.",
+          "meaning": "n. 等级， 品级， 评定结果； 收视率， 收听率"
+        },
+        {
+          "word": "rational",
+          "phonetic": "'ræʃ(ə)n(ə)l",
+          "pos": "adj.",
+          "meaning": "adj. 合理的；适度的；adj. 理性的， 理智的； 合理的"
+        }
+      ]
+    },
+    {
+      "root": "react",
+      "base": "reactor",
+      "words": [
+        {
+          "word": "reaction",
+          "phonetic": "ri'ækʃn",
+          "pos": "n.",
+          "meaning": "n. 反应， 反作用"
+        },
+        {
+          "word": "reactor",
+          "phonetic": "rɪ'æktə",
+          "pos": "n.",
+          "meaning": "n. 反应堆"
+        }
+      ]
+    },
+    {
+      "root": "recommend",
+      "base": "recommend",
+      "words": [
+        {
+          "word": "recommend",
+          "phonetic": "ˌrekəˈmend",
+          "pos": "v.",
+          "meaning": "v. 推荐"
+        },
+        {
+          "word": "recommendation",
+          "phonetic": ",rekəmen'deɪʃ(ə)n",
+          "pos": "n.",
+          "meaning": "n. 推荐，介绍；建议"
+        }
+      ]
+    },
+    {
+      "root": "recruit",
+      "base": "recruit",
+      "words": [
+        {
+          "word": "recruit",
+          "phonetic": "rɪ'kru:t",
+          "pos": "v. · vt.",
+          "meaning": "v. 招聘；vt. 招募， 吸收"
+        },
+        {
+          "word": "recruiter",
+          "phonetic": "rɪ'kruːtə",
+          "pos": "n.",
+          "meaning": "n. 招聘者"
+        }
+      ]
+    },
+    {
+      "root": "recycl",
+      "base": "recycle",
+      "words": [
+        {
+          "word": "recyclable",
+          "phonetic": "riː'saɪkləbl",
+          "pos": "adj.",
+          "meaning": "adj. 可回收利用的"
+        },
+        {
+          "word": "recycle",
+          "phonetic": "ˌriː'saɪkl",
+          "pos": "vt.",
+          "meaning": "vt. 回收利用"
+        }
+      ]
+    },
+    {
+      "root": "reflect",
+      "base": "reflect",
+      "words": [
+        {
+          "word": "reflect",
+          "phonetic": "rɪ'flekt",
+          "pos": "v.",
+          "meaning": "v. 思考，反映，反射；v. 反映， 显示； 反射， 映现； 深思， 考虑， 反省"
+        },
+        {
+          "word": "reflective",
+          "phonetic": "rɪ'flektɪv",
+          "pos": "adj.",
+          "meaning": "adj. 深思熟虑的；反映的，反射的"
+        }
+      ]
+    },
+    {
+      "root": "refresh",
+      "base": "refresh",
+      "words": [
+        {
+          "word": "refresh",
+          "phonetic": "rɪ'freʃ",
+          "pos": "v.",
+          "meaning": "v. 振作精神， 恢复活力"
+        },
+        {
+          "word": "refreshing",
+          "phonetic": "rɪˈfreʃɪŋ",
+          "pos": "adj.",
+          "meaning": "adj. 新鲜的"
+        },
+        {
+          "word": "refreshment",
+          "phonetic": "rɪ'freʃm(ə)nt",
+          "pos": "n.",
+          "meaning": "n. （精力的）恢复，爽快；n. 茶点， 点心； 恢复， 精神爽快"
+        }
+      ]
+    },
+    {
+      "root": "regard",
+      "base": "regarding",
+      "words": [
+        {
+          "word": "regarding",
+          "phonetic": "rɪ'gɑːdɪŋ",
+          "pos": "prep.",
+          "meaning": "prep. 关于"
+        },
+        {
+          "word": "regardless",
+          "phonetic": "rɪˈɡɑːdləs",
+          "pos": "adj.",
+          "meaning": "adj. 不管，不顾"
+        }
+      ]
+    },
+    {
+      "root": "regenerat",
+      "base": "regenerate",
+      "words": [
+        {
+          "word": "regenerate",
+          "phonetic": "rɪ'dʒenər3ɪt",
+          "pos": "vi. · vt.",
+          "meaning": "vi. 新生， 再生， 起革新作用；vt. 使新生，重建，改革，革新"
+        },
+        {
+          "word": "regenerative",
+          "phonetic": "rɪ'dʒen(ə)rətɪv",
+          "pos": "adj.",
+          "meaning": "adj. 回授的；再生的"
+        }
+      ]
+    },
+    {
+      "root": "regulat",
+      "base": "regulate",
+      "words": [
+        {
+          "word": "regulate",
+          "phonetic": "'regjʊleɪt",
+          "pos": "v.",
+          "meaning": "v. 调整，调节，校准"
+        },
+        {
+          "word": "regulation",
+          "phonetic": "ˌregjuˈleɪʃn",
+          "pos": "n.",
+          "meaning": "n. 管理，规则；n. 规章，规则；n. 规章， 规则； 管理， 控制， 调节"
+        }
+      ]
+    },
+    {
+      "root": "reject",
+      "base": "reject",
+      "words": [
+        {
+          "word": "reject",
+          "phonetic": "rɪ'dʒekt",
+          "pos": "v. · vt. · n.",
+          "meaning": "v. 舍弃，抛弃；排斥；vt. 拒绝； 拒纳， 退回， 摈弃；n. 被拒货品， 不合格产品"
+        },
+        {
+          "word": "rejection",
+          "phonetic": "rɪ'dʒekʃn",
+          "pos": "n.",
+          "meaning": "n. 拒绝"
+        }
+      ]
+    },
+    {
+      "root": "reli",
+      "base": "reliable",
+      "words": [
+        {
+          "word": "reliable",
+          "phonetic": "rɪˈlaɪəbl",
+          "pos": "adj.",
+          "meaning": "adj. 可靠的；adj. 可靠的， 可依赖的"
+        },
+        {
+          "word": "reliance",
+          "phonetic": "rɪ'laɪəns",
+          "pos": "n.",
+          "meaning": "n. 依靠， 依赖"
+        }
+      ]
+    },
+    {
+      "root": "reliev",
+      "base": "relieve",
+      "words": [
+        {
+          "word": "relieve",
+          "phonetic": "rɪ'li:v",
+          "pos": "v. · vt.",
+          "meaning": "v. 减轻，缓解；vt. 使轻松， 使宽慰； 缓解， 减轻， 解除； 使得到调剂； 接替， 替下"
+        },
+        {
+          "word": "relieved",
+          "phonetic": "rɪˈli:vd",
+          "pos": "adj.",
+          "meaning": "adj. 轻松的，缓解的"
+        }
+      ]
+    },
+    {
+      "root": "replac",
+      "base": "replace",
+      "words": [
+        {
+          "word": "replace",
+          "phonetic": "rɪ'pleɪs",
+          "pos": "v.",
+          "meaning": "v. 把...放回原处"
+        },
+        {
+          "word": "replacement",
+          "phonetic": "rɪ'pleɪsmənt",
+          "pos": "n.",
+          "meaning": "n. 代替；n. 取代；置换"
+        }
+      ]
+    },
+    {
+      "root": "represent",
+      "base": "represent",
+      "words": [
+        {
+          "word": "represent",
+          "phonetic": "ˌreprɪ'zent",
+          "pos": "vt.",
+          "meaning": "vt. 作为…的代表， 表示， 象征； 描绘， 表现"
+        },
+        {
+          "word": "representation",
+          "phonetic": ",reprɪzen'teɪʃ(ə)n",
+          "pos": "n.",
+          "meaning": "n. 描写；陈述；代表"
+        }
+      ]
+    },
+    {
+      "root": "reserv",
+      "base": "reserve",
+      "words": [
+        {
+          "word": "reservation",
+          "phonetic": "ˌrezə'veɪʃn",
+          "pos": "n.",
+          "meaning": "n. 预定；n. 预定，预订；保留意见；n. 预订； 保留； 犹豫； 居留地"
+        },
+        {
+          "word": "reserve",
+          "phonetic": "rɪ'zɜːv",
+          "pos": "n. · vt.",
+          "meaning": "n. 缄默，自我克制；vt. 保留，留存；预订；n. 储备； 保留； 拘谨， 矜持； 替补队员； 后备部队； 自然保护区"
+        },
+        {
+          "word": "reserved",
+          "phonetic": "rɪˈzɜ:vd",
+          "pos": "adj.",
+          "meaning": "adj. 保留意见的；矜持的"
+        }
+      ]
+    },
+    {
+      "root": "resign",
+      "base": "resign",
+      "words": [
+        {
+          "word": "resign",
+          "phonetic": "rɪ'zaɪn",
+          "pos": "v. · vi. · vt.",
+          "meaning": "v. 辞职；v. 使顺从，使听任于；vi. 辞职；听任；vt. 辞去， 放弃； 使顺从"
+        },
+        {
+          "word": "resignation",
+          "phonetic": "rezɪg'neɪʃ(ə)n",
+          "pos": "n.",
+          "meaning": "n. 听从，屈从，顺从"
+        }
+      ]
+    },
+    {
+      "root": "respect",
+      "base": "respective",
+      "words": [
+        {
+          "word": "respectable",
+          "phonetic": "rɪ'spektəb(ə)l",
+          "pos": "adj.",
+          "meaning": "adj. 可敬的；人格高尚的"
+        },
+        {
+          "word": "respective",
+          "phonetic": "rɪˈspektɪv",
+          "pos": "adj.",
+          "meaning": "adj. 各自的；adj. 各自的， 各个的， 分别的"
+        }
+      ]
+    },
+    {
+      "root": "respon",
+      "base": "responsive",
+      "words": [
+        {
+          "word": "responsibility",
+          "phonetic": "rɪˌspɒnsə'bɪlətɪ",
+          "pos": "n.",
+          "meaning": "n. 责任"
+        },
+        {
+          "word": "responsible",
+          "phonetic": "rɪ'spɒnsɪb(ə)l",
+          "pos": "adj.",
+          "meaning": "adj. 可靠的；责任重大的；adj. 需负责任的， 承担责任的； 有责任感的， 负责可靠的； 责任重大的， 重要的"
+        },
+        {
+          "word": "responsive",
+          "phonetic": "rɪˈspɒnsɪv",
+          "pos": "adj.",
+          "meaning": "adj. 灵敏的，反应的"
+        }
+      ]
+    },
+    {
+      "root": "retail",
+      "base": "retail",
+      "words": [
+        {
+          "word": "retail",
+          "phonetic": "'riːteɪl",
+          "pos": "n.",
+          "meaning": "n. 零售"
+        },
+        {
+          "word": "retailer",
+          "phonetic": "ˈri:teɪlə(r)",
+          "pos": "n.",
+          "meaning": "n. 零售商"
+        }
+      ]
+    },
+    {
+      "root": "rev",
+      "base": "reveal",
+      "words": [
+        {
+          "word": "reveal",
+          "phonetic": "rɪ'vi:l",
+          "pos": "v. · vt.",
+          "meaning": "v. 揭露；v. 告诉，揭示，泄露；vt. 揭露， 泄露； 展现， 显示"
+        },
+        {
+          "word": "revive",
+          "phonetic": "rɪ'vaɪv",
+          "pos": "v.",
+          "meaning": "v. 复苏；v. 苏醒；复兴"
+        }
+      ]
+    },
+    {
+      "root": "reward",
+      "base": "reward",
+      "words": [
+        {
+          "word": "reward",
+          "phonetic": "rɪ'wɔːd",
+          "pos": "n. · vt.",
+          "meaning": "n. 报答，奖赏；报酬，酬金；vt. 报答， 酬谢， 奖励"
+        },
+        {
+          "word": "rewarding",
+          "phonetic": "rɪˈwɔ:dɪŋ",
+          "pos": "adj.",
+          "meaning": "adj. 有回报的"
+        }
+      ]
+    },
+    {
+      "root": "ridicul",
+      "base": "ridicule",
+      "words": [
+        {
+          "word": "ridicule",
+          "phonetic": "'rɪdɪkjuːl",
+          "pos": "v. · n.",
+          "meaning": "v. 嘲弄，挖苦；n. 嘲弄，挖苦"
+        },
+        {
+          "word": "ridiculous",
+          "phonetic": "rɪˈdɪkjələs",
+          "pos": "adj.",
+          "meaning": "adj. 滑稽的，可笑的；adj. 荒谬的， 可笑的"
+        }
+      ]
+    },
+    {
+      "root": "rig",
+      "base": "rig",
+      "words": [
+        {
+          "word": "rig",
+          "phonetic": "rɪg",
+          "pos": "vt. · n.",
+          "meaning": "vt. 操纵，垄断；给装配帆及索具；用临时替代材料迅速搭起；n. 船桅的装置， 成套器械"
+        },
+        {
+          "word": "rigor",
+          "phonetic": "'riɡə",
+          "pos": "n.",
+          "meaning": "n. 严格"
+        },
+        {
+          "word": "rigorous",
+          "phonetic": "ˈrɪgərəs",
+          "pos": "adj.",
+          "meaning": "adj. 严格的；adj. 严密的， 缜密的； 严格的， 严厉的"
+        }
+      ]
+    },
+    {
+      "root": "rul",
+      "base": "rule",
+      "words": [
+        {
+          "word": "rule",
+          "phonetic": "ruːl",
+          "pos": "v.",
+          "meaning": "v. 裁决，裁定"
+        },
+        {
+          "word": "ruling",
+          "phonetic": "ˈru:lɪŋ",
+          "pos": "n.",
+          "meaning": "n. 裁定"
+        }
+      ]
+    },
+    {
+      "root": "saturat",
+      "base": "saturate",
+      "words": [
+        {
+          "word": "saturate",
+          "phonetic": "'sætʃəreɪt",
+          "pos": "vt.",
+          "meaning": "vt. 使湿透， 浸透； 使充满， 使饱和"
+        },
+        {
+          "word": "saturation",
+          "phonetic": "sætʃə'reɪʃ(ə)n",
+          "pos": "n.",
+          "meaning": "n. 饱和（状态）；浸透"
+        }
+      ]
+    },
+    {
+      "root": "scar",
+      "base": "scar",
+      "words": [
+        {
+          "word": "scar",
+          "phonetic": "skɑː",
+          "pos": "n. · v.",
+          "meaning": "n. 瘢痕；v. 留下伤痕；n. 伤疤，伤痕；创伤"
+        },
+        {
+          "word": "scare",
+          "phonetic": "skeə(r)",
+          "pos": "n.",
+          "meaning": "n. 恐吓，惊恐"
+        }
+      ]
+    },
+    {
+      "root": "scrap",
+      "base": "scrap",
+      "words": [
+        {
+          "word": "scrap",
+          "phonetic": "skræp",
+          "pos": "n. · v. · vt.",
+          "meaning": "n. 碎片；废料；v. 废弃；n. 碎片，碎屑；废金属；残羹剩饭；少量，点滴；vt. 废弃， 抛弃"
+        },
+        {
+          "word": "scrape",
+          "phonetic": "skreɪp",
+          "pos": "v. · n.",
+          "meaning": "v. 刮，擦；勉强过日子；n. 刮， 擦； 刮擦声"
+        }
+      ]
+    },
+    {
+      "root": "script",
+      "base": "script",
+      "words": [
+        {
+          "word": "script",
+          "phonetic": "skrɪpt",
+          "pos": "n.",
+          "meaning": "n. 脚本，剧本"
+        },
+        {
+          "word": "scripture",
+          "phonetic": "'skrɪptʃə",
+          "pos": "n.",
+          "meaning": "n. 《圣经》；圣书"
+        }
+      ]
+    },
+    {
+      "root": "sect",
+      "base": "sector",
+      "words": [
+        {
+          "word": "section",
+          "phonetic": "'sekʃ(ə)n",
+          "pos": "n.",
+          "meaning": "n. 部分"
+        },
+        {
+          "word": "sector",
+          "phonetic": "'sektə(r)",
+          "pos": "n.",
+          "meaning": "n. 部门"
+        }
+      ]
+    },
+    {
+      "root": "segregat",
+      "base": "segregate",
+      "words": [
+        {
+          "word": "segregate",
+          "phonetic": "'segrɪgeɪt",
+          "pos": "vt.",
+          "meaning": "vt. 使隔离， 使分开"
+        },
+        {
+          "word": "segregation",
+          "phonetic": "ˌseɡrɪˈɡeɪʃn",
+          "pos": "n.",
+          "meaning": "n. 隔离"
+        }
+      ]
+    },
+    {
+      "root": "sens",
+      "base": "sensation",
+      "words": [
+        {
+          "word": "sensation",
+          "phonetic": "sen'seɪʃ(ə)n",
+          "pos": "n.",
+          "meaning": "n. 感觉，知觉；轰动；n. 感觉能力； 感觉， 知觉； 轰动， 引起轰动的事件"
+        },
+        {
+          "word": "senseless",
+          "phonetic": "'senslɪs",
+          "pos": "adj.",
+          "meaning": "adj. 愚蠢的，无意义的"
+        }
+      ]
+    },
+    {
+      "root": "sensit",
+      "base": "sensitive",
+      "words": [
+        {
+          "word": "sensitive",
+          "phonetic": "'sensətɪv",
+          "pos": "adj.",
+          "meaning": "adj. 敏感的， 灵敏的； 神经过敏的， 容易生气的； 易受伤害的"
+        },
+        {
+          "word": "sensitivity",
+          "phonetic": "",
+          "pos": "n.",
+          "meaning": "n. 敏感（性）；灵敏性"
+        }
+      ]
+    },
+    {
+      "root": "sen",
+      "base": "sensor",
+      "words": [
+        {
+          "word": "sensible",
+          "phonetic": "ˈsensəbl",
+          "pos": "adj.",
+          "meaning": "adj. 理智的；adj. 明显的，感觉得到的；adj. 明智的， 合情理的"
+        },
+        {
+          "word": "sensor",
+          "phonetic": "'sensə",
+          "pos": "n.",
+          "meaning": "n. 传感器，灵敏元件"
+        }
+      ]
+    },
+    {
+      "root": "seri",
+      "base": "serial",
+      "words": [
+        {
+          "word": "serial",
+          "phonetic": "'sɪəriəl",
+          "pos": "adj. · n.",
+          "meaning": "adj. 连续的， 顺序排列的；n. 连续剧，连载故事"
+        },
+        {
+          "word": "series",
+          "phonetic": "'sɪəriːz",
+          "pos": "n.",
+          "meaning": "n. 一系列， 连续； 丛书， 连续剧"
+        }
+      ]
+    },
+    {
+      "root": "settl",
+      "base": "settle",
+      "words": [
+        {
+          "word": "settle",
+          "phonetic": "'setl",
+          "pos": "v.",
+          "meaning": "v. 安排， 安放； 调停； 支付， 核算； 安家； 飞落， 停留； 安定"
+        },
+        {
+          "word": "settlement",
+          "phonetic": "'set(ə)lm(ə)nt",
+          "pos": "n.",
+          "meaning": "n. 调停；（尤指拓荒者居住的）定居点，村落；n. 解决； 协议； 居留地， 小社区"
+        }
+      ]
+    },
+    {
+      "root": "sham",
+      "base": "sham",
+      "words": [
+        {
+          "word": "sham",
+          "phonetic": "ʃæm",
+          "pos": "n. · v.",
+          "meaning": "n. 假冒；膺品；v. 假装"
+        },
+        {
+          "word": "shame",
+          "phonetic": "ʃeɪm",
+          "pos": "v.",
+          "meaning": "v. 使羞愧；玷辱"
+        },
+        {
+          "word": "shameful",
+          "phonetic": "'ʃeɪmfʊl; -f(ə)l",
+          "pos": "adj.",
+          "meaning": "adj. 可耻的；不道德的"
+        }
+      ]
+    },
+    {
+      "root": "should",
+      "base": "should",
+      "words": [
+        {
+          "word": "should",
+          "phonetic": "ʃəd; strong form ʃʊd",
+          "pos": "v.",
+          "meaning": "v. 应该；竟然会"
+        },
+        {
+          "word": "shoulder",
+          "phonetic": "'ʃəʊldə",
+          "pos": "v.",
+          "meaning": "v. 承担；挑起"
+        }
+      ]
+    },
+    {
+      "root": "sign",
+      "base": "sign",
+      "words": [
+        {
+          "word": "sign",
+          "phonetic": "saɪn",
+          "pos": "n.",
+          "meaning": "n. 征兆，迹象，病症"
+        },
+        {
+          "word": "signal",
+          "phonetic": "'sɪɡnəl",
+          "pos": "v. · adj. · n. · vt.",
+          "meaning": "v. 标志；adj. 显著的， 重大的；n. 信号，暗号；标志，表示；vt. 发信号；标志着"
+        }
+      ]
+    },
+    {
+      "root": "similar",
+      "base": "similar",
+      "words": [
+        {
+          "word": "similar",
+          "phonetic": "'sɪmələ",
+          "pos": "adj.",
+          "meaning": "adj. 相似的， 类似的"
+        },
+        {
+          "word": "similarity",
+          "phonetic": "sɪmə'lærətɪ",
+          "pos": "n.",
+          "meaning": "n. 类似，相似；类似点"
+        }
+      ]
+    },
+    {
+      "root": "simultan",
+      "base": "simultaneous",
+      "words": [
+        {
+          "word": "simultaneous",
+          "phonetic": "ˌsɪmlˈteɪniəs",
+          "pos": "adj.",
+          "meaning": "adj. 同步的；adj. 同时的，同时存在的；adj. 同时发生的， 同时存在的； 同步的， 一齐的"
+        },
+        {
+          "word": "simultaneously",
+          "phonetic": "ˌsɪməl'teɪnɪəslɪ",
+          "pos": "adv.",
+          "meaning": "adv. 同步地，同时地"
+        }
+      ]
+    },
+    {
+      "root": "situat",
+      "base": "situated",
+      "words": [
+        {
+          "word": "situated",
+          "phonetic": "'sɪtjʊeɪtɪd",
+          "pos": "adj.",
+          "meaning": "adj. 位于…的；adj. 位于…的， 坐落在…的； 处于…境地的"
+        },
+        {
+          "word": "situation",
+          "phonetic": "sɪtjʊ'eɪʃ(ə)n",
+          "pos": "n.",
+          "meaning": "n. （建筑物等的）位置"
+        }
+      ]
+    },
+    {
+      "root": "slight",
+      "base": "slight",
+      "words": [
+        {
+          "word": "slight",
+          "phonetic": "slaɪt",
+          "pos": "adj. · v.",
+          "meaning": "adj. 轻微的；adj. 轻微的，微小的；v. 侮慢；轻视，冷落"
+        },
+        {
+          "word": "slightly",
+          "phonetic": "'slaɪtlɪ",
+          "pos": "adv.",
+          "meaning": "adv. 轻微地"
+        }
+      ]
+    },
+    {
+      "root": "specific",
+      "base": "specific",
+      "words": [
+        {
+          "word": "specific",
+          "phonetic": "spəˈsɪfɪk",
+          "pos": "adj. · n.",
+          "meaning": "adj. 具体的；adj. 特有的；明确的；具体的；n. 详情， 细节"
+        },
+        {
+          "word": "specification",
+          "phonetic": "ˌspesɪfɪˈkeɪʃn",
+          "pos": "n.",
+          "meaning": "n. 说明书；n. 规格；明确说明，详述；n. 规格， 规范； 明确说明； 说明书"
+        }
+      ]
+    },
+    {
+      "root": "stain",
+      "base": "stain",
+      "words": [
+        {
+          "word": "stain",
+          "phonetic": "steɪn",
+          "pos": "n.",
+          "meaning": "n. 污渍，污点"
+        },
+        {
+          "word": "stainless",
+          "phonetic": "'steɪnlɪs",
+          "pos": "adj.",
+          "meaning": "adj. 不锈的；纯洁的"
+        }
+      ]
+    },
+    {
+      "root": "stiff",
+      "base": "stiff",
+      "words": [
+        {
+          "word": "stiff",
+          "phonetic": "stɪf",
+          "pos": "adj.",
+          "meaning": "adj. 生硬的"
+        },
+        {
+          "word": "stiffness",
+          "phonetic": "'stɪfnɪs",
+          "pos": "n.",
+          "meaning": "n. 硬度"
+        }
+      ]
+    },
+    {
+      "root": "strik",
+      "base": "strike",
+      "words": [
+        {
+          "word": "strike",
+          "phonetic": "straɪk",
+          "pos": "n.",
+          "meaning": "n. 罢工"
+        },
+        {
+          "word": "striking",
+          "phonetic": "'straɪkɪŋ",
+          "pos": "adj.",
+          "meaning": "adj. 显著的，惊人的"
+        }
+      ]
+    },
+    {
+      "root": "str",
+      "base": "string",
+      "words": [
+        {
+          "word": "string",
+          "phonetic": "strɪŋ",
+          "pos": "n.",
+          "meaning": "n. 线， 细绳； 一串， 一行"
+        },
+        {
+          "word": "strive",
+          "phonetic": "straɪv",
+          "pos": "v. · vi.",
+          "meaning": "v. 努力，奋斗，力求；vi. 努力， 奋斗， 力求"
+        }
+      ]
+    },
+    {
+      "root": "subject",
+      "base": "subject",
+      "words": [
+        {
+          "word": "subject",
+          "phonetic": "ˈsʌbdʒɪkt",
+          "pos": "v.",
+          "meaning": "v. 使隶属"
+        },
+        {
+          "word": "subjective",
+          "phonetic": "səb'dʒektɪv",
+          "pos": "adj.",
+          "meaning": "adj. 主观的， 个人的"
+        }
+      ]
+    },
+    {
+      "root": "subscript",
+      "base": "subscript",
+      "words": [
+        {
+          "word": "subscript",
+          "phonetic": "'sʌbskrɪpt",
+          "pos": "adj. · n.",
+          "meaning": "adj. 写在下方的；n. 下标"
+        },
+        {
+          "word": "subscription",
+          "phonetic": "səb'skrɪpʃ(ə)n",
+          "pos": "n.",
+          "meaning": "n. 订阅（费）；用户费（的缴纳）"
+        }
+      ]
+    },
+    {
+      "root": "subsequent",
+      "base": "subsequent",
+      "words": [
+        {
+          "word": "subsequent",
+          "phonetic": "'sʌbsɪkw(ə)nt",
+          "pos": "adj.",
+          "meaning": "adj. 尔后的；adj. 随后的， 后来的"
+        },
+        {
+          "word": "subsequently",
+          "phonetic": "'sʌbsɪkwəntlɪ",
+          "pos": "adv.",
+          "meaning": "adv. 随后；adv. 其后，其次，接着"
+        }
+      ]
+    },
+    {
+      "root": "success",
+      "base": "successor",
+      "words": [
+        {
+          "word": "succession",
+          "phonetic": "sək'seʃ(ə)n",
+          "pos": "n.",
+          "meaning": "n. 继承（权）"
+        },
+        {
+          "word": "successive",
+          "phonetic": "sək'sesɪv",
+          "pos": "adj.",
+          "meaning": "adj. 连续的， 接连的"
+        },
+        {
+          "word": "successively",
+          "phonetic": "sək'sesɪvlɪ",
+          "pos": "adv.",
+          "meaning": "adv. 接连着地，继续地"
+        },
+        {
+          "word": "successor",
+          "phonetic": "sək'sesə",
+          "pos": "n.",
+          "meaning": "n. 继承人，继任者；n. 接替的人或事物， 继任者"
+        }
+      ]
+    },
+    {
+      "root": "suit",
+      "base": "suit",
+      "words": [
+        {
+          "word": "suit",
+          "phonetic": "sju:t; su:t",
+          "pos": "v.",
+          "meaning": "v. 使配合，彼此协调"
+        },
+        {
+          "word": "suite",
+          "phonetic": "swiːt",
+          "pos": "n.",
+          "meaning": "n. 套间； 一套家具； 套， 组， 系列"
+        }
+      ]
+    },
+    {
+      "root": "superi",
+      "base": "superior",
+      "words": [
+        {
+          "word": "superior",
+          "phonetic": "suː'pɪəriə",
+          "pos": "adj. · n.",
+          "meaning": "adj. 上级的，较高的；优越的；有优越感的，高傲的；n. 上级， 长官"
+        },
+        {
+          "word": "superiority",
+          "phonetic": "suː,pɪərɪ'ɒrɪtɪ; sjuː-",
+          "pos": "n.",
+          "meaning": "n. 优越（性），优势；n. 优越， 优等"
+        }
+      ]
+    },
+    {
+      "root": "systematic",
+      "base": "systematic",
+      "words": [
+        {
+          "word": "systematic",
+          "phonetic": "sɪstə'mætɪk",
+          "pos": "adj.",
+          "meaning": "adj. 成体系的"
+        },
+        {
+          "word": "systematically",
+          "phonetic": ",sɪstə'mætɪklɪ",
+          "pos": "adv.",
+          "meaning": "adv. 系统地，有规则地"
+        }
+      ]
+    },
+    {
+      "root": "tangl",
+      "base": "tangle",
+      "words": [
+        {
+          "word": "tangle",
+          "phonetic": "'tæŋg(ə)l",
+          "pos": "v. · n.",
+          "meaning": "v. 使缠结，使纠缠；v. 缠结，乱作一团；n. 乱糟糟的一堆， 混乱； 复杂的问题； 困惑"
+        },
+        {
+          "word": "tangled",
+          "phonetic": "'tæŋɡld",
+          "pos": "adj.",
+          "meaning": "adj. 复杂的，纠缠的"
+        }
+      ]
+    },
+    {
+      "root": "tank",
+      "base": "tank",
+      "words": [
+        {
+          "word": "tank",
+          "phonetic": "tæŋk",
+          "pos": "n.",
+          "meaning": "n. 水箱"
+        },
+        {
+          "word": "tanker",
+          "phonetic": "'tæŋkə",
+          "pos": "n.",
+          "meaning": "n. 油船；空中加油飞机；n. 油轮"
+        }
+      ]
+    },
+    {
+      "root": "tap",
+      "base": "tap",
+      "words": [
+        {
+          "word": "tap",
+          "phonetic": "tæp",
+          "pos": "v.",
+          "meaning": "v. 轻敲, 导出"
+        },
+        {
+          "word": "tape",
+          "phonetic": "teɪp",
+          "pos": "v.",
+          "meaning": "v. 系，捆"
+        },
+        {
+          "word": "taper",
+          "phonetic": "'teɪpə",
+          "pos": "n.",
+          "meaning": "n. 细小的蜡烛；微光"
+        }
+      ]
+    },
+    {
+      "root": "tempt",
+      "base": "tempt",
+      "words": [
+        {
+          "word": "tempt",
+          "phonetic": "tem(p)t",
+          "pos": "v. · vt.",
+          "meaning": "v. 引诱，诱惑，劝诱；vt. 吸引， 引起…的兴趣； 引诱， 诱惑"
+        },
+        {
+          "word": "temptation",
+          "phonetic": "tempˈteɪʃn",
+          "pos": "n.",
+          "meaning": "n. 诱惑"
+        },
+        {
+          "word": "tempting",
+          "phonetic": "ˈtemptɪŋ",
+          "pos": "adj.",
+          "meaning": "adj. 吸引人的"
+        }
+      ]
+    },
+    {
+      "root": "thrill",
+      "base": "thrill",
+      "words": [
+        {
+          "word": "thrill",
+          "phonetic": "θrɪl",
+          "pos": "v. · n.",
+          "meaning": "v. （使）激动；v. 非常兴奋， 非常激动；n. 兴奋，激动；引起激动的事物"
+        },
+        {
+          "word": "thrilling",
+          "phonetic": "'θrɪlɪŋ",
+          "pos": "adj.",
+          "meaning": "adj. 令人兴奋的"
+        }
+      ]
+    },
+    {
+      "root": "tow",
+      "base": "tow",
+      "words": [
+        {
+          "word": "tow",
+          "phonetic": "təʊ",
+          "pos": "v. · n. · n&vt.",
+          "meaning": "v. 拖引，牵引；n. 拖引，牵引；n&vt. 拖， 拉， 牵引"
+        },
+        {
+          "word": "tower",
+          "phonetic": "'taʊə",
+          "pos": "v.",
+          "meaning": "v. 高耸，屹立；翱翔"
+        }
+      ]
+    },
+    {
+      "root": "trad",
+      "base": "trade",
+      "words": [
+        {
+          "word": "trade",
+          "phonetic": "treɪd",
+          "pos": "v.",
+          "meaning": "v. 做买卖；交换"
+        },
+        {
+          "word": "trader",
+          "phonetic": "'treɪdə",
+          "pos": "n.",
+          "meaning": "n. 商人"
+        }
+      ]
+    },
+    {
+      "root": "tropic",
+      "base": "tropic",
+      "words": [
+        {
+          "word": "tropic",
+          "phonetic": "'trɒpɪk",
+          "pos": "n.",
+          "meaning": "n. 回归线；热带地区"
+        },
+        {
+          "word": "tropical",
+          "phonetic": "ˈtrɒpɪkl",
+          "pos": "adj.",
+          "meaning": "adj. 热带的；adj. 热带的；（天气）湿热的"
+        }
+      ]
+    },
+    {
+      "root": "undertak",
+      "base": "undertake",
+      "words": [
+        {
+          "word": "undertake",
+          "phonetic": "ˌʌndə'teɪk",
+          "pos": "v.",
+          "meaning": "v. 承担；着手，开始；v. 从事；承诺"
+        },
+        {
+          "word": "undertaking",
+          "phonetic": "ˌʌndəˈteɪkɪŋ",
+          "pos": "n.",
+          "meaning": "n. 任务，事情；n. 任务，事业；承诺"
+        }
+      ]
+    },
+    {
+      "root": "utiliz",
+      "base": "utilize",
+      "words": [
+        {
+          "word": "utilization",
+          "phonetic": "ˌju:təlaɪ'zeɪʃn",
+          "pos": "n.",
+          "meaning": "n. 利用；n. 利用，效用"
+        },
+        {
+          "word": "utilize",
+          "phonetic": "'juːtəlaɪz",
+          "pos": "vt.",
+          "meaning": "vt. 利用"
+        }
+      ]
+    },
+    {
+      "root": "valid",
+      "base": "valid",
+      "words": [
+        {
+          "word": "valid",
+          "phonetic": "'vælɪd",
+          "pos": "adj.",
+          "meaning": "adj. 有效的， 正当的； 有根据的， 有理的"
+        },
+        {
+          "word": "validation",
+          "phonetic": "ˌvælɪ'deɪʃn",
+          "pos": "n.",
+          "meaning": "n. 证实"
+        },
+        {
+          "word": "validity",
+          "phonetic": "vəˈlɪdəti",
+          "pos": "n.",
+          "meaning": "n. 有效性，真实性；n. （法律上的）有效；符合逻辑，正确"
+        }
+      ]
+    },
+    {
+      "root": "valu",
+      "base": "value",
+      "words": [
+        {
+          "word": "valuable",
+          "phonetic": "'væljʊəb(ə)l",
+          "pos": "n.",
+          "meaning": "n. 贵重物品，财宝"
+        },
+        {
+          "word": "value",
+          "phonetic": "'væljuː",
+          "pos": "v.",
+          "meaning": "v. 尊重，重视；估价"
+        }
+      ]
+    },
+    {
+      "root": "vari",
+      "base": "various",
+      "words": [
+        {
+          "word": "variance",
+          "phonetic": "ˈveəriəns",
+          "pos": "n.",
+          "meaning": "n. 不同"
+        },
+        {
+          "word": "variation",
+          "phonetic": "ˌveəriˈeɪʃn",
+          "pos": "n.",
+          "meaning": "n. 变化；n. 变化， 变动， 变异； 变奏"
+        },
+        {
+          "word": "various",
+          "phonetic": "'veəriəs",
+          "pos": "adj.",
+          "meaning": "adj. 各种各样的， 不同的"
+        }
+      ]
+    },
+    {
+      "root": "vent",
+      "base": "vent",
+      "words": [
+        {
+          "word": "vent",
+          "phonetic": "vent",
+          "pos": "n. · vt.",
+          "meaning": "n. 通风口，排放口；开衩；vt. 表达， 发泄"
+        },
+        {
+          "word": "venture",
+          "phonetic": "'ventʃə",
+          "pos": "vi. · n. · vt.",
+          "meaning": "vi. 冒险； 大胆行事；n. 风险投资，风险项目；vt. 拿…冒险；敢于"
+        }
+      ]
+    },
+    {
+      "root": "violat",
+      "base": "violate",
+      "words": [
+        {
+          "word": "violate",
+          "phonetic": "'vaɪəleɪt",
+          "pos": "v. · vt.",
+          "meaning": "v. 违犯，违背；侵犯；vt. 违反， 违背； 亵渎； 侵犯， 妨碍"
+        },
+        {
+          "word": "violation",
+          "phonetic": "ˌvaɪə'leɪʃn",
+          "pos": "n.",
+          "meaning": "n. 违反；n. 违犯；侵犯，妨碍"
+        }
+      ]
+    },
+    {
+      "root": "virtu",
+      "base": "virtue",
+      "words": [
+        {
+          "word": "virtual",
+          "phonetic": "ˈvɜ:tʃuəl",
+          "pos": "adj.",
+          "meaning": "adj. 实际的，虚拟的；adj. 实际上的，实质上的；adj. 实质上的， 事实上的， 实际上的"
+        },
+        {
+          "word": "virtually",
+          "phonetic": "ˈvɜ:tʃuəli",
+          "pos": "adv.",
+          "meaning": "adv. 几乎；adv. 事实上， 实质上"
+        },
+        {
+          "word": "virtue",
+          "phonetic": "'vɜːtjuː",
+          "pos": "n.",
+          "meaning": "n. 善， 美德； 优点， 长处"
+        }
+      ]
+    },
+    {
+      "root": "visc",
+      "base": "viscous",
+      "words": [
+        {
+          "word": "visceral",
+          "phonetic": "'vɪsərəl",
+          "pos": "adj.",
+          "meaning": "adj. 内脏的， 腑脏的； 出自内心的， 发自肺腑的"
+        },
+        {
+          "word": "viscous",
+          "phonetic": "'vɪskəs",
+          "pos": "adj.",
+          "meaning": "adj. 粘滞的，粘性的"
+        }
+      ]
+    },
+    {
+      "root": "vit",
+      "base": "vital",
+      "words": [
+        {
+          "word": "vital",
+          "phonetic": "'vaitəl",
+          "pos": "adj.",
+          "meaning": "adj. 重要的；adj. 生命的，生机的；adj. 生死攸关的， 极其重要的； 生命的， 有生命力的"
+        },
+        {
+          "word": "vitality",
+          "phonetic": "vaɪ'tæləti",
+          "pos": "n.",
+          "meaning": "n. 活力； 生机， 元气"
+        }
+      ]
+    },
+    {
+      "root": "voc",
+      "base": "vocal",
+      "words": [
+        {
+          "word": "vocal",
+          "phonetic": "'vəukl",
+          "pos": "adj. · n.",
+          "meaning": "adj. 喜欢畅所欲言的，直言不讳的；嗓音的，发声的；n. 声乐节目"
+        },
+        {
+          "word": "vocation",
+          "phonetic": "və(ʊ)'keɪʃ(ə)n",
+          "pos": "n.",
+          "meaning": "n. 职业，行业"
+        }
+      ]
+    },
+    {
+      "root": "weav",
+      "base": "weave",
+      "words": [
+        {
+          "word": "weave",
+          "phonetic": "wiːv",
+          "pos": "v.",
+          "meaning": "v. 织布，编织"
+        },
+        {
+          "word": "weaver",
+          "phonetic": "'wiːvə",
+          "pos": "n.",
+          "meaning": "n. 织布工，编织者"
+        }
+      ]
+    },
+    {
+      "root": "wind",
+      "base": "wind",
+      "words": [
+        {
+          "word": "wind",
+          "phonetic": "wɪnd; (for v.) waɪnd",
+          "pos": "n.",
+          "meaning": "n. 风"
+        },
+        {
+          "word": "winding",
+          "phonetic": "'waɪndɪŋ",
+          "pos": "n. · adj.",
+          "meaning": "n. 蜿蜒曲折的路径；adj. 蜿蜒曲折的"
+        }
+      ]
+    }
+  ]
+}

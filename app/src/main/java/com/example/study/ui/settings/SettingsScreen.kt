@@ -84,10 +84,16 @@ import com.example.study.ui.theme.AccentPresets
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
 import com.example.study.ui.theme.LocalDuoColors
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material3.IconButton
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-fun SettingsScreen(modifier: Modifier = Modifier) {
+fun SettingsScreen(
+    onBack: () -> Unit = {},
+    initialPage: String? = null,
+    modifier: Modifier = Modifier
+) {
     val context = LocalContext.current
     val viewModel: SettingsViewModel = viewModel(factory = SettingsViewModel.factory(context))
     val state by viewModel.uiState.collectAsStateWithLifecycle()
@@ -99,8 +105,8 @@ fun SettingsScreen(modifier: Modifier = Modifier) {
     var pendingCustomImport by remember { mutableStateOf<PendingCustomImport?>(null) }
     var licenseDialog by rememberSaveable { mutableStateOf<Pair<String, String>?>(null) }
     // 设置页本地二级页面：null 显示分组列表，否则展开对应分组的详细内容
-    var currentPage by rememberSaveable { mutableStateOf<String?>(null) }
-    var showProfileDialog by rememberSaveable { mutableStateOf(false) }
+    var currentPage by rememberSaveable { mutableStateOf<String?>(initialPage) }
+    BackHandler(enabled = currentPage != null) { currentPage = null }
 
     val exportLauncher = rememberLauncherForActivityResult(
         ActivityResultContracts.CreateDocument("application/json")
@@ -127,20 +133,6 @@ fun SettingsScreen(modifier: Modifier = Modifier) {
                     entries = entries
                 )
             }
-        }
-    }
-    val avatarLauncher = rememberLauncherForActivityResult(
-        ActivityResultContracts.OpenDocument()
-    ) { uri ->
-        if (uri != null) {
-            // 持久化读取权限，应用重启后仍能显示自定义头像
-            runCatching {
-                context.contentResolver.takePersistableUriPermission(
-                    uri,
-                    Intent.FLAG_GRANT_READ_URI_PERMISSION
-                )
-            }
-            viewModel.setAvatarUri(uri.toString())
         }
     }
     val notificationPermissionLauncher = rememberLauncherForActivityResult(
@@ -188,17 +180,20 @@ fun SettingsScreen(modifier: Modifier = Modifier) {
                 .padding(top = 14.dp, bottom = 20.dp),
             verticalArrangement = Arrangement.spacedBy(14.dp)
         ) {
-            Text(
-                text = "设置",
-                style = MaterialTheme.typography.headlineMedium,
-                color = DuoTextPrimary
-            )
-
-            ProfileRow(
-                nickname = state.nickname,
-                avatarUri = state.avatarUri,
-                onClick = { showProfileDialog = true }
-            )
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                IconButton(onClick = { if (currentPage != null) currentPage = null else onBack() }) {
+                    Icon(
+                        imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                        contentDescription = "返回我的",
+                        tint = DuoTextPrimary
+                    )
+                }
+                Text(
+                    text = "设置",
+                    style = MaterialTheme.typography.headlineMedium,
+                    color = DuoTextPrimary
+                )
+            }
 
             SettingsGroupEntry(title = "词库", summary = "${state.library} · ${state.wordCounts[state.library] ?: 0} 词", entryKey = "library", currentKey = currentPage, onToggle = { currentPage = it }) {
                 state.libraries.forEach { item ->
@@ -415,7 +410,7 @@ fun SettingsScreen(modifier: Modifier = Modifier) {
                 }
             }
 
-            SettingsGroupEntry(title = "关于与许可", summary = "版本 1.2.2", entryKey = "about", currentKey = currentPage, onToggle = { currentPage = it }) {
+            SettingsGroupEntry(title = "关于与许可", summary = "版本 1.3.1", entryKey = "about", currentKey = currentPage, onToggle = { currentPage = it }) {
                 Text(
                     text = "词库来源：KyleBing/english-vocabulary（BSD 3-Clause License）· PETS 词库由项目整理\n" +
                         "发音：内置 Piper 神经网络女声（LJSpeech，离线），不依赖系统 TTS\n" +
@@ -441,7 +436,7 @@ fun SettingsScreen(modifier: Modifier = Modifier) {
                     }
                 }
                 Text(
-                    text = "版本 1.2.2 · 单词记忆卡",
+                    text = "版本 1.3.1 · 单词记忆卡",
                     style = MaterialTheme.typography.bodySmall,
                     color = DuoTextSecondary
                 )
@@ -456,19 +451,7 @@ fun SettingsScreen(modifier: Modifier = Modifier) {
         )
     }
 
-    if (showProfileDialog) {
-        ProfileEditDialog(
-            nickname = state.nickname,
-            avatarUri = state.avatarUri,
-            onPickAvatar = { avatarLauncher.launch(arrayOf("image/*")) },
-            onClearAvatar = { viewModel.setAvatarUri("") },
-            onDismiss = { showProfileDialog = false },
-            onSave = { name ->
-                viewModel.setNickname(name)
-                showProfileDialog = false
-            }
-        )
-    }
+
 
     if (showImportConfirm) {
         AlertDialog(

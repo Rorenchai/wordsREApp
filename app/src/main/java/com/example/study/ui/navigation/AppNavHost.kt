@@ -56,6 +56,9 @@ import com.example.study.ui.study.StudyScreen
 import com.example.study.ui.theme.DuoBackground
 import com.example.study.ui.theme.DuoGreen
 import com.example.study.ui.theme.DuoTextSecondary
+import androidx.compose.material.icons.filled.Person
+import com.example.study.ui.my.MyScreen
+import com.example.study.ui.tree.WordFamilyScreen
 
 /** 底部导航的五个页签。 */
 private data class BottomNavItem(
@@ -67,9 +70,8 @@ private data class BottomNavItem(
 private val bottomNavItems = listOf(
     BottomNavItem("study", "学习", Icons.Filled.School),
     BottomNavItem("favorites", "收藏", Icons.Filled.Star),
-    BottomNavItem("records", "记录", Icons.Filled.BarChart),
     BottomNavItem("overview", "总览", Icons.AutoMirrored.Filled.FormatListBulleted),
-    BottomNavItem("settings", "设置", Icons.Filled.Settings)
+    BottomNavItem("my", "我的", Icons.Filled.Person)
 )
 
 @Composable
@@ -83,7 +85,7 @@ fun AppNavHost() {
         bottomBar = {
             if (currentRoute !in setOf(
                     "dictionary", "quiz", "listening", "spelling", "match", "wrongbook", "review", "vocab",
-                    "plan", "plannew", "planreview"
+                    "plan", "plannew", "planreview", "settings", "settings/custom", "wordtree"
                 )
             ) {
                 NavigationBar(containerColor = DuoBackground) {
@@ -177,8 +179,31 @@ fun AppNavHost() {
                 )
             }
             composable("favorites") { FavoritesScreen() }
-            composable("overview") { WordOverviewScreen() }
-            composable("settings") { SettingsScreen() }
+            composable("my") {
+                MyScreen(
+                    onOpenSettings = { navController.navigate("settings") { launchSingleTop = true } },
+                    onOpenWrongBook = { navController.navigate("wrongbook") { launchSingleTop = true } },
+                    onOpenVocab = { navController.navigate("vocab") { launchSingleTop = true } }
+                )
+            }
+            composable("overview") {
+                WordOverviewScreen(onOpenWordTree = { navController.navigate("wordtree") { launchSingleTop = true } })
+            }
+            composable("wordtree") {
+                WordFamilyScreen(
+                    onBack = { navController.popBackStack() },
+                    onOpenCustomImport = { navController.navigate("settings/custom") { launchSingleTop = true } }
+                )
+            }
+            composable("settings") {
+                SettingsScreen(onBack = { navController.popBackStack() })
+            }
+            composable("settings/custom") {
+                SettingsScreen(
+                    onBack = { navController.popBackStack() },
+                    initialPage = "custom"
+                )
+            }
             composable("dictionary") {
                 DictionaryScreen(onBack = { navController.popBackStack() })
             }

@@ -44,6 +44,21 @@ class WrongBookViewModel(
         viewModelScope.launch { refreshInternal(_uiState.value.library) }
     }
 
+    fun deleteWords(wordIds: List<Long>) {
+        if (wordIds.isEmpty()) return
+        viewModelScope.launch {
+            studyRepository.deleteWrongBooks(wordIds)
+            refreshInternal(_uiState.value.library)
+        }
+    }
+
+    fun clearAll() {
+        viewModelScope.launch {
+            studyRepository.clearWrongBooks(_uiState.value.library)
+            refreshInternal(_uiState.value.library)
+        }
+    }
+
     private suspend fun refreshInternal(library: String) {
         _uiState.update { it.copy(loading = true) }
         val words = studyRepository.wrongWords(library)

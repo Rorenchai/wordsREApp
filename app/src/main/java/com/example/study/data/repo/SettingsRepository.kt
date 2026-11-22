@@ -73,6 +73,20 @@ class SettingsRepository(
     /** 自定义头像的 content:// URI，空串表示使用默认头像。 */
     val userAvatarUri: Flow<String> = safeData.map { it[KEY_AVATAR_URI] ?: "" }
 
+    /** 用户简介（默认英文短句）。 */
+    val userBio: Flow<String> = safeData.map { it[KEY_USER_BIO] ?: DEFAULT_BIO }
+
+    /** 当前积分。 */
+    val points: Flow<Int> = safeData.map { it[KEY_POINTS] ?: 0 }
+
+    /** 已拥有的头像框 id 集合（默认框始终拥有）。 */
+    val ownedFrames: Flow<Set<String>> = safeData.map { prefs ->
+        parseFrames(prefs[KEY_OWNED_FRAMES]).ifEmpty { setOf(FRAME_NONE) }
+    }
+
+    /** 当前佩戴的头像框 id。 */
+    val equippedFrame: Flow<String> = safeData.map { it[KEY_EQUIPPED_FRAME] ?: FRAME_NONE }
+
     suspend fun setCurrentLibrary(library: String) {
         dataStore.edit { it[KEY_LIBRARY] = library }
     }
@@ -129,6 +143,44 @@ class SettingsRepository(
         dataStore.edit { it[KEY_AVATAR_URI] = uri }
     }
 
+    private fun parseFrames(raw: String?): Set<String> {
+        return raw.orEmpty().split(',').map { it.trim() }.filter { it.isNotBlank() }.toSet()
+    }
+
+    suspend fun setUserBio(bio: String) {
+        dataStore.edit { it[KEY_USER_BIO] = bio.trim().take(MAX_BIO_LENGTH) }
+    }
+
+    suspend fun addPoints(amount: Int) {
+        if (amount == 0) return
+        dataStore.edit { prefs ->
+            val current = prefs[KEY_POINTS] ?: 0
+            prefs[KEY_POINTS] = (current + amount).coerceAtLeast(0)
+        }
+    }
+
+    /** 原子兑换头像框：积分足够且未拥有时扣分并加入资产，返回是否成功。 */
+    suspend fun purchaseFrame(frameId: String, cost: Int): Boolean {
+        var purchased = false
+        dataStore.edit { prefs ->
+            val owned = parseFrames(prefs[KEY_OWNED_FRAMES]).ifEmpty { setOf(FRAME_NONE) }
+            val points = prefs[KEY_POINTS] ?: 0
+            if (frameId !in owned && points >= cost) {
+                prefs[KEY_POINTS] = points - cost
+                prefs[KEY_OWNED_FRAMES] = (owned + frameId).joinToString(",")
+                purchased = true
+            }
+        }
+        return purchased
+    }
+
+    suspend fun equipFrame(frameId: String) {
+        dataStore.edit { prefs ->
+            val owned = parseFrames(prefs[KEY_OWNED_FRAMES]).ifEmpty { setOf(FRAME_NONE) }
+            if (frameId in owned) prefs[KEY_EQUIPPED_FRAME] = frameId
+        }
+    }
+
     companion object {
         const val LIB_CET4 = "CET-4"
         const val LIB_CET6 = "CET-6"
@@ -144,6 +196,10 @@ class SettingsRepository(
         const val THEME_DARK = "dark"
 
         const val THEME_ACCENT_CREAM = "cream"
+        const val DEFAULT_BIO = "Little strokes fell great oaks～"
+        const val MAX_BIO_LENGTH = 50
+        const val FRAME_NONE = "none"
+        const val FRAME_PRICE = 500
 
         val LIBRARIES = listOf(LIB_CET4, LIB_CET6, LIB_PETS)
         val DAILY_GOAL_OPTIONS = listOf(10, 20, 30, 50)
@@ -162,6 +218,10 @@ class SettingsRepository(
         private val KEY_THEME_MODE = stringPreferencesKey("theme_mode")
         private val KEY_THEME_ACCENT = stringPreferencesKey("theme_accent")
         private val KEY_AUTO_READ = booleanPreferencesKey("auto_read_enabled")
+        private val KEY_USER_BIO = stringPreferencesKey("user_bio")
+        private val KEY_POINTS = intPreferencesKey("points")
+        private val KEY_OWNED_FRAMES = stringPreferencesKey("owned_frames")
+        private val KEY_EQUIPPED_FRAME = stringPreferencesKey("equipped_frame")
         private val KEY_GAME_PLAN_MODE = booleanPreferencesKey("game_plan_mode")
         private val KEY_LAST_CHECK_IN = stringPreferencesKey("last_check_in_date")
         private val KEY_NICKNAME = stringPreferencesKey("user_nickname")

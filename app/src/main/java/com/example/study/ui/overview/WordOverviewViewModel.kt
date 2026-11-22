@@ -9,6 +9,7 @@ import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.study.appContainer
 import com.example.study.data.db.WordOverviewItem
 import com.example.study.data.repo.SettingsRepository
+import com.example.study.data.repo.StudyRepository
 import com.example.study.data.repo.TtsManager
 import com.example.study.data.repo.WordRepository
 import kotlinx.coroutines.Job
@@ -40,6 +41,7 @@ data class WordOverviewUiState(
 /** 单词总览：按「全部 / 已掌握 / 未掌握」筛选、搜索、分页浏览与详情发音。 */
 class WordOverviewViewModel(
     private val wordRepository: WordRepository,
+    private val studyRepository: StudyRepository,
     private val settingsRepository: SettingsRepository,
     private val ttsManager: TtsManager
 ) : ViewModel() {
@@ -107,6 +109,15 @@ class WordOverviewViewModel(
         }
     }
 
+    /** 总览里手动归类：1 学习中 / 2 已掌握；完成后刷新列表。 */
+    fun setWordStatus(wordId: Long, status: Int) {
+        viewModelScope.launch {
+            studyRepository.setWordStatus(wordId, status)
+            reload()
+            _uiState.update { it.copy(message = if (status == 2) "已标记为已掌握" else "已标记为未掌握") }
+        }
+    }
+
     fun clearMessage() {
         _uiState.update { it.copy(message = null) }
     }
@@ -147,6 +158,7 @@ class WordOverviewViewModel(
                 val container = context.applicationContext.appContainer
                 WordOverviewViewModel(
                     wordRepository = container.wordRepository,
+                    studyRepository = container.studyRepository,
                     settingsRepository = container.settingsRepository,
                     ttsManager = container.ttsManager
                 )

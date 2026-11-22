@@ -1,4 +1,4 @@
-﻿package com.example.study.ui.components
+package com.example.study.ui.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -31,7 +31,8 @@ import com.example.study.ui.theme.DuoTextSecondary
 fun WordDetailDialog(
     word: WordEntity,
     onSpeak: () -> Unit,
-    onDismiss: () -> Unit
+    onDismiss: () -> Unit,
+    onSetStatus: ((Int) -> Unit)? = null
 ) {
     AlertDialog(
         onDismissRequest = onDismiss,
@@ -96,7 +97,13 @@ fun WordDetailDialog(
             }
         },
         confirmButton = {
-            TextButton(onClick = onDismiss) { Text("关闭") }
+            Row {
+                if (onSetStatus != null) {
+                    TextButton(onClick = { onSetStatus(1) }) { Text("标记未掌握") }
+                    TextButton(onClick = { onSetStatus(2) }) { Text("标记已掌握") }
+                }
+                TextButton(onClick = onDismiss) { Text("关闭") }
+            }
         }
     )
 }

@@ -1,4 +1,4 @@
-﻿package com.example.study.data.db
+package com.example.study.data.db
 
 import androidx.room.Dao
 import androidx.room.Insert
@@ -41,6 +41,9 @@ interface WordDao {
 
     @Query("SELECT COUNT(*) FROM words WHERE library = :library")
     suspend fun countByLibrary(library: String): Int
+
+    @Query("SELECT * FROM words WHERE library = :library ORDER BY word ASC")
+    suspend fun wordsByLibrary(library: String): List<WordEntity>
 
     /**
      * 单词总览分页查询。

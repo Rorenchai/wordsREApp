@@ -58,11 +58,23 @@ class RecordsViewModel(
         }
     }
 
-    /** 记录今日打卡（奖励弹窗由界面展示）。 */
+    /** 记录今日打卡并发放积分（奖励弹窗由界面展示）。 */
     fun checkIn() {
         viewModelScope.launch {
-            settingsRepository.setLastCheckInDate(LocalDate.now().toString())
+            val today = LocalDate.now().toString()
+            if (_uiState.value.lastCheckInDate == today) return@launch
+            _uiState.value.stats ?: return@launch
+            settingsRepository.setLastCheckInDate(today)
+            settingsRepository.addPoints(checkInPoints())
+            _uiState.update { it.copy(lastCheckInDate = today) }
         }
+    }
+
+    /** 当日积分：正确数与背诵数映射到 10–20 分；同一天只发一次。 */
+    fun checkInPoints(): Int {
+        val stats = _uiState.value.stats ?: return 10
+        val score = 10 + stats.todayCorrect / 2 + stats.todayStudied / 2
+        return score.coerceIn(10, 20)
     }
 
     /** 每次进入记录页都刷新，保证刚学习的进度能立刻反映。 */
